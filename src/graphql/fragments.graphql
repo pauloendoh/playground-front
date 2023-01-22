@@ -1,0 +1,7 @@
+fragment AuthUser on AuthUserOutput {
+  id
+  username
+  email
+  token
+  expiresAt
+}
