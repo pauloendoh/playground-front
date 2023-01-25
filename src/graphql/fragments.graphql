@@ -5,3 +5,21 @@ fragment AuthUser on AuthUserOutput {
   token
   expiresAt
 }
+
+fragment Recipe on Recipe {
+  id
+  userId
+  title
+  description
+  rating
+  createdAt
+  updatedAt
+}
+
+fragment CurrentSaving on CurrentSaving {
+  id
+  userId
+  value
+  createdAt
+  updatedAt
+}

@@ -1,5 +1,6 @@
-import { GraphQLClient } from 'graphql-request'
+import { ClientError, GraphQLClient } from 'graphql-request'
 import { localStorageKeys } from '../utils/localStorageKeys'
+import { myNotifications } from '../utils/mantine/myNotifications'
 import { getSdk } from './generated/graphql'
 
 const GRAPHQL_URL = String(import.meta.env.VITE_GRAPHQL_URL)
@@ -14,6 +15,11 @@ const client = new GraphQLClient(GRAPHQL_URL, {
         ...req.headers,
         'x-auth-token': userStr ? JSON.parse(userStr).token : '',
       },
+    }
+  },
+  responseMiddleware: (res: any) => {
+    if (res instanceof ClientError) {
+      myNotifications.success(res.response.errors?.[0]?.message || 'Error')
     }
   },
 })

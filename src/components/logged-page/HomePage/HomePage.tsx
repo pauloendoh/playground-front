@@ -1,23 +1,35 @@
-import { Button } from '@mantine/core'
-import { useLogout } from '../../../hooks/domains/auth/useLogout'
+import { AppShell, Box } from '@mantine/core'
+import useRouterStore from '../../../hooks/zustand/useRouterStore'
+import RecipesContent from '../../recipes-page/RecipesContent/RecipesContent'
+import MonerateContent from '../MonerateContent/MonerateContent'
+import MyHeader from './MyHeader/MyHeader'
+import Sidebar from './Sidebar/Sidebar'
 
 type Props = {
   test?: string
 }
 
 const HomePage = (props: Props) => {
-  const logout = useLogout()
+  const { currentPage } = useRouterStore()
   return (
-    <>
-      Logged
-      <Button
-        onClick={() => {
-          logout()
-        }}
-      >
-        Logout
-      </Button>
-    </>
+    <AppShell
+      padding="md"
+      header={<MyHeader />}
+      navbar={currentPage === 'recipes' ? <Sidebar /> : <></>}
+      styles={(theme) => ({
+        main: {
+          backgroundColor:
+            theme.colorScheme === 'dark'
+              ? theme.colors.dark[8]
+              : theme.colors.gray[0],
+        },
+      })}
+    >
+      <Box>
+        {currentPage === 'recipes' && <RecipesContent></RecipesContent>}
+        {currentPage === 'monerate' && <MonerateContent />}
+      </Box>
+    </AppShell>
   )
 }
 
