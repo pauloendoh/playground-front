@@ -1,5 +1,6 @@
 import { classValidatorResolver } from '@hookform/resolvers/class-validator'
 import {
+  ActionIcon,
   Button,
   CloseButton,
   Flex,
@@ -7,12 +8,16 @@ import {
   Input,
   Modal,
   Rating,
+  Textarea,
   TextInput,
   Title,
+  useMantineTheme,
 } from '@mantine/core'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
+import { MdOutlineBookmark } from 'react-icons/md'
 import { useCreateRecipeMutation } from '../../../../hooks/react-query/recipe/useCreateRecipeMutation'
+import { useRecipesQuery } from '../../../../hooks/react-query/recipe/useRecipesQuery'
 import { MyRecipeValidInput } from '../../../../types/domains/recipe/MyRecipeValidInput'
 import { RecipeMoreMenu } from './RecipeMoreMenu/RecipeMoreMenu'
 
@@ -57,6 +62,15 @@ export default function RecipeModal(props: Props) {
     })
   }
 
+  const { data: recipes } = useRecipesQuery()
+
+  const savedRecipes = useMemo(
+    () => recipes?.filter((recipe) => recipe.savedPosition) || [],
+    [recipes]
+  )
+
+  const theme = useMantineTheme()
+
   return (
     <>
       <Modal
@@ -94,7 +108,30 @@ export default function RecipeModal(props: Props) {
                 error={errors.title?.message}
               />
             </Grid.Col>
-            <Grid.Col span={6}>
+            <Grid.Col span={2}>
+              <Input.Wrapper label="Saved">
+                <ActionIcon
+                  mt={4}
+                  onClick={() => {
+                    const current = watch('savedPosition')
+                    if (current) {
+                      setValue('savedPosition', null)
+                      return
+                    }
+
+                    setValue('savedPosition', savedRecipes.length + 1)
+                  }}
+                >
+                  <MdOutlineBookmark
+                    color={
+                      watch('savedPosition') ? theme.colors.pink[5] : undefined
+                    }
+                  />
+                </ActionIcon>
+              </Input.Wrapper>
+            </Grid.Col>
+
+            <Grid.Col span={4}>
               <Input.Wrapper label="Rating">
                 <Rating
                   value={watch('rating') || undefined}
@@ -105,7 +142,8 @@ export default function RecipeModal(props: Props) {
             </Grid.Col>
           </Grid>
 
-          <TextInput
+          <Textarea
+            mt={16}
             label="Description"
             {...register('description')}
             error={errors.description?.message}

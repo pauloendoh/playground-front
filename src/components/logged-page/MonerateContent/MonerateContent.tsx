@@ -1,4 +1,6 @@
-import { Box, Button, Flex } from '@mantine/core'
+import { Box, Button, Flex, Text } from '@mantine/core'
+import { useMemo } from 'react'
+import { format } from 'timeago.js'
 import { useCurrentSavingsQuery } from '../../../hooks/domains/monerate/current-saving/useCurrentSavingsQuery'
 import useCurrentSavingModalStore from '../../../hooks/zustand/modals/useCurrentSavingModalStore'
 import { MyCurrentSavingValidInput } from '../../../types/domains/monerate/current-saving/MyCurrentSavingValidInput'
@@ -10,6 +12,12 @@ type Props = {
 const MonerateContent = (props: Props) => {
   const { openModal } = useCurrentSavingModalStore()
   const { data: savings } = useCurrentSavingsQuery()
+
+  const sortedSavings = useMemo(
+    () => savings?.sort((a, b) => b.date.localeCompare(a.date)) || [],
+    [savings]
+  )
+
   return (
     <Box>
       Monerate
@@ -28,8 +36,15 @@ const MonerateContent = (props: Props) => {
             onClick={() => {
               openModal(saving)
             }}
+            styles={{
+              label: {
+                width: '100%',
+                justifyContent: 'space-between',
+              },
+            }}
           >
-            {saving.value}
+            <Text>{saving.value}</Text>
+            <Text>{format(saving.date)}</Text>
           </Button>
         ))}
       </Flex>

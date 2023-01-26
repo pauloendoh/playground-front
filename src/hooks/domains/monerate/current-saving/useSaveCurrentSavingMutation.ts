@@ -10,11 +10,7 @@ import { queryKeys } from '../../../../utils/queryKeys'
 gql`
   mutation SaveCurrentSavingMutation($data: CurrentSavingValidInput!) {
     saveCurrentSavingMutation(data: $data) {
-      id
-      userId
-      value
-      createdAt
-      updatedAt
+      ...CurrentSaving
     }
   }
 `
@@ -28,7 +24,7 @@ export const useSaveCurrentSavingMutation = () => {
         .SaveCurrentSavingMutation({
           data: {
             ...data,
-            value: data.value.toFixed(2),
+            value: data.value,
           },
         })
         .then((res) => res.saveCurrentSavingMutation),

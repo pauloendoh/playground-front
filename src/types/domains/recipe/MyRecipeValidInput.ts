@@ -14,13 +14,14 @@ export class MyRecipeValidInput implements RecipeValidInput {
   @IsString()
   description: string
 
-  createdAt?: InputMaybe<string> | undefined
-  updatedAt?: InputMaybe<string> | undefined
-  userId?: InputMaybe<string> | undefined
-  rating?: InputMaybe<number> | undefined
-
   constructor() {
     this.title = ''
     this.description = ''
   }
+
+  createdAt?: InputMaybe<string> | undefined
+  updatedAt?: InputMaybe<string> | undefined
+  userId?: InputMaybe<string> | undefined
+  rating?: InputMaybe<number> | undefined
+  savedPosition?: InputMaybe<number> | undefined
 }

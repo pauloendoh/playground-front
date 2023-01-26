@@ -3,10 +3,12 @@ import {
   Button,
   CloseButton,
   Flex,
+  Grid,
   Modal,
   TextInput,
   Title,
 } from '@mantine/core'
+import { DatePicker } from '@mantine/dates'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveCurrentSavingMutation } from '../../../../hooks/domains/monerate/current-saving/useSaveCurrentSavingMutation'
@@ -28,6 +30,7 @@ export default function CurrentSavingModal(props: Props) {
     formState: { errors },
     setFocus,
     reset,
+    setValue,
   } = useForm<MyCurrentSavingValidInput>({
     resolver,
     defaultValues: props.initialValue,
@@ -81,15 +84,32 @@ export default function CurrentSavingModal(props: Props) {
         size="xs"
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <TextInput
-            label="Value"
-            type="number"
-            {...register('value', {
-              valueAsNumber: true,
-            })}
-            error={errors.value?.message}
-            step="any"
-          />
+          <Grid>
+            <Grid.Col span={6}>
+              <TextInput
+                label="Value"
+                type="number"
+                {...register('value')}
+                error={errors.value?.message}
+                step="any"
+              />
+            </Grid.Col>
+            <Grid.Col span={6}>
+              <DatePicker
+                placeholder="Pick date"
+                label="Date"
+                value={
+                  props.initialValue?.date
+                    ? new Date(props.initialValue?.date)
+                    : undefined
+                }
+                inputFormat="MMM DD, YYYY"
+                onChange={(date) => {
+                  setValue('date', date?.toISOString())
+                }}
+              />
+            </Grid.Col>
+          </Grid>
 
           <Flex align="center" justify="space-between" mt={16}>
             <Button type="submit">Save</Button>

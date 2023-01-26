@@ -12,6 +12,7 @@ fragment Recipe on Recipe {
   title
   description
   rating
+  savedPosition
   createdAt
   updatedAt
 }
@@ -20,6 +21,7 @@ fragment CurrentSaving on CurrentSaving {
   id
   userId
   value
+  date
   createdAt
   updatedAt
 }

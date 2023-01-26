@@ -53,6 +53,7 @@ export type AuthUserOutput = {
 
 export type CurrentSaving = {
   createdAt: Scalars['DateTime'];
+  date: Scalars['DateTime'];
   id: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   user: User;
@@ -71,6 +72,7 @@ export type CurrentSavingAvgOrderByAggregateInput = {
 export type CurrentSavingCountAggregate = {
   _all: Scalars['Int'];
   createdAt: Scalars['Int'];
+  date: Scalars['Int'];
   id: Scalars['Int'];
   updatedAt: Scalars['Int'];
   userId: Scalars['Int'];
@@ -79,6 +81,7 @@ export type CurrentSavingCountAggregate = {
 
 export type CurrentSavingCountOrderByAggregateInput = {
   createdAt?: InputMaybe<SortOrder>;
+  date?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
@@ -87,6 +90,7 @@ export type CurrentSavingCountOrderByAggregateInput = {
 
 export type CurrentSavingCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  date?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutCurrentSavingsInput;
@@ -95,6 +99,7 @@ export type CurrentSavingCreateInput = {
 
 export type CurrentSavingCreateManyInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  date?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
@@ -103,6 +108,7 @@ export type CurrentSavingCreateManyInput = {
 
 export type CurrentSavingCreateManyUserInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  date?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   value: Scalars['Decimal'];
@@ -127,6 +133,7 @@ export type CurrentSavingCreateOrConnectWithoutUserInput = {
 
 export type CurrentSavingCreateWithoutUserInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  date?: InputMaybe<Scalars['DateTime']>;
   id?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   value: Scalars['Decimal'];
@@ -139,6 +146,7 @@ export type CurrentSavingGroupBy = {
   _min?: Maybe<CurrentSavingMinAggregate>;
   _sum?: Maybe<CurrentSavingSumAggregate>;
   createdAt: Scalars['DateTime'];
+  date: Scalars['DateTime'];
   id: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   userId: Scalars['String'];
@@ -153,6 +161,7 @@ export type CurrentSavingListRelationFilter = {
 
 export type CurrentSavingMaxAggregate = {
   createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   userId?: Maybe<Scalars['String']>;
@@ -161,6 +170,7 @@ export type CurrentSavingMaxAggregate = {
 
 export type CurrentSavingMaxOrderByAggregateInput = {
   createdAt?: InputMaybe<SortOrder>;
+  date?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
@@ -169,6 +179,7 @@ export type CurrentSavingMaxOrderByAggregateInput = {
 
 export type CurrentSavingMinAggregate = {
   createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['DateTime']>;
   id?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   userId?: Maybe<Scalars['String']>;
@@ -177,6 +188,7 @@ export type CurrentSavingMinAggregate = {
 
 export type CurrentSavingMinOrderByAggregateInput = {
   createdAt?: InputMaybe<SortOrder>;
+  date?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
@@ -194,6 +206,7 @@ export type CurrentSavingOrderByWithAggregationInput = {
   _min?: InputMaybe<CurrentSavingMinOrderByAggregateInput>;
   _sum?: InputMaybe<CurrentSavingSumOrderByAggregateInput>;
   createdAt?: InputMaybe<SortOrder>;
+  date?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
@@ -202,6 +215,7 @@ export type CurrentSavingOrderByWithAggregationInput = {
 
 export type CurrentSavingOrderByWithRelationInput = {
   createdAt?: InputMaybe<SortOrder>;
+  date?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   user?: InputMaybe<UserOrderByWithRelationInput>;
@@ -211,6 +225,7 @@ export type CurrentSavingOrderByWithRelationInput = {
 
 export enum CurrentSavingScalarFieldEnum {
   CreatedAt = 'createdAt',
+  Date = 'date',
   Id = 'id',
   UpdatedAt = 'updatedAt',
   UserId = 'userId',
@@ -222,6 +237,7 @@ export type CurrentSavingScalarWhereInput = {
   NOT?: InputMaybe<Array<CurrentSavingScalarWhereInput>>;
   OR?: InputMaybe<Array<CurrentSavingScalarWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
+  date?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   userId?: InputMaybe<StringFilter>;
@@ -233,6 +249,7 @@ export type CurrentSavingScalarWhereWithAggregatesInput = {
   NOT?: InputMaybe<Array<CurrentSavingScalarWhereWithAggregatesInput>>;
   OR?: InputMaybe<Array<CurrentSavingScalarWhereWithAggregatesInput>>;
   createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+  date?: InputMaybe<DateTimeWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   userId?: InputMaybe<StringWithAggregatesFilter>;
@@ -249,6 +266,7 @@ export type CurrentSavingSumOrderByAggregateInput = {
 
 export type CurrentSavingUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutCurrentSavingsNestedInput>;
@@ -257,6 +275,7 @@ export type CurrentSavingUpdateInput = {
 
 export type CurrentSavingUpdateManyMutationInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   value?: InputMaybe<DecimalFieldUpdateOperationsInput>;
@@ -288,6 +307,7 @@ export type CurrentSavingUpdateWithWhereUniqueWithoutUserInput = {
 
 export type CurrentSavingUpdateWithoutUserInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   value?: InputMaybe<DecimalFieldUpdateOperationsInput>;
@@ -301,10 +321,11 @@ export type CurrentSavingUpsertWithWhereUniqueWithoutUserInput = {
 
 export type CurrentSavingValidInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  date?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   userId?: InputMaybe<Scalars['String']>;
-  value: Scalars['Decimal'];
+  value: Scalars['String'];
 };
 
 export type CurrentSavingWhereInput = {
@@ -312,6 +333,7 @@ export type CurrentSavingWhereInput = {
   NOT?: InputMaybe<Array<CurrentSavingWhereInput>>;
   OR?: InputMaybe<Array<CurrentSavingWhereInput>>;
   createdAt?: InputMaybe<DateTimeFilter>;
+  date?: InputMaybe<DateTimeFilter>;
   id?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   user?: InputMaybe<UserRelationFilter>;
@@ -953,6 +975,7 @@ export type Recipe = {
   description: Scalars['String'];
   id: Scalars['String'];
   rating?: Maybe<Scalars['Int']>;
+  savedPosition?: Maybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   user: User;
@@ -961,10 +984,12 @@ export type Recipe = {
 
 export type RecipeAvgAggregate = {
   rating?: Maybe<Scalars['Float']>;
+  savedPosition?: Maybe<Scalars['Float']>;
 };
 
 export type RecipeAvgOrderByAggregateInput = {
   rating?: InputMaybe<SortOrder>;
+  savedPosition?: InputMaybe<SortOrder>;
 };
 
 export type RecipeCountAggregate = {
@@ -973,6 +998,7 @@ export type RecipeCountAggregate = {
   description: Scalars['Int'];
   id: Scalars['Int'];
   rating: Scalars['Int'];
+  savedPosition: Scalars['Int'];
   title: Scalars['Int'];
   updatedAt: Scalars['Int'];
   userId: Scalars['Int'];
@@ -983,6 +1009,7 @@ export type RecipeCountOrderByAggregateInput = {
   description?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
+  savedPosition?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
@@ -993,6 +1020,7 @@ export type RecipeCreateInput = {
   description: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
   rating?: InputMaybe<Scalars['Int']>;
+  savedPosition?: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutRecipeInput;
@@ -1003,6 +1031,7 @@ export type RecipeCreateManyInput = {
   description: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
   rating?: InputMaybe<Scalars['Int']>;
+  savedPosition?: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
@@ -1013,6 +1042,7 @@ export type RecipeCreateManyUserInput = {
   description: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
   rating?: InputMaybe<Scalars['Int']>;
+  savedPosition?: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
@@ -1039,6 +1069,7 @@ export type RecipeCreateWithoutUserInput = {
   description: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
   rating?: InputMaybe<Scalars['Int']>;
+  savedPosition?: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
@@ -1053,6 +1084,7 @@ export type RecipeGroupBy = {
   description: Scalars['String'];
   id: Scalars['String'];
   rating?: Maybe<Scalars['Int']>;
+  savedPosition?: Maybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   userId: Scalars['String'];
@@ -1069,6 +1101,7 @@ export type RecipeMaxAggregate = {
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   rating?: Maybe<Scalars['Int']>;
+  savedPosition?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   userId?: Maybe<Scalars['String']>;
@@ -1079,6 +1112,7 @@ export type RecipeMaxOrderByAggregateInput = {
   description?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
+  savedPosition?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
@@ -1089,6 +1123,7 @@ export type RecipeMinAggregate = {
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
   rating?: Maybe<Scalars['Int']>;
+  savedPosition?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   userId?: Maybe<Scalars['String']>;
@@ -1099,6 +1134,7 @@ export type RecipeMinOrderByAggregateInput = {
   description?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
+  savedPosition?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
@@ -1118,6 +1154,7 @@ export type RecipeOrderByWithAggregationInput = {
   description?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
+  savedPosition?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
@@ -1128,6 +1165,7 @@ export type RecipeOrderByWithRelationInput = {
   description?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
+  savedPosition?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   user?: InputMaybe<UserOrderByWithRelationInput>;
@@ -1139,6 +1177,7 @@ export enum RecipeScalarFieldEnum {
   Description = 'description',
   Id = 'id',
   Rating = 'rating',
+  SavedPosition = 'savedPosition',
   Title = 'title',
   UpdatedAt = 'updatedAt',
   UserId = 'userId'
@@ -1152,6 +1191,7 @@ export type RecipeScalarWhereInput = {
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
   rating?: InputMaybe<IntNullableFilter>;
+  savedPosition?: InputMaybe<IntNullableFilter>;
   title?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   userId?: InputMaybe<StringFilter>;
@@ -1165,6 +1205,7 @@ export type RecipeScalarWhereWithAggregatesInput = {
   description?: InputMaybe<StringWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
   rating?: InputMaybe<IntNullableWithAggregatesFilter>;
+  savedPosition?: InputMaybe<IntNullableWithAggregatesFilter>;
   title?: InputMaybe<StringWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   userId?: InputMaybe<StringWithAggregatesFilter>;
@@ -1172,10 +1213,12 @@ export type RecipeScalarWhereWithAggregatesInput = {
 
 export type RecipeSumAggregate = {
   rating?: Maybe<Scalars['Int']>;
+  savedPosition?: Maybe<Scalars['Int']>;
 };
 
 export type RecipeSumOrderByAggregateInput = {
   rating?: InputMaybe<SortOrder>;
+  savedPosition?: InputMaybe<SortOrder>;
 };
 
 export type RecipeUpdateInput = {
@@ -1183,6 +1226,7 @@ export type RecipeUpdateInput = {
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   rating?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  savedPosition?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutRecipeNestedInput>;
@@ -1193,6 +1237,7 @@ export type RecipeUpdateManyMutationInput = {
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   rating?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  savedPosition?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -1226,6 +1271,7 @@ export type RecipeUpdateWithoutUserInput = {
   description?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   rating?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  savedPosition?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   title?: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -1241,6 +1287,7 @@ export type RecipeValidInput = {
   description: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
   rating?: InputMaybe<Scalars['Float']>;
+  savedPosition?: InputMaybe<Scalars['Float']>;
   title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   userId?: InputMaybe<Scalars['String']>;
@@ -1254,6 +1301,7 @@ export type RecipeWhereInput = {
   description?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
   rating?: InputMaybe<IntNullableFilter>;
+  savedPosition?: InputMaybe<IntNullableFilter>;
   title?: InputMaybe<StringFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   user?: InputMaybe<UserRelationFilter>;
@@ -1616,9 +1664,9 @@ export type UserWhereUniqueInput = {
 
 export type AuthUserFragment = { id: string, username: string, email: string, token: string, expiresAt: string };
 
-export type RecipeFragment = { id: string, userId: string, title: string, description: string, rating?: number | null, createdAt: string, updatedAt: string };
+export type RecipeFragment = { id: string, userId: string, title: string, description: string, rating?: number | null, savedPosition?: number | null, createdAt: string, updatedAt: string };
 
-export type CurrentSavingFragment = { id: string, userId: string, value: any, createdAt: string, updatedAt: string };
+export type CurrentSavingFragment = { id: string, userId: string, value: any, date: string, createdAt: string, updatedAt: string };
 
 export type MeQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1628,7 +1676,7 @@ export type MeQueryQuery = { meQuery: { id: string, username: string, email: str
 export type CurrentSavingsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CurrentSavingsQueryQuery = { currentSavingsQuery: Array<{ id: string, userId: string, value: any, createdAt: string, updatedAt: string }> };
+export type CurrentSavingsQueryQuery = { currentSavingsQuery: Array<{ id: string, userId: string, value: any, date: string, createdAt: string, updatedAt: string }> };
 
 export type DeleteSavingMutationMutationVariables = Exact<{
   savingId: Scalars['String'];
@@ -1642,7 +1690,7 @@ export type SaveCurrentSavingMutationMutationVariables = Exact<{
 }>;
 
 
-export type SaveCurrentSavingMutationMutation = { saveCurrentSavingMutation: { id: string, userId: string, value: any, createdAt: string, updatedAt: string } };
+export type SaveCurrentSavingMutationMutation = { saveCurrentSavingMutation: { id: string, userId: string, value: any, date: string, createdAt: string, updatedAt: string } };
 
 export type LoginMutationMutationVariables = Exact<{
   data: LoginValidInput;
@@ -1663,7 +1711,7 @@ export type SaveRecipeMutationMutationVariables = Exact<{
 }>;
 
 
-export type SaveRecipeMutationMutation = { saveRecipeMutation: { id: string, userId: string, title: string, description: string, rating?: number | null, createdAt: string, updatedAt: string } };
+export type SaveRecipeMutationMutation = { saveRecipeMutation: { id: string, userId: string, title: string, description: string, rating?: number | null, savedPosition?: number | null, createdAt: string, updatedAt: string } };
 
 export type DeleteRecipeMutationMutationVariables = Exact<{
   recipeId: Scalars['String'];
@@ -1675,7 +1723,7 @@ export type DeleteRecipeMutationMutation = { deleteRecipeMutation: boolean };
 export type GetRecipesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetRecipesQueryQuery = { getRecipesQuery: Array<{ id: string, userId: string, title: string, description: string, rating?: number | null, createdAt: string, updatedAt: string }> };
+export type GetRecipesQueryQuery = { getRecipesQuery: Array<{ id: string, userId: string, title: string, description: string, rating?: number | null, savedPosition?: number | null, createdAt: string, updatedAt: string }> };
 
 export const AuthUserFragmentDoc = gql`
     fragment AuthUser on AuthUserOutput {
@@ -1693,6 +1741,7 @@ export const RecipeFragmentDoc = gql`
   title
   description
   rating
+  savedPosition
   createdAt
   updatedAt
 }
@@ -1702,6 +1751,7 @@ export const CurrentSavingFragmentDoc = gql`
   id
   userId
   value
+  date
   createdAt
   updatedAt
 }
@@ -1728,14 +1778,10 @@ export const DeleteSavingMutationDocument = gql`
 export const SaveCurrentSavingMutationDocument = gql`
     mutation SaveCurrentSavingMutation($data: CurrentSavingValidInput!) {
   saveCurrentSavingMutation(data: $data) {
-    id
-    userId
-    value
-    createdAt
-    updatedAt
+    ...CurrentSaving
   }
 }
-    `;
+    ${CurrentSavingFragmentDoc}`;
 export const LoginMutationDocument = gql`
     mutation LoginMutation($data: LoginValidInput!) {
   loginMutation(data: $data) {

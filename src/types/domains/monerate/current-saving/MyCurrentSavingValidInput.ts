@@ -1,14 +1,21 @@
-import { IsNumber, Min } from 'class-validator'
-import { CurrentSavingValidInput } from '../../../../graphql/generated/graphql'
+import { IsNumberString } from 'class-validator'
+import {
+  CurrentSavingValidInput,
+  InputMaybe,
+} from '../../../../graphql/generated/graphql'
 
 export class MyCurrentSavingValidInput implements CurrentSavingValidInput {
   id?: string | undefined
 
-  @IsNumber()
-  @Min(1)
-  value!: number
+  createdAt?: InputMaybe<string> | undefined
+  date?: InputMaybe<string> | undefined
+  updatedAt?: InputMaybe<string> | undefined
+  userId?: InputMaybe<string> | undefined
+
+  @IsNumberString()
+  value: string
 
   constructor() {
-    this.value = 0
+    this.value = ''
   }
 }
