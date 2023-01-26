@@ -34,3 +34,15 @@ fragment WishlistItem on WishlistItem {
   createdAt
   updatedAt
 }
+
+fragment Expense on Expense {
+  id
+  userId
+  name
+  value
+  rating
+  date
+  description
+  createdAt
+  updatedAt
+}

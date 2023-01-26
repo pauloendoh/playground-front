@@ -10,7 +10,7 @@ import {
 } from '@mantine/core'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useSaveWishlistItemMutation } from '../../../../hooks/domains/monerate/wishlist-item/useSaveWishlistItemMutation'
+import { useSaveWishlistItemMutation } from '../../../../hooks/react-query/monerate/wishlist-item/useSaveWishlistItemMutation'
 import { MyWishlistItemValidInput } from '../../../../types/domains/monerate/wishlist-item/MyWishlistItemValidInput'
 import { WishlistItemMoreMenu } from './WishlistItemMoreMenu/WishlistItemMoreMenu'
 

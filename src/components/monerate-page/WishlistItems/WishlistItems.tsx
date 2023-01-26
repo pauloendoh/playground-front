@@ -2,7 +2,7 @@ import { Box, Button, Flex, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { upToNDecimals } from 'endoh-utils'
 import { useMemo, useState } from 'react'
-import { useWishlistItemsQuery } from '../../../hooks/domains/monerate/wishlist-item/useWishlistItemsQuery'
+import { useWishlistItemsQuery } from '../../../hooks/react-query/monerate/wishlist-item/useWishlistItemsQuery'
 import { MyWishlistItemValidInput } from '../../../types/domains/monerate/wishlist-item/MyWishlistItemValidInput'
 import WishlistItemModal from '../../_common/modals/WishlistItemModal/WishlistItemModal'
 

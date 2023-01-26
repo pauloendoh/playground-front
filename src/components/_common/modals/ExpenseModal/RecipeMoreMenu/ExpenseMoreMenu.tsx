@@ -2,16 +2,16 @@ import { ActionIcon, Menu } from '@mantine/core'
 import { useState } from 'react'
 
 import { MdDelete, MdMoreHoriz } from 'react-icons/md'
-import { useDeleteSavingMutation } from '../../../../../hooks/react-query/monerate/current-saving/useDeleteSavingMutation'
-import { MyCurrentSavingValidInput } from '../../../../../types/domains/monerate/current-saving/MyCurrentSavingValidInput'
+import { useDeleteExpenseMutation } from '../../../../../hooks/react-query/monerate/expense/useDeleteExpenseMutation'
+import { MyExpenseInput } from '../../../../../types/domains/monerate/expense/MyExpenseInput'
 
 type Props = {
-  saving: MyCurrentSavingValidInput
+  input: MyExpenseInput
   afterDelete: () => void
 }
 
-export const SavingMoreMenu = (props: Props) => {
-  const { mutate: submitDelete } = useDeleteSavingMutation()
+export const ExpenseMoreMenu = (props: Props) => {
+  const { mutate: submitDelete } = useDeleteExpenseMutation()
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -26,8 +26,8 @@ export const SavingMoreMenu = (props: Props) => {
         <Menu.Item
           color="red"
           onClick={() => {
-            if (confirm('Are you sure you want to delete this saving?')) {
-              submitDelete(props.saving.id!, {
+            if (confirm('Are you sure you want to delete this expense?')) {
+              submitDelete(props.input.id!, {
                 onSuccess: () => {
                   props.afterDelete()
                   setIsOpen(false)
@@ -37,7 +37,7 @@ export const SavingMoreMenu = (props: Props) => {
           }}
           icon={<MdDelete />}
         >
-          Delete saving
+          Delete Expense
         </Menu.Item>
       </Menu.Dropdown>
     </Menu>
