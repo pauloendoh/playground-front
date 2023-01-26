@@ -1,10 +1,7 @@
 import { IsNotEmpty, IsString } from 'class-validator'
-import {
-  InputMaybe,
-  RecipeValidInput,
-} from '../../../graphql/generated/graphql'
+import { InputMaybe, RecipeInput } from '../../../graphql/generated/graphql'
 
-export class MyRecipeValidInput implements RecipeValidInput {
+export class MyRecipeInput implements RecipeInput {
   id?: string | undefined
 
   @IsString()

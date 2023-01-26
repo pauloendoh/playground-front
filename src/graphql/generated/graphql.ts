@@ -14,7 +14,7 @@ export type Scalars = {
   Int: number;
   Float: number;
   DateTime: string;
-  Decimal: any;
+  Decimal: string;
 };
 
 export type AffectedRowsOutput = {
@@ -41,6 +41,14 @@ export type AggregateUser = {
   _count?: Maybe<UserCountAggregate>;
   _max?: Maybe<UserMaxAggregate>;
   _min?: Maybe<UserMinAggregate>;
+};
+
+export type AggregateWishlistItem = {
+  _avg?: Maybe<WishlistItemAvgAggregate>;
+  _count?: Maybe<WishlistItemCountAggregate>;
+  _max?: Maybe<WishlistItemMaxAggregate>;
+  _min?: Maybe<WishlistItemMinAggregate>;
+  _sum?: Maybe<WishlistItemSumAggregate>;
 };
 
 export type AuthUserOutput = {
@@ -445,30 +453,38 @@ export type Mutation = {
   createManyCurrentSaving: AffectedRowsOutput;
   createManyRecipe: AffectedRowsOutput;
   createManyUser: AffectedRowsOutput;
+  createManyWishlistItem: AffectedRowsOutput;
   createOneCurrentSaving: CurrentSaving;
   createOneRecipe: Recipe;
   createOneUser: User;
+  createOneWishlistItem: WishlistItem;
   deleteManyCurrentSaving: AffectedRowsOutput;
   deleteManyRecipe: AffectedRowsOutput;
   deleteManyUser: AffectedRowsOutput;
+  deleteManyWishlistItem: AffectedRowsOutput;
   deleteOneCurrentSaving?: Maybe<CurrentSaving>;
   deleteOneRecipe?: Maybe<Recipe>;
   deleteOneUser?: Maybe<User>;
+  deleteOneWishlistItem?: Maybe<WishlistItem>;
   deleteRecipeMutation: Scalars['Boolean'];
   deleteSavingMutation: Scalars['Boolean'];
   loginMutation: AuthUserOutput;
   registerMutation: AuthUserOutput;
   saveCurrentSavingMutation: CurrentSaving;
   saveRecipeMutation: Recipe;
+  saveWishlistItemMutation: WishlistItem;
   updateManyCurrentSaving: AffectedRowsOutput;
   updateManyRecipe: AffectedRowsOutput;
   updateManyUser: AffectedRowsOutput;
+  updateManyWishlistItem: AffectedRowsOutput;
   updateOneCurrentSaving?: Maybe<CurrentSaving>;
   updateOneRecipe?: Maybe<Recipe>;
   updateOneUser?: Maybe<User>;
+  updateOneWishlistItem?: Maybe<WishlistItem>;
   upsertOneCurrentSaving: CurrentSaving;
   upsertOneRecipe: Recipe;
   upsertOneUser: User;
+  upsertOneWishlistItem: WishlistItem;
 };
 
 
@@ -490,6 +506,12 @@ export type MutationCreateManyUserArgs = {
 };
 
 
+export type MutationCreateManyWishlistItemArgs = {
+  data: Array<WishlistItemCreateManyInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+
 export type MutationCreateOneCurrentSavingArgs = {
   data: CurrentSavingCreateInput;
 };
@@ -502,6 +524,11 @@ export type MutationCreateOneRecipeArgs = {
 
 export type MutationCreateOneUserArgs = {
   data: UserCreateInput;
+};
+
+
+export type MutationCreateOneWishlistItemArgs = {
+  data: WishlistItemCreateInput;
 };
 
 
@@ -520,6 +547,11 @@ export type MutationDeleteManyUserArgs = {
 };
 
 
+export type MutationDeleteManyWishlistItemArgs = {
+  where?: InputMaybe<WishlistItemWhereInput>;
+};
+
+
 export type MutationDeleteOneCurrentSavingArgs = {
   where: CurrentSavingWhereUniqueInput;
 };
@@ -532,6 +564,11 @@ export type MutationDeleteOneRecipeArgs = {
 
 export type MutationDeleteOneUserArgs = {
   where: UserWhereUniqueInput;
+};
+
+
+export type MutationDeleteOneWishlistItemArgs = {
+  where: WishlistItemWhereUniqueInput;
 };
 
 
@@ -561,7 +598,12 @@ export type MutationSaveCurrentSavingMutationArgs = {
 
 
 export type MutationSaveRecipeMutationArgs = {
-  data: RecipeValidInput;
+  data: RecipeInput;
+};
+
+
+export type MutationSaveWishlistItemMutationArgs = {
+  data: WishlistItemValidInput;
 };
 
 
@@ -583,6 +625,12 @@ export type MutationUpdateManyUserArgs = {
 };
 
 
+export type MutationUpdateManyWishlistItemArgs = {
+  data: WishlistItemUpdateManyMutationInput;
+  where?: InputMaybe<WishlistItemWhereInput>;
+};
+
+
 export type MutationUpdateOneCurrentSavingArgs = {
   data: CurrentSavingUpdateInput;
   where: CurrentSavingWhereUniqueInput;
@@ -598,6 +646,12 @@ export type MutationUpdateOneRecipeArgs = {
 export type MutationUpdateOneUserArgs = {
   data: UserUpdateInput;
   where: UserWhereUniqueInput;
+};
+
+
+export type MutationUpdateOneWishlistItemArgs = {
+  data: WishlistItemUpdateInput;
+  where: WishlistItemWhereUniqueInput;
 };
 
 
@@ -619,6 +673,13 @@ export type MutationUpsertOneUserArgs = {
   create: UserCreateInput;
   update: UserUpdateInput;
   where: UserWhereUniqueInput;
+};
+
+
+export type MutationUpsertOneWishlistItemArgs = {
+  create: WishlistItemCreateInput;
+  update: WishlistItemUpdateInput;
+  where: WishlistItemWhereUniqueInput;
 };
 
 export type NestedDateTimeFilter = {
@@ -765,6 +826,7 @@ export type Query = {
   aggregateCurrentSaving: AggregateCurrentSaving;
   aggregateRecipe: AggregateRecipe;
   aggregateUser: AggregateUser;
+  aggregateWishlistItem: AggregateWishlistItem;
   currentSaving?: Maybe<CurrentSaving>;
   currentSavings: Array<CurrentSaving>;
   currentSavingsQuery: Array<CurrentSaving>;
@@ -774,18 +836,25 @@ export type Query = {
   findFirstRecipeOrThrow?: Maybe<Recipe>;
   findFirstUser?: Maybe<User>;
   findFirstUserOrThrow?: Maybe<User>;
+  findFirstWishlistItem?: Maybe<WishlistItem>;
+  findFirstWishlistItemOrThrow?: Maybe<WishlistItem>;
   getCurrentSaving?: Maybe<CurrentSaving>;
   getRecipe?: Maybe<Recipe>;
   getRecipesQuery: Array<Recipe>;
   getUser?: Maybe<User>;
+  getWishlistItem?: Maybe<WishlistItem>;
   groupByCurrentSaving: Array<CurrentSavingGroupBy>;
   groupByRecipe: Array<RecipeGroupBy>;
   groupByUser: Array<UserGroupBy>;
+  groupByWishlistItem: Array<WishlistItemGroupBy>;
   meQuery: AuthUserOutput;
   recipe?: Maybe<Recipe>;
   recipes: Array<Recipe>;
   user?: Maybe<User>;
   users: Array<User>;
+  wishlistItem?: Maybe<WishlistItem>;
+  wishlistItems: Array<WishlistItem>;
+  wishlistItemsQuery: Array<WishlistItem>;
 };
 
 
@@ -813,6 +882,15 @@ export type QueryAggregateUserArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<UserWhereInput>;
+};
+
+
+export type QueryAggregateWishlistItemArgs = {
+  cursor?: InputMaybe<WishlistItemWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<WishlistItemWhereInput>;
 };
 
 
@@ -891,6 +969,26 @@ export type QueryFindFirstUserOrThrowArgs = {
 };
 
 
+export type QueryFindFirstWishlistItemArgs = {
+  cursor?: InputMaybe<WishlistItemWhereUniqueInput>;
+  distinct?: InputMaybe<Array<WishlistItemScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<WishlistItemWhereInput>;
+};
+
+
+export type QueryFindFirstWishlistItemOrThrowArgs = {
+  cursor?: InputMaybe<WishlistItemWhereUniqueInput>;
+  distinct?: InputMaybe<Array<WishlistItemScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<WishlistItemWhereInput>;
+};
+
+
 export type QueryGetCurrentSavingArgs = {
   where: CurrentSavingWhereUniqueInput;
 };
@@ -903,6 +1001,11 @@ export type QueryGetRecipeArgs = {
 
 export type QueryGetUserArgs = {
   where: UserWhereUniqueInput;
+};
+
+
+export type QueryGetWishlistItemArgs = {
+  where: WishlistItemWhereUniqueInput;
 };
 
 
@@ -936,6 +1039,16 @@ export type QueryGroupByUserArgs = {
 };
 
 
+export type QueryGroupByWishlistItemArgs = {
+  by: Array<WishlistItemScalarFieldEnum>;
+  having?: InputMaybe<WishlistItemScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<Array<WishlistItemOrderByWithAggregationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<WishlistItemWhereInput>;
+};
+
+
 export type QueryRecipeArgs = {
   where: RecipeWhereUniqueInput;
 };
@@ -963,6 +1076,21 @@ export type QueryUsersArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<UserWhereInput>;
+};
+
+
+export type QueryWishlistItemArgs = {
+  where: WishlistItemWhereUniqueInput;
+};
+
+
+export type QueryWishlistItemsArgs = {
+  cursor?: InputMaybe<WishlistItemWhereUniqueInput>;
+  distinct?: InputMaybe<Array<WishlistItemScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<WishlistItemWhereInput>;
 };
 
 export enum QueryMode {
@@ -1088,6 +1216,17 @@ export type RecipeGroupBy = {
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   userId: Scalars['String'];
+};
+
+export type RecipeInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  description: Scalars['String'];
+  id?: InputMaybe<Scalars['String']>;
+  rating?: InputMaybe<Scalars['Float']>;
+  savedPosition?: InputMaybe<Scalars['Float']>;
+  title: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  userId?: InputMaybe<Scalars['String']>;
 };
 
 export type RecipeListRelationFilter = {
@@ -1282,17 +1421,6 @@ export type RecipeUpsertWithWhereUniqueWithoutUserInput = {
   where: RecipeWhereUniqueInput;
 };
 
-export type RecipeValidInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  description: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  rating?: InputMaybe<Scalars['Float']>;
-  savedPosition?: InputMaybe<Scalars['Float']>;
-  title: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  userId?: InputMaybe<Scalars['String']>;
-};
-
 export type RecipeWhereInput = {
   AND?: InputMaybe<Array<RecipeWhereInput>>;
   NOT?: InputMaybe<Array<RecipeWhereInput>>;
@@ -1371,6 +1499,7 @@ export type User = {
   recipe: Array<Recipe>;
   updatedAt: Scalars['DateTime'];
   username: Scalars['String'];
+  wishlistItems: Array<WishlistItem>;
 };
 
 
@@ -1393,9 +1522,20 @@ export type UserRecipeArgs = {
   where?: InputMaybe<RecipeWhereInput>;
 };
 
+
+export type UserWishlistItemsArgs = {
+  cursor?: InputMaybe<WishlistItemWhereUniqueInput>;
+  distinct?: InputMaybe<Array<WishlistItemScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<WishlistItemWhereInput>;
+};
+
 export type UserCount = {
   currentSavings: Scalars['Int'];
   recipe: Scalars['Int'];
+  wishlistItems: Scalars['Int'];
 };
 
 export type UserCountAggregate = {
@@ -1426,6 +1566,7 @@ export type UserCreateInput = {
   recipe?: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
+  wishlistItems?: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
 };
 
 export type UserCreateManyInput = {
@@ -1449,6 +1590,12 @@ export type UserCreateNestedOneWithoutRecipeInput = {
   create?: InputMaybe<UserCreateWithoutRecipeInput>;
 };
 
+export type UserCreateNestedOneWithoutWishlistItemsInput = {
+  connect?: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutWishlistItemsInput>;
+  create?: InputMaybe<UserCreateWithoutWishlistItemsInput>;
+};
+
 export type UserCreateOrConnectWithoutCurrentSavingsInput = {
   create: UserCreateWithoutCurrentSavingsInput;
   where: UserWhereUniqueInput;
@@ -1456,6 +1603,11 @@ export type UserCreateOrConnectWithoutCurrentSavingsInput = {
 
 export type UserCreateOrConnectWithoutRecipeInput = {
   create: UserCreateWithoutRecipeInput;
+  where: UserWhereUniqueInput;
+};
+
+export type UserCreateOrConnectWithoutWishlistItemsInput = {
+  create: UserCreateWithoutWishlistItemsInput;
   where: UserWhereUniqueInput;
 };
 
@@ -1467,6 +1619,7 @@ export type UserCreateWithoutCurrentSavingsInput = {
   recipe?: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
+  wishlistItems?: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
 };
 
 export type UserCreateWithoutRecipeInput = {
@@ -1475,6 +1628,18 @@ export type UserCreateWithoutRecipeInput = {
   email: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  username: Scalars['String'];
+  wishlistItems?: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
+};
+
+export type UserCreateWithoutWishlistItemsInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  currentSavings?: InputMaybe<CurrentSavingCreateNestedManyWithoutUserInput>;
+  email: Scalars['String'];
+  id?: InputMaybe<Scalars['String']>;
+  password: Scalars['String'];
+  recipe?: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
 };
@@ -1548,6 +1713,7 @@ export type UserOrderByWithRelationInput = {
   recipe?: InputMaybe<RecipeOrderByRelationAggregateInput>;
   updatedAt?: InputMaybe<SortOrder>;
   username?: InputMaybe<SortOrder>;
+  wishlistItems?: InputMaybe<WishlistItemOrderByRelationAggregateInput>;
 };
 
 export type UserRelationFilter = {
@@ -1585,6 +1751,7 @@ export type UserUpdateInput = {
   recipe?: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   username?: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems?: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
 };
 
 export type UserUpdateManyMutationInput = {
@@ -1612,6 +1779,14 @@ export type UserUpdateOneRequiredWithoutRecipeNestedInput = {
   upsert?: InputMaybe<UserUpsertWithoutRecipeInput>;
 };
 
+export type UserUpdateOneRequiredWithoutWishlistItemsNestedInput = {
+  connect?: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutWishlistItemsInput>;
+  create?: InputMaybe<UserCreateWithoutWishlistItemsInput>;
+  update?: InputMaybe<UserUpdateWithoutWishlistItemsInput>;
+  upsert?: InputMaybe<UserUpsertWithoutWishlistItemsInput>;
+};
+
 export type UserUpdateWithoutCurrentSavingsInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -1620,6 +1795,7 @@ export type UserUpdateWithoutCurrentSavingsInput = {
   recipe?: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   username?: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems?: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
 };
 
 export type UserUpdateWithoutRecipeInput = {
@@ -1628,6 +1804,18 @@ export type UserUpdateWithoutRecipeInput = {
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   password?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username?: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems?: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
+};
+
+export type UserUpdateWithoutWishlistItemsInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  currentSavings?: InputMaybe<CurrentSavingUpdateManyWithoutUserNestedInput>;
+  email?: InputMaybe<StringFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  password?: InputMaybe<StringFieldUpdateOperationsInput>;
+  recipe?: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   username?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
@@ -1642,6 +1830,11 @@ export type UserUpsertWithoutRecipeInput = {
   update: UserUpdateWithoutRecipeInput;
 };
 
+export type UserUpsertWithoutWishlistItemsInput = {
+  create: UserCreateWithoutWishlistItemsInput;
+  update: UserUpdateWithoutWishlistItemsInput;
+};
+
 export type UserWhereInput = {
   AND?: InputMaybe<Array<UserWhereInput>>;
   NOT?: InputMaybe<Array<UserWhereInput>>;
@@ -1654,6 +1847,7 @@ export type UserWhereInput = {
   recipe?: InputMaybe<RecipeListRelationFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   username?: InputMaybe<StringFilter>;
+  wishlistItems?: InputMaybe<WishlistItemListRelationFilter>;
 };
 
 export type UserWhereUniqueInput = {
@@ -1662,11 +1856,307 @@ export type UserWhereUniqueInput = {
   username?: InputMaybe<Scalars['String']>;
 };
 
+export type WishlistItem = {
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  itemName: Scalars['String'];
+  priceInThousands: Scalars['Decimal'];
+  updatedAt: Scalars['DateTime'];
+  user: User;
+  userId: Scalars['String'];
+};
+
+export type WishlistItemAvgAggregate = {
+  priceInThousands?: Maybe<Scalars['Decimal']>;
+};
+
+export type WishlistItemAvgOrderByAggregateInput = {
+  priceInThousands?: InputMaybe<SortOrder>;
+};
+
+export type WishlistItemCountAggregate = {
+  _all: Scalars['Int'];
+  createdAt: Scalars['Int'];
+  id: Scalars['Int'];
+  itemName: Scalars['Int'];
+  priceInThousands: Scalars['Int'];
+  updatedAt: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type WishlistItemCountOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  itemName?: InputMaybe<SortOrder>;
+  priceInThousands?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type WishlistItemCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  itemName: Scalars['String'];
+  priceInThousands: Scalars['Decimal'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutWishlistItemsInput;
+};
+
+export type WishlistItemCreateManyInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  itemName: Scalars['String'];
+  priceInThousands: Scalars['Decimal'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  userId: Scalars['String'];
+};
+
+export type WishlistItemCreateManyUserInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  itemName: Scalars['String'];
+  priceInThousands: Scalars['Decimal'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type WishlistItemCreateManyUserInputEnvelope = {
+  data: Array<WishlistItemCreateManyUserInput>;
+  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type WishlistItemCreateNestedManyWithoutUserInput = {
+  connect?: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<WishlistItemCreateOrConnectWithoutUserInput>>;
+  create?: InputMaybe<Array<WishlistItemCreateWithoutUserInput>>;
+  createMany?: InputMaybe<WishlistItemCreateManyUserInputEnvelope>;
+};
+
+export type WishlistItemCreateOrConnectWithoutUserInput = {
+  create: WishlistItemCreateWithoutUserInput;
+  where: WishlistItemWhereUniqueInput;
+};
+
+export type WishlistItemCreateWithoutUserInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  itemName: Scalars['String'];
+  priceInThousands: Scalars['Decimal'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type WishlistItemGroupBy = {
+  _avg?: Maybe<WishlistItemAvgAggregate>;
+  _count?: Maybe<WishlistItemCountAggregate>;
+  _max?: Maybe<WishlistItemMaxAggregate>;
+  _min?: Maybe<WishlistItemMinAggregate>;
+  _sum?: Maybe<WishlistItemSumAggregate>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  itemName: Scalars['String'];
+  priceInThousands: Scalars['Decimal'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+};
+
+export type WishlistItemListRelationFilter = {
+  every?: InputMaybe<WishlistItemWhereInput>;
+  none?: InputMaybe<WishlistItemWhereInput>;
+  some?: InputMaybe<WishlistItemWhereInput>;
+};
+
+export type WishlistItemMaxAggregate = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  itemName?: Maybe<Scalars['String']>;
+  priceInThousands?: Maybe<Scalars['Decimal']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  userId?: Maybe<Scalars['String']>;
+};
+
+export type WishlistItemMaxOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  itemName?: InputMaybe<SortOrder>;
+  priceInThousands?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type WishlistItemMinAggregate = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  itemName?: Maybe<Scalars['String']>;
+  priceInThousands?: Maybe<Scalars['Decimal']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  userId?: Maybe<Scalars['String']>;
+};
+
+export type WishlistItemMinOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  itemName?: InputMaybe<SortOrder>;
+  priceInThousands?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type WishlistItemOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type WishlistItemOrderByWithAggregationInput = {
+  _avg?: InputMaybe<WishlistItemAvgOrderByAggregateInput>;
+  _count?: InputMaybe<WishlistItemCountOrderByAggregateInput>;
+  _max?: InputMaybe<WishlistItemMaxOrderByAggregateInput>;
+  _min?: InputMaybe<WishlistItemMinOrderByAggregateInput>;
+  _sum?: InputMaybe<WishlistItemSumOrderByAggregateInput>;
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  itemName?: InputMaybe<SortOrder>;
+  priceInThousands?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export type WishlistItemOrderByWithRelationInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  itemName?: InputMaybe<SortOrder>;
+  priceInThousands?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+  user?: InputMaybe<UserOrderByWithRelationInput>;
+  userId?: InputMaybe<SortOrder>;
+};
+
+export enum WishlistItemScalarFieldEnum {
+  CreatedAt = 'createdAt',
+  Id = 'id',
+  ItemName = 'itemName',
+  PriceInThousands = 'priceInThousands',
+  UpdatedAt = 'updatedAt',
+  UserId = 'userId'
+}
+
+export type WishlistItemScalarWhereInput = {
+  AND?: InputMaybe<Array<WishlistItemScalarWhereInput>>;
+  NOT?: InputMaybe<Array<WishlistItemScalarWhereInput>>;
+  OR?: InputMaybe<Array<WishlistItemScalarWhereInput>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  itemName?: InputMaybe<StringFilter>;
+  priceInThousands?: InputMaybe<DecimalFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+  userId?: InputMaybe<StringFilter>;
+};
+
+export type WishlistItemScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<Array<WishlistItemScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<WishlistItemScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<WishlistItemScalarWhereWithAggregatesInput>>;
+  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+  id?: InputMaybe<StringWithAggregatesFilter>;
+  itemName?: InputMaybe<StringWithAggregatesFilter>;
+  priceInThousands?: InputMaybe<DecimalWithAggregatesFilter>;
+  updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+  userId?: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type WishlistItemSumAggregate = {
+  priceInThousands?: Maybe<Scalars['Decimal']>;
+};
+
+export type WishlistItemSumOrderByAggregateInput = {
+  priceInThousands?: InputMaybe<SortOrder>;
+};
+
+export type WishlistItemUpdateInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  itemName?: InputMaybe<StringFieldUpdateOperationsInput>;
+  priceInThousands?: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user?: InputMaybe<UserUpdateOneRequiredWithoutWishlistItemsNestedInput>;
+};
+
+export type WishlistItemUpdateManyMutationInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  itemName?: InputMaybe<StringFieldUpdateOperationsInput>;
+  priceInThousands?: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type WishlistItemUpdateManyWithWhereWithoutUserInput = {
+  data: WishlistItemUpdateManyMutationInput;
+  where: WishlistItemScalarWhereInput;
+};
+
+export type WishlistItemUpdateManyWithoutUserNestedInput = {
+  connect?: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<WishlistItemCreateOrConnectWithoutUserInput>>;
+  create?: InputMaybe<Array<WishlistItemCreateWithoutUserInput>>;
+  createMany?: InputMaybe<WishlistItemCreateManyUserInputEnvelope>;
+  delete?: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<WishlistItemScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
+  set?: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
+  update?: InputMaybe<Array<WishlistItemUpdateWithWhereUniqueWithoutUserInput>>;
+  updateMany?: InputMaybe<Array<WishlistItemUpdateManyWithWhereWithoutUserInput>>;
+  upsert?: InputMaybe<Array<WishlistItemUpsertWithWhereUniqueWithoutUserInput>>;
+};
+
+export type WishlistItemUpdateWithWhereUniqueWithoutUserInput = {
+  data: WishlistItemUpdateWithoutUserInput;
+  where: WishlistItemWhereUniqueInput;
+};
+
+export type WishlistItemUpdateWithoutUserInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id?: InputMaybe<StringFieldUpdateOperationsInput>;
+  itemName?: InputMaybe<StringFieldUpdateOperationsInput>;
+  priceInThousands?: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type WishlistItemUpsertWithWhereUniqueWithoutUserInput = {
+  create: WishlistItemCreateWithoutUserInput;
+  update: WishlistItemUpdateWithoutUserInput;
+  where: WishlistItemWhereUniqueInput;
+};
+
+export type WishlistItemValidInput = {
+  createdAt?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['String']>;
+  itemName: Scalars['String'];
+  priceInThousands: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars['String']>;
+};
+
+export type WishlistItemWhereInput = {
+  AND?: InputMaybe<Array<WishlistItemWhereInput>>;
+  NOT?: InputMaybe<Array<WishlistItemWhereInput>>;
+  OR?: InputMaybe<Array<WishlistItemWhereInput>>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  itemName?: InputMaybe<StringFilter>;
+  priceInThousands?: InputMaybe<DecimalFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+  user?: InputMaybe<UserRelationFilter>;
+  userId?: InputMaybe<StringFilter>;
+};
+
+export type WishlistItemWhereUniqueInput = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
 export type AuthUserFragment = { id: string, username: string, email: string, token: string, expiresAt: string };
 
 export type RecipeFragment = { id: string, userId: string, title: string, description: string, rating?: number | null, savedPosition?: number | null, createdAt: string, updatedAt: string };
 
-export type CurrentSavingFragment = { id: string, userId: string, value: any, date: string, createdAt: string, updatedAt: string };
+export type CurrentSavingFragment = { id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string };
+
+export type WishlistItemFragment = { id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string };
 
 export type MeQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1676,7 +2166,7 @@ export type MeQueryQuery = { meQuery: { id: string, username: string, email: str
 export type CurrentSavingsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CurrentSavingsQueryQuery = { currentSavingsQuery: Array<{ id: string, userId: string, value: any, date: string, createdAt: string, updatedAt: string }> };
+export type CurrentSavingsQueryQuery = { currentSavingsQuery: Array<{ id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string }> };
 
 export type DeleteSavingMutationMutationVariables = Exact<{
   savingId: Scalars['String'];
@@ -1690,7 +2180,19 @@ export type SaveCurrentSavingMutationMutationVariables = Exact<{
 }>;
 
 
-export type SaveCurrentSavingMutationMutation = { saveCurrentSavingMutation: { id: string, userId: string, value: any, date: string, createdAt: string, updatedAt: string } };
+export type SaveCurrentSavingMutationMutation = { saveCurrentSavingMutation: { id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string } };
+
+export type SaveWishlistItemMutationMutationVariables = Exact<{
+  data: WishlistItemValidInput;
+}>;
+
+
+export type SaveWishlistItemMutationMutation = { saveWishlistItemMutation: { id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string } };
+
+export type WishlistItemsQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type WishlistItemsQueryQuery = { wishlistItemsQuery: Array<{ id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string }> };
 
 export type LoginMutationMutationVariables = Exact<{
   data: LoginValidInput;
@@ -1707,7 +2209,7 @@ export type RegisterMutationMutationVariables = Exact<{
 export type RegisterMutationMutation = { registerMutation: { id: string, username: string, email: string, token: string, expiresAt: string } };
 
 export type SaveRecipeMutationMutationVariables = Exact<{
-  data: RecipeValidInput;
+  data: RecipeInput;
 }>;
 
 
@@ -1756,6 +2258,16 @@ export const CurrentSavingFragmentDoc = gql`
   updatedAt
 }
     `;
+export const WishlistItemFragmentDoc = gql`
+    fragment WishlistItem on WishlistItem {
+  id
+  userId
+  itemName
+  priceInThousands
+  createdAt
+  updatedAt
+}
+    `;
 export const MeQueryDocument = gql`
     query MeQuery {
   meQuery {
@@ -1782,6 +2294,20 @@ export const SaveCurrentSavingMutationDocument = gql`
   }
 }
     ${CurrentSavingFragmentDoc}`;
+export const SaveWishlistItemMutationDocument = gql`
+    mutation SaveWishlistItemMutation($data: WishlistItemValidInput!) {
+  saveWishlistItemMutation(data: $data) {
+    ...WishlistItem
+  }
+}
+    ${WishlistItemFragmentDoc}`;
+export const WishlistItemsQueryDocument = gql`
+    query WishlistItemsQuery {
+  wishlistItemsQuery {
+    ...WishlistItem
+  }
+}
+    ${WishlistItemFragmentDoc}`;
 export const LoginMutationDocument = gql`
     mutation LoginMutation($data: LoginValidInput!) {
   loginMutation(data: $data) {
@@ -1801,7 +2327,7 @@ export const RegisterMutationDocument = gql`
 }
     ${AuthUserFragmentDoc}`;
 export const SaveRecipeMutationDocument = gql`
-    mutation SaveRecipeMutation($data: RecipeValidInput!) {
+    mutation SaveRecipeMutation($data: RecipeInput!) {
   saveRecipeMutation(data: $data) {
     ...Recipe
   }
@@ -1838,6 +2364,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     SaveCurrentSavingMutation(variables: SaveCurrentSavingMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveCurrentSavingMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<SaveCurrentSavingMutationMutation>(SaveCurrentSavingMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveCurrentSavingMutation', 'mutation');
+    },
+    SaveWishlistItemMutation(variables: SaveWishlistItemMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveWishlistItemMutationMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SaveWishlistItemMutationMutation>(SaveWishlistItemMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveWishlistItemMutation', 'mutation');
+    },
+    WishlistItemsQuery(variables?: WishlistItemsQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<WishlistItemsQueryQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<WishlistItemsQueryQuery>(WishlistItemsQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'WishlistItemsQuery', 'query');
     },
     LoginMutation(variables: LoginMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<LoginMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<LoginMutationMutation>(LoginMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'LoginMutation', 'mutation');

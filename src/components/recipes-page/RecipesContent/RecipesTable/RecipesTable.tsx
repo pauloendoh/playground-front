@@ -13,7 +13,7 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { TbGripVertical } from 'react-icons/tb'
 import { useRecipesQuery } from '../../../../hooks/react-query/recipe/useRecipesQuery'
 import useRecipeModalStore from '../../../../hooks/zustand/modals/useRecipeModalStore'
-import { MyRecipeValidInput } from '../../../../types/domains/recipe/MyRecipeValidInput'
+import { MyRecipeInput } from '../../../../types/domains/recipe/MyRecipeInput'
 
 const useStyles = createStyles((theme) => ({
   item: {
@@ -55,7 +55,7 @@ export default function RecipesTable(props: Props) {
   const [state, handlers] = useListState(showData)
 
   const { openModal } = useRecipeModalStore()
-  const onClickRecipeRow = (recipe: MyRecipeValidInput) => {
+  const onClickRecipeRow = (recipe: MyRecipeInput) => {
     openModal(recipe)
   }
 
@@ -132,7 +132,7 @@ export default function RecipesTable(props: Props) {
       </ScrollArea>
 
       <Flex p={16}>
-        <Button onClick={() => openModal(new MyRecipeValidInput())}>
+        <Button onClick={() => openModal(new MyRecipeInput())}>
           + Create Recipe
         </Button>
       </Flex>

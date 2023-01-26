@@ -18,6 +18,6 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false
   },
-  "include": ["src"],
+  "include": ["src", "src/components/_common/modals/WishlistItemModal/.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

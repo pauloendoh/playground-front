@@ -25,3 +25,12 @@ fragment CurrentSaving on CurrentSaving {
   createdAt
   updatedAt
 }
+
+fragment WishlistItem on WishlistItem {
+  id
+  userId
+  itemName
+  priceInThousands
+  createdAt
+  updatedAt
+}

@@ -18,16 +18,16 @@ import { useForm } from 'react-hook-form'
 import { MdOutlineBookmark } from 'react-icons/md'
 import { useCreateRecipeMutation } from '../../../../hooks/react-query/recipe/useCreateRecipeMutation'
 import { useRecipesQuery } from '../../../../hooks/react-query/recipe/useRecipesQuery'
-import { MyRecipeValidInput } from '../../../../types/domains/recipe/MyRecipeValidInput'
+import { MyRecipeInput } from '../../../../types/domains/recipe/MyRecipeInput'
 import { RecipeMoreMenu } from './RecipeMoreMenu/RecipeMoreMenu'
 
 type Props = {
   isOpen: boolean
-  initialValue?: MyRecipeValidInput
+  initialValue?: MyRecipeInput
   onClose: () => void
 }
 
-const resolver = classValidatorResolver(MyRecipeValidInput)
+const resolver = classValidatorResolver(MyRecipeInput)
 
 export default function RecipeModal(props: Props) {
   const {
@@ -38,7 +38,7 @@ export default function RecipeModal(props: Props) {
     reset,
     watch,
     setValue,
-  } = useForm<MyRecipeValidInput>({
+  } = useForm<MyRecipeInput>({
     resolver,
     defaultValues: props.initialValue,
   })
@@ -54,7 +54,7 @@ export default function RecipeModal(props: Props) {
 
   const { mutate: submitCreateRecipe } = useCreateRecipeMutation()
 
-  const onSubmit = (data: MyRecipeValidInput) => {
+  const onSubmit = (data: MyRecipeInput) => {
     submitCreateRecipe(data, {
       onSuccess: () => {
         props.onClose()

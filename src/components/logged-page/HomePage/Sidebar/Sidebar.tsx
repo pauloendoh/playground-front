@@ -1,7 +1,7 @@
 import { Button, Flex, Navbar } from '@mantine/core'
 import { useRecipesQuery } from '../../../../hooks/react-query/recipe/useRecipesQuery'
 import useRecipeModalStore from '../../../../hooks/zustand/modals/useRecipeModalStore'
-import { MyRecipeValidInput } from '../../../../types/domains/recipe/MyRecipeValidInput'
+import { MyRecipeInput } from '../../../../types/domains/recipe/MyRecipeInput'
 
 type Props = {
   test?: string
@@ -13,7 +13,7 @@ const Sidebar = (props: Props) => {
 
   return (
     <Navbar width={{ base: 300 }} p="xs">
-      <Button onClick={() => openModal(new MyRecipeValidInput())}>
+      <Button onClick={() => openModal(new MyRecipeInput())}>
         + Create Recipe
       </Button>
 

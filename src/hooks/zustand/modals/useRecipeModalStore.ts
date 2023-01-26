@@ -1,10 +1,10 @@
 import { create } from 'zustand'
-import { MyRecipeValidInput } from '../../../types/domains/recipe/MyRecipeValidInput'
+import { MyRecipeInput } from '../../../types/domains/recipe/MyRecipeInput'
 
 interface IStore {
   isOpen: boolean
-  initialValue?: MyRecipeValidInput
-  openModal: (value?: MyRecipeValidInput) => void
+  initialValue?: MyRecipeInput
+  openModal: (value?: MyRecipeInput) => void
   onClose: () => void
 }
 

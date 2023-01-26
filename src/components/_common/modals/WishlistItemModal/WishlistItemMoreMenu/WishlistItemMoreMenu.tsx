@@ -3,14 +3,14 @@ import { useState } from 'react'
 
 import { MdDelete, MdMoreHoriz } from 'react-icons/md'
 import { useDeleteRecipeMutation } from '../../../../../hooks/react-query/recipe/useDeleteRecipeMutation'
-import { MyRecipeInput } from '../../../../../types/domains/recipe/MyRecipeInput'
+import { MyWishlistItemValidInput } from '../../../../../types/domains/monerate/wishlist-item/MyWishlistItemValidInput'
 
 type Props = {
-  recipe: MyRecipeInput
+  recipe: MyWishlistItemValidInput
   afterDelete: () => void
 }
 
-export const RecipeMoreMenu = (props: Props) => {
+export const WishlistItemMoreMenu = (props: Props) => {
   const { mutate: submitDeleteRecipe } = useDeleteRecipeMutation()
   const [isOpen, setIsOpen] = useState(false)
 

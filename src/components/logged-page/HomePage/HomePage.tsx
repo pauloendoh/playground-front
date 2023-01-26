@@ -3,7 +3,6 @@ import useRouterStore from '../../../hooks/zustand/useRouterStore'
 import RecipesContent from '../../recipes-page/RecipesContent/RecipesContent'
 import MonerateContent from '../MonerateContent/MonerateContent'
 import MyHeader from './MyHeader/MyHeader'
-import Sidebar from './Sidebar/Sidebar'
 
 type Props = {
   test?: string
@@ -15,7 +14,7 @@ const HomePage = (props: Props) => {
     <AppShell
       padding="md"
       header={<MyHeader />}
-      navbar={currentPage === 'recipes' ? <Sidebar /> : <></>}
+      navbar={currentPage === 'recipes' ? <></> : <></>}
       styles={(theme) => ({
         main: {
           backgroundColor:
@@ -26,7 +25,7 @@ const HomePage = (props: Props) => {
       })}
     >
       <Box>
-        {currentPage === 'recipes' && <RecipesContent></RecipesContent>}
+        {currentPage === 'recipes' && <RecipesContent />}
         {currentPage === 'monerate' && <MonerateContent />}
       </Box>
     </AppShell>
