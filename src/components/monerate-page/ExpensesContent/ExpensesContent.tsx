@@ -19,6 +19,7 @@ type Props = {
 const ExpensesContent = (props: Props) => {
   const { openModal } = useExpenseModalStore()
   const { fetchNextPage, data, hasNextPage } = useExpensesQuery()
+
   const theme = useMantineTheme()
 
   const flattedData = useMemo(

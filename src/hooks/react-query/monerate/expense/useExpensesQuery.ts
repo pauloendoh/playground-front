@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
 import gql from 'graphql-tag'
 import { sdk } from '../../../../graphql/sdk'
 import { queryKeys } from '../../../../utils/queryKeys'
@@ -14,6 +14,7 @@ gql`
 const PAGE_SIZE = 5
 
 export const useExpensesQuery = () => {
+  const queryClient = useQueryClient()
   return useInfiniteQuery(
     queryKeys.expenses,
     ({ pageParam = 1 }) =>
@@ -25,6 +26,7 @@ export const useExpensesQuery = () => {
         if (lastPageData.length < PAGE_SIZE) {
           return undefined
         }
+
         return pages.length
       },
     }
