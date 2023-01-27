@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text } from '@mantine/core'
+import { Box, Button, Flex, ScrollArea, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { upToNDecimals } from 'endoh-utils'
 import { useMemo, useState } from 'react'
@@ -40,27 +40,31 @@ const WishlistItems = (props: Props) => {
         + Add Wishlist Item
       </Button>
 
-      <Flex mt={16} direction="column">
-        {sortedItems?.map((item) => (
-          <Button
-            key={item.id}
-            onClick={() => {
-              setModalInitialValue(item)
-              handlers.open()
-            }}
-            styles={{
-              label: {
-                justifyContent: 'space-between',
-                width: '100%',
-              },
-            }}
-            variant="subtle"
-          >
-            <Text>{item.itemName}</Text>
-            <Text>R$ {upToNDecimals(Number(item.priceInThousands), 1)} K</Text>
-          </Button>
-        ))}
-      </Flex>
+      <ScrollArea mt={24} sx={{ height: 200 }}>
+        <Flex direction="column">
+          {sortedItems?.map((item) => (
+            <Button
+              key={item.id}
+              onClick={() => {
+                setModalInitialValue(item)
+                handlers.open()
+              }}
+              styles={{
+                label: {
+                  justifyContent: 'space-between',
+                  width: '100%',
+                },
+              }}
+              variant="subtle"
+            >
+              <Text>{item.itemName}</Text>
+              <Text>
+                R$ {upToNDecimals(Number(item.priceInThousands), 1)} K
+              </Text>
+            </Button>
+          ))}
+        </Flex>
+      </ScrollArea>
 
       <WishlistItemModal
         isOpen={opened}

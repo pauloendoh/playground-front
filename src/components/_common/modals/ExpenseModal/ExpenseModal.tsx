@@ -44,7 +44,7 @@ export default function ExpenseModal(props: Props) {
   useEffect(() => {
     if (props.isOpen) {
       setTimeout(() => {
-        setFocus('value')
+        setFocus('name')
         reset(props.initialValue)
       }, 100)
     }
@@ -94,7 +94,7 @@ export default function ExpenseModal(props: Props) {
           <Grid>
             <Grid.Col span={6}>
               <TextInput
-                label="Name"
+                label="Expense Name"
                 {...register('name')}
                 error={errors.name?.message}
               />
@@ -102,14 +102,13 @@ export default function ExpenseModal(props: Props) {
 
             <Grid.Col span={6}>
               <TextInput
-                label="Title"
+                label="Value"
                 {...register('value')}
                 error={errors.value?.message}
               />
             </Grid.Col>
-            <Grid.Col span={2}></Grid.Col>
 
-            <Grid.Col span={4}>
+            <Grid.Col span={6}>
               <Input.Wrapper label="Rating">
                 <Rating
                   value={watch('rating') || undefined}
@@ -118,7 +117,7 @@ export default function ExpenseModal(props: Props) {
                 />
               </Input.Wrapper>
             </Grid.Col>
-            <Grid.Col span={4}>
+            <Grid.Col span={6}>
               <CategoriesSelector
                 categoryIds={watch('categoryIds') || []}
                 onChange={(categoryIds) => setValue('categoryIds', categoryIds)}

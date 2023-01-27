@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Grid, Text } from '@mantine/core'
+import { Box, Button, Flex, Grid, ScrollArea, Text } from '@mantine/core'
 import { useMemo } from 'react'
 import { format } from 'timeago.js'
 import { useCurrentSavingsQuery } from '../../../hooks/react-query/monerate/current-saving/useCurrentSavingsQuery'
@@ -33,26 +33,28 @@ const MonerateContent = (props: Props) => {
             >
               + Current Saving
             </Button>
-            <Flex mt={24} direction="column">
-              {sortedSavings?.map((saving) => (
-                <Button
-                  key={saving.id}
-                  variant="subtle"
-                  onClick={() => {
-                    openModal(saving)
-                  }}
-                  styles={{
-                    label: {
-                      width: '100%',
-                      justifyContent: 'space-between',
-                    },
-                  }}
-                >
-                  <Text>{saving.value}</Text>
-                  <Text>{format(saving.date)}</Text>
-                </Button>
-              ))}
-            </Flex>
+            <ScrollArea mt={24} sx={{ height: 200 }}>
+              <Flex direction="column">
+                {sortedSavings?.map((saving) => (
+                  <Button
+                    key={saving.id}
+                    variant="subtle"
+                    onClick={() => {
+                      openModal(saving)
+                    }}
+                    styles={{
+                      label: {
+                        width: '100%',
+                        justifyContent: 'space-between',
+                      },
+                    }}
+                  >
+                    <Text>{saving.value}</Text>
+                    <Text>{format(saving.date)}</Text>
+                  </Button>
+                ))}
+              </Flex>
+            </ScrollArea>
           </Box>
         </Grid.Col>
 

@@ -205,7 +205,7 @@ export type CategoryGroupBy = {
 
 export type CategoryInput = {
   bgColor: Scalars['String'];
-  id: Scalars['String'];
+  id?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
 };
 
@@ -1843,6 +1843,11 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: InputMaybe<Scalars['String']>;
 };
 
+export type PaginationInput = {
+  page?: InputMaybe<Scalars['Float']>;
+  pageSize?: InputMaybe<Scalars['Float']>;
+};
+
 export type Query = {
   aggregateCategory: AggregateCategory;
   aggregateCurrentSaving: AggregateCurrentSaving;
@@ -1991,6 +1996,11 @@ export type QueryExpensesArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ExpenseWhereInput>;
+};
+
+
+export type QueryExpensesQueryArgs = {
+  pagination?: InputMaybe<PaginationInput>;
 };
 
 
@@ -3558,7 +3568,9 @@ export type DeleteExpenseMutationMutationVariables = Exact<{
 
 export type DeleteExpenseMutationMutation = { deleteExpenseMutation: boolean };
 
-export type ExpensesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+export type ExpensesQueryQueryVariables = Exact<{
+  pagination?: InputMaybe<PaginationInput>;
+}>;
 
 
 export type ExpensesQueryQuery = { expensesQuery: Array<{ id: string, userId: string, name: string, value: string, rating?: number, date?: string, description?: string, createdAt: string, updatedAt: string, categories: Array<{ id: string }> }> };
@@ -3737,8 +3749,8 @@ export const DeleteExpenseMutationDocument = gql`
 }
     `;
 export const ExpensesQueryDocument = gql`
-    query ExpensesQuery {
-  expensesQuery {
+    query ExpensesQuery($pagination: PaginationInput) {
+  expensesQuery(pagination: $pagination) {
     ...Expense
   }
 }

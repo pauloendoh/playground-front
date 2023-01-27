@@ -1,19 +1,32 @@
-import { useQuery } from '@tanstack/react-query'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import gql from 'graphql-tag'
 import { sdk } from '../../../../graphql/sdk'
 import { queryKeys } from '../../../../utils/queryKeys'
 
 gql`
-  query ExpensesQuery {
-    expensesQuery {
+  query ExpensesQuery($pagination: PaginationInput) {
+    expensesQuery(pagination: $pagination) {
       ...Expense
     }
   }
 `
 
+const PAGE_SIZE = 5
+
 export const useExpensesQuery = () => {
-  return useQuery({
-    queryKey: queryKeys.expenses,
-    queryFn: () => sdk.ExpensesQuery().then((res) => res.expensesQuery),
-  })
+  return useInfiniteQuery(
+    queryKeys.expenses,
+    ({ pageParam = 1 }) =>
+      sdk
+        .ExpensesQuery({ pagination: { page: pageParam, pageSize: PAGE_SIZE } })
+        .then((res) => res.expensesQuery),
+    {
+      getNextPageParam: (lastPageData, pages) => {
+        if (lastPageData.length < PAGE_SIZE) {
+          return undefined
+        }
+        return pages.length
+      },
+    }
+  )
 }
