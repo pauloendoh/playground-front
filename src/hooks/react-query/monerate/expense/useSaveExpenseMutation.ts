@@ -1,8 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { plainToClass } from 'class-transformer'
-import { upsert } from 'endoh-utils'
 import gql from 'graphql-tag'
-import { ExpenseFragment } from '../../../../graphql/generated/graphql'
 import { sdk } from '../../../../graphql/sdk'
 import { MyExpenseInput } from '../../../../types/domains/monerate/expense/MyExpenseInput'
 import { myNotifications } from '../../../../utils/mantine/myNotifications'
@@ -37,11 +35,7 @@ export const useSaveExpenseMutation = () => {
       onSuccess: (saved) => {
         myNotifications.success('Expense saved!')
 
-        if (!saved) return
-        queryClient.setQueryData<ExpenseFragment[]>(
-          queryKeys.expenses,
-          (curr) => upsert(curr, saved, (currItem) => currItem.id === saved.id)
-        )
+        queryClient.invalidateQueries(queryKeys.expenses)
       },
     }
   )

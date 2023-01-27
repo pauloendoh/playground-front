@@ -35,10 +35,10 @@ const ExpensesContent = (props: Props) => {
   })
 
   useEffect(() => {
-    if (entry?.isIntersecting && hasNextPage) {
+    if (entry?.isIntersecting && hasNextPage && data?.pages?.length) {
       fetchNextPage()
     }
-  }, [entry?.isIntersecting, hasNextPage])
+  }, [entry?.isIntersecting, hasNextPage, data])
 
   return (
     <Box>
@@ -55,7 +55,7 @@ const ExpensesContent = (props: Props) => {
       <Flex direction="column" mt={16}>
         {flattedData?.map((expense) => (
           <Button
-            key={expense?.id}
+            key={expense.id}
             onClick={() => {
               openModal({
                 ...expense!,

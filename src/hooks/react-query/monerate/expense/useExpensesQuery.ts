@@ -27,7 +27,7 @@ export const useExpensesQuery = () => {
           return undefined
         }
 
-        return pages.length
+        return pages.length + 1
       },
     }
   )
