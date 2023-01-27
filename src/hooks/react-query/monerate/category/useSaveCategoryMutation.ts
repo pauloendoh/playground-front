@@ -6,10 +6,10 @@ import { CategoryFragment } from '../../../../graphql/generated/graphql'
 import { sdk } from '../../../../graphql/sdk'
 import { myNotifications } from '../../../../utils/mantine/myNotifications'
 import { queryKeys } from '../../../../utils/queryKeys'
-import { MyCategoryInput } from './types/MyCategoryInput'
+import MyCategoryInput from './types/MyCategoryInput'
 
 gql`
-  mutation SaveCategoryMutation($data: CategoryInput) {
+  mutation SaveCategoryMutation($data: CategoryInput!) {
     saveCategoryMutation(data: $data) {
       ...Category
     }

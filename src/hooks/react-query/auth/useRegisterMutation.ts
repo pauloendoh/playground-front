@@ -23,6 +23,7 @@ export const useRegisterMutation = () => {
         .then((res) => res.registerMutation),
     {
       onSuccess: (data) => {
+        if (!data) return
         setAuthUser(data)
       },
     }

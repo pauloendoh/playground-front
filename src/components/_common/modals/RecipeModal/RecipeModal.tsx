@@ -115,7 +115,7 @@ export default function RecipeModal(props: Props) {
                   onClick={() => {
                     const current = watch('savedPosition')
                     if (current) {
-                      setValue('savedPosition', null)
+                      setValue('savedPosition', undefined)
                       return
                     }
 

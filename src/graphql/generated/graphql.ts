@@ -1,8 +1,8 @@
 import { GraphQLClient } from 'graphql-request';
 import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
-export type Maybe<T> = T | null;
-export type InputMaybe<T> = Maybe<T>;
+export type Maybe<T> = T;
+export type InputMaybe<T> = T;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -66,11 +66,11 @@ export type AggregateWishlistItem = {
 };
 
 export type AuthUserOutput = {
-  email?: Maybe<Scalars['String']>;
-  expiresAt?: Maybe<Scalars['DateTime']>;
-  id?: Maybe<Scalars['String']>;
-  token?: Maybe<Scalars['String']>;
-  username?: Maybe<Scalars['String']>;
+  email: Scalars['String'];
+  expiresAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  token: Scalars['String'];
+  username: Scalars['String'];
 };
 
 export type Category = {
@@ -205,7 +205,7 @@ export type CategoryGroupBy = {
 
 export type CategoryInput = {
   bgColor: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  id: Scalars['String'];
   name: Scalars['String'];
 };
 
@@ -977,7 +977,7 @@ export type ExpenseGroupBy = {
 };
 
 export type ExpenseInput = {
-  categoryIds?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  categoryIds?: InputMaybe<Array<Scalars['String']>>;
   date?: InputMaybe<Scalars['DateTime']>;
   description?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['String']>;
@@ -1284,8 +1284,8 @@ export type IntNullableWithAggregatesFilter = {
 };
 
 export type LoginValidInput = {
-  password?: InputMaybe<Scalars['String']>;
-  usernameOrEmail?: InputMaybe<Scalars['String']>;
+  password: Scalars['String'];
+  usernameOrEmail: Scalars['String'];
 };
 
 export type Mutation = {
@@ -1301,8 +1301,8 @@ export type Mutation = {
   createOneRecipe: Recipe;
   createOneUser: User;
   createOneWishlistItem: WishlistItem;
-  deleteCategoryMutation?: Maybe<Scalars['Boolean']>;
-  deleteExpenseMutation?: Maybe<Scalars['Boolean']>;
+  deleteCategoryMutation: Scalars['Boolean'];
+  deleteExpenseMutation: Scalars['Boolean'];
   deleteManyCategory: AffectedRowsOutput;
   deleteManyCurrentSaving: AffectedRowsOutput;
   deleteManyExpense: AffectedRowsOutput;
@@ -1315,15 +1315,15 @@ export type Mutation = {
   deleteOneRecipe?: Maybe<Recipe>;
   deleteOneUser?: Maybe<User>;
   deleteOneWishlistItem?: Maybe<WishlistItem>;
-  deleteRecipeMutation?: Maybe<Scalars['Boolean']>;
-  deleteSavingMutation?: Maybe<Scalars['Boolean']>;
-  loginMutation?: Maybe<AuthUserOutput>;
-  registerMutation?: Maybe<AuthUserOutput>;
-  saveCategoryMutation?: Maybe<Category>;
-  saveCurrentSavingMutation?: Maybe<CurrentSaving>;
-  saveExpenseMutation?: Maybe<Expense>;
-  saveRecipeMutation?: Maybe<Recipe>;
-  saveWishlistItemMutation?: Maybe<WishlistItem>;
+  deleteRecipeMutation: Scalars['Boolean'];
+  deleteSavingMutation: Scalars['Boolean'];
+  loginMutation: AuthUserOutput;
+  registerMutation: AuthUserOutput;
+  saveCategoryMutation: Category;
+  saveCurrentSavingMutation: CurrentSaving;
+  saveExpenseMutation: Expense;
+  saveRecipeMutation: Recipe;
+  saveWishlistItemMutation: WishlistItem;
   updateManyCategory: AffectedRowsOutput;
   updateManyCurrentSaving: AffectedRowsOutput;
   updateManyExpense: AffectedRowsOutput;
@@ -1412,12 +1412,12 @@ export type MutationCreateOneWishlistItemArgs = {
 
 
 export type MutationDeleteCategoryMutationArgs = {
-  id?: InputMaybe<Scalars['String']>;
+  id: Scalars['String'];
 };
 
 
 export type MutationDeleteExpenseMutationArgs = {
-  id?: InputMaybe<Scalars['String']>;
+  id: Scalars['String'];
 };
 
 
@@ -1482,47 +1482,47 @@ export type MutationDeleteOneWishlistItemArgs = {
 
 
 export type MutationDeleteRecipeMutationArgs = {
-  recipeId?: InputMaybe<Scalars['String']>;
+  recipeId: Scalars['String'];
 };
 
 
 export type MutationDeleteSavingMutationArgs = {
-  savingId?: InputMaybe<Scalars['String']>;
+  savingId: Scalars['String'];
 };
 
 
 export type MutationLoginMutationArgs = {
-  data?: InputMaybe<LoginValidInput>;
+  data: LoginValidInput;
 };
 
 
 export type MutationRegisterMutationArgs = {
-  data?: InputMaybe<RegisterValidInput>;
+  data: RegisterValidInput;
 };
 
 
 export type MutationSaveCategoryMutationArgs = {
-  data?: InputMaybe<CategoryInput>;
+  data: CategoryInput;
 };
 
 
 export type MutationSaveCurrentSavingMutationArgs = {
-  data?: InputMaybe<CurrentSavingValidInput>;
+  data: CurrentSavingValidInput;
 };
 
 
 export type MutationSaveExpenseMutationArgs = {
-  data?: InputMaybe<ExpenseInput>;
+  data: ExpenseInput;
 };
 
 
 export type MutationSaveRecipeMutationArgs = {
-  data?: InputMaybe<RecipeInput>;
+  data: RecipeInput;
 };
 
 
 export type MutationSaveWishlistItemMutationArgs = {
-  data?: InputMaybe<WishlistItemValidInput>;
+  data: WishlistItemValidInput;
 };
 
 
@@ -1851,14 +1851,14 @@ export type Query = {
   aggregateUser: AggregateUser;
   aggregateWishlistItem: AggregateWishlistItem;
   categories: Array<Category>;
-  categoriesQuery?: Maybe<Array<Maybe<Category>>>;
+  categoriesQuery: Array<Category>;
   category?: Maybe<Category>;
   currentSaving?: Maybe<CurrentSaving>;
   currentSavings: Array<CurrentSaving>;
-  currentSavingsQuery?: Maybe<Array<Maybe<CurrentSaving>>>;
+  currentSavingsQuery: Array<CurrentSaving>;
   expense?: Maybe<Expense>;
   expenses: Array<Expense>;
-  expensesQuery?: Maybe<Array<Maybe<Expense>>>;
+  expensesQuery: Array<Expense>;
   findFirstCategory?: Maybe<Category>;
   findFirstCategoryOrThrow?: Maybe<Category>;
   findFirstCurrentSaving?: Maybe<CurrentSaving>;
@@ -1875,7 +1875,7 @@ export type Query = {
   getCurrentSaving?: Maybe<CurrentSaving>;
   getExpense?: Maybe<Expense>;
   getRecipe?: Maybe<Recipe>;
-  getRecipesQuery?: Maybe<Array<Maybe<Recipe>>>;
+  getRecipesQuery: Array<Recipe>;
   getUser?: Maybe<User>;
   getWishlistItem?: Maybe<WishlistItem>;
   groupByCategory: Array<CategoryGroupBy>;
@@ -1884,14 +1884,14 @@ export type Query = {
   groupByRecipe: Array<RecipeGroupBy>;
   groupByUser: Array<UserGroupBy>;
   groupByWishlistItem: Array<WishlistItemGroupBy>;
-  meQuery?: Maybe<AuthUserOutput>;
+  meQuery: AuthUserOutput;
   recipe?: Maybe<Recipe>;
   recipes: Array<Recipe>;
   user?: Maybe<User>;
   users: Array<User>;
   wishlistItem?: Maybe<WishlistItem>;
   wishlistItems: Array<WishlistItem>;
-  wishlistItemsQuery?: Maybe<Array<Maybe<WishlistItem>>>;
+  wishlistItemsQuery: Array<WishlistItem>;
 };
 
 
@@ -2375,11 +2375,11 @@ export type RecipeGroupBy = {
 
 export type RecipeInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
-  description?: InputMaybe<Scalars['String']>;
+  description: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
   rating?: InputMaybe<Scalars['Float']>;
   savedPosition?: InputMaybe<Scalars['Float']>;
-  title?: InputMaybe<Scalars['String']>;
+  title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   userId?: InputMaybe<Scalars['String']>;
 };
@@ -2596,10 +2596,10 @@ export type RecipeWhereUniqueInput = {
 };
 
 export type RegisterValidInput = {
-  email?: InputMaybe<Scalars['String']>;
-  password1?: InputMaybe<Scalars['String']>;
-  password2?: InputMaybe<Scalars['String']>;
-  username?: InputMaybe<Scalars['String']>;
+  email: Scalars['String'];
+  password1: Scalars['String'];
+  password2: Scalars['String'];
+  username: Scalars['String'];
 };
 
 export enum SortOrder {
@@ -3482,124 +3482,124 @@ export type WishlistItemWhereUniqueInput = {
   id?: InputMaybe<Scalars['String']>;
 };
 
-export type AuthUserFragment = { id?: string | null, username?: string | null, email?: string | null, token?: string | null, expiresAt?: string | null };
+export type AuthUserFragment = { id: string, username: string, email: string, token: string, expiresAt: string };
 
-export type RecipeFragment = { id: string, userId: string, title: string, description: string, rating?: number | null, savedPosition?: number | null, createdAt: string, updatedAt: string };
+export type RecipeFragment = { id: string, userId: string, title: string, description: string, rating?: number, savedPosition?: number, createdAt: string, updatedAt: string };
 
 export type CurrentSavingFragment = { id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string };
 
 export type WishlistItemFragment = { id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string };
 
-export type ExpenseFragment = { id: string, userId: string, name: string, value: string, rating?: number | null, date?: string | null, description?: string | null, createdAt: string, updatedAt: string, categories: Array<{ id: string }> };
+export type ExpenseFragment = { id: string, userId: string, name: string, value: string, rating?: number, date?: string, description?: string, createdAt: string, updatedAt: string, categories: Array<{ id: string }> };
 
 export type CategoryFragment = { id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string };
 
 export type MeQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MeQueryQuery = { meQuery?: { id?: string | null, username?: string | null, email?: string | null, token?: string | null, expiresAt?: string | null } | null };
+export type MeQueryQuery = { meQuery: { id: string, username: string, email: string, token: string, expiresAt: string } };
 
 export type LoginMutationMutationVariables = Exact<{
   data: LoginValidInput;
 }>;
 
 
-export type LoginMutationMutation = { loginMutation?: { id?: string | null, username?: string | null, email?: string | null, token?: string | null, expiresAt?: string | null } | null };
+export type LoginMutationMutation = { loginMutation: { id: string, username: string, email: string, token: string, expiresAt: string } };
 
 export type RegisterMutationMutationVariables = Exact<{
   data: RegisterValidInput;
 }>;
 
 
-export type RegisterMutationMutation = { registerMutation?: { id?: string | null, username?: string | null, email?: string | null, token?: string | null, expiresAt?: string | null } | null };
+export type RegisterMutationMutation = { registerMutation: { id: string, username: string, email: string, token: string, expiresAt: string } };
 
 export type CategoriesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CategoriesQueryQuery = { categoriesQuery?: Array<{ id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string } | null> | null };
+export type CategoriesQueryQuery = { categoriesQuery: Array<{ id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string }> };
 
 export type DeleteCategoryMutationMutationVariables = Exact<{
-  deleteCategoryMutationId?: InputMaybe<Scalars['String']>;
+  deleteCategoryMutationId: Scalars['String'];
 }>;
 
 
-export type DeleteCategoryMutationMutation = { deleteCategoryMutation?: boolean | null };
+export type DeleteCategoryMutationMutation = { deleteCategoryMutation: boolean };
 
 export type SaveCategoryMutationMutationVariables = Exact<{
-  data?: InputMaybe<CategoryInput>;
+  data: CategoryInput;
 }>;
 
 
-export type SaveCategoryMutationMutation = { saveCategoryMutation?: { id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string } | null };
+export type SaveCategoryMutationMutation = { saveCategoryMutation: { id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string } };
 
 export type CurrentSavingsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CurrentSavingsQueryQuery = { currentSavingsQuery?: Array<{ id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string } | null> | null };
+export type CurrentSavingsQueryQuery = { currentSavingsQuery: Array<{ id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string }> };
 
 export type DeleteSavingMutationMutationVariables = Exact<{
   savingId: Scalars['String'];
 }>;
 
 
-export type DeleteSavingMutationMutation = { deleteSavingMutation?: boolean | null };
+export type DeleteSavingMutationMutation = { deleteSavingMutation: boolean };
 
 export type SaveCurrentSavingMutationMutationVariables = Exact<{
   data: CurrentSavingValidInput;
 }>;
 
 
-export type SaveCurrentSavingMutationMutation = { saveCurrentSavingMutation?: { id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string } | null };
+export type SaveCurrentSavingMutationMutation = { saveCurrentSavingMutation: { id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string } };
 
 export type DeleteExpenseMutationMutationVariables = Exact<{
   deleteExpenseMutationId: Scalars['String'];
 }>;
 
 
-export type DeleteExpenseMutationMutation = { deleteExpenseMutation?: boolean | null };
+export type DeleteExpenseMutationMutation = { deleteExpenseMutation: boolean };
 
 export type ExpensesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ExpensesQueryQuery = { expensesQuery?: Array<{ id: string, userId: string, name: string, value: string, rating?: number | null, date?: string | null, description?: string | null, createdAt: string, updatedAt: string, categories: Array<{ id: string }> } | null> | null };
+export type ExpensesQueryQuery = { expensesQuery: Array<{ id: string, userId: string, name: string, value: string, rating?: number, date?: string, description?: string, createdAt: string, updatedAt: string, categories: Array<{ id: string }> }> };
 
-export type SaveExpenseMutationMutationVariables = Exact<{
+export type SaveExpenseV2MutationVariables = Exact<{
   data: ExpenseInput;
 }>;
 
 
-export type SaveExpenseMutationMutation = { saveExpenseMutation?: { id: string, userId: string, name: string, value: string, rating?: number | null, date?: string | null, description?: string | null, createdAt: string, updatedAt: string, categories: Array<{ id: string }> } | null };
+export type SaveExpenseV2Mutation = { saveExpenseMutation: { id: string, userId: string, name: string, value: string, rating?: number, date?: string, description?: string, createdAt: string, updatedAt: string, categories: Array<{ id: string }> } };
 
 export type SaveWishlistItemMutationMutationVariables = Exact<{
   data: WishlistItemValidInput;
 }>;
 
 
-export type SaveWishlistItemMutationMutation = { saveWishlistItemMutation?: { id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string } | null };
+export type SaveWishlistItemMutationMutation = { saveWishlistItemMutation: { id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string } };
 
 export type WishlistItemsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type WishlistItemsQueryQuery = { wishlistItemsQuery?: Array<{ id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string } | null> | null };
+export type WishlistItemsQueryQuery = { wishlistItemsQuery: Array<{ id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string }> };
 
 export type SaveRecipeMutationMutationVariables = Exact<{
   data: RecipeInput;
 }>;
 
 
-export type SaveRecipeMutationMutation = { saveRecipeMutation?: { id: string, userId: string, title: string, description: string, rating?: number | null, savedPosition?: number | null, createdAt: string, updatedAt: string } | null };
+export type SaveRecipeMutationMutation = { saveRecipeMutation: { id: string, userId: string, title: string, description: string, rating?: number, savedPosition?: number, createdAt: string, updatedAt: string } };
 
 export type DeleteRecipeMutationMutationVariables = Exact<{
   recipeId: Scalars['String'];
 }>;
 
 
-export type DeleteRecipeMutationMutation = { deleteRecipeMutation?: boolean | null };
+export type DeleteRecipeMutationMutation = { deleteRecipeMutation: boolean };
 
 export type GetRecipesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetRecipesQueryQuery = { getRecipesQuery?: Array<{ id: string, userId: string, title: string, description: string, rating?: number | null, savedPosition?: number | null, createdAt: string, updatedAt: string } | null> | null };
+export type GetRecipesQueryQuery = { getRecipesQuery: Array<{ id: string, userId: string, title: string, description: string, rating?: number, savedPosition?: number, createdAt: string, updatedAt: string }> };
 
 export const AuthUserFragmentDoc = gql`
     fragment AuthUser on AuthUserOutput {
@@ -3701,12 +3701,12 @@ export const CategoriesQueryDocument = gql`
 }
     ${CategoryFragmentDoc}`;
 export const DeleteCategoryMutationDocument = gql`
-    mutation DeleteCategoryMutation($deleteCategoryMutationId: String) {
+    mutation DeleteCategoryMutation($deleteCategoryMutationId: String!) {
   deleteCategoryMutation(id: $deleteCategoryMutationId)
 }
     `;
 export const SaveCategoryMutationDocument = gql`
-    mutation SaveCategoryMutation($data: CategoryInput) {
+    mutation SaveCategoryMutation($data: CategoryInput!) {
   saveCategoryMutation(data: $data) {
     ...Category
   }
@@ -3743,8 +3743,8 @@ export const ExpensesQueryDocument = gql`
   }
 }
     ${ExpenseFragmentDoc}`;
-export const SaveExpenseMutationDocument = gql`
-    mutation SaveExpenseMutation($data: ExpenseInput!) {
+export const SaveExpenseV2Document = gql`
+    mutation SaveExpenseV2($data: ExpenseInput!) {
   saveExpenseMutation(data: $data) {
     ...Expense
   }
@@ -3803,10 +3803,10 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     CategoriesQuery(variables?: CategoriesQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CategoriesQueryQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CategoriesQueryQuery>(CategoriesQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CategoriesQuery', 'query');
     },
-    DeleteCategoryMutation(variables?: DeleteCategoryMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteCategoryMutationMutation> {
+    DeleteCategoryMutation(variables: DeleteCategoryMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteCategoryMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<DeleteCategoryMutationMutation>(DeleteCategoryMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DeleteCategoryMutation', 'mutation');
     },
-    SaveCategoryMutation(variables?: SaveCategoryMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveCategoryMutationMutation> {
+    SaveCategoryMutation(variables: SaveCategoryMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveCategoryMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<SaveCategoryMutationMutation>(SaveCategoryMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveCategoryMutation', 'mutation');
     },
     CurrentSavingsQuery(variables?: CurrentSavingsQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CurrentSavingsQueryQuery> {
@@ -3824,8 +3824,8 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     ExpensesQuery(variables?: ExpensesQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ExpensesQueryQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ExpensesQueryQuery>(ExpensesQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ExpensesQuery', 'query');
     },
-    SaveExpenseMutation(variables: SaveExpenseMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveExpenseMutationMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SaveExpenseMutationMutation>(SaveExpenseMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveExpenseMutation', 'mutation');
+    SaveExpenseV2(variables: SaveExpenseV2MutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveExpenseV2Mutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SaveExpenseV2Mutation>(SaveExpenseV2Document, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveExpenseV2', 'mutation');
     },
     SaveWishlistItemMutation(variables: SaveWishlistItemMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveWishlistItemMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<SaveWishlistItemMutationMutation>(SaveWishlistItemMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveWishlistItemMutation', 'mutation');

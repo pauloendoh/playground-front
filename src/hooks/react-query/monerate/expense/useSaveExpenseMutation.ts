@@ -9,7 +9,7 @@ import { myNotifications } from '../../../../utils/mantine/myNotifications'
 import { queryKeys } from '../../../../utils/queryKeys'
 
 gql`
-  mutation SaveExpenseMutation($data: ExpenseInput!) {
+  mutation SaveExpenseV2($data: ExpenseInput!) {
     saveExpenseMutation(data: $data) {
       ...Expense
     }
@@ -25,9 +25,10 @@ export const useSaveExpenseMutation = () => {
         strategy: 'excludeAll',
       })
       return sdk
-        .SaveExpenseMutation({
+        .SaveExpenseV2({
           data: {
             ...clearData,
+            categoryIds: [],
           },
         })
         .then((res) => res.saveExpenseMutation)

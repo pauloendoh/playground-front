@@ -2,7 +2,7 @@ import { ActionIcon, Menu } from '@mantine/core'
 import { useState } from 'react'
 
 import { MdDelete, MdMoreHoriz } from 'react-icons/md'
-import { MyCategoryInput } from '../../../../../hooks/react-query/monerate/category/types/MyCategoryInput'
+import MyCategoryInput from '../../../../../hooks/react-query/monerate/category/types/MyCategoryInput'
 import { useDeleteCategoryMutation } from '../../../../../hooks/react-query/monerate/category/useDeleteCategoryMutation'
 
 type Props = {

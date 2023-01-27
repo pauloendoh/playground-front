@@ -7,7 +7,7 @@ import { myNotifications } from '../../../../utils/mantine/myNotifications'
 import { queryKeys } from '../../../../utils/queryKeys'
 
 gql`
-  mutation DeleteCategoryMutation($deleteCategoryMutationId: String) {
+  mutation DeleteCategoryMutation($deleteCategoryMutationId: String!) {
     deleteCategoryMutation(id: $deleteCategoryMutationId)
   }
 `

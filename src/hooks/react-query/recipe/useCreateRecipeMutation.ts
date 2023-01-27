@@ -28,10 +28,12 @@ export const useCreateRecipeMutation = () => {
     },
     {
       onSuccess: (saved) => {
+        myNotifications.success('Recipe saved!')
+        if (!saved) return
+
         queryClient.setQueryData<RecipeFragment[]>(queryKeys.recipes, (curr) =>
           upsert(curr, saved, (currItem) => currItem.id === saved.id)
         )
-        myNotifications.success('Recipe saved!')
       },
     }
   )

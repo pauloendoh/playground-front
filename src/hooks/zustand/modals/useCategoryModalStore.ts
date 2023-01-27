@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { MyCategoryInput } from '../../react-query/monerate/category/types/MyCategoryInput'
+import MyCategoryInput from '../../react-query/monerate/category/types/MyCategoryInput'
 
 interface IStore {
   isOpen: boolean

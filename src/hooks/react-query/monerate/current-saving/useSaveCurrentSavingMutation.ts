@@ -30,11 +30,12 @@ export const useSaveCurrentSavingMutation = () => {
         .then((res) => res.saveCurrentSavingMutation),
     {
       onSuccess: (saved) => {
+        myNotifications.success('Current saving saved!')
+        if (!saved) return
         queryClient.setQueryData<CurrentSavingFragment[]>(
           queryKeys.currentSavings,
           (curr) => upsert(curr, saved, (currItem) => currItem.id === saved.id)
         )
-        myNotifications.success('Current saving saved!')
       },
     }
   )

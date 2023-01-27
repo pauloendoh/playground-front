@@ -29,12 +29,13 @@ export const useSaveWishlistItemMutation = () => {
         .then((res) => res.saveWishlistItemMutation),
     {
       onSuccess: (saved) => {
+        myNotifications.success('Item saved!')
+        if (!saved) return
+
         queryClient.setQueryData<WishlistItemFragment[]>(
           queryKeys.wishlistItems,
           (curr) => upsert(curr, saved, (currItem) => currItem.id === saved.id)
         )
-
-        myNotifications.success('Item saved!')
       },
     }
   )

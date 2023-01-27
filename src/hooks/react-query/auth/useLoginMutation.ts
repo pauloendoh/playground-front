@@ -27,6 +27,7 @@ export const useLoginMutation = () => {
         .then((res) => res.loginMutation),
     {
       onSuccess: (data) => {
+        if (!data) return
         setAuthUser(data)
       },
     }

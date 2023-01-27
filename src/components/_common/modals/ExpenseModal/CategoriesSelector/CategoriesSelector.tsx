@@ -1,6 +1,6 @@
 import { Box, MultiSelect, SelectItem, SelectItemProps } from '@mantine/core'
 import { forwardRef, useMemo } from 'react'
-import { MyCategoryInput } from '../../../../../hooks/react-query/monerate/category/types/MyCategoryInput'
+import MyCategoryInput from '../../../../../hooks/react-query/monerate/category/types/MyCategoryInput'
 import { useCategoriesQuery } from '../../../../../hooks/react-query/monerate/category/useCategoriesQuery'
 import useCategoryModalStore from '../../../../../hooks/zustand/modals/useCategoryModalStore'
 

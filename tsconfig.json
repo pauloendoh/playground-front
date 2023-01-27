@@ -16,7 +16,8 @@
     "jsx": "react-jsx",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "outDir": "dist"
   },
   "include": ["src", "src/components/_common/modals/WishlistItemModal/.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]

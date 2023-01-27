@@ -43,6 +43,7 @@ const WishlistItems = (props: Props) => {
       <Flex mt={16} direction="column">
         {sortedItems?.map((item) => (
           <Button
+            key={item.id}
             onClick={() => {
               setModalInitialValue(item)
               handlers.open()

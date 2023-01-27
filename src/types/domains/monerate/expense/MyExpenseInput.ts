@@ -1,5 +1,8 @@
 import { IsOptional } from 'class-validator'
-import { ExpenseInput, InputMaybe } from '../../../../graphql/generated/graphql'
+import type {
+  ExpenseInput,
+  InputMaybe,
+} from '../../../../graphql/generated/graphql'
 import {
   IsArrayExpose,
   IsNumberExpose,
@@ -8,13 +11,8 @@ import {
 } from '../../../../utils/decorators'
 
 export class MyExpenseInput implements ExpenseInput {
-  // @IsDateStringExpose()
-  date?: InputMaybe<string> | undefined
-
   @IsStringExpose({ message: 'Description is required' })
-  description?: InputMaybe<string> | undefined
-
-  id?: InputMaybe<string> | undefined
+  description?: string | undefined
 
   @IsStringExpose()
   name: string
@@ -23,11 +21,7 @@ export class MyExpenseInput implements ExpenseInput {
   @IsOptional()
   rating?: InputMaybe<number> | undefined
 
-  updatedAt?: InputMaybe<string> | undefined
-  userId?: InputMaybe<string> | undefined
-
   @IsArrayExpose()
-  @IsOptional()
   categoryIds?: string[] | undefined
 
   @IsNumberStringExpose()
@@ -39,4 +33,7 @@ export class MyExpenseInput implements ExpenseInput {
     this.description = ''
     this.categoryIds = []
   }
+  date?: string | undefined
+  id?: string | undefined
+  userId?: string | undefined
 }

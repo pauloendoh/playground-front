@@ -19,6 +19,7 @@ const config: CodegenConfig = {
           Date: 'string',
           Decimal: 'string',
         },
+        maybeValue: 'T',
       },
     },
   },

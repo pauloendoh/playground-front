@@ -1,5 +1,0 @@
-query MeQuery {
-  meQuery {
-    ...AuthUser
-  }
-}

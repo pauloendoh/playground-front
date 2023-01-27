@@ -30,7 +30,7 @@ const useCheckAuthOrLogout = () => {
 
     const user: AuthUserFragment = JSON.parse(userCookieStr)
 
-    if (new Date(user.expiresAt) <= new Date()) {
+    if (user.expiresAt && new Date(user.expiresAt) <= new Date()) {
       logout()
       return setLoading(false)
     }
@@ -38,7 +38,7 @@ const useCheckAuthOrLogout = () => {
     sdk
       .MeQuery()
       .then((res) => {
-        setAuthUser(res.meQuery)
+        if (res.meQuery) setAuthUser(res.meQuery)
       })
       .catch(() => {
         logout()

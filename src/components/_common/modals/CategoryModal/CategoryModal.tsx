@@ -11,7 +11,7 @@ import {
 } from '@mantine/core'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { MyCategoryInput } from '../../../../hooks/react-query/monerate/category/types/MyCategoryInput'
+import MyCategoryInput from '../../../../hooks/react-query/monerate/category/types/MyCategoryInput'
 import { useSaveCategoryMutation } from '../../../../hooks/react-query/monerate/category/useSaveCategoryMutation'
 import { useRecipesQuery } from '../../../../hooks/react-query/recipe/useRecipesQuery'
 import { CategoryMoreMenu } from './CategoryMoreMenu/CategoryMoreMenu'

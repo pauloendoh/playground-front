@@ -59,35 +59,38 @@ export default function RecipesTable(props: Props) {
     openModal(recipe)
   }
 
-  const items = state.map((item, index) => (
-    <Draggable key={item.id} index={index} draggableId={item.id}>
-      {(provided) => (
-        <tr
-          className={classes.item}
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          onClick={() => onClickRecipeRow(item)}
-        >
-          <td>
-            <div
-              style={{
-                display: onlySaved ? undefined : 'none',
-              }}
-              className={classes.dragHandle}
-              {...provided.dragHandleProps}
+  const items = state.map(
+    (item, index) =>
+      item && (
+        <Draggable key={item.id} index={index} draggableId={item.id}>
+          {(provided) => (
+            <tr
+              className={classes.item}
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+              onClick={() => onClickRecipeRow(item)}
             >
-              <TbGripVertical size={18} />
-            </div>
-          </td>
-          <td>{item.title}</td>
-          <td>
-            <Rating value={item.rating || undefined} readOnly />
-          </td>
-          <td>{item.description}</td>
-        </tr>
-      )}
-    </Draggable>
-  ))
+              <td>
+                <div
+                  style={{
+                    display: onlySaved ? undefined : 'none',
+                  }}
+                  className={classes.dragHandle}
+                  {...provided.dragHandleProps}
+                >
+                  <TbGripVertical size={18} />
+                </div>
+              </td>
+              <td>{item.title}</td>
+              <td>
+                <Rating value={item.rating || undefined} readOnly />
+              </td>
+              <td>{item.description}</td>
+            </tr>
+          )}
+        </Draggable>
+      )
+  )
 
   return (
     <Paper>

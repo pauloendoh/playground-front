@@ -5,9 +5,6 @@ import {
 } from '../../../../graphql/generated/graphql'
 
 export class MyWishlistItemValidInput implements WishlistItemValidInput {
-  id?: InputMaybe<string> | undefined
-  userId?: InputMaybe<string> | undefined
-
   @IsString()
   @MinLength(1)
   itemName: string
@@ -23,4 +20,7 @@ export class MyWishlistItemValidInput implements WishlistItemValidInput {
     this.itemName = ''
     this.priceInThousands = ''
   }
+
+  id: InputMaybe<string>
+  userId: InputMaybe<string>
 }

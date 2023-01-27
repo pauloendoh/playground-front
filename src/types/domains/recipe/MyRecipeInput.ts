@@ -2,8 +2,6 @@ import { IsNotEmpty, IsString } from 'class-validator'
 import { InputMaybe, RecipeInput } from '../../../graphql/generated/graphql'
 
 export class MyRecipeInput implements RecipeInput {
-  id?: string | undefined
-
   @IsString()
   @IsNotEmpty()
   title: string
@@ -17,8 +15,9 @@ export class MyRecipeInput implements RecipeInput {
   }
 
   createdAt?: InputMaybe<string> | undefined
-  updatedAt?: InputMaybe<string> | undefined
-  userId?: InputMaybe<string> | undefined
+  id?: InputMaybe<string> | undefined
   rating?: InputMaybe<number> | undefined
   savedPosition?: InputMaybe<number> | undefined
+  updatedAt?: InputMaybe<string> | undefined
+  userId?: InputMaybe<string> | undefined
 }
