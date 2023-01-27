@@ -45,4 +45,16 @@ fragment Expense on Expense {
   description
   createdAt
   updatedAt
+  categories {
+    id
+  }
+}
+
+fragment Category on Category {
+  id
+  userId
+  name
+  bgColor
+  createdAt
+  updatedAt
 }

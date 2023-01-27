@@ -3,4 +3,5 @@ export const queryKeys = {
   currentSavings: ['currentSavings'],
   wishlistItems: ['wishlistItems'],
   expenses: ['expenses'],
+  categories: ['categories'],
 }

@@ -2,43 +2,41 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { plainToClass } from 'class-transformer'
 import { upsert } from 'endoh-utils'
 import gql from 'graphql-tag'
-import { ExpenseFragment } from '../../../../graphql/generated/graphql'
+import { CategoryFragment } from '../../../../graphql/generated/graphql'
 import { sdk } from '../../../../graphql/sdk'
-import { MyExpenseInput } from '../../../../types/domains/monerate/expense/MyExpenseInput'
 import { myNotifications } from '../../../../utils/mantine/myNotifications'
 import { queryKeys } from '../../../../utils/queryKeys'
+import { MyCategoryInput } from './types/MyCategoryInput'
 
 gql`
-  mutation SaveExpenseMutation($data: ExpenseInput!) {
-    saveExpenseMutation(data: $data) {
-      ...Expense
+  mutation SaveCategoryMutation($data: CategoryInput) {
+    saveCategoryMutation(data: $data) {
+      ...Category
     }
   }
 `
 
-export const useSaveExpenseMutation = () => {
+export const useSaveCategoryMutation = () => {
   const queryClient = useQueryClient()
 
   return useMutation(
-    async (data: MyExpenseInput) => {
-      const clearData = plainToClass(MyExpenseInput, data, {
+    async (data: MyCategoryInput) => {
+      const clearData = plainToClass(MyCategoryInput, data, {
         strategy: 'excludeAll',
       })
       return sdk
-        .SaveExpenseMutation({
-          data: {
-            ...clearData,
-          },
+        .SaveCategoryMutation({
+          data: clearData,
         })
-        .then((res) => res.saveExpenseMutation)
+        .then((res) => res.saveCategoryMutation)
     },
     {
       onSuccess: (saved) => {
-        myNotifications.success('Expense saved!')
+        myNotifications.success('Category saved!')
 
         if (!saved) return
-        queryClient.setQueryData<ExpenseFragment[]>(
-          queryKeys.expenses,
+        queryClient.setQueryData<CategoryFragment[]>(
+          queryKeys.categories,
           (curr) => upsert(curr, saved, (currItem) => currItem.id === saved.id)
         )
       },

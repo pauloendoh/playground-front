@@ -2,41 +2,38 @@ import { classValidatorResolver } from '@hookform/resolvers/class-validator'
 import {
   Button,
   CloseButton,
+  ColorInput,
   Flex,
   Grid,
-  Input,
   Modal,
-  Rating,
-  Textarea,
   TextInput,
   Title,
 } from '@mantine/core'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useSaveExpenseMutation } from '../../../../hooks/react-query/monerate/expense/useSaveExpenseMutation'
+import { MyCategoryInput } from '../../../../hooks/react-query/monerate/category/types/MyCategoryInput'
+import { useSaveCategoryMutation } from '../../../../hooks/react-query/monerate/category/useSaveCategoryMutation'
 import { useRecipesQuery } from '../../../../hooks/react-query/recipe/useRecipesQuery'
-import { MyExpenseInput } from '../../../../types/domains/monerate/expense/MyExpenseInput'
-import CategoriesSelector from './CategoriesSelector/CategoriesSelector'
-import { ExpenseMoreMenu } from './ExpenseMoreMenu/ExpenseMoreMenu'
+import { CategoryMoreMenu } from './CategoryMoreMenu/CategoryMoreMenu'
 
 type Props = {
   isOpen: boolean
-  initialValue?: MyExpenseInput
+  initialValue?: MyCategoryInput
   onClose: () => void
 }
 
-const resolver = classValidatorResolver(MyExpenseInput)
+const resolver = classValidatorResolver(MyCategoryInput)
 
-export default function ExpenseModal(props: Props) {
+export default function CategoryModal(props: Props) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     setFocus,
     reset,
     watch,
     setValue,
-  } = useForm<MyExpenseInput>({
+  } = useForm<MyCategoryInput>({
     resolver,
     defaultValues: props.initialValue,
   })
@@ -44,15 +41,15 @@ export default function ExpenseModal(props: Props) {
   useEffect(() => {
     if (props.isOpen) {
       setTimeout(() => {
-        setFocus('value')
+        setFocus('name')
         reset(props.initialValue)
       }, 100)
     }
   }, [props.isOpen])
 
-  const { mutate: submitCreateRecipe } = useSaveExpenseMutation()
+  const { mutate: submitCreateRecipe } = useSaveCategoryMutation()
 
-  const onSubmit = (data: MyExpenseInput) => {
+  const onSubmit = (data: MyCategoryInput) => {
     submitCreateRecipe(data, {
       onSuccess: () => {
         props.onClose()
@@ -77,10 +74,10 @@ export default function ExpenseModal(props: Props) {
         title={
           <Flex align={'center'} justify="space-between">
             <Title order={3}>
-              {props.initialValue?.id ? 'Edit Expense' : 'Create Expense'}
+              {props.initialValue?.id ? 'Edit Category' : 'Create Category'}
             </Title>
             {props.initialValue?.id ? (
-              <ExpenseMoreMenu
+              <CategoryMoreMenu
                 input={props.initialValue}
                 afterDelete={() => props.onClose()}
               />
@@ -101,37 +98,15 @@ export default function ExpenseModal(props: Props) {
             </Grid.Col>
 
             <Grid.Col span={6}>
-              <TextInput
-                label="Title"
-                {...register('value')}
-                error={errors.value?.message}
+              <ColorInput
+                placeholder="Pick color"
+                label="Your favorite color"
+                onChange={(value) => setValue('bgColor', value)}
+                value={watch('bgColor')}
               />
             </Grid.Col>
             <Grid.Col span={2}></Grid.Col>
-
-            <Grid.Col span={4}>
-              <Input.Wrapper label="Rating">
-                <Rating
-                  value={watch('rating') || undefined}
-                  onChange={(value) => setValue('rating', value)}
-                  mt={8}
-                />
-              </Input.Wrapper>
-            </Grid.Col>
-            <Grid.Col span={4}>
-              <CategoriesSelector
-                categoryIds={watch('categoryIds') || []}
-                onChange={(categoryIds) => setValue('categoryIds', categoryIds)}
-              />
-            </Grid.Col>
           </Grid>
-
-          <Textarea
-            mt={16}
-            label="Description"
-            {...register('description')}
-            error={errors.description?.message}
-          />
 
           <Flex align="center" justify="space-between" mt={16}>
             <Button type="submit">Save</Button>

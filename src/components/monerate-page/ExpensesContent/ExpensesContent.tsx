@@ -25,12 +25,17 @@ const ExpensesContent = (props: Props) => {
       <Box>
         {expenses?.map((expense) => (
           <Button
-            key={expense.id}
+            key={expense?.id}
             onClick={() => {
-              openModal(expense)
+              openModal({
+                ...expense!,
+                categoryIds: expense?.categories?.map(
+                  (category) => category?.id
+                ),
+              })
             }}
           >
-            {expense.name} - {expense.value}
+            {expense?.name} - {expense?.value}
           </Button>
         ))}
       </Box>
