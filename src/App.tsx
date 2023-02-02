@@ -1,15 +1,23 @@
 import { NotificationsProvider } from '@mantine/notifications'
 
-import { Box, MantineProvider } from '@mantine/core'
+import {
+  Box,
+  ColorScheme,
+  ColorSchemeProvider,
+  MantineProvider,
+} from '@mantine/core'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+import { useLocalStorage } from '@mantine/hooks'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { useEffect, useState } from 'react'
+import { DeepPartial } from 'react-hook-form'
 import LandingPage from './components/landing-page/LandingPage/LandingPage'
 import HomePage from './components/logged-page/HomePage/HomePage'
 import GlobalModals from './components/_common/modals/GlobalModals'
 import useCheckAuthOrLogout from './hooks/domains/auth/useCheckAuthOrLogout'
 import useAuthStore from './hooks/zustand/useAuthUserStore'
+import { localStorageKeys } from './utils/localStorageKeys'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,32 +27,53 @@ function App() {
   const authUser = useAuthStore((s) => s.authUser)
   const { checkAuthOrLogout } = useCheckAuthOrLogout()
 
+  const [colorScheme, setColorScheme] = useLocalStorage<
+    DeepPartial<ColorScheme>
+  >({
+    key: localStorageKeys.colorScheme,
+    defaultValue: 'dark',
+  })
+
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
+
   useEffect(() => {
     checkAuthOrLogout()
   }, [])
 
   return (
     <QueryClientProvider client={queryClient}>
-      <MantineProvider withGlobalStyles withNormalizeCSS>
-        <NotificationsProvider>
-          <Box
-            sx={{
-              height: '100vh',
-              background: '#ececec',
-            }}
-          >
-            {authUser ? (
-              <>
-                <HomePage />
-                <GlobalModals />
-              </>
-            ) : (
-              <LandingPage />
-            )}
-          </Box>
-          <ReactQueryDevtools initialIsOpen={false} />
-        </NotificationsProvider>
-      </MantineProvider>
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
+      >
+        <MantineProvider
+          theme={{
+            colorScheme,
+          }}
+          withGlobalStyles
+          withNormalizeCSS
+        >
+          <NotificationsProvider>
+            <Box
+              sx={{
+                height: '100vh',
+                background: '#ececec',
+              }}
+            >
+              {authUser ? (
+                <>
+                  <HomePage />
+                  <GlobalModals />
+                </>
+              ) : (
+                <LandingPage />
+              )}
+            </Box>
+            <ReactQueryDevtools initialIsOpen={false} />
+          </NotificationsProvider>
+        </MantineProvider>
+      </ColorSchemeProvider>
     </QueryClientProvider>
   )
 }

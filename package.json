@@ -16,6 +16,8 @@
     "@mantine/dates": "^5.10.1",
     "@mantine/hooks": "^5.10.1",
     "@mantine/notifications": "^5.10.1",
+    "@tabler/icons": "^2.1.2",
+    "@tabler/icons-react": "^2.1.2",
     "@tanstack/react-query": "^4.22.3",
     "@tanstack/react-query-devtools": "^4.22.3",
     "class-transformer": "^0.5.1",
@@ -50,9 +52,9 @@
     "@vitejs/plugin-react": "^3.0.0",
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
+    "husky": "^8.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4",
-    "vite": "^4.0.0",
-    "husky": "^8.0.0"
+    "vite": "^4.0.0"
   }
 }
