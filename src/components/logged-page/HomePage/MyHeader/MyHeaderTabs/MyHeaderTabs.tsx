@@ -17,20 +17,20 @@ const MyHeaderTabs = (props: Props) => {
     >
       <Tabs.List>
         <Tabs.Tab
-          value="recipes"
-          sx={{
-            paddingBottom: 12,
-          }}
-        >
-          <Title order={4}>Recipes</Title>
-        </Tabs.Tab>
-        <Tabs.Tab
           value="monerate"
           sx={{
             paddingBottom: 12,
           }}
         >
           <Title order={4}>Monerate</Title>
+        </Tabs.Tab>
+        <Tabs.Tab
+          value="recipes"
+          sx={{
+            paddingBottom: 12,
+          }}
+        >
+          <Title order={4}>Recipes</Title>
         </Tabs.Tab>
       </Tabs.List>
     </Tabs>

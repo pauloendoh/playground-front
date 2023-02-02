@@ -1,17 +1,10 @@
 import { classValidatorResolver } from '@hookform/resolvers/class-validator'
-import {
-  Button,
-  CloseButton,
-  Flex,
-  Grid,
-  Modal,
-  TextInput,
-  Title,
-} from '@mantine/core'
+import { Button, CloseButton, Flex, Grid, Modal, Title } from '@mantine/core'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveWishlistItemMutation } from '../../../../hooks/react-query/monerate/wishlist-item/useSaveWishlistItemMutation'
 import { MyWishlistItemValidInput } from '../../../../types/domains/monerate/wishlist-item/MyWishlistItemValidInput'
+import MyTextInput from '../../inputs/MyTextInput'
 import { WishlistItemMoreMenu } from './WishlistItemMoreMenu/WishlistItemMoreMenu'
 
 type Props = {
@@ -75,7 +68,7 @@ export default function WishlistItemModal(props: Props) {
             <Title order={3}>
               {props.initialValue?.id
                 ? 'Edit Wishlist Item'
-                : 'Create Wishlist Item'}
+                : 'Add Wishlist Item'}
             </Title>
             {props.initialValue?.id ? (
               <WishlistItemMoreMenu
@@ -91,7 +84,7 @@ export default function WishlistItemModal(props: Props) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid>
             <Grid.Col span={6}>
-              <TextInput
+              <MyTextInput
                 label="Item Name"
                 {...register('itemName')}
                 error={errors.itemName?.message}
@@ -99,7 +92,7 @@ export default function WishlistItemModal(props: Props) {
             </Grid.Col>
 
             <Grid.Col span={6}>
-              <TextInput
+              <MyTextInput
                 label="Price in Thousands"
                 {...register('priceInThousands')}
                 error={errors.priceInThousands?.message}

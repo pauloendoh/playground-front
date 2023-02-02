@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-export type PageType = 'recipes' | 'monerate'
+export type PageType = 'recipes' | 'monerate' | 'monerate-expenses'
 
 interface IStore {
   currentPage: PageType
@@ -8,7 +8,7 @@ interface IStore {
 }
 
 const useRouterStore = create<IStore>((set, get) => ({
-  currentPage: 'recipes',
+  currentPage: 'monerate',
   setCurrentPage: async (currentPage) => {
     set({ currentPage })
   },

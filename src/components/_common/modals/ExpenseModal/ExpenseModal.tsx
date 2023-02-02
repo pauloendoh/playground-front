@@ -14,7 +14,7 @@ import { useForm } from 'react-hook-form'
 import { useSaveExpenseMutation } from '../../../../hooks/react-query/monerate/expense/useSaveExpenseMutation'
 import { useRecipesQuery } from '../../../../hooks/react-query/recipe/useRecipesQuery'
 import { MyExpenseInput } from '../../../../types/domains/monerate/expense/MyExpenseInput'
-import MyTextinput from '../../inputs/MyTextInput'
+import MyTextInput from '../../inputs/MyTextInput'
 import SaveCancelButtons from '../../inputs/SaveCancelButtons'
 import CategoriesSelector from './CategoriesSelector/CategoriesSelector'
 import { ExpenseMoreMenu } from './ExpenseMoreMenu/ExpenseMoreMenu'
@@ -97,7 +97,7 @@ export default function ExpenseModal(props: Props) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid>
             <Grid.Col span={6}>
-              <MyTextinput
+              <MyTextInput
                 label="Expense Name"
                 {...register('name')}
                 error={errors.name?.message}
@@ -105,7 +105,7 @@ export default function ExpenseModal(props: Props) {
             </Grid.Col>
 
             <Grid.Col span={6}>
-              <MyTextinput
+              <MyTextInput
                 label="Value"
                 {...register('value')}
                 error={errors.value?.message}
