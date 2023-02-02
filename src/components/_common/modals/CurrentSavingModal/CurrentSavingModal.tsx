@@ -1,18 +1,11 @@
 import { classValidatorResolver } from '@hookform/resolvers/class-validator'
-import {
-  Button,
-  CloseButton,
-  Flex,
-  Grid,
-  Modal,
-  TextInput,
-  Title,
-} from '@mantine/core'
+import { Button, CloseButton, Flex, Grid, Modal, Title } from '@mantine/core'
 import { DatePicker } from '@mantine/dates'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveCurrentSavingMutation } from '../../../../hooks/react-query/monerate/current-saving/useSaveCurrentSavingMutation'
 import { MyCurrentSavingValidInput } from '../../../../types/domains/monerate/current-saving/MyCurrentSavingValidInput'
+import MyTextInput from '../../inputs/MyTextInput'
 import { SavingMoreMenu } from './SavingMoreMenu/SavingMoreMenu'
 
 type Props = {
@@ -86,7 +79,7 @@ export default function CurrentSavingModal(props: Props) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid>
             <Grid.Col span={6}>
-              <TextInput
+              <MyTextInput
                 label="Value"
                 type="number"
                 {...register('value')}

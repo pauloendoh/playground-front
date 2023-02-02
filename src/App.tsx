@@ -18,6 +18,7 @@ import GlobalModals from './components/_common/modals/GlobalModals'
 import useCheckAuthOrLogout from './hooks/domains/auth/useCheckAuthOrLogout'
 import useAuthStore from './hooks/zustand/useAuthUserStore'
 import { localStorageKeys } from './utils/localStorageKeys'
+import { myTheme } from './utils/myTheme'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -48,9 +49,7 @@ function App() {
         toggleColorScheme={toggleColorScheme}
       >
         <MantineProvider
-          theme={{
-            colorScheme,
-          }}
+          theme={{ ...myTheme, colorScheme }}
           withGlobalStyles
           withNormalizeCSS
         >

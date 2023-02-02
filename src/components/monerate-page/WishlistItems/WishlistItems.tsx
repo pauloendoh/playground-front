@@ -32,6 +32,7 @@ const WishlistItems = (props: Props) => {
     <Box>
       <Button
         fullWidth
+        color="secondary"
         onClick={() => {
           setModalInitialValue(new MyWishlistItemValidInput())
           handlers.open()

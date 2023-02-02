@@ -33,7 +33,7 @@ const MyHeader = (props: Props) => {
           <ActionIcon
             variant="outline"
             size="lg"
-            color="blue"
+            color="primary"
             onClick={() => toggleColorScheme()}
             title="Toggle color scheme"
           >
