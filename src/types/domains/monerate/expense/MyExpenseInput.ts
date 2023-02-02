@@ -36,7 +36,12 @@ export class MyExpenseInput implements ExpenseInput {
     this.value = ''
     this.description = ''
     this.categoryIds = []
+    this.timesPerMonth = '0'
   }
+
+  @IsNumberStringExpose(undefined, { message: 'Value must be a number' })
+  timesPerMonth?: string | undefined
+
   date?: string | undefined
 
   userId?: string | undefined

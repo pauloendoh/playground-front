@@ -45,6 +45,7 @@ fragment Expense on Expense {
   description
   createdAt
   updatedAt
+  timesPerMonth
   categories {
     id
   }

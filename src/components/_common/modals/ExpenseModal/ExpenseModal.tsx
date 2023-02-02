@@ -72,7 +72,7 @@ export default function ExpenseModal(props: Props) {
         opened={props.isOpen}
         onClose={() => props.onClose()}
         withCloseButton={false}
-        size="md"
+        size="xl"
         styles={{
           title: {
             width: '100%',
@@ -104,15 +104,16 @@ export default function ExpenseModal(props: Props) {
               />
             </Grid.Col>
 
-            <Grid.Col span={'auto'}>
+            <Grid.Col span={3}>
               <MyTextInput
                 label="Value"
+                type="number"
                 {...register('value')}
                 error={errors.value?.message}
               />
             </Grid.Col>
 
-            <Grid.Col span={6}>
+            <Grid.Col span={2}>
               <Input.Wrapper label="Rating">
                 <Rating
                   value={watch('rating') || undefined}
@@ -121,7 +122,17 @@ export default function ExpenseModal(props: Props) {
                 />
               </Input.Wrapper>
             </Grid.Col>
-            <Grid.Col span={6}>
+            <Grid.Col span={2}>
+              <MyTextInput
+                label="Times per month"
+                type="number"
+                step="any"
+                {...register('timesPerMonth')}
+                error={errors.timesPerMonth?.message}
+              />
+            </Grid.Col>
+
+            <Grid.Col span={'auto'}>
               <CategoriesSelector
                 categoryIds={watch('categoryIds') || []}
                 onChange={(categoryIds) => setValue('categoryIds', categoryIds)}

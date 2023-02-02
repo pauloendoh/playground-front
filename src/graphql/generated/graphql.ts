@@ -791,6 +791,33 @@ export type DecimalFilter = {
   notIn?: InputMaybe<Array<Scalars['Decimal']>>;
 };
 
+export type DecimalNullableFilter = {
+  equals?: InputMaybe<Scalars['Decimal']>;
+  gt?: InputMaybe<Scalars['Decimal']>;
+  gte?: InputMaybe<Scalars['Decimal']>;
+  in?: InputMaybe<Array<Scalars['Decimal']>>;
+  lt?: InputMaybe<Scalars['Decimal']>;
+  lte?: InputMaybe<Scalars['Decimal']>;
+  not?: InputMaybe<NestedDecimalNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['Decimal']>>;
+};
+
+export type DecimalNullableWithAggregatesFilter = {
+  _avg?: InputMaybe<NestedDecimalNullableFilter>;
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedDecimalNullableFilter>;
+  _min?: InputMaybe<NestedDecimalNullableFilter>;
+  _sum?: InputMaybe<NestedDecimalNullableFilter>;
+  equals?: InputMaybe<Scalars['Decimal']>;
+  gt?: InputMaybe<Scalars['Decimal']>;
+  gte?: InputMaybe<Scalars['Decimal']>;
+  in?: InputMaybe<Array<Scalars['Decimal']>>;
+  lt?: InputMaybe<Scalars['Decimal']>;
+  lte?: InputMaybe<Scalars['Decimal']>;
+  not?: InputMaybe<NestedDecimalNullableWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Scalars['Decimal']>>;
+};
+
 export type DecimalWithAggregatesFilter = {
   _avg?: InputMaybe<NestedDecimalFilter>;
   _count?: InputMaybe<NestedIntFilter>;
@@ -816,6 +843,7 @@ export type Expense = {
   id: Scalars['String'];
   name: Scalars['String'];
   rating?: Maybe<Scalars['Int']>;
+  timesPerMonth?: Maybe<Scalars['Decimal']>;
   updatedAt: Scalars['DateTime'];
   user: User;
   userId: Scalars['String'];
@@ -834,11 +862,13 @@ export type ExpenseCategoriesArgs = {
 
 export type ExpenseAvgAggregate = {
   rating?: Maybe<Scalars['Float']>;
+  timesPerMonth?: Maybe<Scalars['Decimal']>;
   value?: Maybe<Scalars['Decimal']>;
 };
 
 export type ExpenseAvgOrderByAggregateInput = {
   rating?: InputMaybe<SortOrder>;
+  timesPerMonth?: InputMaybe<SortOrder>;
   value?: InputMaybe<SortOrder>;
 };
 
@@ -854,6 +884,7 @@ export type ExpenseCountAggregate = {
   id: Scalars['Int'];
   name: Scalars['Int'];
   rating: Scalars['Int'];
+  timesPerMonth: Scalars['Int'];
   updatedAt: Scalars['Int'];
   userId: Scalars['Int'];
   value: Scalars['Int'];
@@ -866,6 +897,7 @@ export type ExpenseCountOrderByAggregateInput = {
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
+  timesPerMonth?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
   value?: InputMaybe<SortOrder>;
@@ -879,6 +911,7 @@ export type ExpenseCreateInput = {
   id?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
   rating?: InputMaybe<Scalars['Int']>;
+  timesPerMonth?: InputMaybe<Scalars['Decimal']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutExpensesInput;
   value: Scalars['Decimal'];
@@ -891,6 +924,7 @@ export type ExpenseCreateManyInput = {
   id?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
   rating?: InputMaybe<Scalars['Int']>;
+  timesPerMonth?: InputMaybe<Scalars['Decimal']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
   value: Scalars['Decimal'];
@@ -903,6 +937,7 @@ export type ExpenseCreateManyUserInput = {
   id?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
   rating?: InputMaybe<Scalars['Int']>;
+  timesPerMonth?: InputMaybe<Scalars['Decimal']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   value: Scalars['Decimal'];
 };
@@ -942,6 +977,7 @@ export type ExpenseCreateWithoutCategoriesInput = {
   id?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
   rating?: InputMaybe<Scalars['Int']>;
+  timesPerMonth?: InputMaybe<Scalars['Decimal']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutExpensesInput;
   value: Scalars['Decimal'];
@@ -955,6 +991,7 @@ export type ExpenseCreateWithoutUserInput = {
   id?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
   rating?: InputMaybe<Scalars['Int']>;
+  timesPerMonth?: InputMaybe<Scalars['Decimal']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   value: Scalars['Decimal'];
 };
@@ -971,6 +1008,7 @@ export type ExpenseGroupBy = {
   id: Scalars['String'];
   name: Scalars['String'];
   rating?: Maybe<Scalars['Int']>;
+  timesPerMonth?: Maybe<Scalars['Decimal']>;
   updatedAt: Scalars['DateTime'];
   userId: Scalars['String'];
   value: Scalars['Decimal'];
@@ -983,6 +1021,7 @@ export type ExpenseInput = {
   id?: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
   rating?: InputMaybe<Scalars['Float']>;
+  timesPerMonth?: InputMaybe<Scalars['String']>;
   userId?: InputMaybe<Scalars['String']>;
   value: Scalars['String'];
 };
@@ -1000,6 +1039,7 @@ export type ExpenseMaxAggregate = {
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   rating?: Maybe<Scalars['Int']>;
+  timesPerMonth?: Maybe<Scalars['Decimal']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   userId?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['Decimal']>;
@@ -1012,6 +1052,7 @@ export type ExpenseMaxOrderByAggregateInput = {
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
+  timesPerMonth?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
   value?: InputMaybe<SortOrder>;
@@ -1024,6 +1065,7 @@ export type ExpenseMinAggregate = {
   id?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   rating?: Maybe<Scalars['Int']>;
+  timesPerMonth?: Maybe<Scalars['Decimal']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   userId?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['Decimal']>;
@@ -1036,6 +1078,7 @@ export type ExpenseMinOrderByAggregateInput = {
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
+  timesPerMonth?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
   value?: InputMaybe<SortOrder>;
@@ -1057,6 +1100,7 @@ export type ExpenseOrderByWithAggregationInput = {
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
+  timesPerMonth?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   userId?: InputMaybe<SortOrder>;
   value?: InputMaybe<SortOrder>;
@@ -1070,6 +1114,7 @@ export type ExpenseOrderByWithRelationInput = {
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
   rating?: InputMaybe<SortOrder>;
+  timesPerMonth?: InputMaybe<SortOrder>;
   updatedAt?: InputMaybe<SortOrder>;
   user?: InputMaybe<UserOrderByWithRelationInput>;
   userId?: InputMaybe<SortOrder>;
@@ -1083,6 +1128,7 @@ export enum ExpenseScalarFieldEnum {
   Id = 'id',
   Name = 'name',
   Rating = 'rating',
+  TimesPerMonth = 'timesPerMonth',
   UpdatedAt = 'updatedAt',
   UserId = 'userId',
   Value = 'value'
@@ -1098,6 +1144,7 @@ export type ExpenseScalarWhereInput = {
   id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
   rating?: InputMaybe<IntNullableFilter>;
+  timesPerMonth?: InputMaybe<DecimalNullableFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   userId?: InputMaybe<StringFilter>;
   value?: InputMaybe<DecimalFilter>;
@@ -1113,6 +1160,7 @@ export type ExpenseScalarWhereWithAggregatesInput = {
   id?: InputMaybe<StringWithAggregatesFilter>;
   name?: InputMaybe<StringWithAggregatesFilter>;
   rating?: InputMaybe<IntNullableWithAggregatesFilter>;
+  timesPerMonth?: InputMaybe<DecimalNullableWithAggregatesFilter>;
   updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
   userId?: InputMaybe<StringWithAggregatesFilter>;
   value?: InputMaybe<DecimalWithAggregatesFilter>;
@@ -1120,11 +1168,13 @@ export type ExpenseScalarWhereWithAggregatesInput = {
 
 export type ExpenseSumAggregate = {
   rating?: Maybe<Scalars['Int']>;
+  timesPerMonth?: Maybe<Scalars['Decimal']>;
   value?: Maybe<Scalars['Decimal']>;
 };
 
 export type ExpenseSumOrderByAggregateInput = {
   rating?: InputMaybe<SortOrder>;
+  timesPerMonth?: InputMaybe<SortOrder>;
   value?: InputMaybe<SortOrder>;
 };
 
@@ -1136,6 +1186,7 @@ export type ExpenseUpdateInput = {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   rating?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  timesPerMonth?: InputMaybe<NullableDecimalFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutExpensesNestedInput>;
   value?: InputMaybe<DecimalFieldUpdateOperationsInput>;
@@ -1148,6 +1199,7 @@ export type ExpenseUpdateManyMutationInput = {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   rating?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  timesPerMonth?: InputMaybe<NullableDecimalFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   value?: InputMaybe<DecimalFieldUpdateOperationsInput>;
 };
@@ -1206,6 +1258,7 @@ export type ExpenseUpdateWithoutCategoriesInput = {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   rating?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  timesPerMonth?: InputMaybe<NullableDecimalFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   user?: InputMaybe<UserUpdateOneRequiredWithoutExpensesNestedInput>;
   value?: InputMaybe<DecimalFieldUpdateOperationsInput>;
@@ -1219,6 +1272,7 @@ export type ExpenseUpdateWithoutUserInput = {
   id?: InputMaybe<StringFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
   rating?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  timesPerMonth?: InputMaybe<NullableDecimalFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   value?: InputMaybe<DecimalFieldUpdateOperationsInput>;
 };
@@ -1246,6 +1300,7 @@ export type ExpenseWhereInput = {
   id?: InputMaybe<StringFilter>;
   name?: InputMaybe<StringFilter>;
   rating?: InputMaybe<IntNullableFilter>;
+  timesPerMonth?: InputMaybe<DecimalNullableFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
   user?: InputMaybe<UserRelationFilter>;
   userId?: InputMaybe<StringFilter>;
@@ -1700,6 +1755,33 @@ export type NestedDecimalFilter = {
   notIn?: InputMaybe<Array<Scalars['Decimal']>>;
 };
 
+export type NestedDecimalNullableFilter = {
+  equals?: InputMaybe<Scalars['Decimal']>;
+  gt?: InputMaybe<Scalars['Decimal']>;
+  gte?: InputMaybe<Scalars['Decimal']>;
+  in?: InputMaybe<Array<Scalars['Decimal']>>;
+  lt?: InputMaybe<Scalars['Decimal']>;
+  lte?: InputMaybe<Scalars['Decimal']>;
+  not?: InputMaybe<NestedDecimalNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['Decimal']>>;
+};
+
+export type NestedDecimalNullableWithAggregatesFilter = {
+  _avg?: InputMaybe<NestedDecimalNullableFilter>;
+  _count?: InputMaybe<NestedIntNullableFilter>;
+  _max?: InputMaybe<NestedDecimalNullableFilter>;
+  _min?: InputMaybe<NestedDecimalNullableFilter>;
+  _sum?: InputMaybe<NestedDecimalNullableFilter>;
+  equals?: InputMaybe<Scalars['Decimal']>;
+  gt?: InputMaybe<Scalars['Decimal']>;
+  gte?: InputMaybe<Scalars['Decimal']>;
+  in?: InputMaybe<Array<Scalars['Decimal']>>;
+  lt?: InputMaybe<Scalars['Decimal']>;
+  lte?: InputMaybe<Scalars['Decimal']>;
+  not?: InputMaybe<NestedDecimalNullableWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Scalars['Decimal']>>;
+};
+
 export type NestedDecimalWithAggregatesFilter = {
   _avg?: InputMaybe<NestedDecimalFilter>;
   _count?: InputMaybe<NestedIntFilter>;
@@ -1829,6 +1911,14 @@ export type NestedStringWithAggregatesFilter = {
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type NullableDecimalFieldUpdateOperationsInput = {
+  decrement?: InputMaybe<Scalars['Decimal']>;
+  divide?: InputMaybe<Scalars['Decimal']>;
+  increment?: InputMaybe<Scalars['Decimal']>;
+  multiply?: InputMaybe<Scalars['Decimal']>;
+  set?: InputMaybe<Scalars['Decimal']>;
 };
 
 export type NullableIntFieldUpdateOperationsInput = {
@@ -3500,7 +3590,7 @@ export type CurrentSavingFragment = { id: string, userId: string, value: string,
 
 export type WishlistItemFragment = { id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string };
 
-export type ExpenseFragment = { id: string, userId: string, name: string, value: string, rating?: number, date?: string, description?: string, createdAt: string, updatedAt: string, categories: Array<{ id: string }> };
+export type ExpenseFragment = { id: string, userId: string, name: string, value: string, rating?: number, date?: string, description?: string, createdAt: string, updatedAt: string, timesPerMonth?: string, categories: Array<{ id: string }> };
 
 export type CategoryFragment = { id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string };
 
@@ -3573,14 +3663,14 @@ export type ExpensesQueryQueryVariables = Exact<{
 }>;
 
 
-export type ExpensesQueryQuery = { expensesQuery: Array<{ id: string, userId: string, name: string, value: string, rating?: number, date?: string, description?: string, createdAt: string, updatedAt: string, categories: Array<{ id: string }> }> };
+export type ExpensesQueryQuery = { expensesQuery: Array<{ id: string, userId: string, name: string, value: string, rating?: number, date?: string, description?: string, createdAt: string, updatedAt: string, timesPerMonth?: string, categories: Array<{ id: string }> }> };
 
 export type SaveExpenseV2MutationVariables = Exact<{
   data: ExpenseInput;
 }>;
 
 
-export type SaveExpenseV2Mutation = { saveExpenseMutation: { id: string, userId: string, name: string, value: string, rating?: number, date?: string, description?: string, createdAt: string, updatedAt: string, categories: Array<{ id: string }> } };
+export type SaveExpenseV2Mutation = { saveExpenseMutation: { id: string, userId: string, name: string, value: string, rating?: number, date?: string, description?: string, createdAt: string, updatedAt: string, timesPerMonth?: string, categories: Array<{ id: string }> } };
 
 export type SaveWishlistItemMutationMutationVariables = Exact<{
   data: WishlistItemValidInput;
@@ -3665,6 +3755,7 @@ export const ExpenseFragmentDoc = gql`
   description
   createdAt
   updatedAt
+  timesPerMonth
   categories {
     id
   }
