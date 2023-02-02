@@ -6,6 +6,7 @@ import useCurrentSavingModalStore from '../../../hooks/zustand/modals/useCurrent
 import { MyCurrentSavingValidInput } from '../../../types/domains/monerate/current-saving/MyCurrentSavingValidInput'
 import ExpensesContent from '../../monerate-page/ExpensesContent/ExpensesContent'
 import WishlistItems from '../../monerate-page/WishlistItems/WishlistItems'
+import MyPaper from '../../_common/overrides/MyPaper'
 
 type Props = {
   test?: string
@@ -24,7 +25,7 @@ const MonerateContent = (props: Props) => {
     <Box>
       <Grid>
         <Grid.Col span="auto">
-          <Box>
+          <MyPaper>
             <Button
               fullWidth
               onClick={() => {
@@ -33,7 +34,7 @@ const MonerateContent = (props: Props) => {
             >
               + Current Saving
             </Button>
-            <ScrollArea mt={24} sx={{ height: 200 }}>
+            <ScrollArea mt={24} sx={{ height: 200 }} type="auto">
               <Flex direction="column">
                 {sortedSavings?.map((saving) => (
                   <Button
@@ -55,7 +56,7 @@ const MonerateContent = (props: Props) => {
                 ))}
               </Flex>
             </ScrollArea>
-          </Box>
+          </MyPaper>
         </Grid.Col>
 
         <Grid.Col span="auto">

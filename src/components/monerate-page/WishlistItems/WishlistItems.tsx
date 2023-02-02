@@ -30,7 +30,7 @@ const WishlistItems = (props: Props) => {
   )
 
   return (
-    <MyPaper p={8} sx={{}}>
+    <MyPaper>
       <Button
         fullWidth
         color="secondary"
