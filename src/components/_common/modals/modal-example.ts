@@ -1,3 +1,3 @@
-import CurrentSavingModal from './CurrentSavingModal/CurrentSavingModal'
+import ExpenseModal from './ExpenseModal/ExpenseModal'
 
-const modal = CurrentSavingModal
+const modal = ExpenseModal

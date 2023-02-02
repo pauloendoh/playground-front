@@ -1,3 +1,4 @@
+import { Expose } from 'class-transformer'
 import { IsOptional } from 'class-validator'
 import type {
   ExpenseInput,
@@ -11,6 +12,9 @@ import {
 } from '../../../../utils/decorators'
 
 export class MyExpenseInput implements ExpenseInput {
+  @Expose()
+  id?: string | undefined
+
   @IsStringExpose({ message: 'Description is required' })
   description?: string | undefined
 
@@ -34,6 +38,6 @@ export class MyExpenseInput implements ExpenseInput {
     this.categoryIds = []
   }
   date?: string | undefined
-  id?: string | undefined
+
   userId?: string | undefined
 }

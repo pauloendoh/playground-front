@@ -1,6 +1,5 @@
 import { classValidatorResolver } from '@hookform/resolvers/class-validator'
 import {
-  Button,
   CloseButton,
   Flex,
   Grid,
@@ -8,14 +7,15 @@ import {
   Modal,
   Rating,
   Textarea,
-  TextInput,
   Title,
 } from '@mantine/core'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveExpenseMutation } from '../../../../hooks/react-query/monerate/expense/useSaveExpenseMutation'
 import { useRecipesQuery } from '../../../../hooks/react-query/recipe/useRecipesQuery'
 import { MyExpenseInput } from '../../../../types/domains/monerate/expense/MyExpenseInput'
+import MyTextinput from '../../inputs/MyTextInput'
+import SaveCancelButtons from '../../inputs/SaveCancelButtons'
 import CategoriesSelector from './CategoriesSelector/CategoriesSelector'
 import { ExpenseMoreMenu } from './ExpenseMoreMenu/ExpenseMoreMenu'
 
@@ -31,7 +31,7 @@ export default function ExpenseModal(props: Props) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     setFocus,
     reset,
     watch,
@@ -50,7 +50,7 @@ export default function ExpenseModal(props: Props) {
     }
   }, [props.isOpen])
 
-  const { mutate: submitCreateRecipe } = useSaveExpenseMutation()
+  const { mutate: submitCreateRecipe, isLoading } = useSaveExpenseMutation()
 
   const onSubmit = (data: MyExpenseInput) => {
     submitCreateRecipe(data, {
@@ -59,6 +59,10 @@ export default function ExpenseModal(props: Props) {
       },
     })
   }
+
+  const disabled = useMemo(() => {
+    return !isValid
+  }, [isValid])
 
   const { data: recipes } = useRecipesQuery()
 
@@ -93,7 +97,7 @@ export default function ExpenseModal(props: Props) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid>
             <Grid.Col span={6}>
-              <TextInput
+              <MyTextinput
                 label="Expense Name"
                 {...register('name')}
                 error={errors.name?.message}
@@ -101,7 +105,7 @@ export default function ExpenseModal(props: Props) {
             </Grid.Col>
 
             <Grid.Col span={6}>
-              <TextInput
+              <MyTextinput
                 label="Value"
                 {...register('value')}
                 error={errors.value?.message}
@@ -133,7 +137,11 @@ export default function ExpenseModal(props: Props) {
           />
 
           <Flex align="center" justify="space-between" mt={16}>
-            <Button type="submit">Save</Button>
+            <SaveCancelButtons
+              onCancel={() => props.onClose()}
+              onEnabledAndCtrlEnter={handleSubmit(onSubmit)}
+              isLoading={isLoading}
+            />
           </Flex>
         </form>
       </Modal>
