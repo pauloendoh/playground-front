@@ -17,8 +17,6 @@ export const myTheme: MantineThemeOverride = {
     ],
 
     secondary: [
-      // #c862ac as 8th color, from 0 to 9
-
       '#E1DEF6',
       '#D8CDF1',
       '#D2BDEC',
@@ -29,6 +27,18 @@ export const myTheme: MantineThemeOverride = {
       '#CF71C2',
       '#C862AC',
       '#C862AC',
+    ],
+    dark: [
+      '#D5D5D5',
+      '#B3B3B3',
+      '#919191',
+      '#6F6F6F',
+      '#4D4D4D',
+      '#2B2B2B',
+      '#262626',
+      '#202020',
+      '#161616',
+      '#1B1B1B',
     ],
   },
 }

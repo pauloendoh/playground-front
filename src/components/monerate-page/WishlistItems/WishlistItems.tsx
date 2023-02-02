@@ -1,10 +1,11 @@
-import { Box, Button, Flex, ScrollArea, Text } from '@mantine/core'
+import { Button, Flex, ScrollArea, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { upToNDecimals } from 'endoh-utils'
 import { useMemo, useState } from 'react'
 import { useWishlistItemsQuery } from '../../../hooks/react-query/monerate/wishlist-item/useWishlistItemsQuery'
 import { MyWishlistItemValidInput } from '../../../types/domains/monerate/wishlist-item/MyWishlistItemValidInput'
 import WishlistItemModal from '../../_common/modals/WishlistItemModal/WishlistItemModal'
+import MyPaper from '../../_common/overrides/MyPaper'
 
 type Props = {
   test?: string
@@ -29,7 +30,7 @@ const WishlistItems = (props: Props) => {
   )
 
   return (
-    <Box>
+    <MyPaper p={8} sx={{}}>
       <Button
         fullWidth
         color="secondary"
@@ -41,7 +42,7 @@ const WishlistItems = (props: Props) => {
         + Add Wishlist Item
       </Button>
 
-      <ScrollArea mt={24} sx={{ height: 200 }}>
+      <ScrollArea mt={24} sx={{ height: 200 }} type="auto">
         <Flex direction="column">
           {sortedItems?.map((item) => (
             <Button
@@ -72,7 +73,7 @@ const WishlistItems = (props: Props) => {
         onClose={handlers.close}
         initialValue={modalInitialValue}
       />
-    </Box>
+    </MyPaper>
   )
 }
 

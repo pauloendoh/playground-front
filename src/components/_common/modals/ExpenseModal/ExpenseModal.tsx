@@ -96,7 +96,7 @@ export default function ExpenseModal(props: Props) {
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid>
-            <Grid.Col span={6}>
+            <Grid.Col span={9}>
               <MyTextInput
                 label="Expense Name"
                 {...register('name')}
@@ -104,7 +104,7 @@ export default function ExpenseModal(props: Props) {
               />
             </Grid.Col>
 
-            <Grid.Col span={6}>
+            <Grid.Col span={'auto'}>
               <MyTextInput
                 label="Value"
                 {...register('value')}
@@ -134,6 +134,8 @@ export default function ExpenseModal(props: Props) {
             label="Description"
             {...register('description')}
             error={errors.description?.message}
+            autosize
+            minRows={2}
           />
 
           <Flex align="center" justify="space-between" mt={16}>

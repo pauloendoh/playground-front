@@ -1,8 +1,10 @@
 import { classValidatorResolver } from '@hookform/resolvers/class-validator'
-import { Box, Button, Flex, Text, TextInput } from '@mantine/core'
+import { Button, Flex, Text } from '@mantine/core'
 import { useForm } from 'react-hook-form'
 import { useRegisterMutation } from '../../../../hooks/react-query/auth/useRegisterMutation'
 import { MyRegisterValidInput } from '../../../../types/domains/auth/MyRegisterAuthInput'
+import FlexCol from '../../../_common/flex/FlexCol'
+import MyTextInput from '../../../_common/inputs/MyTextInput'
 
 interface Props {
   onToggleForm: () => void
@@ -19,7 +21,7 @@ const RegisterForm = (props: Props) => {
     resolver,
   })
 
-  const { mutate: submitRegister } = useRegisterMutation()
+  const { mutate: submitRegister, isLoading } = useRegisterMutation()
 
   const onSubmit = (data: MyRegisterValidInput) => {
     submitRegister(data)
@@ -28,25 +30,25 @@ const RegisterForm = (props: Props) => {
   return (
     <>
       <Text>Register</Text>
-      <Box mt={16}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <TextInput
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FlexCol mt={16} gap={8}>
+          <MyTextInput
             label="Username"
             {...register('username')}
             error={errors.username?.message}
           />
-          <TextInput
+          <MyTextInput
             label="Email"
             {...register('email')}
             error={errors.email?.message}
           />
-          <TextInput
+          <MyTextInput
             label="Password"
             type="password"
             {...register('password1')}
             error={errors.password1?.message}
           />
-          <TextInput
+          <MyTextInput
             label="Confirm Password"
             type="password"
             {...register('password2')}
@@ -54,14 +56,16 @@ const RegisterForm = (props: Props) => {
           />
 
           <Flex align="center" justify="space-between" mt={16}>
-            <Button type="submit">Register</Button>
+            <Button type="submit" loading={isLoading}>
+              Register
+            </Button>
 
             <Button variant="subtle" onClick={props.onToggleForm}>
               Login
             </Button>
           </Flex>
-        </form>
-      </Box>
+        </FlexCol>
+      </form>
     </>
   )
 }

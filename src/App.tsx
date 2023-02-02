@@ -57,7 +57,6 @@ function App() {
             <Box
               sx={{
                 height: '100vh',
-                background: '#ececec',
               }}
             >
               {authUser ? (

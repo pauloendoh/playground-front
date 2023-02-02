@@ -28,7 +28,7 @@ export class MyExpenseInput implements ExpenseInput {
   @IsArrayExpose()
   categoryIds?: string[] | undefined
 
-  @IsNumberStringExpose()
+  @IsNumberStringExpose(undefined, { message: 'Value must be a number' })
   value: string
 
   constructor() {

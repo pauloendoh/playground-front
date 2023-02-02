@@ -1,8 +1,10 @@
 import { classValidatorResolver } from '@hookform/resolvers/class-validator'
-import { Box, Button, Flex, Text, TextInput } from '@mantine/core'
+import { Button, Flex, Text } from '@mantine/core'
 import { useForm } from 'react-hook-form'
 import { useLoginMutation } from '../../../../hooks/react-query/auth/useLoginMutation'
 import { MyLoginValidInput } from '../../../../types/domains/auth/MyLoginValidInput'
+import FlexCol from '../../../_common/flex/FlexCol'
+import MyTextInput from '../../../_common/inputs/MyTextInput'
 
 interface Props {
   onToggleForm: () => void
@@ -19,7 +21,7 @@ const LoginForm = (props: Props) => {
     resolver,
   })
 
-  const { mutate: submitLogin } = useLoginMutation()
+  const { mutate: submitLogin, isLoading } = useLoginMutation()
 
   const onSubmit = (data: MyLoginValidInput) => {
     submitLogin(data)
@@ -28,15 +30,15 @@ const LoginForm = (props: Props) => {
   return (
     <>
       <Text>Register</Text>
-      <Box mt={16}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <TextInput
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FlexCol mt={16} gap={8}>
+          <MyTextInput
             label="Username"
             {...register('usernameOrEmail')}
             error={errors.usernameOrEmail?.message}
           />
 
-          <TextInput
+          <MyTextInput
             label="Password"
             type="password"
             {...register('password')}
@@ -44,14 +46,16 @@ const LoginForm = (props: Props) => {
           />
 
           <Flex align="center" justify="space-between" mt={16}>
-            <Button type="submit">Login</Button>
+            <Button type="submit" loading={isLoading}>
+              Login
+            </Button>
 
             <Button variant="subtle" onClick={props.onToggleForm}>
               Register
             </Button>
           </Flex>
-        </form>
-      </Box>
+        </FlexCol>
+      </form>
     </>
   )
 }

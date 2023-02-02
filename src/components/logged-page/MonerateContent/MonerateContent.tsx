@@ -22,7 +22,7 @@ const MonerateContent = (props: Props) => {
 
   return (
     <Box>
-      <Grid gutter={64}>
+      <Grid>
         <Grid.Col span="auto">
           <Box>
             <Button

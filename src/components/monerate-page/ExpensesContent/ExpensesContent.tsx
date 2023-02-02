@@ -11,6 +11,7 @@ import { useEffect, useMemo, useRef } from 'react'
 import { useExpensesQuery } from '../../../hooks/react-query/monerate/expense/useExpensesQuery'
 import useExpenseModalStore from '../../../hooks/zustand/modals/useExpenseModalStore'
 import { MyExpenseInput } from '../../../types/domains/monerate/expense/MyExpenseInput'
+import MyPaper from '../../_common/overrides/MyPaper'
 
 type Props = {
   test?: string
@@ -41,8 +42,7 @@ const ExpensesContent = (props: Props) => {
   }, [entry?.isIntersecting, hasNextPage, data])
 
   return (
-    <Box>
-      Expenses
+    <MyPaper>
       <Box>
         <Button
           onClick={() => {
@@ -64,11 +64,11 @@ const ExpensesContent = (props: Props) => {
                 ),
               })
             }}
+            color="dark"
             styles={{
               label: {
                 width: '100%',
                 justifyContent: 'space-between',
-                color: theme.colors.dark,
               },
             }}
             variant="subtle"
@@ -82,7 +82,7 @@ const ExpensesContent = (props: Props) => {
           </Center>
         )}
       </Flex>
-    </Box>
+    </MyPaper>
   )
 }
 

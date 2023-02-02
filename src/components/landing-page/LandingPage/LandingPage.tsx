@@ -1,5 +1,6 @@
-import { Box, Center, Paper } from '@mantine/core'
+import { Box, Center } from '@mantine/core'
 import { useState } from 'react'
+import MyPaper from '../../_common/overrides/MyPaper'
 import LoginForm from './LoginForm/LoginForm'
 import RegisterForm from './RegisterForm/RegisterForm'
 
@@ -15,7 +16,7 @@ const LandingPage = (props: Props) => {
   return (
     <Box>
       <Center>
-        <Paper p={16} mt={40} w={300}>
+        <MyPaper p={16} mt={40} w={300}>
           {currentForm === 'loginForm' && (
             <LoginForm
               onToggleForm={() => {
@@ -30,7 +31,7 @@ const LandingPage = (props: Props) => {
               }}
             />
           )}
-        </Paper>
+        </MyPaper>
       </Center>
     </Box>
   )
