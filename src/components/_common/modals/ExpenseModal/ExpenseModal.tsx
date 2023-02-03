@@ -123,9 +123,6 @@ export default function ExpenseModal(props: Props) {
               </Input.Wrapper>
             </Grid.Col>
             <Grid.Col span={2}>
-              {JSON.stringify({
-                perMonth: watch('timesPerMonth'),
-              })}
               <MyTextInput
                 label="Times per month"
                 type="number"
