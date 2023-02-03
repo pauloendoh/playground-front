@@ -123,11 +123,22 @@ export default function ExpenseModal(props: Props) {
               </Input.Wrapper>
             </Grid.Col>
             <Grid.Col span={2}>
+              {JSON.stringify({
+                perMonth: watch('timesPerMonth'),
+              })}
               <MyTextInput
                 label="Times per month"
                 type="number"
                 step="any"
-                {...register('timesPerMonth')}
+                value={watch('timesPerMonth') || ''}
+                onChange={(e) => {
+                  const number = parseFloat(e.target.value)
+                  if (number >= 0) {
+                    setValue('timesPerMonth', number.toString())
+                    return
+                  }
+                  setValue('timesPerMonth', null)
+                }}
                 error={errors.timesPerMonth?.message}
               />
             </Grid.Col>

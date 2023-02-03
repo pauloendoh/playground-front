@@ -13,20 +13,20 @@ import {
 
 export class MyExpenseInput implements ExpenseInput {
   @Expose()
-  id?: string | undefined
+  id: string | null
 
   @IsStringExpose({ message: 'Description is required' })
-  description?: string | undefined
+  description: string | null
 
   @IsStringExpose()
   name: string
 
   @IsNumberExpose(undefined)
   @IsOptional()
-  rating?: InputMaybe<number> | undefined
+  rating: InputMaybe<number> | null
 
   @IsArrayExpose()
-  categoryIds?: string[] | undefined
+  categoryIds: string[] | null
 
   @IsNumberStringExpose(undefined, { message: 'Value must be a number' })
   value: string
@@ -36,13 +36,14 @@ export class MyExpenseInput implements ExpenseInput {
     this.value = ''
     this.description = ''
     this.categoryIds = []
-    this.timesPerMonth = '0'
+    this.timesPerMonth = null
   }
 
   @IsNumberStringExpose(undefined, { message: 'Value must be a number' })
-  timesPerMonth?: string | undefined
+  @IsOptional()
+  timesPerMonth: string | null
 
-  date?: string | undefined
+  date: string | null
 
-  userId?: string | undefined
+  userId: string | null
 }

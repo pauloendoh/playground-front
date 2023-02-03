@@ -98,7 +98,7 @@ export default function CurrentSavingModal(props: Props) {
                 }
                 inputFormat="MMM DD, YYYY"
                 onChange={(date) => {
-                  setValue('date', date?.toISOString())
+                  setValue('date', date?.toISOString() || null)
                 }}
               />
             </Grid.Col>

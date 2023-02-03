@@ -13,11 +13,10 @@ export class MyRecipeInput implements RecipeInput {
     this.title = ''
     this.description = ''
   }
-
-  createdAt?: InputMaybe<string> | undefined
-  id?: InputMaybe<string> | undefined
-  rating?: InputMaybe<number> | undefined
-  savedPosition?: InputMaybe<number> | undefined
-  updatedAt?: InputMaybe<string> | undefined
-  userId?: InputMaybe<string> | undefined
+  createdAt: InputMaybe<string>
+  id: InputMaybe<string>
+  rating: InputMaybe<number>
+  savedPosition: InputMaybe<number>
+  updatedAt: InputMaybe<string>
+  userId: InputMaybe<string>
 }

@@ -1,8 +1,8 @@
 import { GraphQLClient } from 'graphql-request';
 import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
-export type Maybe<T> = T;
-export type InputMaybe<T> = T;
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -22,47 +22,47 @@ export type AffectedRowsOutput = {
 };
 
 export type AggregateCategory = {
-  _count?: Maybe<CategoryCountAggregate>;
-  _max?: Maybe<CategoryMaxAggregate>;
-  _min?: Maybe<CategoryMinAggregate>;
+  _count: Maybe<CategoryCountAggregate>;
+  _max: Maybe<CategoryMaxAggregate>;
+  _min: Maybe<CategoryMinAggregate>;
 };
 
 export type AggregateCurrentSaving = {
-  _avg?: Maybe<CurrentSavingAvgAggregate>;
-  _count?: Maybe<CurrentSavingCountAggregate>;
-  _max?: Maybe<CurrentSavingMaxAggregate>;
-  _min?: Maybe<CurrentSavingMinAggregate>;
-  _sum?: Maybe<CurrentSavingSumAggregate>;
+  _avg: Maybe<CurrentSavingAvgAggregate>;
+  _count: Maybe<CurrentSavingCountAggregate>;
+  _max: Maybe<CurrentSavingMaxAggregate>;
+  _min: Maybe<CurrentSavingMinAggregate>;
+  _sum: Maybe<CurrentSavingSumAggregate>;
 };
 
 export type AggregateExpense = {
-  _avg?: Maybe<ExpenseAvgAggregate>;
-  _count?: Maybe<ExpenseCountAggregate>;
-  _max?: Maybe<ExpenseMaxAggregate>;
-  _min?: Maybe<ExpenseMinAggregate>;
-  _sum?: Maybe<ExpenseSumAggregate>;
+  _avg: Maybe<ExpenseAvgAggregate>;
+  _count: Maybe<ExpenseCountAggregate>;
+  _max: Maybe<ExpenseMaxAggregate>;
+  _min: Maybe<ExpenseMinAggregate>;
+  _sum: Maybe<ExpenseSumAggregate>;
 };
 
 export type AggregateRecipe = {
-  _avg?: Maybe<RecipeAvgAggregate>;
-  _count?: Maybe<RecipeCountAggregate>;
-  _max?: Maybe<RecipeMaxAggregate>;
-  _min?: Maybe<RecipeMinAggregate>;
-  _sum?: Maybe<RecipeSumAggregate>;
+  _avg: Maybe<RecipeAvgAggregate>;
+  _count: Maybe<RecipeCountAggregate>;
+  _max: Maybe<RecipeMaxAggregate>;
+  _min: Maybe<RecipeMinAggregate>;
+  _sum: Maybe<RecipeSumAggregate>;
 };
 
 export type AggregateUser = {
-  _count?: Maybe<UserCountAggregate>;
-  _max?: Maybe<UserMaxAggregate>;
-  _min?: Maybe<UserMinAggregate>;
+  _count: Maybe<UserCountAggregate>;
+  _max: Maybe<UserMaxAggregate>;
+  _min: Maybe<UserMinAggregate>;
 };
 
 export type AggregateWishlistItem = {
-  _avg?: Maybe<WishlistItemAvgAggregate>;
-  _count?: Maybe<WishlistItemCountAggregate>;
-  _max?: Maybe<WishlistItemMaxAggregate>;
-  _min?: Maybe<WishlistItemMinAggregate>;
-  _sum?: Maybe<WishlistItemSumAggregate>;
+  _avg: Maybe<WishlistItemAvgAggregate>;
+  _count: Maybe<WishlistItemCountAggregate>;
+  _max: Maybe<WishlistItemMaxAggregate>;
+  _min: Maybe<WishlistItemMinAggregate>;
+  _sum: Maybe<WishlistItemSumAggregate>;
 };
 
 export type AuthUserOutput = {
@@ -74,7 +74,7 @@ export type AuthUserOutput = {
 };
 
 export type Category = {
-  _count?: Maybe<CategoryCount>;
+  _count: Maybe<CategoryCount>;
   bgColor: Scalars['String'];
   createdAt: Scalars['DateTime'];
   expenses: Array<Expense>;
@@ -87,12 +87,12 @@ export type Category = {
 
 
 export type CategoryExpensesArgs = {
-  cursor?: InputMaybe<ExpenseWhereUniqueInput>;
-  distinct?: InputMaybe<Array<ExpenseScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<ExpenseOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ExpenseWhereInput>;
+  cursor: InputMaybe<ExpenseWhereUniqueInput>;
+  distinct: InputMaybe<Array<ExpenseScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<ExpenseOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ExpenseWhereInput>;
 };
 
 export type CategoryCount = {
@@ -110,57 +110,57 @@ export type CategoryCountAggregate = {
 };
 
 export type CategoryCountOrderByAggregateInput = {
-  bgColor?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
+  bgColor: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export type CategoryCreateInput = {
   bgColor: Scalars['String'];
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  expenses?: InputMaybe<ExpenseCreateNestedManyWithoutCategoriesInput>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutCategoriesInput>;
+  id: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutCategoriesInput;
 };
 
 export type CategoryCreateManyInput = {
   bgColor: Scalars['String'];
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
 };
 
 export type CategoryCreateManyUserInput = {
   bgColor: Scalars['String'];
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
 };
 
 export type CategoryCreateManyUserInputEnvelope = {
   data: Array<CategoryCreateManyUserInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
 export type CategoryCreateNestedManyWithoutExpensesInput = {
-  connect?: InputMaybe<Array<CategoryWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<CategoryCreateOrConnectWithoutExpensesInput>>;
-  create?: InputMaybe<Array<CategoryCreateWithoutExpensesInput>>;
+  connect: InputMaybe<Array<CategoryWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<CategoryCreateOrConnectWithoutExpensesInput>>;
+  create: InputMaybe<Array<CategoryCreateWithoutExpensesInput>>;
 };
 
 export type CategoryCreateNestedManyWithoutUserInput = {
-  connect?: InputMaybe<Array<CategoryWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<CategoryCreateOrConnectWithoutUserInput>>;
-  create?: InputMaybe<Array<CategoryCreateWithoutUserInput>>;
-  createMany?: InputMaybe<CategoryCreateManyUserInputEnvelope>;
+  connect: InputMaybe<Array<CategoryWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<CategoryCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<CategoryCreateWithoutUserInput>>;
+  createMany: InputMaybe<CategoryCreateManyUserInputEnvelope>;
 };
 
 export type CategoryCreateOrConnectWithoutExpensesInput = {
@@ -175,26 +175,26 @@ export type CategoryCreateOrConnectWithoutUserInput = {
 
 export type CategoryCreateWithoutExpensesInput = {
   bgColor: Scalars['String'];
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutCategoriesInput;
 };
 
 export type CategoryCreateWithoutUserInput = {
   bgColor: Scalars['String'];
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  expenses?: InputMaybe<ExpenseCreateNestedManyWithoutCategoriesInput>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutCategoriesInput>;
+  id: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
 };
 
 export type CategoryGroupBy = {
-  _count?: Maybe<CategoryCountAggregate>;
-  _max?: Maybe<CategoryMaxAggregate>;
-  _min?: Maybe<CategoryMinAggregate>;
+  _count: Maybe<CategoryCountAggregate>;
+  _max: Maybe<CategoryMaxAggregate>;
+  _min: Maybe<CategoryMinAggregate>;
   bgColor: Scalars['String'];
   createdAt: Scalars['DateTime'];
   id: Scalars['String'];
@@ -205,77 +205,77 @@ export type CategoryGroupBy = {
 
 export type CategoryInput = {
   bgColor: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
 };
 
 export type CategoryListRelationFilter = {
-  every?: InputMaybe<CategoryWhereInput>;
-  none?: InputMaybe<CategoryWhereInput>;
-  some?: InputMaybe<CategoryWhereInput>;
+  every: InputMaybe<CategoryWhereInput>;
+  none: InputMaybe<CategoryWhereInput>;
+  some: InputMaybe<CategoryWhereInput>;
 };
 
 export type CategoryMaxAggregate = {
-  bgColor?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  id?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  userId?: Maybe<Scalars['String']>;
+  bgColor: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
 };
 
 export type CategoryMaxOrderByAggregateInput = {
-  bgColor?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
+  bgColor: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export type CategoryMinAggregate = {
-  bgColor?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  id?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  userId?: Maybe<Scalars['String']>;
+  bgColor: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
 };
 
 export type CategoryMinOrderByAggregateInput = {
-  bgColor?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
+  bgColor: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export type CategoryOrderByRelationAggregateInput = {
-  _count?: InputMaybe<SortOrder>;
+  _count: InputMaybe<SortOrder>;
 };
 
 export type CategoryOrderByWithAggregationInput = {
-  _count?: InputMaybe<CategoryCountOrderByAggregateInput>;
-  _max?: InputMaybe<CategoryMaxOrderByAggregateInput>;
-  _min?: InputMaybe<CategoryMinOrderByAggregateInput>;
-  bgColor?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
+  _count: InputMaybe<CategoryCountOrderByAggregateInput>;
+  _max: InputMaybe<CategoryMaxOrderByAggregateInput>;
+  _min: InputMaybe<CategoryMinOrderByAggregateInput>;
+  bgColor: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export type CategoryOrderByWithRelationInput = {
-  bgColor?: InputMaybe<SortOrder>;
-  createdAt?: InputMaybe<SortOrder>;
-  expenses?: InputMaybe<ExpenseOrderByRelationAggregateInput>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  user?: InputMaybe<UserOrderByWithRelationInput>;
-  userId?: InputMaybe<SortOrder>;
+  bgColor: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  expenses: InputMaybe<ExpenseOrderByRelationAggregateInput>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  user: InputMaybe<UserOrderByWithRelationInput>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export enum CategoryScalarFieldEnum {
@@ -288,45 +288,45 @@ export enum CategoryScalarFieldEnum {
 }
 
 export type CategoryScalarWhereInput = {
-  AND?: InputMaybe<Array<CategoryScalarWhereInput>>;
-  NOT?: InputMaybe<Array<CategoryScalarWhereInput>>;
-  OR?: InputMaybe<Array<CategoryScalarWhereInput>>;
-  bgColor?: InputMaybe<StringFilter>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<StringFilter>;
-  name?: InputMaybe<StringFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
-  userId?: InputMaybe<StringFilter>;
+  AND: InputMaybe<Array<CategoryScalarWhereInput>>;
+  NOT: InputMaybe<Array<CategoryScalarWhereInput>>;
+  OR: InputMaybe<Array<CategoryScalarWhereInput>>;
+  bgColor: InputMaybe<StringFilter>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  id: InputMaybe<StringFilter>;
+  name: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  userId: InputMaybe<StringFilter>;
 };
 
 export type CategoryScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<Array<CategoryScalarWhereWithAggregatesInput>>;
-  NOT?: InputMaybe<Array<CategoryScalarWhereWithAggregatesInput>>;
-  OR?: InputMaybe<Array<CategoryScalarWhereWithAggregatesInput>>;
-  bgColor?: InputMaybe<StringWithAggregatesFilter>;
-  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
-  id?: InputMaybe<StringWithAggregatesFilter>;
-  name?: InputMaybe<StringWithAggregatesFilter>;
-  updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
-  userId?: InputMaybe<StringWithAggregatesFilter>;
+  AND: InputMaybe<Array<CategoryScalarWhereWithAggregatesInput>>;
+  NOT: InputMaybe<Array<CategoryScalarWhereWithAggregatesInput>>;
+  OR: InputMaybe<Array<CategoryScalarWhereWithAggregatesInput>>;
+  bgColor: InputMaybe<StringWithAggregatesFilter>;
+  createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  id: InputMaybe<StringWithAggregatesFilter>;
+  name: InputMaybe<StringWithAggregatesFilter>;
+  updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  userId: InputMaybe<StringWithAggregatesFilter>;
 };
 
 export type CategoryUpdateInput = {
-  bgColor?: InputMaybe<StringFieldUpdateOperationsInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  expenses?: InputMaybe<ExpenseUpdateManyWithoutCategoriesNestedInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  user?: InputMaybe<UserUpdateOneRequiredWithoutCategoriesNestedInput>;
+  bgColor: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutCategoriesNestedInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutCategoriesNestedInput>;
 };
 
 export type CategoryUpdateManyMutationInput = {
-  bgColor?: InputMaybe<StringFieldUpdateOperationsInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  bgColor: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type CategoryUpdateManyWithWhereWithoutExpensesInput = {
@@ -340,30 +340,30 @@ export type CategoryUpdateManyWithWhereWithoutUserInput = {
 };
 
 export type CategoryUpdateManyWithoutExpensesNestedInput = {
-  connect?: InputMaybe<Array<CategoryWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<CategoryCreateOrConnectWithoutExpensesInput>>;
-  create?: InputMaybe<Array<CategoryCreateWithoutExpensesInput>>;
-  delete?: InputMaybe<Array<CategoryWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<CategoryScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<CategoryWhereUniqueInput>>;
-  set?: InputMaybe<Array<CategoryWhereUniqueInput>>;
-  update?: InputMaybe<Array<CategoryUpdateWithWhereUniqueWithoutExpensesInput>>;
-  updateMany?: InputMaybe<Array<CategoryUpdateManyWithWhereWithoutExpensesInput>>;
-  upsert?: InputMaybe<Array<CategoryUpsertWithWhereUniqueWithoutExpensesInput>>;
+  connect: InputMaybe<Array<CategoryWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<CategoryCreateOrConnectWithoutExpensesInput>>;
+  create: InputMaybe<Array<CategoryCreateWithoutExpensesInput>>;
+  delete: InputMaybe<Array<CategoryWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<CategoryScalarWhereInput>>;
+  disconnect: InputMaybe<Array<CategoryWhereUniqueInput>>;
+  set: InputMaybe<Array<CategoryWhereUniqueInput>>;
+  update: InputMaybe<Array<CategoryUpdateWithWhereUniqueWithoutExpensesInput>>;
+  updateMany: InputMaybe<Array<CategoryUpdateManyWithWhereWithoutExpensesInput>>;
+  upsert: InputMaybe<Array<CategoryUpsertWithWhereUniqueWithoutExpensesInput>>;
 };
 
 export type CategoryUpdateManyWithoutUserNestedInput = {
-  connect?: InputMaybe<Array<CategoryWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<CategoryCreateOrConnectWithoutUserInput>>;
-  create?: InputMaybe<Array<CategoryCreateWithoutUserInput>>;
-  createMany?: InputMaybe<CategoryCreateManyUserInputEnvelope>;
-  delete?: InputMaybe<Array<CategoryWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<CategoryScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<CategoryWhereUniqueInput>>;
-  set?: InputMaybe<Array<CategoryWhereUniqueInput>>;
-  update?: InputMaybe<Array<CategoryUpdateWithWhereUniqueWithoutUserInput>>;
-  updateMany?: InputMaybe<Array<CategoryUpdateManyWithWhereWithoutUserInput>>;
-  upsert?: InputMaybe<Array<CategoryUpsertWithWhereUniqueWithoutUserInput>>;
+  connect: InputMaybe<Array<CategoryWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<CategoryCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<CategoryCreateWithoutUserInput>>;
+  createMany: InputMaybe<CategoryCreateManyUserInputEnvelope>;
+  delete: InputMaybe<Array<CategoryWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<CategoryScalarWhereInput>>;
+  disconnect: InputMaybe<Array<CategoryWhereUniqueInput>>;
+  set: InputMaybe<Array<CategoryWhereUniqueInput>>;
+  update: InputMaybe<Array<CategoryUpdateWithWhereUniqueWithoutUserInput>>;
+  updateMany: InputMaybe<Array<CategoryUpdateManyWithWhereWithoutUserInput>>;
+  upsert: InputMaybe<Array<CategoryUpsertWithWhereUniqueWithoutUserInput>>;
 };
 
 export type CategoryUpdateWithWhereUniqueWithoutExpensesInput = {
@@ -377,21 +377,21 @@ export type CategoryUpdateWithWhereUniqueWithoutUserInput = {
 };
 
 export type CategoryUpdateWithoutExpensesInput = {
-  bgColor?: InputMaybe<StringFieldUpdateOperationsInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  user?: InputMaybe<UserUpdateOneRequiredWithoutCategoriesNestedInput>;
+  bgColor: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutCategoriesNestedInput>;
 };
 
 export type CategoryUpdateWithoutUserInput = {
-  bgColor?: InputMaybe<StringFieldUpdateOperationsInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  expenses?: InputMaybe<ExpenseUpdateManyWithoutCategoriesNestedInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  bgColor: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutCategoriesNestedInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type CategoryUpsertWithWhereUniqueWithoutExpensesInput = {
@@ -407,21 +407,21 @@ export type CategoryUpsertWithWhereUniqueWithoutUserInput = {
 };
 
 export type CategoryWhereInput = {
-  AND?: InputMaybe<Array<CategoryWhereInput>>;
-  NOT?: InputMaybe<Array<CategoryWhereInput>>;
-  OR?: InputMaybe<Array<CategoryWhereInput>>;
-  bgColor?: InputMaybe<StringFilter>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  expenses?: InputMaybe<ExpenseListRelationFilter>;
-  id?: InputMaybe<StringFilter>;
-  name?: InputMaybe<StringFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
-  user?: InputMaybe<UserRelationFilter>;
-  userId?: InputMaybe<StringFilter>;
+  AND: InputMaybe<Array<CategoryWhereInput>>;
+  NOT: InputMaybe<Array<CategoryWhereInput>>;
+  OR: InputMaybe<Array<CategoryWhereInput>>;
+  bgColor: InputMaybe<StringFilter>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  expenses: InputMaybe<ExpenseListRelationFilter>;
+  id: InputMaybe<StringFilter>;
+  name: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  user: InputMaybe<UserRelationFilter>;
+  userId: InputMaybe<StringFilter>;
 };
 
 export type CategoryWhereUniqueInput = {
-  id?: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
 };
 
 export type CurrentSaving = {
@@ -435,11 +435,11 @@ export type CurrentSaving = {
 };
 
 export type CurrentSavingAvgAggregate = {
-  value?: Maybe<Scalars['Decimal']>;
+  value: Maybe<Scalars['Decimal']>;
 };
 
 export type CurrentSavingAvgOrderByAggregateInput = {
-  value?: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
 };
 
 export type CurrentSavingCountAggregate = {
@@ -453,50 +453,50 @@ export type CurrentSavingCountAggregate = {
 };
 
 export type CurrentSavingCountOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  date?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
-  value?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  date: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
 };
 
 export type CurrentSavingCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  date: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutCurrentSavingsInput;
   value: Scalars['Decimal'];
 };
 
 export type CurrentSavingCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  date: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
   value: Scalars['Decimal'];
 };
 
 export type CurrentSavingCreateManyUserInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  date: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   value: Scalars['Decimal'];
 };
 
 export type CurrentSavingCreateManyUserInputEnvelope = {
   data: Array<CurrentSavingCreateManyUserInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
 export type CurrentSavingCreateNestedManyWithoutUserInput = {
-  connect?: InputMaybe<Array<CurrentSavingWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<CurrentSavingCreateOrConnectWithoutUserInput>>;
-  create?: InputMaybe<Array<CurrentSavingCreateWithoutUserInput>>;
-  createMany?: InputMaybe<CurrentSavingCreateManyUserInputEnvelope>;
+  connect: InputMaybe<Array<CurrentSavingWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<CurrentSavingCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<CurrentSavingCreateWithoutUserInput>>;
+  createMany: InputMaybe<CurrentSavingCreateManyUserInputEnvelope>;
 };
 
 export type CurrentSavingCreateOrConnectWithoutUserInput = {
@@ -505,19 +505,19 @@ export type CurrentSavingCreateOrConnectWithoutUserInput = {
 };
 
 export type CurrentSavingCreateWithoutUserInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  date: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   value: Scalars['Decimal'];
 };
 
 export type CurrentSavingGroupBy = {
-  _avg?: Maybe<CurrentSavingAvgAggregate>;
-  _count?: Maybe<CurrentSavingCountAggregate>;
-  _max?: Maybe<CurrentSavingMaxAggregate>;
-  _min?: Maybe<CurrentSavingMinAggregate>;
-  _sum?: Maybe<CurrentSavingSumAggregate>;
+  _avg: Maybe<CurrentSavingAvgAggregate>;
+  _count: Maybe<CurrentSavingCountAggregate>;
+  _max: Maybe<CurrentSavingMaxAggregate>;
+  _min: Maybe<CurrentSavingMinAggregate>;
+  _sum: Maybe<CurrentSavingSumAggregate>;
   createdAt: Scalars['DateTime'];
   date: Scalars['DateTime'];
   id: Scalars['String'];
@@ -527,73 +527,73 @@ export type CurrentSavingGroupBy = {
 };
 
 export type CurrentSavingListRelationFilter = {
-  every?: InputMaybe<CurrentSavingWhereInput>;
-  none?: InputMaybe<CurrentSavingWhereInput>;
-  some?: InputMaybe<CurrentSavingWhereInput>;
+  every: InputMaybe<CurrentSavingWhereInput>;
+  none: InputMaybe<CurrentSavingWhereInput>;
+  some: InputMaybe<CurrentSavingWhereInput>;
 };
 
 export type CurrentSavingMaxAggregate = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  date?: Maybe<Scalars['DateTime']>;
-  id?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  userId?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['Decimal']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  date: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
+  value: Maybe<Scalars['Decimal']>;
 };
 
 export type CurrentSavingMaxOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  date?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
-  value?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  date: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
 };
 
 export type CurrentSavingMinAggregate = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  date?: Maybe<Scalars['DateTime']>;
-  id?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  userId?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['Decimal']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  date: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
+  value: Maybe<Scalars['Decimal']>;
 };
 
 export type CurrentSavingMinOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  date?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
-  value?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  date: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
 };
 
 export type CurrentSavingOrderByRelationAggregateInput = {
-  _count?: InputMaybe<SortOrder>;
+  _count: InputMaybe<SortOrder>;
 };
 
 export type CurrentSavingOrderByWithAggregationInput = {
-  _avg?: InputMaybe<CurrentSavingAvgOrderByAggregateInput>;
-  _count?: InputMaybe<CurrentSavingCountOrderByAggregateInput>;
-  _max?: InputMaybe<CurrentSavingMaxOrderByAggregateInput>;
-  _min?: InputMaybe<CurrentSavingMinOrderByAggregateInput>;
-  _sum?: InputMaybe<CurrentSavingSumOrderByAggregateInput>;
-  createdAt?: InputMaybe<SortOrder>;
-  date?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
-  value?: InputMaybe<SortOrder>;
+  _avg: InputMaybe<CurrentSavingAvgOrderByAggregateInput>;
+  _count: InputMaybe<CurrentSavingCountOrderByAggregateInput>;
+  _max: InputMaybe<CurrentSavingMaxOrderByAggregateInput>;
+  _min: InputMaybe<CurrentSavingMinOrderByAggregateInput>;
+  _sum: InputMaybe<CurrentSavingSumOrderByAggregateInput>;
+  createdAt: InputMaybe<SortOrder>;
+  date: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
 };
 
 export type CurrentSavingOrderByWithRelationInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  date?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  user?: InputMaybe<UserOrderByWithRelationInput>;
-  userId?: InputMaybe<SortOrder>;
-  value?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  date: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  user: InputMaybe<UserOrderByWithRelationInput>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
 };
 
 export enum CurrentSavingScalarFieldEnum {
@@ -606,52 +606,52 @@ export enum CurrentSavingScalarFieldEnum {
 }
 
 export type CurrentSavingScalarWhereInput = {
-  AND?: InputMaybe<Array<CurrentSavingScalarWhereInput>>;
-  NOT?: InputMaybe<Array<CurrentSavingScalarWhereInput>>;
-  OR?: InputMaybe<Array<CurrentSavingScalarWhereInput>>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  date?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<StringFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
-  userId?: InputMaybe<StringFilter>;
-  value?: InputMaybe<DecimalFilter>;
+  AND: InputMaybe<Array<CurrentSavingScalarWhereInput>>;
+  NOT: InputMaybe<Array<CurrentSavingScalarWhereInput>>;
+  OR: InputMaybe<Array<CurrentSavingScalarWhereInput>>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  date: InputMaybe<DateTimeFilter>;
+  id: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  userId: InputMaybe<StringFilter>;
+  value: InputMaybe<DecimalFilter>;
 };
 
 export type CurrentSavingScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<Array<CurrentSavingScalarWhereWithAggregatesInput>>;
-  NOT?: InputMaybe<Array<CurrentSavingScalarWhereWithAggregatesInput>>;
-  OR?: InputMaybe<Array<CurrentSavingScalarWhereWithAggregatesInput>>;
-  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
-  date?: InputMaybe<DateTimeWithAggregatesFilter>;
-  id?: InputMaybe<StringWithAggregatesFilter>;
-  updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
-  userId?: InputMaybe<StringWithAggregatesFilter>;
-  value?: InputMaybe<DecimalWithAggregatesFilter>;
+  AND: InputMaybe<Array<CurrentSavingScalarWhereWithAggregatesInput>>;
+  NOT: InputMaybe<Array<CurrentSavingScalarWhereWithAggregatesInput>>;
+  OR: InputMaybe<Array<CurrentSavingScalarWhereWithAggregatesInput>>;
+  createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  date: InputMaybe<DateTimeWithAggregatesFilter>;
+  id: InputMaybe<StringWithAggregatesFilter>;
+  updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  userId: InputMaybe<StringWithAggregatesFilter>;
+  value: InputMaybe<DecimalWithAggregatesFilter>;
 };
 
 export type CurrentSavingSumAggregate = {
-  value?: Maybe<Scalars['Decimal']>;
+  value: Maybe<Scalars['Decimal']>;
 };
 
 export type CurrentSavingSumOrderByAggregateInput = {
-  value?: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
 };
 
 export type CurrentSavingUpdateInput = {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  user?: InputMaybe<UserUpdateOneRequiredWithoutCurrentSavingsNestedInput>;
-  value?: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutCurrentSavingsNestedInput>;
+  value: InputMaybe<DecimalFieldUpdateOperationsInput>;
 };
 
 export type CurrentSavingUpdateManyMutationInput = {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  value?: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  value: InputMaybe<DecimalFieldUpdateOperationsInput>;
 };
 
 export type CurrentSavingUpdateManyWithWhereWithoutUserInput = {
@@ -660,17 +660,17 @@ export type CurrentSavingUpdateManyWithWhereWithoutUserInput = {
 };
 
 export type CurrentSavingUpdateManyWithoutUserNestedInput = {
-  connect?: InputMaybe<Array<CurrentSavingWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<CurrentSavingCreateOrConnectWithoutUserInput>>;
-  create?: InputMaybe<Array<CurrentSavingCreateWithoutUserInput>>;
-  createMany?: InputMaybe<CurrentSavingCreateManyUserInputEnvelope>;
-  delete?: InputMaybe<Array<CurrentSavingWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<CurrentSavingScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<CurrentSavingWhereUniqueInput>>;
-  set?: InputMaybe<Array<CurrentSavingWhereUniqueInput>>;
-  update?: InputMaybe<Array<CurrentSavingUpdateWithWhereUniqueWithoutUserInput>>;
-  updateMany?: InputMaybe<Array<CurrentSavingUpdateManyWithWhereWithoutUserInput>>;
-  upsert?: InputMaybe<Array<CurrentSavingUpsertWithWhereUniqueWithoutUserInput>>;
+  connect: InputMaybe<Array<CurrentSavingWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<CurrentSavingCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<CurrentSavingCreateWithoutUserInput>>;
+  createMany: InputMaybe<CurrentSavingCreateManyUserInputEnvelope>;
+  delete: InputMaybe<Array<CurrentSavingWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<CurrentSavingScalarWhereInput>>;
+  disconnect: InputMaybe<Array<CurrentSavingWhereUniqueInput>>;
+  set: InputMaybe<Array<CurrentSavingWhereUniqueInput>>;
+  update: InputMaybe<Array<CurrentSavingUpdateWithWhereUniqueWithoutUserInput>>;
+  updateMany: InputMaybe<Array<CurrentSavingUpdateManyWithWhereWithoutUserInput>>;
+  upsert: InputMaybe<Array<CurrentSavingUpsertWithWhereUniqueWithoutUserInput>>;
 };
 
 export type CurrentSavingUpdateWithWhereUniqueWithoutUserInput = {
@@ -679,11 +679,11 @@ export type CurrentSavingUpdateWithWhereUniqueWithoutUserInput = {
 };
 
 export type CurrentSavingUpdateWithoutUserInput = {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  value?: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  value: InputMaybe<DecimalFieldUpdateOperationsInput>;
 };
 
 export type CurrentSavingUpsertWithWhereUniqueWithoutUserInput = {
@@ -693,157 +693,157 @@ export type CurrentSavingUpsertWithWhereUniqueWithoutUserInput = {
 };
 
 export type CurrentSavingValidInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  userId?: InputMaybe<Scalars['String']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  date: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  userId: InputMaybe<Scalars['String']>;
   value: Scalars['String'];
 };
 
 export type CurrentSavingWhereInput = {
-  AND?: InputMaybe<Array<CurrentSavingWhereInput>>;
-  NOT?: InputMaybe<Array<CurrentSavingWhereInput>>;
-  OR?: InputMaybe<Array<CurrentSavingWhereInput>>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  date?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<StringFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
-  user?: InputMaybe<UserRelationFilter>;
-  userId?: InputMaybe<StringFilter>;
-  value?: InputMaybe<DecimalFilter>;
+  AND: InputMaybe<Array<CurrentSavingWhereInput>>;
+  NOT: InputMaybe<Array<CurrentSavingWhereInput>>;
+  OR: InputMaybe<Array<CurrentSavingWhereInput>>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  date: InputMaybe<DateTimeFilter>;
+  id: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  user: InputMaybe<UserRelationFilter>;
+  userId: InputMaybe<StringFilter>;
+  value: InputMaybe<DecimalFilter>;
 };
 
 export type CurrentSavingWhereUniqueInput = {
-  id?: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
 };
 
 export type DateTimeFieldUpdateOperationsInput = {
-  set?: InputMaybe<Scalars['DateTime']>;
+  set: InputMaybe<Scalars['DateTime']>;
 };
 
 export type DateTimeFilter = {
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
-  not?: InputMaybe<NestedDateTimeFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  equals: InputMaybe<Scalars['DateTime']>;
+  gt: InputMaybe<Scalars['DateTime']>;
+  gte: InputMaybe<Scalars['DateTime']>;
+  in: InputMaybe<Array<Scalars['DateTime']>>;
+  lt: InputMaybe<Scalars['DateTime']>;
+  lte: InputMaybe<Scalars['DateTime']>;
+  not: InputMaybe<NestedDateTimeFilter>;
+  notIn: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
 export type DateTimeNullableFilter = {
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
-  not?: InputMaybe<NestedDateTimeNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  equals: InputMaybe<Scalars['DateTime']>;
+  gt: InputMaybe<Scalars['DateTime']>;
+  gte: InputMaybe<Scalars['DateTime']>;
+  in: InputMaybe<Array<Scalars['DateTime']>>;
+  lt: InputMaybe<Scalars['DateTime']>;
+  lte: InputMaybe<Scalars['DateTime']>;
+  not: InputMaybe<NestedDateTimeNullableFilter>;
+  notIn: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
 export type DateTimeNullableWithAggregatesFilter = {
-  _count?: InputMaybe<NestedIntNullableFilter>;
-  _max?: InputMaybe<NestedDateTimeNullableFilter>;
-  _min?: InputMaybe<NestedDateTimeNullableFilter>;
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
-  not?: InputMaybe<NestedDateTimeNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  _count: InputMaybe<NestedIntNullableFilter>;
+  _max: InputMaybe<NestedDateTimeNullableFilter>;
+  _min: InputMaybe<NestedDateTimeNullableFilter>;
+  equals: InputMaybe<Scalars['DateTime']>;
+  gt: InputMaybe<Scalars['DateTime']>;
+  gte: InputMaybe<Scalars['DateTime']>;
+  in: InputMaybe<Array<Scalars['DateTime']>>;
+  lt: InputMaybe<Scalars['DateTime']>;
+  lte: InputMaybe<Scalars['DateTime']>;
+  not: InputMaybe<NestedDateTimeNullableWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
 export type DateTimeWithAggregatesFilter = {
-  _count?: InputMaybe<NestedIntFilter>;
-  _max?: InputMaybe<NestedDateTimeFilter>;
-  _min?: InputMaybe<NestedDateTimeFilter>;
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
-  not?: InputMaybe<NestedDateTimeWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  _count: InputMaybe<NestedIntFilter>;
+  _max: InputMaybe<NestedDateTimeFilter>;
+  _min: InputMaybe<NestedDateTimeFilter>;
+  equals: InputMaybe<Scalars['DateTime']>;
+  gt: InputMaybe<Scalars['DateTime']>;
+  gte: InputMaybe<Scalars['DateTime']>;
+  in: InputMaybe<Array<Scalars['DateTime']>>;
+  lt: InputMaybe<Scalars['DateTime']>;
+  lte: InputMaybe<Scalars['DateTime']>;
+  not: InputMaybe<NestedDateTimeWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
 export type DecimalFieldUpdateOperationsInput = {
-  decrement?: InputMaybe<Scalars['Decimal']>;
-  divide?: InputMaybe<Scalars['Decimal']>;
-  increment?: InputMaybe<Scalars['Decimal']>;
-  multiply?: InputMaybe<Scalars['Decimal']>;
-  set?: InputMaybe<Scalars['Decimal']>;
+  decrement: InputMaybe<Scalars['Decimal']>;
+  divide: InputMaybe<Scalars['Decimal']>;
+  increment: InputMaybe<Scalars['Decimal']>;
+  multiply: InputMaybe<Scalars['Decimal']>;
+  set: InputMaybe<Scalars['Decimal']>;
 };
 
 export type DecimalFilter = {
-  equals?: InputMaybe<Scalars['Decimal']>;
-  gt?: InputMaybe<Scalars['Decimal']>;
-  gte?: InputMaybe<Scalars['Decimal']>;
-  in?: InputMaybe<Array<Scalars['Decimal']>>;
-  lt?: InputMaybe<Scalars['Decimal']>;
-  lte?: InputMaybe<Scalars['Decimal']>;
-  not?: InputMaybe<NestedDecimalFilter>;
-  notIn?: InputMaybe<Array<Scalars['Decimal']>>;
+  equals: InputMaybe<Scalars['Decimal']>;
+  gt: InputMaybe<Scalars['Decimal']>;
+  gte: InputMaybe<Scalars['Decimal']>;
+  in: InputMaybe<Array<Scalars['Decimal']>>;
+  lt: InputMaybe<Scalars['Decimal']>;
+  lte: InputMaybe<Scalars['Decimal']>;
+  not: InputMaybe<NestedDecimalFilter>;
+  notIn: InputMaybe<Array<Scalars['Decimal']>>;
 };
 
 export type DecimalNullableFilter = {
-  equals?: InputMaybe<Scalars['Decimal']>;
-  gt?: InputMaybe<Scalars['Decimal']>;
-  gte?: InputMaybe<Scalars['Decimal']>;
-  in?: InputMaybe<Array<Scalars['Decimal']>>;
-  lt?: InputMaybe<Scalars['Decimal']>;
-  lte?: InputMaybe<Scalars['Decimal']>;
-  not?: InputMaybe<NestedDecimalNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['Decimal']>>;
+  equals: InputMaybe<Scalars['Decimal']>;
+  gt: InputMaybe<Scalars['Decimal']>;
+  gte: InputMaybe<Scalars['Decimal']>;
+  in: InputMaybe<Array<Scalars['Decimal']>>;
+  lt: InputMaybe<Scalars['Decimal']>;
+  lte: InputMaybe<Scalars['Decimal']>;
+  not: InputMaybe<NestedDecimalNullableFilter>;
+  notIn: InputMaybe<Array<Scalars['Decimal']>>;
 };
 
 export type DecimalNullableWithAggregatesFilter = {
-  _avg?: InputMaybe<NestedDecimalNullableFilter>;
-  _count?: InputMaybe<NestedIntNullableFilter>;
-  _max?: InputMaybe<NestedDecimalNullableFilter>;
-  _min?: InputMaybe<NestedDecimalNullableFilter>;
-  _sum?: InputMaybe<NestedDecimalNullableFilter>;
-  equals?: InputMaybe<Scalars['Decimal']>;
-  gt?: InputMaybe<Scalars['Decimal']>;
-  gte?: InputMaybe<Scalars['Decimal']>;
-  in?: InputMaybe<Array<Scalars['Decimal']>>;
-  lt?: InputMaybe<Scalars['Decimal']>;
-  lte?: InputMaybe<Scalars['Decimal']>;
-  not?: InputMaybe<NestedDecimalNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['Decimal']>>;
+  _avg: InputMaybe<NestedDecimalNullableFilter>;
+  _count: InputMaybe<NestedIntNullableFilter>;
+  _max: InputMaybe<NestedDecimalNullableFilter>;
+  _min: InputMaybe<NestedDecimalNullableFilter>;
+  _sum: InputMaybe<NestedDecimalNullableFilter>;
+  equals: InputMaybe<Scalars['Decimal']>;
+  gt: InputMaybe<Scalars['Decimal']>;
+  gte: InputMaybe<Scalars['Decimal']>;
+  in: InputMaybe<Array<Scalars['Decimal']>>;
+  lt: InputMaybe<Scalars['Decimal']>;
+  lte: InputMaybe<Scalars['Decimal']>;
+  not: InputMaybe<NestedDecimalNullableWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['Decimal']>>;
 };
 
 export type DecimalWithAggregatesFilter = {
-  _avg?: InputMaybe<NestedDecimalFilter>;
-  _count?: InputMaybe<NestedIntFilter>;
-  _max?: InputMaybe<NestedDecimalFilter>;
-  _min?: InputMaybe<NestedDecimalFilter>;
-  _sum?: InputMaybe<NestedDecimalFilter>;
-  equals?: InputMaybe<Scalars['Decimal']>;
-  gt?: InputMaybe<Scalars['Decimal']>;
-  gte?: InputMaybe<Scalars['Decimal']>;
-  in?: InputMaybe<Array<Scalars['Decimal']>>;
-  lt?: InputMaybe<Scalars['Decimal']>;
-  lte?: InputMaybe<Scalars['Decimal']>;
-  not?: InputMaybe<NestedDecimalWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['Decimal']>>;
+  _avg: InputMaybe<NestedDecimalFilter>;
+  _count: InputMaybe<NestedIntFilter>;
+  _max: InputMaybe<NestedDecimalFilter>;
+  _min: InputMaybe<NestedDecimalFilter>;
+  _sum: InputMaybe<NestedDecimalFilter>;
+  equals: InputMaybe<Scalars['Decimal']>;
+  gt: InputMaybe<Scalars['Decimal']>;
+  gte: InputMaybe<Scalars['Decimal']>;
+  in: InputMaybe<Array<Scalars['Decimal']>>;
+  lt: InputMaybe<Scalars['Decimal']>;
+  lte: InputMaybe<Scalars['Decimal']>;
+  not: InputMaybe<NestedDecimalWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['Decimal']>>;
 };
 
 export type Expense = {
-  _count?: Maybe<ExpenseCount>;
+  _count: Maybe<ExpenseCount>;
   categories: Array<Category>;
   createdAt: Scalars['DateTime'];
-  date?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['String']>;
+  date: Maybe<Scalars['DateTime']>;
+  description: Maybe<Scalars['String']>;
   id: Scalars['String'];
   name: Scalars['String'];
-  rating?: Maybe<Scalars['Int']>;
-  timesPerMonth?: Maybe<Scalars['Decimal']>;
+  rating: Maybe<Scalars['Int']>;
+  timesPerMonth: Maybe<Scalars['Decimal']>;
   updatedAt: Scalars['DateTime'];
   user: User;
   userId: Scalars['String'];
@@ -852,24 +852,24 @@ export type Expense = {
 
 
 export type ExpenseCategoriesArgs = {
-  cursor?: InputMaybe<CategoryWhereUniqueInput>;
-  distinct?: InputMaybe<Array<CategoryScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<CategoryOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CategoryWhereInput>;
+  cursor: InputMaybe<CategoryWhereUniqueInput>;
+  distinct: InputMaybe<Array<CategoryScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<CategoryOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CategoryWhereInput>;
 };
 
 export type ExpenseAvgAggregate = {
-  rating?: Maybe<Scalars['Float']>;
-  timesPerMonth?: Maybe<Scalars['Decimal']>;
-  value?: Maybe<Scalars['Decimal']>;
+  rating: Maybe<Scalars['Float']>;
+  timesPerMonth: Maybe<Scalars['Decimal']>;
+  value: Maybe<Scalars['Decimal']>;
 };
 
 export type ExpenseAvgOrderByAggregateInput = {
-  rating?: InputMaybe<SortOrder>;
-  timesPerMonth?: InputMaybe<SortOrder>;
-  value?: InputMaybe<SortOrder>;
+  rating: InputMaybe<SortOrder>;
+  timesPerMonth: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
 };
 
 export type ExpenseCount = {
@@ -891,73 +891,73 @@ export type ExpenseCountAggregate = {
 };
 
 export type ExpenseCountOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  date?: InputMaybe<SortOrder>;
-  description?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  rating?: InputMaybe<SortOrder>;
-  timesPerMonth?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
-  value?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  date: InputMaybe<SortOrder>;
+  description: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  rating: InputMaybe<SortOrder>;
+  timesPerMonth: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
 };
 
 export type ExpenseCreateInput = {
-  categories?: InputMaybe<CategoryCreateNestedManyWithoutExpensesInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date?: InputMaybe<Scalars['DateTime']>;
-  description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
+  categories: InputMaybe<CategoryCreateNestedManyWithoutExpensesInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  date: InputMaybe<Scalars['DateTime']>;
+  description: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
-  rating?: InputMaybe<Scalars['Int']>;
-  timesPerMonth?: InputMaybe<Scalars['Decimal']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  rating: InputMaybe<Scalars['Int']>;
+  timesPerMonth: InputMaybe<Scalars['Decimal']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutExpensesInput;
   value: Scalars['Decimal'];
 };
 
 export type ExpenseCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date?: InputMaybe<Scalars['DateTime']>;
-  description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  date: InputMaybe<Scalars['DateTime']>;
+  description: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
-  rating?: InputMaybe<Scalars['Int']>;
-  timesPerMonth?: InputMaybe<Scalars['Decimal']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  rating: InputMaybe<Scalars['Int']>;
+  timesPerMonth: InputMaybe<Scalars['Decimal']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
   value: Scalars['Decimal'];
 };
 
 export type ExpenseCreateManyUserInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date?: InputMaybe<Scalars['DateTime']>;
-  description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  date: InputMaybe<Scalars['DateTime']>;
+  description: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
-  rating?: InputMaybe<Scalars['Int']>;
-  timesPerMonth?: InputMaybe<Scalars['Decimal']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  rating: InputMaybe<Scalars['Int']>;
+  timesPerMonth: InputMaybe<Scalars['Decimal']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   value: Scalars['Decimal'];
 };
 
 export type ExpenseCreateManyUserInputEnvelope = {
   data: Array<ExpenseCreateManyUserInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
 export type ExpenseCreateNestedManyWithoutCategoriesInput = {
-  connect?: InputMaybe<Array<ExpenseWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<ExpenseCreateOrConnectWithoutCategoriesInput>>;
-  create?: InputMaybe<Array<ExpenseCreateWithoutCategoriesInput>>;
+  connect: InputMaybe<Array<ExpenseWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<ExpenseCreateOrConnectWithoutCategoriesInput>>;
+  create: InputMaybe<Array<ExpenseCreateWithoutCategoriesInput>>;
 };
 
 export type ExpenseCreateNestedManyWithoutUserInput = {
-  connect?: InputMaybe<Array<ExpenseWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<ExpenseCreateOrConnectWithoutUserInput>>;
-  create?: InputMaybe<Array<ExpenseCreateWithoutUserInput>>;
-  createMany?: InputMaybe<ExpenseCreateManyUserInputEnvelope>;
+  connect: InputMaybe<Array<ExpenseWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<ExpenseCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<ExpenseCreateWithoutUserInput>>;
+  createMany: InputMaybe<ExpenseCreateManyUserInputEnvelope>;
 };
 
 export type ExpenseCreateOrConnectWithoutCategoriesInput = {
@@ -971,154 +971,154 @@ export type ExpenseCreateOrConnectWithoutUserInput = {
 };
 
 export type ExpenseCreateWithoutCategoriesInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date?: InputMaybe<Scalars['DateTime']>;
-  description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  date: InputMaybe<Scalars['DateTime']>;
+  description: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
-  rating?: InputMaybe<Scalars['Int']>;
-  timesPerMonth?: InputMaybe<Scalars['Decimal']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  rating: InputMaybe<Scalars['Int']>;
+  timesPerMonth: InputMaybe<Scalars['Decimal']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutExpensesInput;
   value: Scalars['Decimal'];
 };
 
 export type ExpenseCreateWithoutUserInput = {
-  categories?: InputMaybe<CategoryCreateNestedManyWithoutExpensesInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  date?: InputMaybe<Scalars['DateTime']>;
-  description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
+  categories: InputMaybe<CategoryCreateNestedManyWithoutExpensesInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  date: InputMaybe<Scalars['DateTime']>;
+  description: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
-  rating?: InputMaybe<Scalars['Int']>;
-  timesPerMonth?: InputMaybe<Scalars['Decimal']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  rating: InputMaybe<Scalars['Int']>;
+  timesPerMonth: InputMaybe<Scalars['Decimal']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   value: Scalars['Decimal'];
 };
 
 export type ExpenseGroupBy = {
-  _avg?: Maybe<ExpenseAvgAggregate>;
-  _count?: Maybe<ExpenseCountAggregate>;
-  _max?: Maybe<ExpenseMaxAggregate>;
-  _min?: Maybe<ExpenseMinAggregate>;
-  _sum?: Maybe<ExpenseSumAggregate>;
+  _avg: Maybe<ExpenseAvgAggregate>;
+  _count: Maybe<ExpenseCountAggregate>;
+  _max: Maybe<ExpenseMaxAggregate>;
+  _min: Maybe<ExpenseMinAggregate>;
+  _sum: Maybe<ExpenseSumAggregate>;
   createdAt: Scalars['DateTime'];
-  date?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['String']>;
+  date: Maybe<Scalars['DateTime']>;
+  description: Maybe<Scalars['String']>;
   id: Scalars['String'];
   name: Scalars['String'];
-  rating?: Maybe<Scalars['Int']>;
-  timesPerMonth?: Maybe<Scalars['Decimal']>;
+  rating: Maybe<Scalars['Int']>;
+  timesPerMonth: Maybe<Scalars['Decimal']>;
   updatedAt: Scalars['DateTime'];
   userId: Scalars['String'];
   value: Scalars['Decimal'];
 };
 
 export type ExpenseInput = {
-  categoryIds?: InputMaybe<Array<Scalars['String']>>;
-  date?: InputMaybe<Scalars['DateTime']>;
-  description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
+  categoryIds: InputMaybe<Array<Scalars['String']>>;
+  date: InputMaybe<Scalars['DateTime']>;
+  description: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
   name: Scalars['String'];
-  rating?: InputMaybe<Scalars['Float']>;
-  timesPerMonth?: InputMaybe<Scalars['String']>;
-  userId?: InputMaybe<Scalars['String']>;
+  rating: InputMaybe<Scalars['Float']>;
+  timesPerMonth: InputMaybe<Scalars['String']>;
+  userId: InputMaybe<Scalars['String']>;
   value: Scalars['String'];
 };
 
 export type ExpenseListRelationFilter = {
-  every?: InputMaybe<ExpenseWhereInput>;
-  none?: InputMaybe<ExpenseWhereInput>;
-  some?: InputMaybe<ExpenseWhereInput>;
+  every: InputMaybe<ExpenseWhereInput>;
+  none: InputMaybe<ExpenseWhereInput>;
+  some: InputMaybe<ExpenseWhereInput>;
 };
 
 export type ExpenseMaxAggregate = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  date?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  rating?: Maybe<Scalars['Int']>;
-  timesPerMonth?: Maybe<Scalars['Decimal']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  userId?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['Decimal']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  date: Maybe<Scalars['DateTime']>;
+  description: Maybe<Scalars['String']>;
+  id: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']>;
+  rating: Maybe<Scalars['Int']>;
+  timesPerMonth: Maybe<Scalars['Decimal']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
+  value: Maybe<Scalars['Decimal']>;
 };
 
 export type ExpenseMaxOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  date?: InputMaybe<SortOrder>;
-  description?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  rating?: InputMaybe<SortOrder>;
-  timesPerMonth?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
-  value?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  date: InputMaybe<SortOrder>;
+  description: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  rating: InputMaybe<SortOrder>;
+  timesPerMonth: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
 };
 
 export type ExpenseMinAggregate = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  date?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  rating?: Maybe<Scalars['Int']>;
-  timesPerMonth?: Maybe<Scalars['Decimal']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  userId?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['Decimal']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  date: Maybe<Scalars['DateTime']>;
+  description: Maybe<Scalars['String']>;
+  id: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']>;
+  rating: Maybe<Scalars['Int']>;
+  timesPerMonth: Maybe<Scalars['Decimal']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
+  value: Maybe<Scalars['Decimal']>;
 };
 
 export type ExpenseMinOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  date?: InputMaybe<SortOrder>;
-  description?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  rating?: InputMaybe<SortOrder>;
-  timesPerMonth?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
-  value?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  date: InputMaybe<SortOrder>;
+  description: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  rating: InputMaybe<SortOrder>;
+  timesPerMonth: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
 };
 
 export type ExpenseOrderByRelationAggregateInput = {
-  _count?: InputMaybe<SortOrder>;
+  _count: InputMaybe<SortOrder>;
 };
 
 export type ExpenseOrderByWithAggregationInput = {
-  _avg?: InputMaybe<ExpenseAvgOrderByAggregateInput>;
-  _count?: InputMaybe<ExpenseCountOrderByAggregateInput>;
-  _max?: InputMaybe<ExpenseMaxOrderByAggregateInput>;
-  _min?: InputMaybe<ExpenseMinOrderByAggregateInput>;
-  _sum?: InputMaybe<ExpenseSumOrderByAggregateInput>;
-  createdAt?: InputMaybe<SortOrder>;
-  date?: InputMaybe<SortOrder>;
-  description?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  rating?: InputMaybe<SortOrder>;
-  timesPerMonth?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
-  value?: InputMaybe<SortOrder>;
+  _avg: InputMaybe<ExpenseAvgOrderByAggregateInput>;
+  _count: InputMaybe<ExpenseCountOrderByAggregateInput>;
+  _max: InputMaybe<ExpenseMaxOrderByAggregateInput>;
+  _min: InputMaybe<ExpenseMinOrderByAggregateInput>;
+  _sum: InputMaybe<ExpenseSumOrderByAggregateInput>;
+  createdAt: InputMaybe<SortOrder>;
+  date: InputMaybe<SortOrder>;
+  description: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  rating: InputMaybe<SortOrder>;
+  timesPerMonth: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
 };
 
 export type ExpenseOrderByWithRelationInput = {
-  categories?: InputMaybe<CategoryOrderByRelationAggregateInput>;
-  createdAt?: InputMaybe<SortOrder>;
-  date?: InputMaybe<SortOrder>;
-  description?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  name?: InputMaybe<SortOrder>;
-  rating?: InputMaybe<SortOrder>;
-  timesPerMonth?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  user?: InputMaybe<UserOrderByWithRelationInput>;
-  userId?: InputMaybe<SortOrder>;
-  value?: InputMaybe<SortOrder>;
+  categories: InputMaybe<CategoryOrderByRelationAggregateInput>;
+  createdAt: InputMaybe<SortOrder>;
+  date: InputMaybe<SortOrder>;
+  description: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  rating: InputMaybe<SortOrder>;
+  timesPerMonth: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  user: InputMaybe<UserOrderByWithRelationInput>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
 };
 
 export enum ExpenseScalarFieldEnum {
@@ -1135,73 +1135,73 @@ export enum ExpenseScalarFieldEnum {
 }
 
 export type ExpenseScalarWhereInput = {
-  AND?: InputMaybe<Array<ExpenseScalarWhereInput>>;
-  NOT?: InputMaybe<Array<ExpenseScalarWhereInput>>;
-  OR?: InputMaybe<Array<ExpenseScalarWhereInput>>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  date?: InputMaybe<DateTimeNullableFilter>;
-  description?: InputMaybe<StringNullableFilter>;
-  id?: InputMaybe<StringFilter>;
-  name?: InputMaybe<StringFilter>;
-  rating?: InputMaybe<IntNullableFilter>;
-  timesPerMonth?: InputMaybe<DecimalNullableFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
-  userId?: InputMaybe<StringFilter>;
-  value?: InputMaybe<DecimalFilter>;
+  AND: InputMaybe<Array<ExpenseScalarWhereInput>>;
+  NOT: InputMaybe<Array<ExpenseScalarWhereInput>>;
+  OR: InputMaybe<Array<ExpenseScalarWhereInput>>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  date: InputMaybe<DateTimeNullableFilter>;
+  description: InputMaybe<StringNullableFilter>;
+  id: InputMaybe<StringFilter>;
+  name: InputMaybe<StringFilter>;
+  rating: InputMaybe<IntNullableFilter>;
+  timesPerMonth: InputMaybe<DecimalNullableFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  userId: InputMaybe<StringFilter>;
+  value: InputMaybe<DecimalFilter>;
 };
 
 export type ExpenseScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<Array<ExpenseScalarWhereWithAggregatesInput>>;
-  NOT?: InputMaybe<Array<ExpenseScalarWhereWithAggregatesInput>>;
-  OR?: InputMaybe<Array<ExpenseScalarWhereWithAggregatesInput>>;
-  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
-  date?: InputMaybe<DateTimeNullableWithAggregatesFilter>;
-  description?: InputMaybe<StringNullableWithAggregatesFilter>;
-  id?: InputMaybe<StringWithAggregatesFilter>;
-  name?: InputMaybe<StringWithAggregatesFilter>;
-  rating?: InputMaybe<IntNullableWithAggregatesFilter>;
-  timesPerMonth?: InputMaybe<DecimalNullableWithAggregatesFilter>;
-  updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
-  userId?: InputMaybe<StringWithAggregatesFilter>;
-  value?: InputMaybe<DecimalWithAggregatesFilter>;
+  AND: InputMaybe<Array<ExpenseScalarWhereWithAggregatesInput>>;
+  NOT: InputMaybe<Array<ExpenseScalarWhereWithAggregatesInput>>;
+  OR: InputMaybe<Array<ExpenseScalarWhereWithAggregatesInput>>;
+  createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  date: InputMaybe<DateTimeNullableWithAggregatesFilter>;
+  description: InputMaybe<StringNullableWithAggregatesFilter>;
+  id: InputMaybe<StringWithAggregatesFilter>;
+  name: InputMaybe<StringWithAggregatesFilter>;
+  rating: InputMaybe<IntNullableWithAggregatesFilter>;
+  timesPerMonth: InputMaybe<DecimalNullableWithAggregatesFilter>;
+  updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  userId: InputMaybe<StringWithAggregatesFilter>;
+  value: InputMaybe<DecimalWithAggregatesFilter>;
 };
 
 export type ExpenseSumAggregate = {
-  rating?: Maybe<Scalars['Int']>;
-  timesPerMonth?: Maybe<Scalars['Decimal']>;
-  value?: Maybe<Scalars['Decimal']>;
+  rating: Maybe<Scalars['Int']>;
+  timesPerMonth: Maybe<Scalars['Decimal']>;
+  value: Maybe<Scalars['Decimal']>;
 };
 
 export type ExpenseSumOrderByAggregateInput = {
-  rating?: InputMaybe<SortOrder>;
-  timesPerMonth?: InputMaybe<SortOrder>;
-  value?: InputMaybe<SortOrder>;
+  rating: InputMaybe<SortOrder>;
+  timesPerMonth: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
 };
 
 export type ExpenseUpdateInput = {
-  categories?: InputMaybe<CategoryUpdateManyWithoutExpensesNestedInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  date?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
-  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  rating?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  timesPerMonth?: InputMaybe<NullableDecimalFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  user?: InputMaybe<UserUpdateOneRequiredWithoutExpensesNestedInput>;
-  value?: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  categories: InputMaybe<CategoryUpdateManyWithoutExpensesNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  description: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  rating: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  timesPerMonth: InputMaybe<NullableDecimalFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutExpensesNestedInput>;
+  value: InputMaybe<DecimalFieldUpdateOperationsInput>;
 };
 
 export type ExpenseUpdateManyMutationInput = {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  date?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
-  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  rating?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  timesPerMonth?: InputMaybe<NullableDecimalFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  value?: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  description: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  rating: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  timesPerMonth: InputMaybe<NullableDecimalFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  value: InputMaybe<DecimalFieldUpdateOperationsInput>;
 };
 
 export type ExpenseUpdateManyWithWhereWithoutCategoriesInput = {
@@ -1215,30 +1215,30 @@ export type ExpenseUpdateManyWithWhereWithoutUserInput = {
 };
 
 export type ExpenseUpdateManyWithoutCategoriesNestedInput = {
-  connect?: InputMaybe<Array<ExpenseWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<ExpenseCreateOrConnectWithoutCategoriesInput>>;
-  create?: InputMaybe<Array<ExpenseCreateWithoutCategoriesInput>>;
-  delete?: InputMaybe<Array<ExpenseWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<ExpenseScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<ExpenseWhereUniqueInput>>;
-  set?: InputMaybe<Array<ExpenseWhereUniqueInput>>;
-  update?: InputMaybe<Array<ExpenseUpdateWithWhereUniqueWithoutCategoriesInput>>;
-  updateMany?: InputMaybe<Array<ExpenseUpdateManyWithWhereWithoutCategoriesInput>>;
-  upsert?: InputMaybe<Array<ExpenseUpsertWithWhereUniqueWithoutCategoriesInput>>;
+  connect: InputMaybe<Array<ExpenseWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<ExpenseCreateOrConnectWithoutCategoriesInput>>;
+  create: InputMaybe<Array<ExpenseCreateWithoutCategoriesInput>>;
+  delete: InputMaybe<Array<ExpenseWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<ExpenseScalarWhereInput>>;
+  disconnect: InputMaybe<Array<ExpenseWhereUniqueInput>>;
+  set: InputMaybe<Array<ExpenseWhereUniqueInput>>;
+  update: InputMaybe<Array<ExpenseUpdateWithWhereUniqueWithoutCategoriesInput>>;
+  updateMany: InputMaybe<Array<ExpenseUpdateManyWithWhereWithoutCategoriesInput>>;
+  upsert: InputMaybe<Array<ExpenseUpsertWithWhereUniqueWithoutCategoriesInput>>;
 };
 
 export type ExpenseUpdateManyWithoutUserNestedInput = {
-  connect?: InputMaybe<Array<ExpenseWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<ExpenseCreateOrConnectWithoutUserInput>>;
-  create?: InputMaybe<Array<ExpenseCreateWithoutUserInput>>;
-  createMany?: InputMaybe<ExpenseCreateManyUserInputEnvelope>;
-  delete?: InputMaybe<Array<ExpenseWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<ExpenseScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<ExpenseWhereUniqueInput>>;
-  set?: InputMaybe<Array<ExpenseWhereUniqueInput>>;
-  update?: InputMaybe<Array<ExpenseUpdateWithWhereUniqueWithoutUserInput>>;
-  updateMany?: InputMaybe<Array<ExpenseUpdateManyWithWhereWithoutUserInput>>;
-  upsert?: InputMaybe<Array<ExpenseUpsertWithWhereUniqueWithoutUserInput>>;
+  connect: InputMaybe<Array<ExpenseWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<ExpenseCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<ExpenseCreateWithoutUserInput>>;
+  createMany: InputMaybe<ExpenseCreateManyUserInputEnvelope>;
+  delete: InputMaybe<Array<ExpenseWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<ExpenseScalarWhereInput>>;
+  disconnect: InputMaybe<Array<ExpenseWhereUniqueInput>>;
+  set: InputMaybe<Array<ExpenseWhereUniqueInput>>;
+  update: InputMaybe<Array<ExpenseUpdateWithWhereUniqueWithoutUserInput>>;
+  updateMany: InputMaybe<Array<ExpenseUpdateManyWithWhereWithoutUserInput>>;
+  upsert: InputMaybe<Array<ExpenseUpsertWithWhereUniqueWithoutUserInput>>;
 };
 
 export type ExpenseUpdateWithWhereUniqueWithoutCategoriesInput = {
@@ -1252,29 +1252,29 @@ export type ExpenseUpdateWithWhereUniqueWithoutUserInput = {
 };
 
 export type ExpenseUpdateWithoutCategoriesInput = {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  date?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
-  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  rating?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  timesPerMonth?: InputMaybe<NullableDecimalFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  user?: InputMaybe<UserUpdateOneRequiredWithoutExpensesNestedInput>;
-  value?: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  description: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  rating: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  timesPerMonth: InputMaybe<NullableDecimalFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutExpensesNestedInput>;
+  value: InputMaybe<DecimalFieldUpdateOperationsInput>;
 };
 
 export type ExpenseUpdateWithoutUserInput = {
-  categories?: InputMaybe<CategoryUpdateManyWithoutExpensesNestedInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  date?: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
-  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  rating?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  timesPerMonth?: InputMaybe<NullableDecimalFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  value?: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  categories: InputMaybe<CategoryUpdateManyWithoutExpensesNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  description: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  rating: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  timesPerMonth: InputMaybe<NullableDecimalFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  value: InputMaybe<DecimalFieldUpdateOperationsInput>;
 };
 
 export type ExpenseUpsertWithWhereUniqueWithoutCategoriesInput = {
@@ -1290,52 +1290,52 @@ export type ExpenseUpsertWithWhereUniqueWithoutUserInput = {
 };
 
 export type ExpenseWhereInput = {
-  AND?: InputMaybe<Array<ExpenseWhereInput>>;
-  NOT?: InputMaybe<Array<ExpenseWhereInput>>;
-  OR?: InputMaybe<Array<ExpenseWhereInput>>;
-  categories?: InputMaybe<CategoryListRelationFilter>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  date?: InputMaybe<DateTimeNullableFilter>;
-  description?: InputMaybe<StringNullableFilter>;
-  id?: InputMaybe<StringFilter>;
-  name?: InputMaybe<StringFilter>;
-  rating?: InputMaybe<IntNullableFilter>;
-  timesPerMonth?: InputMaybe<DecimalNullableFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
-  user?: InputMaybe<UserRelationFilter>;
-  userId?: InputMaybe<StringFilter>;
-  value?: InputMaybe<DecimalFilter>;
+  AND: InputMaybe<Array<ExpenseWhereInput>>;
+  NOT: InputMaybe<Array<ExpenseWhereInput>>;
+  OR: InputMaybe<Array<ExpenseWhereInput>>;
+  categories: InputMaybe<CategoryListRelationFilter>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  date: InputMaybe<DateTimeNullableFilter>;
+  description: InputMaybe<StringNullableFilter>;
+  id: InputMaybe<StringFilter>;
+  name: InputMaybe<StringFilter>;
+  rating: InputMaybe<IntNullableFilter>;
+  timesPerMonth: InputMaybe<DecimalNullableFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  user: InputMaybe<UserRelationFilter>;
+  userId: InputMaybe<StringFilter>;
+  value: InputMaybe<DecimalFilter>;
 };
 
 export type ExpenseWhereUniqueInput = {
-  id?: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
 };
 
 export type IntNullableFilter = {
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
-  not?: InputMaybe<NestedIntNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
+  equals: InputMaybe<Scalars['Int']>;
+  gt: InputMaybe<Scalars['Int']>;
+  gte: InputMaybe<Scalars['Int']>;
+  in: InputMaybe<Array<Scalars['Int']>>;
+  lt: InputMaybe<Scalars['Int']>;
+  lte: InputMaybe<Scalars['Int']>;
+  not: InputMaybe<NestedIntNullableFilter>;
+  notIn: InputMaybe<Array<Scalars['Int']>>;
 };
 
 export type IntNullableWithAggregatesFilter = {
-  _avg?: InputMaybe<NestedFloatNullableFilter>;
-  _count?: InputMaybe<NestedIntNullableFilter>;
-  _max?: InputMaybe<NestedIntNullableFilter>;
-  _min?: InputMaybe<NestedIntNullableFilter>;
-  _sum?: InputMaybe<NestedIntNullableFilter>;
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
-  not?: InputMaybe<NestedIntNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
+  _avg: InputMaybe<NestedFloatNullableFilter>;
+  _count: InputMaybe<NestedIntNullableFilter>;
+  _max: InputMaybe<NestedIntNullableFilter>;
+  _min: InputMaybe<NestedIntNullableFilter>;
+  _sum: InputMaybe<NestedIntNullableFilter>;
+  equals: InputMaybe<Scalars['Int']>;
+  gt: InputMaybe<Scalars['Int']>;
+  gte: InputMaybe<Scalars['Int']>;
+  in: InputMaybe<Array<Scalars['Int']>>;
+  lt: InputMaybe<Scalars['Int']>;
+  lte: InputMaybe<Scalars['Int']>;
+  not: InputMaybe<NestedIntNullableWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['Int']>>;
 };
 
 export type LoginValidInput = {
@@ -1364,12 +1364,12 @@ export type Mutation = {
   deleteManyRecipe: AffectedRowsOutput;
   deleteManyUser: AffectedRowsOutput;
   deleteManyWishlistItem: AffectedRowsOutput;
-  deleteOneCategory?: Maybe<Category>;
-  deleteOneCurrentSaving?: Maybe<CurrentSaving>;
-  deleteOneExpense?: Maybe<Expense>;
-  deleteOneRecipe?: Maybe<Recipe>;
-  deleteOneUser?: Maybe<User>;
-  deleteOneWishlistItem?: Maybe<WishlistItem>;
+  deleteOneCategory: Maybe<Category>;
+  deleteOneCurrentSaving: Maybe<CurrentSaving>;
+  deleteOneExpense: Maybe<Expense>;
+  deleteOneRecipe: Maybe<Recipe>;
+  deleteOneUser: Maybe<User>;
+  deleteOneWishlistItem: Maybe<WishlistItem>;
   deleteRecipeMutation: Scalars['Boolean'];
   deleteSavingMutation: Scalars['Boolean'];
   loginMutation: AuthUserOutput;
@@ -1385,12 +1385,12 @@ export type Mutation = {
   updateManyRecipe: AffectedRowsOutput;
   updateManyUser: AffectedRowsOutput;
   updateManyWishlistItem: AffectedRowsOutput;
-  updateOneCategory?: Maybe<Category>;
-  updateOneCurrentSaving?: Maybe<CurrentSaving>;
-  updateOneExpense?: Maybe<Expense>;
-  updateOneRecipe?: Maybe<Recipe>;
-  updateOneUser?: Maybe<User>;
-  updateOneWishlistItem?: Maybe<WishlistItem>;
+  updateOneCategory: Maybe<Category>;
+  updateOneCurrentSaving: Maybe<CurrentSaving>;
+  updateOneExpense: Maybe<Expense>;
+  updateOneRecipe: Maybe<Recipe>;
+  updateOneUser: Maybe<User>;
+  updateOneWishlistItem: Maybe<WishlistItem>;
   upsertOneCategory: Category;
   upsertOneCurrentSaving: CurrentSaving;
   upsertOneExpense: Expense;
@@ -1402,37 +1402,37 @@ export type Mutation = {
 
 export type MutationCreateManyCategoryArgs = {
   data: Array<CategoryCreateManyInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationCreateManyCurrentSavingArgs = {
   data: Array<CurrentSavingCreateManyInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationCreateManyExpenseArgs = {
   data: Array<ExpenseCreateManyInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationCreateManyRecipeArgs = {
   data: Array<RecipeCreateManyInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationCreateManyUserArgs = {
   data: Array<UserCreateManyInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationCreateManyWishlistItemArgs = {
   data: Array<WishlistItemCreateManyInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -1477,32 +1477,32 @@ export type MutationDeleteExpenseMutationArgs = {
 
 
 export type MutationDeleteManyCategoryArgs = {
-  where?: InputMaybe<CategoryWhereInput>;
+  where: InputMaybe<CategoryWhereInput>;
 };
 
 
 export type MutationDeleteManyCurrentSavingArgs = {
-  where?: InputMaybe<CurrentSavingWhereInput>;
+  where: InputMaybe<CurrentSavingWhereInput>;
 };
 
 
 export type MutationDeleteManyExpenseArgs = {
-  where?: InputMaybe<ExpenseWhereInput>;
+  where: InputMaybe<ExpenseWhereInput>;
 };
 
 
 export type MutationDeleteManyRecipeArgs = {
-  where?: InputMaybe<RecipeWhereInput>;
+  where: InputMaybe<RecipeWhereInput>;
 };
 
 
 export type MutationDeleteManyUserArgs = {
-  where?: InputMaybe<UserWhereInput>;
+  where: InputMaybe<UserWhereInput>;
 };
 
 
 export type MutationDeleteManyWishlistItemArgs = {
-  where?: InputMaybe<WishlistItemWhereInput>;
+  where: InputMaybe<WishlistItemWhereInput>;
 };
 
 
@@ -1583,37 +1583,37 @@ export type MutationSaveWishlistItemMutationArgs = {
 
 export type MutationUpdateManyCategoryArgs = {
   data: CategoryUpdateManyMutationInput;
-  where?: InputMaybe<CategoryWhereInput>;
+  where: InputMaybe<CategoryWhereInput>;
 };
 
 
 export type MutationUpdateManyCurrentSavingArgs = {
   data: CurrentSavingUpdateManyMutationInput;
-  where?: InputMaybe<CurrentSavingWhereInput>;
+  where: InputMaybe<CurrentSavingWhereInput>;
 };
 
 
 export type MutationUpdateManyExpenseArgs = {
   data: ExpenseUpdateManyMutationInput;
-  where?: InputMaybe<ExpenseWhereInput>;
+  where: InputMaybe<ExpenseWhereInput>;
 };
 
 
 export type MutationUpdateManyRecipeArgs = {
   data: RecipeUpdateManyMutationInput;
-  where?: InputMaybe<RecipeWhereInput>;
+  where: InputMaybe<RecipeWhereInput>;
 };
 
 
 export type MutationUpdateManyUserArgs = {
   data: UserUpdateManyMutationInput;
-  where?: InputMaybe<UserWhereInput>;
+  where: InputMaybe<UserWhereInput>;
 };
 
 
 export type MutationUpdateManyWishlistItemArgs = {
   data: WishlistItemUpdateManyMutationInput;
-  where?: InputMaybe<WishlistItemWhereInput>;
+  where: InputMaybe<WishlistItemWhereInput>;
 };
 
 
@@ -1695,247 +1695,247 @@ export type MutationUpsertOneWishlistItemArgs = {
 };
 
 export type NestedDateTimeFilter = {
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
-  not?: InputMaybe<NestedDateTimeFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  equals: InputMaybe<Scalars['DateTime']>;
+  gt: InputMaybe<Scalars['DateTime']>;
+  gte: InputMaybe<Scalars['DateTime']>;
+  in: InputMaybe<Array<Scalars['DateTime']>>;
+  lt: InputMaybe<Scalars['DateTime']>;
+  lte: InputMaybe<Scalars['DateTime']>;
+  not: InputMaybe<NestedDateTimeFilter>;
+  notIn: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
 export type NestedDateTimeNullableFilter = {
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
-  not?: InputMaybe<NestedDateTimeNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  equals: InputMaybe<Scalars['DateTime']>;
+  gt: InputMaybe<Scalars['DateTime']>;
+  gte: InputMaybe<Scalars['DateTime']>;
+  in: InputMaybe<Array<Scalars['DateTime']>>;
+  lt: InputMaybe<Scalars['DateTime']>;
+  lte: InputMaybe<Scalars['DateTime']>;
+  not: InputMaybe<NestedDateTimeNullableFilter>;
+  notIn: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
 export type NestedDateTimeNullableWithAggregatesFilter = {
-  _count?: InputMaybe<NestedIntNullableFilter>;
-  _max?: InputMaybe<NestedDateTimeNullableFilter>;
-  _min?: InputMaybe<NestedDateTimeNullableFilter>;
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
-  not?: InputMaybe<NestedDateTimeNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  _count: InputMaybe<NestedIntNullableFilter>;
+  _max: InputMaybe<NestedDateTimeNullableFilter>;
+  _min: InputMaybe<NestedDateTimeNullableFilter>;
+  equals: InputMaybe<Scalars['DateTime']>;
+  gt: InputMaybe<Scalars['DateTime']>;
+  gte: InputMaybe<Scalars['DateTime']>;
+  in: InputMaybe<Array<Scalars['DateTime']>>;
+  lt: InputMaybe<Scalars['DateTime']>;
+  lte: InputMaybe<Scalars['DateTime']>;
+  not: InputMaybe<NestedDateTimeNullableWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
 export type NestedDateTimeWithAggregatesFilter = {
-  _count?: InputMaybe<NestedIntFilter>;
-  _max?: InputMaybe<NestedDateTimeFilter>;
-  _min?: InputMaybe<NestedDateTimeFilter>;
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
-  not?: InputMaybe<NestedDateTimeWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  _count: InputMaybe<NestedIntFilter>;
+  _max: InputMaybe<NestedDateTimeFilter>;
+  _min: InputMaybe<NestedDateTimeFilter>;
+  equals: InputMaybe<Scalars['DateTime']>;
+  gt: InputMaybe<Scalars['DateTime']>;
+  gte: InputMaybe<Scalars['DateTime']>;
+  in: InputMaybe<Array<Scalars['DateTime']>>;
+  lt: InputMaybe<Scalars['DateTime']>;
+  lte: InputMaybe<Scalars['DateTime']>;
+  not: InputMaybe<NestedDateTimeWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
 export type NestedDecimalFilter = {
-  equals?: InputMaybe<Scalars['Decimal']>;
-  gt?: InputMaybe<Scalars['Decimal']>;
-  gte?: InputMaybe<Scalars['Decimal']>;
-  in?: InputMaybe<Array<Scalars['Decimal']>>;
-  lt?: InputMaybe<Scalars['Decimal']>;
-  lte?: InputMaybe<Scalars['Decimal']>;
-  not?: InputMaybe<NestedDecimalFilter>;
-  notIn?: InputMaybe<Array<Scalars['Decimal']>>;
+  equals: InputMaybe<Scalars['Decimal']>;
+  gt: InputMaybe<Scalars['Decimal']>;
+  gte: InputMaybe<Scalars['Decimal']>;
+  in: InputMaybe<Array<Scalars['Decimal']>>;
+  lt: InputMaybe<Scalars['Decimal']>;
+  lte: InputMaybe<Scalars['Decimal']>;
+  not: InputMaybe<NestedDecimalFilter>;
+  notIn: InputMaybe<Array<Scalars['Decimal']>>;
 };
 
 export type NestedDecimalNullableFilter = {
-  equals?: InputMaybe<Scalars['Decimal']>;
-  gt?: InputMaybe<Scalars['Decimal']>;
-  gte?: InputMaybe<Scalars['Decimal']>;
-  in?: InputMaybe<Array<Scalars['Decimal']>>;
-  lt?: InputMaybe<Scalars['Decimal']>;
-  lte?: InputMaybe<Scalars['Decimal']>;
-  not?: InputMaybe<NestedDecimalNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['Decimal']>>;
+  equals: InputMaybe<Scalars['Decimal']>;
+  gt: InputMaybe<Scalars['Decimal']>;
+  gte: InputMaybe<Scalars['Decimal']>;
+  in: InputMaybe<Array<Scalars['Decimal']>>;
+  lt: InputMaybe<Scalars['Decimal']>;
+  lte: InputMaybe<Scalars['Decimal']>;
+  not: InputMaybe<NestedDecimalNullableFilter>;
+  notIn: InputMaybe<Array<Scalars['Decimal']>>;
 };
 
 export type NestedDecimalNullableWithAggregatesFilter = {
-  _avg?: InputMaybe<NestedDecimalNullableFilter>;
-  _count?: InputMaybe<NestedIntNullableFilter>;
-  _max?: InputMaybe<NestedDecimalNullableFilter>;
-  _min?: InputMaybe<NestedDecimalNullableFilter>;
-  _sum?: InputMaybe<NestedDecimalNullableFilter>;
-  equals?: InputMaybe<Scalars['Decimal']>;
-  gt?: InputMaybe<Scalars['Decimal']>;
-  gte?: InputMaybe<Scalars['Decimal']>;
-  in?: InputMaybe<Array<Scalars['Decimal']>>;
-  lt?: InputMaybe<Scalars['Decimal']>;
-  lte?: InputMaybe<Scalars['Decimal']>;
-  not?: InputMaybe<NestedDecimalNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['Decimal']>>;
+  _avg: InputMaybe<NestedDecimalNullableFilter>;
+  _count: InputMaybe<NestedIntNullableFilter>;
+  _max: InputMaybe<NestedDecimalNullableFilter>;
+  _min: InputMaybe<NestedDecimalNullableFilter>;
+  _sum: InputMaybe<NestedDecimalNullableFilter>;
+  equals: InputMaybe<Scalars['Decimal']>;
+  gt: InputMaybe<Scalars['Decimal']>;
+  gte: InputMaybe<Scalars['Decimal']>;
+  in: InputMaybe<Array<Scalars['Decimal']>>;
+  lt: InputMaybe<Scalars['Decimal']>;
+  lte: InputMaybe<Scalars['Decimal']>;
+  not: InputMaybe<NestedDecimalNullableWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['Decimal']>>;
 };
 
 export type NestedDecimalWithAggregatesFilter = {
-  _avg?: InputMaybe<NestedDecimalFilter>;
-  _count?: InputMaybe<NestedIntFilter>;
-  _max?: InputMaybe<NestedDecimalFilter>;
-  _min?: InputMaybe<NestedDecimalFilter>;
-  _sum?: InputMaybe<NestedDecimalFilter>;
-  equals?: InputMaybe<Scalars['Decimal']>;
-  gt?: InputMaybe<Scalars['Decimal']>;
-  gte?: InputMaybe<Scalars['Decimal']>;
-  in?: InputMaybe<Array<Scalars['Decimal']>>;
-  lt?: InputMaybe<Scalars['Decimal']>;
-  lte?: InputMaybe<Scalars['Decimal']>;
-  not?: InputMaybe<NestedDecimalWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['Decimal']>>;
+  _avg: InputMaybe<NestedDecimalFilter>;
+  _count: InputMaybe<NestedIntFilter>;
+  _max: InputMaybe<NestedDecimalFilter>;
+  _min: InputMaybe<NestedDecimalFilter>;
+  _sum: InputMaybe<NestedDecimalFilter>;
+  equals: InputMaybe<Scalars['Decimal']>;
+  gt: InputMaybe<Scalars['Decimal']>;
+  gte: InputMaybe<Scalars['Decimal']>;
+  in: InputMaybe<Array<Scalars['Decimal']>>;
+  lt: InputMaybe<Scalars['Decimal']>;
+  lte: InputMaybe<Scalars['Decimal']>;
+  not: InputMaybe<NestedDecimalWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['Decimal']>>;
 };
 
 export type NestedFloatNullableFilter = {
-  equals?: InputMaybe<Scalars['Float']>;
-  gt?: InputMaybe<Scalars['Float']>;
-  gte?: InputMaybe<Scalars['Float']>;
-  in?: InputMaybe<Array<Scalars['Float']>>;
-  lt?: InputMaybe<Scalars['Float']>;
-  lte?: InputMaybe<Scalars['Float']>;
-  not?: InputMaybe<NestedFloatNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['Float']>>;
+  equals: InputMaybe<Scalars['Float']>;
+  gt: InputMaybe<Scalars['Float']>;
+  gte: InputMaybe<Scalars['Float']>;
+  in: InputMaybe<Array<Scalars['Float']>>;
+  lt: InputMaybe<Scalars['Float']>;
+  lte: InputMaybe<Scalars['Float']>;
+  not: InputMaybe<NestedFloatNullableFilter>;
+  notIn: InputMaybe<Array<Scalars['Float']>>;
 };
 
 export type NestedIntFilter = {
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
-  not?: InputMaybe<NestedIntFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
+  equals: InputMaybe<Scalars['Int']>;
+  gt: InputMaybe<Scalars['Int']>;
+  gte: InputMaybe<Scalars['Int']>;
+  in: InputMaybe<Array<Scalars['Int']>>;
+  lt: InputMaybe<Scalars['Int']>;
+  lte: InputMaybe<Scalars['Int']>;
+  not: InputMaybe<NestedIntFilter>;
+  notIn: InputMaybe<Array<Scalars['Int']>>;
 };
 
 export type NestedIntNullableFilter = {
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
-  not?: InputMaybe<NestedIntNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
+  equals: InputMaybe<Scalars['Int']>;
+  gt: InputMaybe<Scalars['Int']>;
+  gte: InputMaybe<Scalars['Int']>;
+  in: InputMaybe<Array<Scalars['Int']>>;
+  lt: InputMaybe<Scalars['Int']>;
+  lte: InputMaybe<Scalars['Int']>;
+  not: InputMaybe<NestedIntNullableFilter>;
+  notIn: InputMaybe<Array<Scalars['Int']>>;
 };
 
 export type NestedIntNullableWithAggregatesFilter = {
-  _avg?: InputMaybe<NestedFloatNullableFilter>;
-  _count?: InputMaybe<NestedIntNullableFilter>;
-  _max?: InputMaybe<NestedIntNullableFilter>;
-  _min?: InputMaybe<NestedIntNullableFilter>;
-  _sum?: InputMaybe<NestedIntNullableFilter>;
-  equals?: InputMaybe<Scalars['Int']>;
-  gt?: InputMaybe<Scalars['Int']>;
-  gte?: InputMaybe<Scalars['Int']>;
-  in?: InputMaybe<Array<Scalars['Int']>>;
-  lt?: InputMaybe<Scalars['Int']>;
-  lte?: InputMaybe<Scalars['Int']>;
-  not?: InputMaybe<NestedIntNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['Int']>>;
+  _avg: InputMaybe<NestedFloatNullableFilter>;
+  _count: InputMaybe<NestedIntNullableFilter>;
+  _max: InputMaybe<NestedIntNullableFilter>;
+  _min: InputMaybe<NestedIntNullableFilter>;
+  _sum: InputMaybe<NestedIntNullableFilter>;
+  equals: InputMaybe<Scalars['Int']>;
+  gt: InputMaybe<Scalars['Int']>;
+  gte: InputMaybe<Scalars['Int']>;
+  in: InputMaybe<Array<Scalars['Int']>>;
+  lt: InputMaybe<Scalars['Int']>;
+  lte: InputMaybe<Scalars['Int']>;
+  not: InputMaybe<NestedIntNullableWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['Int']>>;
 };
 
 export type NestedStringFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
-  not?: InputMaybe<NestedStringFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  contains: InputMaybe<Scalars['String']>;
+  endsWith: InputMaybe<Scalars['String']>;
+  equals: InputMaybe<Scalars['String']>;
+  gt: InputMaybe<Scalars['String']>;
+  gte: InputMaybe<Scalars['String']>;
+  in: InputMaybe<Array<Scalars['String']>>;
+  lt: InputMaybe<Scalars['String']>;
+  lte: InputMaybe<Scalars['String']>;
+  not: InputMaybe<NestedStringFilter>;
+  notIn: InputMaybe<Array<Scalars['String']>>;
+  startsWith: InputMaybe<Scalars['String']>;
 };
 
 export type NestedStringNullableFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
-  not?: InputMaybe<NestedStringNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  contains: InputMaybe<Scalars['String']>;
+  endsWith: InputMaybe<Scalars['String']>;
+  equals: InputMaybe<Scalars['String']>;
+  gt: InputMaybe<Scalars['String']>;
+  gte: InputMaybe<Scalars['String']>;
+  in: InputMaybe<Array<Scalars['String']>>;
+  lt: InputMaybe<Scalars['String']>;
+  lte: InputMaybe<Scalars['String']>;
+  not: InputMaybe<NestedStringNullableFilter>;
+  notIn: InputMaybe<Array<Scalars['String']>>;
+  startsWith: InputMaybe<Scalars['String']>;
 };
 
 export type NestedStringNullableWithAggregatesFilter = {
-  _count?: InputMaybe<NestedIntNullableFilter>;
-  _max?: InputMaybe<NestedStringNullableFilter>;
-  _min?: InputMaybe<NestedStringNullableFilter>;
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
-  not?: InputMaybe<NestedStringNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  _count: InputMaybe<NestedIntNullableFilter>;
+  _max: InputMaybe<NestedStringNullableFilter>;
+  _min: InputMaybe<NestedStringNullableFilter>;
+  contains: InputMaybe<Scalars['String']>;
+  endsWith: InputMaybe<Scalars['String']>;
+  equals: InputMaybe<Scalars['String']>;
+  gt: InputMaybe<Scalars['String']>;
+  gte: InputMaybe<Scalars['String']>;
+  in: InputMaybe<Array<Scalars['String']>>;
+  lt: InputMaybe<Scalars['String']>;
+  lte: InputMaybe<Scalars['String']>;
+  not: InputMaybe<NestedStringNullableWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['String']>>;
+  startsWith: InputMaybe<Scalars['String']>;
 };
 
 export type NestedStringWithAggregatesFilter = {
-  _count?: InputMaybe<NestedIntFilter>;
-  _max?: InputMaybe<NestedStringFilter>;
-  _min?: InputMaybe<NestedStringFilter>;
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
-  not?: InputMaybe<NestedStringWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  _count: InputMaybe<NestedIntFilter>;
+  _max: InputMaybe<NestedStringFilter>;
+  _min: InputMaybe<NestedStringFilter>;
+  contains: InputMaybe<Scalars['String']>;
+  endsWith: InputMaybe<Scalars['String']>;
+  equals: InputMaybe<Scalars['String']>;
+  gt: InputMaybe<Scalars['String']>;
+  gte: InputMaybe<Scalars['String']>;
+  in: InputMaybe<Array<Scalars['String']>>;
+  lt: InputMaybe<Scalars['String']>;
+  lte: InputMaybe<Scalars['String']>;
+  not: InputMaybe<NestedStringWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['String']>>;
+  startsWith: InputMaybe<Scalars['String']>;
 };
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: InputMaybe<Scalars['DateTime']>;
+  set: InputMaybe<Scalars['DateTime']>;
 };
 
 export type NullableDecimalFieldUpdateOperationsInput = {
-  decrement?: InputMaybe<Scalars['Decimal']>;
-  divide?: InputMaybe<Scalars['Decimal']>;
-  increment?: InputMaybe<Scalars['Decimal']>;
-  multiply?: InputMaybe<Scalars['Decimal']>;
-  set?: InputMaybe<Scalars['Decimal']>;
+  decrement: InputMaybe<Scalars['Decimal']>;
+  divide: InputMaybe<Scalars['Decimal']>;
+  increment: InputMaybe<Scalars['Decimal']>;
+  multiply: InputMaybe<Scalars['Decimal']>;
+  set: InputMaybe<Scalars['Decimal']>;
 };
 
 export type NullableIntFieldUpdateOperationsInput = {
-  decrement?: InputMaybe<Scalars['Int']>;
-  divide?: InputMaybe<Scalars['Int']>;
-  increment?: InputMaybe<Scalars['Int']>;
-  multiply?: InputMaybe<Scalars['Int']>;
-  set?: InputMaybe<Scalars['Int']>;
+  decrement: InputMaybe<Scalars['Int']>;
+  divide: InputMaybe<Scalars['Int']>;
+  increment: InputMaybe<Scalars['Int']>;
+  multiply: InputMaybe<Scalars['Int']>;
+  set: InputMaybe<Scalars['Int']>;
 };
 
 export type NullableStringFieldUpdateOperationsInput = {
-  set?: InputMaybe<Scalars['String']>;
+  set: InputMaybe<Scalars['String']>;
 };
 
 export type PaginationInput = {
-  page?: InputMaybe<Scalars['Float']>;
-  pageSize?: InputMaybe<Scalars['Float']>;
+  page: InputMaybe<Scalars['Float']>;
+  pageSize: InputMaybe<Scalars['Float']>;
 };
 
 export type Query = {
@@ -1947,32 +1947,32 @@ export type Query = {
   aggregateWishlistItem: AggregateWishlistItem;
   categories: Array<Category>;
   categoriesQuery: Array<Category>;
-  category?: Maybe<Category>;
-  currentSaving?: Maybe<CurrentSaving>;
+  category: Maybe<Category>;
+  currentSaving: Maybe<CurrentSaving>;
   currentSavings: Array<CurrentSaving>;
   currentSavingsQuery: Array<CurrentSaving>;
-  expense?: Maybe<Expense>;
+  expense: Maybe<Expense>;
   expenses: Array<Expense>;
   expensesQuery: Array<Expense>;
-  findFirstCategory?: Maybe<Category>;
-  findFirstCategoryOrThrow?: Maybe<Category>;
-  findFirstCurrentSaving?: Maybe<CurrentSaving>;
-  findFirstCurrentSavingOrThrow?: Maybe<CurrentSaving>;
-  findFirstExpense?: Maybe<Expense>;
-  findFirstExpenseOrThrow?: Maybe<Expense>;
-  findFirstRecipe?: Maybe<Recipe>;
-  findFirstRecipeOrThrow?: Maybe<Recipe>;
-  findFirstUser?: Maybe<User>;
-  findFirstUserOrThrow?: Maybe<User>;
-  findFirstWishlistItem?: Maybe<WishlistItem>;
-  findFirstWishlistItemOrThrow?: Maybe<WishlistItem>;
-  getCategory?: Maybe<Category>;
-  getCurrentSaving?: Maybe<CurrentSaving>;
-  getExpense?: Maybe<Expense>;
-  getRecipe?: Maybe<Recipe>;
+  findFirstCategory: Maybe<Category>;
+  findFirstCategoryOrThrow: Maybe<Category>;
+  findFirstCurrentSaving: Maybe<CurrentSaving>;
+  findFirstCurrentSavingOrThrow: Maybe<CurrentSaving>;
+  findFirstExpense: Maybe<Expense>;
+  findFirstExpenseOrThrow: Maybe<Expense>;
+  findFirstRecipe: Maybe<Recipe>;
+  findFirstRecipeOrThrow: Maybe<Recipe>;
+  findFirstUser: Maybe<User>;
+  findFirstUserOrThrow: Maybe<User>;
+  findFirstWishlistItem: Maybe<WishlistItem>;
+  findFirstWishlistItemOrThrow: Maybe<WishlistItem>;
+  getCategory: Maybe<Category>;
+  getCurrentSaving: Maybe<CurrentSaving>;
+  getExpense: Maybe<Expense>;
+  getRecipe: Maybe<Recipe>;
   getRecipesQuery: Array<Recipe>;
-  getUser?: Maybe<User>;
-  getWishlistItem?: Maybe<WishlistItem>;
+  getUser: Maybe<User>;
+  getWishlistItem: Maybe<WishlistItem>;
   groupByCategory: Array<CategoryGroupBy>;
   groupByCurrentSaving: Array<CurrentSavingGroupBy>;
   groupByExpense: Array<ExpenseGroupBy>;
@@ -1980,77 +1980,77 @@ export type Query = {
   groupByUser: Array<UserGroupBy>;
   groupByWishlistItem: Array<WishlistItemGroupBy>;
   meQuery: AuthUserOutput;
-  recipe?: Maybe<Recipe>;
+  recipe: Maybe<Recipe>;
   recipes: Array<Recipe>;
-  user?: Maybe<User>;
+  user: Maybe<User>;
   users: Array<User>;
-  wishlistItem?: Maybe<WishlistItem>;
+  wishlistItem: Maybe<WishlistItem>;
   wishlistItems: Array<WishlistItem>;
   wishlistItemsQuery: Array<WishlistItem>;
 };
 
 
 export type QueryAggregateCategoryArgs = {
-  cursor?: InputMaybe<CategoryWhereUniqueInput>;
-  orderBy?: InputMaybe<Array<CategoryOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CategoryWhereInput>;
+  cursor: InputMaybe<CategoryWhereUniqueInput>;
+  orderBy: InputMaybe<Array<CategoryOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CategoryWhereInput>;
 };
 
 
 export type QueryAggregateCurrentSavingArgs = {
-  cursor?: InputMaybe<CurrentSavingWhereUniqueInput>;
-  orderBy?: InputMaybe<Array<CurrentSavingOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CurrentSavingWhereInput>;
+  cursor: InputMaybe<CurrentSavingWhereUniqueInput>;
+  orderBy: InputMaybe<Array<CurrentSavingOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CurrentSavingWhereInput>;
 };
 
 
 export type QueryAggregateExpenseArgs = {
-  cursor?: InputMaybe<ExpenseWhereUniqueInput>;
-  orderBy?: InputMaybe<Array<ExpenseOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ExpenseWhereInput>;
+  cursor: InputMaybe<ExpenseWhereUniqueInput>;
+  orderBy: InputMaybe<Array<ExpenseOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ExpenseWhereInput>;
 };
 
 
 export type QueryAggregateRecipeArgs = {
-  cursor?: InputMaybe<RecipeWhereUniqueInput>;
-  orderBy?: InputMaybe<Array<RecipeOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<RecipeWhereInput>;
+  cursor: InputMaybe<RecipeWhereUniqueInput>;
+  orderBy: InputMaybe<Array<RecipeOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<RecipeWhereInput>;
 };
 
 
 export type QueryAggregateUserArgs = {
-  cursor?: InputMaybe<UserWhereUniqueInput>;
-  orderBy?: InputMaybe<Array<UserOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<UserWhereInput>;
+  cursor: InputMaybe<UserWhereUniqueInput>;
+  orderBy: InputMaybe<Array<UserOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<UserWhereInput>;
 };
 
 
 export type QueryAggregateWishlistItemArgs = {
-  cursor?: InputMaybe<WishlistItemWhereUniqueInput>;
-  orderBy?: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<WishlistItemWhereInput>;
+  cursor: InputMaybe<WishlistItemWhereUniqueInput>;
+  orderBy: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<WishlistItemWhereInput>;
 };
 
 
 export type QueryCategoriesArgs = {
-  cursor?: InputMaybe<CategoryWhereUniqueInput>;
-  distinct?: InputMaybe<Array<CategoryScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<CategoryOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CategoryWhereInput>;
+  cursor: InputMaybe<CategoryWhereUniqueInput>;
+  distinct: InputMaybe<Array<CategoryScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<CategoryOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CategoryWhereInput>;
 };
 
 
@@ -2065,12 +2065,12 @@ export type QueryCurrentSavingArgs = {
 
 
 export type QueryCurrentSavingsArgs = {
-  cursor?: InputMaybe<CurrentSavingWhereUniqueInput>;
-  distinct?: InputMaybe<Array<CurrentSavingScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<CurrentSavingOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CurrentSavingWhereInput>;
+  cursor: InputMaybe<CurrentSavingWhereUniqueInput>;
+  distinct: InputMaybe<Array<CurrentSavingScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<CurrentSavingOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CurrentSavingWhereInput>;
 };
 
 
@@ -2080,137 +2080,137 @@ export type QueryExpenseArgs = {
 
 
 export type QueryExpensesArgs = {
-  cursor?: InputMaybe<ExpenseWhereUniqueInput>;
-  distinct?: InputMaybe<Array<ExpenseScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<ExpenseOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ExpenseWhereInput>;
+  cursor: InputMaybe<ExpenseWhereUniqueInput>;
+  distinct: InputMaybe<Array<ExpenseScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<ExpenseOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ExpenseWhereInput>;
 };
 
 
 export type QueryExpensesQueryArgs = {
-  pagination?: InputMaybe<PaginationInput>;
+  pagination: InputMaybe<PaginationInput>;
 };
 
 
 export type QueryFindFirstCategoryArgs = {
-  cursor?: InputMaybe<CategoryWhereUniqueInput>;
-  distinct?: InputMaybe<Array<CategoryScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<CategoryOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CategoryWhereInput>;
+  cursor: InputMaybe<CategoryWhereUniqueInput>;
+  distinct: InputMaybe<Array<CategoryScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<CategoryOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CategoryWhereInput>;
 };
 
 
 export type QueryFindFirstCategoryOrThrowArgs = {
-  cursor?: InputMaybe<CategoryWhereUniqueInput>;
-  distinct?: InputMaybe<Array<CategoryScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<CategoryOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CategoryWhereInput>;
+  cursor: InputMaybe<CategoryWhereUniqueInput>;
+  distinct: InputMaybe<Array<CategoryScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<CategoryOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CategoryWhereInput>;
 };
 
 
 export type QueryFindFirstCurrentSavingArgs = {
-  cursor?: InputMaybe<CurrentSavingWhereUniqueInput>;
-  distinct?: InputMaybe<Array<CurrentSavingScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<CurrentSavingOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CurrentSavingWhereInput>;
+  cursor: InputMaybe<CurrentSavingWhereUniqueInput>;
+  distinct: InputMaybe<Array<CurrentSavingScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<CurrentSavingOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CurrentSavingWhereInput>;
 };
 
 
 export type QueryFindFirstCurrentSavingOrThrowArgs = {
-  cursor?: InputMaybe<CurrentSavingWhereUniqueInput>;
-  distinct?: InputMaybe<Array<CurrentSavingScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<CurrentSavingOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CurrentSavingWhereInput>;
+  cursor: InputMaybe<CurrentSavingWhereUniqueInput>;
+  distinct: InputMaybe<Array<CurrentSavingScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<CurrentSavingOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CurrentSavingWhereInput>;
 };
 
 
 export type QueryFindFirstExpenseArgs = {
-  cursor?: InputMaybe<ExpenseWhereUniqueInput>;
-  distinct?: InputMaybe<Array<ExpenseScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<ExpenseOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ExpenseWhereInput>;
+  cursor: InputMaybe<ExpenseWhereUniqueInput>;
+  distinct: InputMaybe<Array<ExpenseScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<ExpenseOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ExpenseWhereInput>;
 };
 
 
 export type QueryFindFirstExpenseOrThrowArgs = {
-  cursor?: InputMaybe<ExpenseWhereUniqueInput>;
-  distinct?: InputMaybe<Array<ExpenseScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<ExpenseOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ExpenseWhereInput>;
+  cursor: InputMaybe<ExpenseWhereUniqueInput>;
+  distinct: InputMaybe<Array<ExpenseScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<ExpenseOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ExpenseWhereInput>;
 };
 
 
 export type QueryFindFirstRecipeArgs = {
-  cursor?: InputMaybe<RecipeWhereUniqueInput>;
-  distinct?: InputMaybe<Array<RecipeScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<RecipeOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<RecipeWhereInput>;
+  cursor: InputMaybe<RecipeWhereUniqueInput>;
+  distinct: InputMaybe<Array<RecipeScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<RecipeOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<RecipeWhereInput>;
 };
 
 
 export type QueryFindFirstRecipeOrThrowArgs = {
-  cursor?: InputMaybe<RecipeWhereUniqueInput>;
-  distinct?: InputMaybe<Array<RecipeScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<RecipeOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<RecipeWhereInput>;
+  cursor: InputMaybe<RecipeWhereUniqueInput>;
+  distinct: InputMaybe<Array<RecipeScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<RecipeOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<RecipeWhereInput>;
 };
 
 
 export type QueryFindFirstUserArgs = {
-  cursor?: InputMaybe<UserWhereUniqueInput>;
-  distinct?: InputMaybe<Array<UserScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<UserOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<UserWhereInput>;
+  cursor: InputMaybe<UserWhereUniqueInput>;
+  distinct: InputMaybe<Array<UserScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<UserOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<UserWhereInput>;
 };
 
 
 export type QueryFindFirstUserOrThrowArgs = {
-  cursor?: InputMaybe<UserWhereUniqueInput>;
-  distinct?: InputMaybe<Array<UserScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<UserOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<UserWhereInput>;
+  cursor: InputMaybe<UserWhereUniqueInput>;
+  distinct: InputMaybe<Array<UserScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<UserOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<UserWhereInput>;
 };
 
 
 export type QueryFindFirstWishlistItemArgs = {
-  cursor?: InputMaybe<WishlistItemWhereUniqueInput>;
-  distinct?: InputMaybe<Array<WishlistItemScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<WishlistItemWhereInput>;
+  cursor: InputMaybe<WishlistItemWhereUniqueInput>;
+  distinct: InputMaybe<Array<WishlistItemScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<WishlistItemWhereInput>;
 };
 
 
 export type QueryFindFirstWishlistItemOrThrowArgs = {
-  cursor?: InputMaybe<WishlistItemWhereUniqueInput>;
-  distinct?: InputMaybe<Array<WishlistItemScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<WishlistItemWhereInput>;
+  cursor: InputMaybe<WishlistItemWhereUniqueInput>;
+  distinct: InputMaybe<Array<WishlistItemScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<WishlistItemWhereInput>;
 };
 
 
@@ -2246,61 +2246,61 @@ export type QueryGetWishlistItemArgs = {
 
 export type QueryGroupByCategoryArgs = {
   by: Array<CategoryScalarFieldEnum>;
-  having?: InputMaybe<CategoryScalarWhereWithAggregatesInput>;
-  orderBy?: InputMaybe<Array<CategoryOrderByWithAggregationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CategoryWhereInput>;
+  having: InputMaybe<CategoryScalarWhereWithAggregatesInput>;
+  orderBy: InputMaybe<Array<CategoryOrderByWithAggregationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CategoryWhereInput>;
 };
 
 
 export type QueryGroupByCurrentSavingArgs = {
   by: Array<CurrentSavingScalarFieldEnum>;
-  having?: InputMaybe<CurrentSavingScalarWhereWithAggregatesInput>;
-  orderBy?: InputMaybe<Array<CurrentSavingOrderByWithAggregationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CurrentSavingWhereInput>;
+  having: InputMaybe<CurrentSavingScalarWhereWithAggregatesInput>;
+  orderBy: InputMaybe<Array<CurrentSavingOrderByWithAggregationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CurrentSavingWhereInput>;
 };
 
 
 export type QueryGroupByExpenseArgs = {
   by: Array<ExpenseScalarFieldEnum>;
-  having?: InputMaybe<ExpenseScalarWhereWithAggregatesInput>;
-  orderBy?: InputMaybe<Array<ExpenseOrderByWithAggregationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ExpenseWhereInput>;
+  having: InputMaybe<ExpenseScalarWhereWithAggregatesInput>;
+  orderBy: InputMaybe<Array<ExpenseOrderByWithAggregationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ExpenseWhereInput>;
 };
 
 
 export type QueryGroupByRecipeArgs = {
   by: Array<RecipeScalarFieldEnum>;
-  having?: InputMaybe<RecipeScalarWhereWithAggregatesInput>;
-  orderBy?: InputMaybe<Array<RecipeOrderByWithAggregationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<RecipeWhereInput>;
+  having: InputMaybe<RecipeScalarWhereWithAggregatesInput>;
+  orderBy: InputMaybe<Array<RecipeOrderByWithAggregationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<RecipeWhereInput>;
 };
 
 
 export type QueryGroupByUserArgs = {
   by: Array<UserScalarFieldEnum>;
-  having?: InputMaybe<UserScalarWhereWithAggregatesInput>;
-  orderBy?: InputMaybe<Array<UserOrderByWithAggregationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<UserWhereInput>;
+  having: InputMaybe<UserScalarWhereWithAggregatesInput>;
+  orderBy: InputMaybe<Array<UserOrderByWithAggregationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<UserWhereInput>;
 };
 
 
 export type QueryGroupByWishlistItemArgs = {
   by: Array<WishlistItemScalarFieldEnum>;
-  having?: InputMaybe<WishlistItemScalarWhereWithAggregatesInput>;
-  orderBy?: InputMaybe<Array<WishlistItemOrderByWithAggregationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<WishlistItemWhereInput>;
+  having: InputMaybe<WishlistItemScalarWhereWithAggregatesInput>;
+  orderBy: InputMaybe<Array<WishlistItemOrderByWithAggregationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<WishlistItemWhereInput>;
 };
 
 
@@ -2310,12 +2310,12 @@ export type QueryRecipeArgs = {
 
 
 export type QueryRecipesArgs = {
-  cursor?: InputMaybe<RecipeWhereUniqueInput>;
-  distinct?: InputMaybe<Array<RecipeScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<RecipeOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<RecipeWhereInput>;
+  cursor: InputMaybe<RecipeWhereUniqueInput>;
+  distinct: InputMaybe<Array<RecipeScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<RecipeOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<RecipeWhereInput>;
 };
 
 
@@ -2325,12 +2325,12 @@ export type QueryUserArgs = {
 
 
 export type QueryUsersArgs = {
-  cursor?: InputMaybe<UserWhereUniqueInput>;
-  distinct?: InputMaybe<Array<UserScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<UserOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<UserWhereInput>;
+  cursor: InputMaybe<UserWhereUniqueInput>;
+  distinct: InputMaybe<Array<UserScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<UserOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<UserWhereInput>;
 };
 
 
@@ -2340,12 +2340,12 @@ export type QueryWishlistItemArgs = {
 
 
 export type QueryWishlistItemsArgs = {
-  cursor?: InputMaybe<WishlistItemWhereUniqueInput>;
-  distinct?: InputMaybe<Array<WishlistItemScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<WishlistItemWhereInput>;
+  cursor: InputMaybe<WishlistItemWhereUniqueInput>;
+  distinct: InputMaybe<Array<WishlistItemScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<WishlistItemWhereInput>;
 };
 
 export enum QueryMode {
@@ -2357,8 +2357,8 @@ export type Recipe = {
   createdAt: Scalars['DateTime'];
   description: Scalars['String'];
   id: Scalars['String'];
-  rating?: Maybe<Scalars['Int']>;
-  savedPosition?: Maybe<Scalars['Int']>;
+  rating: Maybe<Scalars['Int']>;
+  savedPosition: Maybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   user: User;
@@ -2366,13 +2366,13 @@ export type Recipe = {
 };
 
 export type RecipeAvgAggregate = {
-  rating?: Maybe<Scalars['Float']>;
-  savedPosition?: Maybe<Scalars['Float']>;
+  rating: Maybe<Scalars['Float']>;
+  savedPosition: Maybe<Scalars['Float']>;
 };
 
 export type RecipeAvgOrderByAggregateInput = {
-  rating?: InputMaybe<SortOrder>;
-  savedPosition?: InputMaybe<SortOrder>;
+  rating: InputMaybe<SortOrder>;
+  savedPosition: InputMaybe<SortOrder>;
 };
 
 export type RecipeCountAggregate = {
@@ -2388,58 +2388,58 @@ export type RecipeCountAggregate = {
 };
 
 export type RecipeCountOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  description?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  rating?: InputMaybe<SortOrder>;
-  savedPosition?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  description: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  rating: InputMaybe<SortOrder>;
+  savedPosition: InputMaybe<SortOrder>;
+  title: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export type RecipeCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  rating?: InputMaybe<Scalars['Int']>;
-  savedPosition?: InputMaybe<Scalars['Int']>;
+  id: InputMaybe<Scalars['String']>;
+  rating: InputMaybe<Scalars['Int']>;
+  savedPosition: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutRecipeInput;
 };
 
 export type RecipeCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  rating?: InputMaybe<Scalars['Int']>;
-  savedPosition?: InputMaybe<Scalars['Int']>;
+  id: InputMaybe<Scalars['String']>;
+  rating: InputMaybe<Scalars['Int']>;
+  savedPosition: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
 };
 
 export type RecipeCreateManyUserInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  rating?: InputMaybe<Scalars['Int']>;
-  savedPosition?: InputMaybe<Scalars['Int']>;
+  id: InputMaybe<Scalars['String']>;
+  rating: InputMaybe<Scalars['Int']>;
+  savedPosition: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
 };
 
 export type RecipeCreateManyUserInputEnvelope = {
   data: Array<RecipeCreateManyUserInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
 export type RecipeCreateNestedManyWithoutUserInput = {
-  connect?: InputMaybe<Array<RecipeWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<RecipeCreateOrConnectWithoutUserInput>>;
-  create?: InputMaybe<Array<RecipeCreateWithoutUserInput>>;
-  createMany?: InputMaybe<RecipeCreateManyUserInputEnvelope>;
+  connect: InputMaybe<Array<RecipeWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<RecipeCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<RecipeCreateWithoutUserInput>>;
+  createMany: InputMaybe<RecipeCreateManyUserInputEnvelope>;
 };
 
 export type RecipeCreateOrConnectWithoutUserInput = {
@@ -2448,122 +2448,122 @@ export type RecipeCreateOrConnectWithoutUserInput = {
 };
 
 export type RecipeCreateWithoutUserInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  rating?: InputMaybe<Scalars['Int']>;
-  savedPosition?: InputMaybe<Scalars['Int']>;
+  id: InputMaybe<Scalars['String']>;
+  rating: InputMaybe<Scalars['Int']>;
+  savedPosition: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
 };
 
 export type RecipeGroupBy = {
-  _avg?: Maybe<RecipeAvgAggregate>;
-  _count?: Maybe<RecipeCountAggregate>;
-  _max?: Maybe<RecipeMaxAggregate>;
-  _min?: Maybe<RecipeMinAggregate>;
-  _sum?: Maybe<RecipeSumAggregate>;
+  _avg: Maybe<RecipeAvgAggregate>;
+  _count: Maybe<RecipeCountAggregate>;
+  _max: Maybe<RecipeMaxAggregate>;
+  _min: Maybe<RecipeMinAggregate>;
+  _sum: Maybe<RecipeSumAggregate>;
   createdAt: Scalars['DateTime'];
   description: Scalars['String'];
   id: Scalars['String'];
-  rating?: Maybe<Scalars['Int']>;
-  savedPosition?: Maybe<Scalars['Int']>;
+  rating: Maybe<Scalars['Int']>;
+  savedPosition: Maybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   userId: Scalars['String'];
 };
 
 export type RecipeInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
   description: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
-  rating?: InputMaybe<Scalars['Float']>;
-  savedPosition?: InputMaybe<Scalars['Float']>;
+  id: InputMaybe<Scalars['String']>;
+  rating: InputMaybe<Scalars['Float']>;
+  savedPosition: InputMaybe<Scalars['Float']>;
   title: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-  userId?: InputMaybe<Scalars['String']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  userId: InputMaybe<Scalars['String']>;
 };
 
 export type RecipeListRelationFilter = {
-  every?: InputMaybe<RecipeWhereInput>;
-  none?: InputMaybe<RecipeWhereInput>;
-  some?: InputMaybe<RecipeWhereInput>;
+  every: InputMaybe<RecipeWhereInput>;
+  none: InputMaybe<RecipeWhereInput>;
+  some: InputMaybe<RecipeWhereInput>;
 };
 
 export type RecipeMaxAggregate = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  rating?: Maybe<Scalars['Int']>;
-  savedPosition?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  userId?: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  description: Maybe<Scalars['String']>;
+  id: Maybe<Scalars['String']>;
+  rating: Maybe<Scalars['Int']>;
+  savedPosition: Maybe<Scalars['Int']>;
+  title: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
 };
 
 export type RecipeMaxOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  description?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  rating?: InputMaybe<SortOrder>;
-  savedPosition?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  description: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  rating: InputMaybe<SortOrder>;
+  savedPosition: InputMaybe<SortOrder>;
+  title: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export type RecipeMinAggregate = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  description?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  rating?: Maybe<Scalars['Int']>;
-  savedPosition?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  userId?: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  description: Maybe<Scalars['String']>;
+  id: Maybe<Scalars['String']>;
+  rating: Maybe<Scalars['Int']>;
+  savedPosition: Maybe<Scalars['Int']>;
+  title: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
 };
 
 export type RecipeMinOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  description?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  rating?: InputMaybe<SortOrder>;
-  savedPosition?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  description: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  rating: InputMaybe<SortOrder>;
+  savedPosition: InputMaybe<SortOrder>;
+  title: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export type RecipeOrderByRelationAggregateInput = {
-  _count?: InputMaybe<SortOrder>;
+  _count: InputMaybe<SortOrder>;
 };
 
 export type RecipeOrderByWithAggregationInput = {
-  _avg?: InputMaybe<RecipeAvgOrderByAggregateInput>;
-  _count?: InputMaybe<RecipeCountOrderByAggregateInput>;
-  _max?: InputMaybe<RecipeMaxOrderByAggregateInput>;
-  _min?: InputMaybe<RecipeMinOrderByAggregateInput>;
-  _sum?: InputMaybe<RecipeSumOrderByAggregateInput>;
-  createdAt?: InputMaybe<SortOrder>;
-  description?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  rating?: InputMaybe<SortOrder>;
-  savedPosition?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
+  _avg: InputMaybe<RecipeAvgOrderByAggregateInput>;
+  _count: InputMaybe<RecipeCountOrderByAggregateInput>;
+  _max: InputMaybe<RecipeMaxOrderByAggregateInput>;
+  _min: InputMaybe<RecipeMinOrderByAggregateInput>;
+  _sum: InputMaybe<RecipeSumOrderByAggregateInput>;
+  createdAt: InputMaybe<SortOrder>;
+  description: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  rating: InputMaybe<SortOrder>;
+  savedPosition: InputMaybe<SortOrder>;
+  title: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export type RecipeOrderByWithRelationInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  description?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  rating?: InputMaybe<SortOrder>;
-  savedPosition?: InputMaybe<SortOrder>;
-  title?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  user?: InputMaybe<UserOrderByWithRelationInput>;
-  userId?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  description: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  rating: InputMaybe<SortOrder>;
+  savedPosition: InputMaybe<SortOrder>;
+  title: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  user: InputMaybe<UserOrderByWithRelationInput>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export enum RecipeScalarFieldEnum {
@@ -2578,62 +2578,62 @@ export enum RecipeScalarFieldEnum {
 }
 
 export type RecipeScalarWhereInput = {
-  AND?: InputMaybe<Array<RecipeScalarWhereInput>>;
-  NOT?: InputMaybe<Array<RecipeScalarWhereInput>>;
-  OR?: InputMaybe<Array<RecipeScalarWhereInput>>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  description?: InputMaybe<StringFilter>;
-  id?: InputMaybe<StringFilter>;
-  rating?: InputMaybe<IntNullableFilter>;
-  savedPosition?: InputMaybe<IntNullableFilter>;
-  title?: InputMaybe<StringFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
-  userId?: InputMaybe<StringFilter>;
+  AND: InputMaybe<Array<RecipeScalarWhereInput>>;
+  NOT: InputMaybe<Array<RecipeScalarWhereInput>>;
+  OR: InputMaybe<Array<RecipeScalarWhereInput>>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  description: InputMaybe<StringFilter>;
+  id: InputMaybe<StringFilter>;
+  rating: InputMaybe<IntNullableFilter>;
+  savedPosition: InputMaybe<IntNullableFilter>;
+  title: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  userId: InputMaybe<StringFilter>;
 };
 
 export type RecipeScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<Array<RecipeScalarWhereWithAggregatesInput>>;
-  NOT?: InputMaybe<Array<RecipeScalarWhereWithAggregatesInput>>;
-  OR?: InputMaybe<Array<RecipeScalarWhereWithAggregatesInput>>;
-  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
-  description?: InputMaybe<StringWithAggregatesFilter>;
-  id?: InputMaybe<StringWithAggregatesFilter>;
-  rating?: InputMaybe<IntNullableWithAggregatesFilter>;
-  savedPosition?: InputMaybe<IntNullableWithAggregatesFilter>;
-  title?: InputMaybe<StringWithAggregatesFilter>;
-  updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
-  userId?: InputMaybe<StringWithAggregatesFilter>;
+  AND: InputMaybe<Array<RecipeScalarWhereWithAggregatesInput>>;
+  NOT: InputMaybe<Array<RecipeScalarWhereWithAggregatesInput>>;
+  OR: InputMaybe<Array<RecipeScalarWhereWithAggregatesInput>>;
+  createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  description: InputMaybe<StringWithAggregatesFilter>;
+  id: InputMaybe<StringWithAggregatesFilter>;
+  rating: InputMaybe<IntNullableWithAggregatesFilter>;
+  savedPosition: InputMaybe<IntNullableWithAggregatesFilter>;
+  title: InputMaybe<StringWithAggregatesFilter>;
+  updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  userId: InputMaybe<StringWithAggregatesFilter>;
 };
 
 export type RecipeSumAggregate = {
-  rating?: Maybe<Scalars['Int']>;
-  savedPosition?: Maybe<Scalars['Int']>;
+  rating: Maybe<Scalars['Int']>;
+  savedPosition: Maybe<Scalars['Int']>;
 };
 
 export type RecipeSumOrderByAggregateInput = {
-  rating?: InputMaybe<SortOrder>;
-  savedPosition?: InputMaybe<SortOrder>;
+  rating: InputMaybe<SortOrder>;
+  savedPosition: InputMaybe<SortOrder>;
 };
 
 export type RecipeUpdateInput = {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  description?: InputMaybe<StringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  rating?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  savedPosition?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  title?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  user?: InputMaybe<UserUpdateOneRequiredWithoutRecipeNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description: InputMaybe<StringFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  rating: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  savedPosition: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  title: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutRecipeNestedInput>;
 };
 
 export type RecipeUpdateManyMutationInput = {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  description?: InputMaybe<StringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  rating?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  savedPosition?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  title?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description: InputMaybe<StringFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  rating: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  savedPosition: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  title: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type RecipeUpdateManyWithWhereWithoutUserInput = {
@@ -2642,17 +2642,17 @@ export type RecipeUpdateManyWithWhereWithoutUserInput = {
 };
 
 export type RecipeUpdateManyWithoutUserNestedInput = {
-  connect?: InputMaybe<Array<RecipeWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<RecipeCreateOrConnectWithoutUserInput>>;
-  create?: InputMaybe<Array<RecipeCreateWithoutUserInput>>;
-  createMany?: InputMaybe<RecipeCreateManyUserInputEnvelope>;
-  delete?: InputMaybe<Array<RecipeWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<RecipeScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<RecipeWhereUniqueInput>>;
-  set?: InputMaybe<Array<RecipeWhereUniqueInput>>;
-  update?: InputMaybe<Array<RecipeUpdateWithWhereUniqueWithoutUserInput>>;
-  updateMany?: InputMaybe<Array<RecipeUpdateManyWithWhereWithoutUserInput>>;
-  upsert?: InputMaybe<Array<RecipeUpsertWithWhereUniqueWithoutUserInput>>;
+  connect: InputMaybe<Array<RecipeWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<RecipeCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<RecipeCreateWithoutUserInput>>;
+  createMany: InputMaybe<RecipeCreateManyUserInputEnvelope>;
+  delete: InputMaybe<Array<RecipeWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<RecipeScalarWhereInput>>;
+  disconnect: InputMaybe<Array<RecipeWhereUniqueInput>>;
+  set: InputMaybe<Array<RecipeWhereUniqueInput>>;
+  update: InputMaybe<Array<RecipeUpdateWithWhereUniqueWithoutUserInput>>;
+  updateMany: InputMaybe<Array<RecipeUpdateManyWithWhereWithoutUserInput>>;
+  upsert: InputMaybe<Array<RecipeUpsertWithWhereUniqueWithoutUserInput>>;
 };
 
 export type RecipeUpdateWithWhereUniqueWithoutUserInput = {
@@ -2661,13 +2661,13 @@ export type RecipeUpdateWithWhereUniqueWithoutUserInput = {
 };
 
 export type RecipeUpdateWithoutUserInput = {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  description?: InputMaybe<StringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  rating?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  savedPosition?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
-  title?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description: InputMaybe<StringFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  rating: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  savedPosition: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  title: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type RecipeUpsertWithWhereUniqueWithoutUserInput = {
@@ -2677,22 +2677,22 @@ export type RecipeUpsertWithWhereUniqueWithoutUserInput = {
 };
 
 export type RecipeWhereInput = {
-  AND?: InputMaybe<Array<RecipeWhereInput>>;
-  NOT?: InputMaybe<Array<RecipeWhereInput>>;
-  OR?: InputMaybe<Array<RecipeWhereInput>>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  description?: InputMaybe<StringFilter>;
-  id?: InputMaybe<StringFilter>;
-  rating?: InputMaybe<IntNullableFilter>;
-  savedPosition?: InputMaybe<IntNullableFilter>;
-  title?: InputMaybe<StringFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
-  user?: InputMaybe<UserRelationFilter>;
-  userId?: InputMaybe<StringFilter>;
+  AND: InputMaybe<Array<RecipeWhereInput>>;
+  NOT: InputMaybe<Array<RecipeWhereInput>>;
+  OR: InputMaybe<Array<RecipeWhereInput>>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  description: InputMaybe<StringFilter>;
+  id: InputMaybe<StringFilter>;
+  rating: InputMaybe<IntNullableFilter>;
+  savedPosition: InputMaybe<IntNullableFilter>;
+  title: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  user: InputMaybe<UserRelationFilter>;
+  userId: InputMaybe<StringFilter>;
 };
 
 export type RecipeWhereUniqueInput = {
-  id?: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
 };
 
 export type RegisterValidInput = {
@@ -2708,77 +2708,77 @@ export enum SortOrder {
 }
 
 export type StringFieldUpdateOperationsInput = {
-  set?: InputMaybe<Scalars['String']>;
+  set: InputMaybe<Scalars['String']>;
 };
 
 export type StringFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
-  mode?: InputMaybe<QueryMode>;
-  not?: InputMaybe<NestedStringFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  contains: InputMaybe<Scalars['String']>;
+  endsWith: InputMaybe<Scalars['String']>;
+  equals: InputMaybe<Scalars['String']>;
+  gt: InputMaybe<Scalars['String']>;
+  gte: InputMaybe<Scalars['String']>;
+  in: InputMaybe<Array<Scalars['String']>>;
+  lt: InputMaybe<Scalars['String']>;
+  lte: InputMaybe<Scalars['String']>;
+  mode: InputMaybe<QueryMode>;
+  not: InputMaybe<NestedStringFilter>;
+  notIn: InputMaybe<Array<Scalars['String']>>;
+  startsWith: InputMaybe<Scalars['String']>;
 };
 
 export type StringNullableFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
-  mode?: InputMaybe<QueryMode>;
-  not?: InputMaybe<NestedStringNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  contains: InputMaybe<Scalars['String']>;
+  endsWith: InputMaybe<Scalars['String']>;
+  equals: InputMaybe<Scalars['String']>;
+  gt: InputMaybe<Scalars['String']>;
+  gte: InputMaybe<Scalars['String']>;
+  in: InputMaybe<Array<Scalars['String']>>;
+  lt: InputMaybe<Scalars['String']>;
+  lte: InputMaybe<Scalars['String']>;
+  mode: InputMaybe<QueryMode>;
+  not: InputMaybe<NestedStringNullableFilter>;
+  notIn: InputMaybe<Array<Scalars['String']>>;
+  startsWith: InputMaybe<Scalars['String']>;
 };
 
 export type StringNullableWithAggregatesFilter = {
-  _count?: InputMaybe<NestedIntNullableFilter>;
-  _max?: InputMaybe<NestedStringNullableFilter>;
-  _min?: InputMaybe<NestedStringNullableFilter>;
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
-  mode?: InputMaybe<QueryMode>;
-  not?: InputMaybe<NestedStringNullableWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  _count: InputMaybe<NestedIntNullableFilter>;
+  _max: InputMaybe<NestedStringNullableFilter>;
+  _min: InputMaybe<NestedStringNullableFilter>;
+  contains: InputMaybe<Scalars['String']>;
+  endsWith: InputMaybe<Scalars['String']>;
+  equals: InputMaybe<Scalars['String']>;
+  gt: InputMaybe<Scalars['String']>;
+  gte: InputMaybe<Scalars['String']>;
+  in: InputMaybe<Array<Scalars['String']>>;
+  lt: InputMaybe<Scalars['String']>;
+  lte: InputMaybe<Scalars['String']>;
+  mode: InputMaybe<QueryMode>;
+  not: InputMaybe<NestedStringNullableWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['String']>>;
+  startsWith: InputMaybe<Scalars['String']>;
 };
 
 export type StringWithAggregatesFilter = {
-  _count?: InputMaybe<NestedIntFilter>;
-  _max?: InputMaybe<NestedStringFilter>;
-  _min?: InputMaybe<NestedStringFilter>;
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
-  mode?: InputMaybe<QueryMode>;
-  not?: InputMaybe<NestedStringWithAggregatesFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  _count: InputMaybe<NestedIntFilter>;
+  _max: InputMaybe<NestedStringFilter>;
+  _min: InputMaybe<NestedStringFilter>;
+  contains: InputMaybe<Scalars['String']>;
+  endsWith: InputMaybe<Scalars['String']>;
+  equals: InputMaybe<Scalars['String']>;
+  gt: InputMaybe<Scalars['String']>;
+  gte: InputMaybe<Scalars['String']>;
+  in: InputMaybe<Array<Scalars['String']>>;
+  lt: InputMaybe<Scalars['String']>;
+  lte: InputMaybe<Scalars['String']>;
+  mode: InputMaybe<QueryMode>;
+  not: InputMaybe<NestedStringWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['String']>>;
+  startsWith: InputMaybe<Scalars['String']>;
 };
 
 export type User = {
-  _count?: Maybe<UserCount>;
+  _count: Maybe<UserCount>;
   categories: Array<Category>;
   createdAt: Scalars['DateTime'];
   currentSavings: Array<CurrentSaving>;
@@ -2794,52 +2794,52 @@ export type User = {
 
 
 export type UserCategoriesArgs = {
-  cursor?: InputMaybe<CategoryWhereUniqueInput>;
-  distinct?: InputMaybe<Array<CategoryScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<CategoryOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CategoryWhereInput>;
+  cursor: InputMaybe<CategoryWhereUniqueInput>;
+  distinct: InputMaybe<Array<CategoryScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<CategoryOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CategoryWhereInput>;
 };
 
 
 export type UserCurrentSavingsArgs = {
-  cursor?: InputMaybe<CurrentSavingWhereUniqueInput>;
-  distinct?: InputMaybe<Array<CurrentSavingScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<CurrentSavingOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<CurrentSavingWhereInput>;
+  cursor: InputMaybe<CurrentSavingWhereUniqueInput>;
+  distinct: InputMaybe<Array<CurrentSavingScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<CurrentSavingOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<CurrentSavingWhereInput>;
 };
 
 
 export type UserExpensesArgs = {
-  cursor?: InputMaybe<ExpenseWhereUniqueInput>;
-  distinct?: InputMaybe<Array<ExpenseScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<ExpenseOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<ExpenseWhereInput>;
+  cursor: InputMaybe<ExpenseWhereUniqueInput>;
+  distinct: InputMaybe<Array<ExpenseScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<ExpenseOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ExpenseWhereInput>;
 };
 
 
 export type UserRecipeArgs = {
-  cursor?: InputMaybe<RecipeWhereUniqueInput>;
-  distinct?: InputMaybe<Array<RecipeScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<RecipeOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<RecipeWhereInput>;
+  cursor: InputMaybe<RecipeWhereUniqueInput>;
+  distinct: InputMaybe<Array<RecipeScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<RecipeOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<RecipeWhereInput>;
 };
 
 
 export type UserWishlistItemsArgs = {
-  cursor?: InputMaybe<WishlistItemWhereUniqueInput>;
-  distinct?: InputMaybe<Array<WishlistItemScalarFieldEnum>>;
-  orderBy?: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']>;
-  take?: InputMaybe<Scalars['Int']>;
-  where?: InputMaybe<WishlistItemWhereInput>;
+  cursor: InputMaybe<WishlistItemWhereUniqueInput>;
+  distinct: InputMaybe<Array<WishlistItemScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<WishlistItemOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<WishlistItemWhereInput>;
 };
 
 export type UserCount = {
@@ -2861,65 +2861,65 @@ export type UserCountAggregate = {
 };
 
 export type UserCountOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  email?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  password?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  username?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  email: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  password: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  username: InputMaybe<SortOrder>;
 };
 
 export type UserCreateInput = {
-  categories?: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  currentSavings?: InputMaybe<CurrentSavingCreateNestedManyWithoutUserInput>;
+  categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  currentSavings: InputMaybe<CurrentSavingCreateNestedManyWithoutUserInput>;
   email: Scalars['String'];
-  expenses?: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
-  id?: InputMaybe<Scalars['String']>;
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
+  id: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
-  recipe?: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
-  wishlistItems?: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
+  wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
 };
 
 export type UserCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
 };
 
 export type UserCreateNestedOneWithoutCategoriesInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutCategoriesInput>;
-  create?: InputMaybe<UserCreateWithoutCategoriesInput>;
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutCategoriesInput>;
+  create: InputMaybe<UserCreateWithoutCategoriesInput>;
 };
 
 export type UserCreateNestedOneWithoutCurrentSavingsInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutCurrentSavingsInput>;
-  create?: InputMaybe<UserCreateWithoutCurrentSavingsInput>;
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutCurrentSavingsInput>;
+  create: InputMaybe<UserCreateWithoutCurrentSavingsInput>;
 };
 
 export type UserCreateNestedOneWithoutExpensesInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutExpensesInput>;
-  create?: InputMaybe<UserCreateWithoutExpensesInput>;
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutExpensesInput>;
+  create: InputMaybe<UserCreateWithoutExpensesInput>;
 };
 
 export type UserCreateNestedOneWithoutRecipeInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutRecipeInput>;
-  create?: InputMaybe<UserCreateWithoutRecipeInput>;
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutRecipeInput>;
+  create: InputMaybe<UserCreateWithoutRecipeInput>;
 };
 
 export type UserCreateNestedOneWithoutWishlistItemsInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutWishlistItemsInput>;
-  create?: InputMaybe<UserCreateWithoutWishlistItemsInput>;
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutWishlistItemsInput>;
+  create: InputMaybe<UserCreateWithoutWishlistItemsInput>;
 };
 
 export type UserCreateOrConnectWithoutCategoriesInput = {
@@ -2948,74 +2948,74 @@ export type UserCreateOrConnectWithoutWishlistItemsInput = {
 };
 
 export type UserCreateWithoutCategoriesInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  currentSavings?: InputMaybe<CurrentSavingCreateNestedManyWithoutUserInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  currentSavings: InputMaybe<CurrentSavingCreateNestedManyWithoutUserInput>;
   email: Scalars['String'];
-  expenses?: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
-  id?: InputMaybe<Scalars['String']>;
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
+  id: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
-  recipe?: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
-  wishlistItems?: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
+  wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
 };
 
 export type UserCreateWithoutCurrentSavingsInput = {
-  categories?: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
+  categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
-  expenses?: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
-  id?: InputMaybe<Scalars['String']>;
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
+  id: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
-  recipe?: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
-  wishlistItems?: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
+  wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
 };
 
 export type UserCreateWithoutExpensesInput = {
-  categories?: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  currentSavings?: InputMaybe<CurrentSavingCreateNestedManyWithoutUserInput>;
+  categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  currentSavings: InputMaybe<CurrentSavingCreateNestedManyWithoutUserInput>;
   email: Scalars['String'];
-  id?: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
-  recipe?: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
-  wishlistItems?: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
+  wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
 };
 
 export type UserCreateWithoutRecipeInput = {
-  categories?: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  currentSavings?: InputMaybe<CurrentSavingCreateNestedManyWithoutUserInput>;
+  categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  currentSavings: InputMaybe<CurrentSavingCreateNestedManyWithoutUserInput>;
   email: Scalars['String'];
-  expenses?: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
-  id?: InputMaybe<Scalars['String']>;
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
+  id: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
-  wishlistItems?: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
+  wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
 };
 
 export type UserCreateWithoutWishlistItemsInput = {
-  categories?: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  currentSavings?: InputMaybe<CurrentSavingCreateNestedManyWithoutUserInput>;
+  categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  currentSavings: InputMaybe<CurrentSavingCreateNestedManyWithoutUserInput>;
   email: Scalars['String'];
-  expenses?: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
-  id?: InputMaybe<Scalars['String']>;
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
+  id: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
-  recipe?: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
 };
 
 export type UserGroupBy = {
-  _count?: Maybe<UserCountAggregate>;
-  _max?: Maybe<UserMaxAggregate>;
-  _min?: Maybe<UserMinAggregate>;
+  _count: Maybe<UserCountAggregate>;
+  _max: Maybe<UserMaxAggregate>;
+  _min: Maybe<UserMinAggregate>;
   createdAt: Scalars['DateTime'];
   email: Scalars['String'];
   id: Scalars['String'];
@@ -3025,70 +3025,70 @@ export type UserGroupBy = {
 };
 
 export type UserMaxAggregate = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  email?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  password?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  username?: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  email: Maybe<Scalars['String']>;
+  id: Maybe<Scalars['String']>;
+  password: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  username: Maybe<Scalars['String']>;
 };
 
 export type UserMaxOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  email?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  password?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  username?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  email: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  password: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  username: InputMaybe<SortOrder>;
 };
 
 export type UserMinAggregate = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  email?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  password?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  username?: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  email: Maybe<Scalars['String']>;
+  id: Maybe<Scalars['String']>;
+  password: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  username: Maybe<Scalars['String']>;
 };
 
 export type UserMinOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  email?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  password?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  username?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  email: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  password: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  username: InputMaybe<SortOrder>;
 };
 
 export type UserOrderByWithAggregationInput = {
-  _count?: InputMaybe<UserCountOrderByAggregateInput>;
-  _max?: InputMaybe<UserMaxOrderByAggregateInput>;
-  _min?: InputMaybe<UserMinOrderByAggregateInput>;
-  createdAt?: InputMaybe<SortOrder>;
-  email?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  password?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  username?: InputMaybe<SortOrder>;
+  _count: InputMaybe<UserCountOrderByAggregateInput>;
+  _max: InputMaybe<UserMaxOrderByAggregateInput>;
+  _min: InputMaybe<UserMinOrderByAggregateInput>;
+  createdAt: InputMaybe<SortOrder>;
+  email: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  password: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  username: InputMaybe<SortOrder>;
 };
 
 export type UserOrderByWithRelationInput = {
-  categories?: InputMaybe<CategoryOrderByRelationAggregateInput>;
-  createdAt?: InputMaybe<SortOrder>;
-  currentSavings?: InputMaybe<CurrentSavingOrderByRelationAggregateInput>;
-  email?: InputMaybe<SortOrder>;
-  expenses?: InputMaybe<ExpenseOrderByRelationAggregateInput>;
-  id?: InputMaybe<SortOrder>;
-  password?: InputMaybe<SortOrder>;
-  recipe?: InputMaybe<RecipeOrderByRelationAggregateInput>;
-  updatedAt?: InputMaybe<SortOrder>;
-  username?: InputMaybe<SortOrder>;
-  wishlistItems?: InputMaybe<WishlistItemOrderByRelationAggregateInput>;
+  categories: InputMaybe<CategoryOrderByRelationAggregateInput>;
+  createdAt: InputMaybe<SortOrder>;
+  currentSavings: InputMaybe<CurrentSavingOrderByRelationAggregateInput>;
+  email: InputMaybe<SortOrder>;
+  expenses: InputMaybe<ExpenseOrderByRelationAggregateInput>;
+  id: InputMaybe<SortOrder>;
+  password: InputMaybe<SortOrder>;
+  recipe: InputMaybe<RecipeOrderByRelationAggregateInput>;
+  updatedAt: InputMaybe<SortOrder>;
+  username: InputMaybe<SortOrder>;
+  wishlistItems: InputMaybe<WishlistItemOrderByRelationAggregateInput>;
 };
 
 export type UserRelationFilter = {
-  is?: InputMaybe<UserWhereInput>;
-  isNot?: InputMaybe<UserWhereInput>;
+  is: InputMaybe<UserWhereInput>;
+  isNot: InputMaybe<UserWhereInput>;
 };
 
 export enum UserScalarFieldEnum {
@@ -3101,143 +3101,143 @@ export enum UserScalarFieldEnum {
 }
 
 export type UserScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<Array<UserScalarWhereWithAggregatesInput>>;
-  NOT?: InputMaybe<Array<UserScalarWhereWithAggregatesInput>>;
-  OR?: InputMaybe<Array<UserScalarWhereWithAggregatesInput>>;
-  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
-  email?: InputMaybe<StringWithAggregatesFilter>;
-  id?: InputMaybe<StringWithAggregatesFilter>;
-  password?: InputMaybe<StringWithAggregatesFilter>;
-  updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
-  username?: InputMaybe<StringWithAggregatesFilter>;
+  AND: InputMaybe<Array<UserScalarWhereWithAggregatesInput>>;
+  NOT: InputMaybe<Array<UserScalarWhereWithAggregatesInput>>;
+  OR: InputMaybe<Array<UserScalarWhereWithAggregatesInput>>;
+  createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  email: InputMaybe<StringWithAggregatesFilter>;
+  id: InputMaybe<StringWithAggregatesFilter>;
+  password: InputMaybe<StringWithAggregatesFilter>;
+  updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  username: InputMaybe<StringWithAggregatesFilter>;
 };
 
 export type UserUpdateInput = {
-  categories?: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  currentSavings?: InputMaybe<CurrentSavingUpdateManyWithoutUserNestedInput>;
-  email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  expenses?: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  password?: InputMaybe<StringFieldUpdateOperationsInput>;
-  recipe?: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  username?: InputMaybe<StringFieldUpdateOperationsInput>;
-  wishlistItems?: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
+  categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  currentSavings: InputMaybe<CurrentSavingUpdateManyWithoutUserNestedInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
 };
 
 export type UserUpdateManyMutationInput = {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  password?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  username?: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
 export type UserUpdateOneRequiredWithoutCategoriesNestedInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutCategoriesInput>;
-  create?: InputMaybe<UserCreateWithoutCategoriesInput>;
-  update?: InputMaybe<UserUpdateWithoutCategoriesInput>;
-  upsert?: InputMaybe<UserUpsertWithoutCategoriesInput>;
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutCategoriesInput>;
+  create: InputMaybe<UserCreateWithoutCategoriesInput>;
+  update: InputMaybe<UserUpdateWithoutCategoriesInput>;
+  upsert: InputMaybe<UserUpsertWithoutCategoriesInput>;
 };
 
 export type UserUpdateOneRequiredWithoutCurrentSavingsNestedInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutCurrentSavingsInput>;
-  create?: InputMaybe<UserCreateWithoutCurrentSavingsInput>;
-  update?: InputMaybe<UserUpdateWithoutCurrentSavingsInput>;
-  upsert?: InputMaybe<UserUpsertWithoutCurrentSavingsInput>;
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutCurrentSavingsInput>;
+  create: InputMaybe<UserCreateWithoutCurrentSavingsInput>;
+  update: InputMaybe<UserUpdateWithoutCurrentSavingsInput>;
+  upsert: InputMaybe<UserUpsertWithoutCurrentSavingsInput>;
 };
 
 export type UserUpdateOneRequiredWithoutExpensesNestedInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutExpensesInput>;
-  create?: InputMaybe<UserCreateWithoutExpensesInput>;
-  update?: InputMaybe<UserUpdateWithoutExpensesInput>;
-  upsert?: InputMaybe<UserUpsertWithoutExpensesInput>;
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutExpensesInput>;
+  create: InputMaybe<UserCreateWithoutExpensesInput>;
+  update: InputMaybe<UserUpdateWithoutExpensesInput>;
+  upsert: InputMaybe<UserUpsertWithoutExpensesInput>;
 };
 
 export type UserUpdateOneRequiredWithoutRecipeNestedInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutRecipeInput>;
-  create?: InputMaybe<UserCreateWithoutRecipeInput>;
-  update?: InputMaybe<UserUpdateWithoutRecipeInput>;
-  upsert?: InputMaybe<UserUpsertWithoutRecipeInput>;
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutRecipeInput>;
+  create: InputMaybe<UserCreateWithoutRecipeInput>;
+  update: InputMaybe<UserUpdateWithoutRecipeInput>;
+  upsert: InputMaybe<UserUpsertWithoutRecipeInput>;
 };
 
 export type UserUpdateOneRequiredWithoutWishlistItemsNestedInput = {
-  connect?: InputMaybe<UserWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutWishlistItemsInput>;
-  create?: InputMaybe<UserCreateWithoutWishlistItemsInput>;
-  update?: InputMaybe<UserUpdateWithoutWishlistItemsInput>;
-  upsert?: InputMaybe<UserUpsertWithoutWishlistItemsInput>;
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutWishlistItemsInput>;
+  create: InputMaybe<UserCreateWithoutWishlistItemsInput>;
+  update: InputMaybe<UserUpdateWithoutWishlistItemsInput>;
+  upsert: InputMaybe<UserUpsertWithoutWishlistItemsInput>;
 };
 
 export type UserUpdateWithoutCategoriesInput = {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  currentSavings?: InputMaybe<CurrentSavingUpdateManyWithoutUserNestedInput>;
-  email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  expenses?: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  password?: InputMaybe<StringFieldUpdateOperationsInput>;
-  recipe?: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  username?: InputMaybe<StringFieldUpdateOperationsInput>;
-  wishlistItems?: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  currentSavings: InputMaybe<CurrentSavingUpdateManyWithoutUserNestedInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
 };
 
 export type UserUpdateWithoutCurrentSavingsInput = {
-  categories?: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  expenses?: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  password?: InputMaybe<StringFieldUpdateOperationsInput>;
-  recipe?: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  username?: InputMaybe<StringFieldUpdateOperationsInput>;
-  wishlistItems?: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
+  categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
 };
 
 export type UserUpdateWithoutExpensesInput = {
-  categories?: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  currentSavings?: InputMaybe<CurrentSavingUpdateManyWithoutUserNestedInput>;
-  email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  password?: InputMaybe<StringFieldUpdateOperationsInput>;
-  recipe?: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  username?: InputMaybe<StringFieldUpdateOperationsInput>;
-  wishlistItems?: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
+  categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  currentSavings: InputMaybe<CurrentSavingUpdateManyWithoutUserNestedInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
 };
 
 export type UserUpdateWithoutRecipeInput = {
-  categories?: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  currentSavings?: InputMaybe<CurrentSavingUpdateManyWithoutUserNestedInput>;
-  email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  expenses?: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  password?: InputMaybe<StringFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  username?: InputMaybe<StringFieldUpdateOperationsInput>;
-  wishlistItems?: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
+  categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  currentSavings: InputMaybe<CurrentSavingUpdateManyWithoutUserNestedInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
 };
 
 export type UserUpdateWithoutWishlistItemsInput = {
-  categories?: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  currentSavings?: InputMaybe<CurrentSavingUpdateManyWithoutUserNestedInput>;
-  email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  expenses?: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  password?: InputMaybe<StringFieldUpdateOperationsInput>;
-  recipe?: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  username?: InputMaybe<StringFieldUpdateOperationsInput>;
+  categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  currentSavings: InputMaybe<CurrentSavingUpdateManyWithoutUserNestedInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
 export type UserUpsertWithoutCategoriesInput = {
@@ -3266,26 +3266,26 @@ export type UserUpsertWithoutWishlistItemsInput = {
 };
 
 export type UserWhereInput = {
-  AND?: InputMaybe<Array<UserWhereInput>>;
-  NOT?: InputMaybe<Array<UserWhereInput>>;
-  OR?: InputMaybe<Array<UserWhereInput>>;
-  categories?: InputMaybe<CategoryListRelationFilter>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  currentSavings?: InputMaybe<CurrentSavingListRelationFilter>;
-  email?: InputMaybe<StringFilter>;
-  expenses?: InputMaybe<ExpenseListRelationFilter>;
-  id?: InputMaybe<StringFilter>;
-  password?: InputMaybe<StringFilter>;
-  recipe?: InputMaybe<RecipeListRelationFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
-  username?: InputMaybe<StringFilter>;
-  wishlistItems?: InputMaybe<WishlistItemListRelationFilter>;
+  AND: InputMaybe<Array<UserWhereInput>>;
+  NOT: InputMaybe<Array<UserWhereInput>>;
+  OR: InputMaybe<Array<UserWhereInput>>;
+  categories: InputMaybe<CategoryListRelationFilter>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  currentSavings: InputMaybe<CurrentSavingListRelationFilter>;
+  email: InputMaybe<StringFilter>;
+  expenses: InputMaybe<ExpenseListRelationFilter>;
+  id: InputMaybe<StringFilter>;
+  password: InputMaybe<StringFilter>;
+  recipe: InputMaybe<RecipeListRelationFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  username: InputMaybe<StringFilter>;
+  wishlistItems: InputMaybe<WishlistItemListRelationFilter>;
 };
 
 export type UserWhereUniqueInput = {
-  email?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
-  username?: InputMaybe<Scalars['String']>;
+  email: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
+  username: InputMaybe<Scalars['String']>;
 };
 
 export type WishlistItem = {
@@ -3299,11 +3299,11 @@ export type WishlistItem = {
 };
 
 export type WishlistItemAvgAggregate = {
-  priceInThousands?: Maybe<Scalars['Decimal']>;
+  priceInThousands: Maybe<Scalars['Decimal']>;
 };
 
 export type WishlistItemAvgOrderByAggregateInput = {
-  priceInThousands?: InputMaybe<SortOrder>;
+  priceInThousands: InputMaybe<SortOrder>;
 };
 
 export type WishlistItemCountAggregate = {
@@ -3317,50 +3317,50 @@ export type WishlistItemCountAggregate = {
 };
 
 export type WishlistItemCountOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  itemName?: InputMaybe<SortOrder>;
-  priceInThousands?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  itemName: InputMaybe<SortOrder>;
+  priceInThousands: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export type WishlistItemCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
   itemName: Scalars['String'];
   priceInThousands: Scalars['Decimal'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutWishlistItemsInput;
 };
 
 export type WishlistItemCreateManyInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
   itemName: Scalars['String'];
   priceInThousands: Scalars['Decimal'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
 };
 
 export type WishlistItemCreateManyUserInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
   itemName: Scalars['String'];
   priceInThousands: Scalars['Decimal'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
 };
 
 export type WishlistItemCreateManyUserInputEnvelope = {
   data: Array<WishlistItemCreateManyUserInput>;
-  skipDuplicates?: InputMaybe<Scalars['Boolean']>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
 export type WishlistItemCreateNestedManyWithoutUserInput = {
-  connect?: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<WishlistItemCreateOrConnectWithoutUserInput>>;
-  create?: InputMaybe<Array<WishlistItemCreateWithoutUserInput>>;
-  createMany?: InputMaybe<WishlistItemCreateManyUserInputEnvelope>;
+  connect: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<WishlistItemCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<WishlistItemCreateWithoutUserInput>>;
+  createMany: InputMaybe<WishlistItemCreateManyUserInputEnvelope>;
 };
 
 export type WishlistItemCreateOrConnectWithoutUserInput = {
@@ -3369,19 +3369,19 @@ export type WishlistItemCreateOrConnectWithoutUserInput = {
 };
 
 export type WishlistItemCreateWithoutUserInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
   itemName: Scalars['String'];
   priceInThousands: Scalars['Decimal'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
 };
 
 export type WishlistItemGroupBy = {
-  _avg?: Maybe<WishlistItemAvgAggregate>;
-  _count?: Maybe<WishlistItemCountAggregate>;
-  _max?: Maybe<WishlistItemMaxAggregate>;
-  _min?: Maybe<WishlistItemMinAggregate>;
-  _sum?: Maybe<WishlistItemSumAggregate>;
+  _avg: Maybe<WishlistItemAvgAggregate>;
+  _count: Maybe<WishlistItemCountAggregate>;
+  _max: Maybe<WishlistItemMaxAggregate>;
+  _min: Maybe<WishlistItemMinAggregate>;
+  _sum: Maybe<WishlistItemSumAggregate>;
   createdAt: Scalars['DateTime'];
   id: Scalars['String'];
   itemName: Scalars['String'];
@@ -3391,73 +3391,73 @@ export type WishlistItemGroupBy = {
 };
 
 export type WishlistItemListRelationFilter = {
-  every?: InputMaybe<WishlistItemWhereInput>;
-  none?: InputMaybe<WishlistItemWhereInput>;
-  some?: InputMaybe<WishlistItemWhereInput>;
+  every: InputMaybe<WishlistItemWhereInput>;
+  none: InputMaybe<WishlistItemWhereInput>;
+  some: InputMaybe<WishlistItemWhereInput>;
 };
 
 export type WishlistItemMaxAggregate = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  id?: Maybe<Scalars['String']>;
-  itemName?: Maybe<Scalars['String']>;
-  priceInThousands?: Maybe<Scalars['Decimal']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  userId?: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  itemName: Maybe<Scalars['String']>;
+  priceInThousands: Maybe<Scalars['Decimal']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
 };
 
 export type WishlistItemMaxOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  itemName?: InputMaybe<SortOrder>;
-  priceInThousands?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  itemName: InputMaybe<SortOrder>;
+  priceInThousands: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export type WishlistItemMinAggregate = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  id?: Maybe<Scalars['String']>;
-  itemName?: Maybe<Scalars['String']>;
-  priceInThousands?: Maybe<Scalars['Decimal']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  userId?: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  itemName: Maybe<Scalars['String']>;
+  priceInThousands: Maybe<Scalars['Decimal']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
 };
 
 export type WishlistItemMinOrderByAggregateInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  itemName?: InputMaybe<SortOrder>;
-  priceInThousands?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  itemName: InputMaybe<SortOrder>;
+  priceInThousands: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export type WishlistItemOrderByRelationAggregateInput = {
-  _count?: InputMaybe<SortOrder>;
+  _count: InputMaybe<SortOrder>;
 };
 
 export type WishlistItemOrderByWithAggregationInput = {
-  _avg?: InputMaybe<WishlistItemAvgOrderByAggregateInput>;
-  _count?: InputMaybe<WishlistItemCountOrderByAggregateInput>;
-  _max?: InputMaybe<WishlistItemMaxOrderByAggregateInput>;
-  _min?: InputMaybe<WishlistItemMinOrderByAggregateInput>;
-  _sum?: InputMaybe<WishlistItemSumOrderByAggregateInput>;
-  createdAt?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  itemName?: InputMaybe<SortOrder>;
-  priceInThousands?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  userId?: InputMaybe<SortOrder>;
+  _avg: InputMaybe<WishlistItemAvgOrderByAggregateInput>;
+  _count: InputMaybe<WishlistItemCountOrderByAggregateInput>;
+  _max: InputMaybe<WishlistItemMaxOrderByAggregateInput>;
+  _min: InputMaybe<WishlistItemMinOrderByAggregateInput>;
+  _sum: InputMaybe<WishlistItemSumOrderByAggregateInput>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  itemName: InputMaybe<SortOrder>;
+  priceInThousands: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export type WishlistItemOrderByWithRelationInput = {
-  createdAt?: InputMaybe<SortOrder>;
-  id?: InputMaybe<SortOrder>;
-  itemName?: InputMaybe<SortOrder>;
-  priceInThousands?: InputMaybe<SortOrder>;
-  updatedAt?: InputMaybe<SortOrder>;
-  user?: InputMaybe<UserOrderByWithRelationInput>;
-  userId?: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  itemName: InputMaybe<SortOrder>;
+  priceInThousands: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  user: InputMaybe<UserOrderByWithRelationInput>;
+  userId: InputMaybe<SortOrder>;
 };
 
 export enum WishlistItemScalarFieldEnum {
@@ -3470,52 +3470,52 @@ export enum WishlistItemScalarFieldEnum {
 }
 
 export type WishlistItemScalarWhereInput = {
-  AND?: InputMaybe<Array<WishlistItemScalarWhereInput>>;
-  NOT?: InputMaybe<Array<WishlistItemScalarWhereInput>>;
-  OR?: InputMaybe<Array<WishlistItemScalarWhereInput>>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<StringFilter>;
-  itemName?: InputMaybe<StringFilter>;
-  priceInThousands?: InputMaybe<DecimalFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
-  userId?: InputMaybe<StringFilter>;
+  AND: InputMaybe<Array<WishlistItemScalarWhereInput>>;
+  NOT: InputMaybe<Array<WishlistItemScalarWhereInput>>;
+  OR: InputMaybe<Array<WishlistItemScalarWhereInput>>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  id: InputMaybe<StringFilter>;
+  itemName: InputMaybe<StringFilter>;
+  priceInThousands: InputMaybe<DecimalFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  userId: InputMaybe<StringFilter>;
 };
 
 export type WishlistItemScalarWhereWithAggregatesInput = {
-  AND?: InputMaybe<Array<WishlistItemScalarWhereWithAggregatesInput>>;
-  NOT?: InputMaybe<Array<WishlistItemScalarWhereWithAggregatesInput>>;
-  OR?: InputMaybe<Array<WishlistItemScalarWhereWithAggregatesInput>>;
-  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
-  id?: InputMaybe<StringWithAggregatesFilter>;
-  itemName?: InputMaybe<StringWithAggregatesFilter>;
-  priceInThousands?: InputMaybe<DecimalWithAggregatesFilter>;
-  updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
-  userId?: InputMaybe<StringWithAggregatesFilter>;
+  AND: InputMaybe<Array<WishlistItemScalarWhereWithAggregatesInput>>;
+  NOT: InputMaybe<Array<WishlistItemScalarWhereWithAggregatesInput>>;
+  OR: InputMaybe<Array<WishlistItemScalarWhereWithAggregatesInput>>;
+  createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  id: InputMaybe<StringWithAggregatesFilter>;
+  itemName: InputMaybe<StringWithAggregatesFilter>;
+  priceInThousands: InputMaybe<DecimalWithAggregatesFilter>;
+  updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  userId: InputMaybe<StringWithAggregatesFilter>;
 };
 
 export type WishlistItemSumAggregate = {
-  priceInThousands?: Maybe<Scalars['Decimal']>;
+  priceInThousands: Maybe<Scalars['Decimal']>;
 };
 
 export type WishlistItemSumOrderByAggregateInput = {
-  priceInThousands?: InputMaybe<SortOrder>;
+  priceInThousands: InputMaybe<SortOrder>;
 };
 
 export type WishlistItemUpdateInput = {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  itemName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  priceInThousands?: InputMaybe<DecimalFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  user?: InputMaybe<UserUpdateOneRequiredWithoutWishlistItemsNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  itemName: InputMaybe<StringFieldUpdateOperationsInput>;
+  priceInThousands: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutWishlistItemsNestedInput>;
 };
 
 export type WishlistItemUpdateManyMutationInput = {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  itemName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  priceInThousands?: InputMaybe<DecimalFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  itemName: InputMaybe<StringFieldUpdateOperationsInput>;
+  priceInThousands: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type WishlistItemUpdateManyWithWhereWithoutUserInput = {
@@ -3524,17 +3524,17 @@ export type WishlistItemUpdateManyWithWhereWithoutUserInput = {
 };
 
 export type WishlistItemUpdateManyWithoutUserNestedInput = {
-  connect?: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<WishlistItemCreateOrConnectWithoutUserInput>>;
-  create?: InputMaybe<Array<WishlistItemCreateWithoutUserInput>>;
-  createMany?: InputMaybe<WishlistItemCreateManyUserInputEnvelope>;
-  delete?: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<WishlistItemScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
-  set?: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
-  update?: InputMaybe<Array<WishlistItemUpdateWithWhereUniqueWithoutUserInput>>;
-  updateMany?: InputMaybe<Array<WishlistItemUpdateManyWithWhereWithoutUserInput>>;
-  upsert?: InputMaybe<Array<WishlistItemUpsertWithWhereUniqueWithoutUserInput>>;
+  connect: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<WishlistItemCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<WishlistItemCreateWithoutUserInput>>;
+  createMany: InputMaybe<WishlistItemCreateManyUserInputEnvelope>;
+  delete: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<WishlistItemScalarWhereInput>>;
+  disconnect: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
+  set: InputMaybe<Array<WishlistItemWhereUniqueInput>>;
+  update: InputMaybe<Array<WishlistItemUpdateWithWhereUniqueWithoutUserInput>>;
+  updateMany: InputMaybe<Array<WishlistItemUpdateManyWithWhereWithoutUserInput>>;
+  upsert: InputMaybe<Array<WishlistItemUpsertWithWhereUniqueWithoutUserInput>>;
 };
 
 export type WishlistItemUpdateWithWhereUniqueWithoutUserInput = {
@@ -3543,11 +3543,11 @@ export type WishlistItemUpdateWithWhereUniqueWithoutUserInput = {
 };
 
 export type WishlistItemUpdateWithoutUserInput = {
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  id?: InputMaybe<StringFieldUpdateOperationsInput>;
-  itemName?: InputMaybe<StringFieldUpdateOperationsInput>;
-  priceInThousands?: InputMaybe<DecimalFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  itemName: InputMaybe<StringFieldUpdateOperationsInput>;
+  priceInThousands: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type WishlistItemUpsertWithWhereUniqueWithoutUserInput = {
@@ -3557,40 +3557,40 @@ export type WishlistItemUpsertWithWhereUniqueWithoutUserInput = {
 };
 
 export type WishlistItemValidInput = {
-  createdAt?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['String']>;
+  createdAt: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
   itemName: Scalars['String'];
   priceInThousands: Scalars['String'];
-  updatedAt?: InputMaybe<Scalars['String']>;
-  userId?: InputMaybe<Scalars['String']>;
+  updatedAt: InputMaybe<Scalars['String']>;
+  userId: InputMaybe<Scalars['String']>;
 };
 
 export type WishlistItemWhereInput = {
-  AND?: InputMaybe<Array<WishlistItemWhereInput>>;
-  NOT?: InputMaybe<Array<WishlistItemWhereInput>>;
-  OR?: InputMaybe<Array<WishlistItemWhereInput>>;
-  createdAt?: InputMaybe<DateTimeFilter>;
-  id?: InputMaybe<StringFilter>;
-  itemName?: InputMaybe<StringFilter>;
-  priceInThousands?: InputMaybe<DecimalFilter>;
-  updatedAt?: InputMaybe<DateTimeFilter>;
-  user?: InputMaybe<UserRelationFilter>;
-  userId?: InputMaybe<StringFilter>;
+  AND: InputMaybe<Array<WishlistItemWhereInput>>;
+  NOT: InputMaybe<Array<WishlistItemWhereInput>>;
+  OR: InputMaybe<Array<WishlistItemWhereInput>>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  id: InputMaybe<StringFilter>;
+  itemName: InputMaybe<StringFilter>;
+  priceInThousands: InputMaybe<DecimalFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  user: InputMaybe<UserRelationFilter>;
+  userId: InputMaybe<StringFilter>;
 };
 
 export type WishlistItemWhereUniqueInput = {
-  id?: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
 };
 
 export type AuthUserFragment = { id: string, username: string, email: string, token: string, expiresAt: string };
 
-export type RecipeFragment = { id: string, userId: string, title: string, description: string, rating?: number, savedPosition?: number, createdAt: string, updatedAt: string };
+export type RecipeFragment = { id: string, userId: string, title: string, description: string, rating: number | null, savedPosition: number | null, createdAt: string, updatedAt: string };
 
 export type CurrentSavingFragment = { id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string };
 
 export type WishlistItemFragment = { id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string };
 
-export type ExpenseFragment = { id: string, userId: string, name: string, value: string, rating?: number, date?: string, description?: string, createdAt: string, updatedAt: string, timesPerMonth?: string, categories: Array<{ id: string }> };
+export type ExpenseFragment = { id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, categories: Array<{ id: string }> };
 
 export type CategoryFragment = { id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string };
 
@@ -3659,18 +3659,18 @@ export type DeleteExpenseMutationMutationVariables = Exact<{
 export type DeleteExpenseMutationMutation = { deleteExpenseMutation: boolean };
 
 export type ExpensesQueryQueryVariables = Exact<{
-  pagination?: InputMaybe<PaginationInput>;
+  pagination: InputMaybe<PaginationInput>;
 }>;
 
 
-export type ExpensesQueryQuery = { expensesQuery: Array<{ id: string, userId: string, name: string, value: string, rating?: number, date?: string, description?: string, createdAt: string, updatedAt: string, timesPerMonth?: string, categories: Array<{ id: string }> }> };
+export type ExpensesQueryQuery = { expensesQuery: Array<{ id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, categories: Array<{ id: string }> }> };
 
 export type SaveExpenseV2MutationVariables = Exact<{
   data: ExpenseInput;
 }>;
 
 
-export type SaveExpenseV2Mutation = { saveExpenseMutation: { id: string, userId: string, name: string, value: string, rating?: number, date?: string, description?: string, createdAt: string, updatedAt: string, timesPerMonth?: string, categories: Array<{ id: string }> } };
+export type SaveExpenseV2Mutation = { saveExpenseMutation: { id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, categories: Array<{ id: string }> } };
 
 export type SaveWishlistItemMutationMutationVariables = Exact<{
   data: WishlistItemValidInput;
@@ -3689,7 +3689,7 @@ export type SaveRecipeMutationMutationVariables = Exact<{
 }>;
 
 
-export type SaveRecipeMutationMutation = { saveRecipeMutation: { id: string, userId: string, title: string, description: string, rating?: number, savedPosition?: number, createdAt: string, updatedAt: string } };
+export type SaveRecipeMutationMutation = { saveRecipeMutation: { id: string, userId: string, title: string, description: string, rating: number | null, savedPosition: number | null, createdAt: string, updatedAt: string } };
 
 export type DeleteRecipeMutationMutationVariables = Exact<{
   recipeId: Scalars['String'];
@@ -3701,7 +3701,7 @@ export type DeleteRecipeMutationMutation = { deleteRecipeMutation: boolean };
 export type GetRecipesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetRecipesQueryQuery = { getRecipesQuery: Array<{ id: string, userId: string, title: string, description: string, rating?: number, savedPosition?: number, createdAt: string, updatedAt: string }> };
+export type GetRecipesQueryQuery = { getRecipesQuery: Array<{ id: string, userId: string, title: string, description: string, rating: number | null, savedPosition: number | null, createdAt: string, updatedAt: string }> };
 
 export const AuthUserFragmentDoc = gql`
     fragment AuthUser on AuthUserOutput {

@@ -11,9 +11,9 @@ export class MyCurrentSavingValidInput implements CurrentSavingValidInput {
   constructor() {
     this.value = ''
   }
-  createdAt?: InputMaybe<string> | undefined
-  date?: InputMaybe<string> | undefined
-  id?: InputMaybe<string> | undefined
-  updatedAt?: InputMaybe<string> | undefined
-  userId?: InputMaybe<string> | undefined
+  createdAt: InputMaybe<string>
+  date: InputMaybe<string>
+  id: InputMaybe<string>
+  updatedAt: InputMaybe<string>
+  userId: InputMaybe<string>
 }

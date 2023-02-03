@@ -17,9 +17,9 @@ const config: CodegenConfig = {
         scalars: {
           DateTime: 'string',
           Date: 'string',
-          Decimal: 'string',
+          Decimal: 'string', //
         },
-        maybeValue: 'T',
+        avoidOptionals: true,
       },
     },
   },
