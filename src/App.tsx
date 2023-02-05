@@ -4,6 +4,7 @@ import {
   Box,
   ColorScheme,
   ColorSchemeProvider,
+  LoadingOverlay,
   MantineProvider,
 } from '@mantine/core'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -26,7 +27,7 @@ function App() {
   const [queryClient] = useState(new QueryClient())
 
   const authUser = useAuthStore((s) => s.authUser)
-  const { checkAuthOrLogout } = useCheckAuthOrLogout()
+  const { checkAuthOrLogout, loading } = useCheckAuthOrLogout()
 
   const [colorScheme, setColorScheme] = useLocalStorage<
     DeepPartial<ColorScheme>
@@ -59,6 +60,8 @@ function App() {
                 height: '100vh',
               }}
             >
+              <LoadingOverlay visible={loading} />
+
               {authUser ? (
                 <>
                   <HomePage />
