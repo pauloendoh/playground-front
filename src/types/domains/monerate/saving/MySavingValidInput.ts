@@ -10,6 +10,7 @@ export class MySavingValidInput implements SavingValidInput {
 
   constructor() {
     this.value = ''
+    this.date = new Date().toISOString()
   }
   createdAt: InputMaybe<string>
   date: InputMaybe<string>

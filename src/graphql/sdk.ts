@@ -19,7 +19,7 @@ const client = new GraphQLClient(GRAPHQL_URL, {
   },
   responseMiddleware: (res: any) => {
     if (res instanceof ClientError) {
-      myNotifications.success(res.response.errors?.[0]?.message || 'Error')
+      myNotifications.error(res.response.errors?.[0]?.message || 'Error')
     }
   },
 })
