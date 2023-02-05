@@ -1,4 +1,4 @@
-import { AppShell, Box } from '@mantine/core'
+import { AppShell, Container } from '@mantine/core'
 import useRouterStore from '../../../hooks/zustand/useRouterStore'
 import RecipesContent from '../../recipes-page/RecipesContent/RecipesContent'
 import MonerateContent from '../MonerateContent/MonerateContent'
@@ -24,10 +24,10 @@ const HomePage = (props: Props) => {
         },
       })}
     >
-      <Box>
+      <Container>
         {currentPage === 'recipes' && <RecipesContent />}
         {currentPage === 'monerate' && <MonerateContent />}
-      </Box>
+      </Container>
     </AppShell>
   )
 }
