@@ -2,11 +2,11 @@ import { ActionIcon, Menu } from '@mantine/core'
 import { useState } from 'react'
 
 import { MdDelete, MdMoreHoriz } from 'react-icons/md'
-import { useDeleteSavingMutation } from '../../../../../hooks/react-query/monerate/current-saving/useDeleteSavingMutation'
-import { MyCurrentSavingValidInput } from '../../../../../types/domains/monerate/current-saving/MyCurrentSavingValidInput'
+import { useDeleteSavingMutation } from '../../../../../hooks/react-query/monerate/saving/useDeleteSavingMutation'
+import { MySavingValidInput } from '../../../../../types/domains/monerate/saving/MySavingValidInput'
 
 type Props = {
-  saving: MyCurrentSavingValidInput
+  saving: MySavingValidInput
   afterDelete: () => void
 }
 

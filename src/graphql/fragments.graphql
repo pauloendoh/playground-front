@@ -17,7 +17,7 @@ fragment Recipe on Recipe {
   updatedAt
 }
 
-fragment CurrentSaving on CurrentSaving {
+fragment CurrentSaving on Saving {
   id
   userId
   value

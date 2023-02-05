@@ -1,10 +1,10 @@
 import { IsNumberString } from 'class-validator'
 import {
-  CurrentSavingValidInput,
   InputMaybe,
+  SavingValidInput,
 } from '../../../../graphql/generated/graphql'
 
-export class MyCurrentSavingValidInput implements CurrentSavingValidInput {
+export class MySavingValidInput implements SavingValidInput {
   @IsNumberString()
   value: string
 

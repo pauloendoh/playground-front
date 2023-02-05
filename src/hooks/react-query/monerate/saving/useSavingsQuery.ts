@@ -4,17 +4,16 @@ import { sdk } from '../../../../graphql/sdk'
 import { queryKeys } from '../../../../utils/queryKeys'
 
 gql`
-  query CurrentSavingsQuery {
-    currentSavingsQuery {
+  query SavingsQuery {
+    savingsQuery {
       ...CurrentSaving
     }
   }
 `
 
-export const useCurrentSavingsQuery = () => {
+export const useSavingsQuery = () => {
   return useQuery({
     queryKey: queryKeys.currentSavings,
-    queryFn: () =>
-      sdk.CurrentSavingsQuery().then((res) => res.currentSavingsQuery),
+    queryFn: () => sdk.SavingsQuery().then((res) => res.savingsQuery),
   })
 }

@@ -1,9 +1,9 @@
 import { Box, Button, Flex, Grid, ScrollArea, Text } from '@mantine/core'
 import { useMemo } from 'react'
 import { format } from 'timeago.js'
-import { useCurrentSavingsQuery } from '../../../hooks/react-query/monerate/current-saving/useCurrentSavingsQuery'
-import useCurrentSavingModalStore from '../../../hooks/zustand/modals/useCurrentSavingModalStore'
-import { MyCurrentSavingValidInput } from '../../../types/domains/monerate/current-saving/MyCurrentSavingValidInput'
+import { useSavingsQuery } from '../../../hooks/react-query/monerate/saving/useSavingsQuery'
+import useSavingModalStore from '../../../hooks/zustand/modals/useSavingModalStore'
+import { MySavingValidInput } from '../../../types/domains/monerate/saving/MySavingValidInput'
 import ExpensesContent from '../../monerate-page/ExpensesContent/ExpensesContent'
 import WishlistItems from '../../monerate-page/WishlistItems/WishlistItems'
 import MyPaper from '../../_common/overrides/MyPaper'
@@ -13,8 +13,8 @@ type Props = {
 }
 
 const MonerateContent = (props: Props) => {
-  const { openModal } = useCurrentSavingModalStore()
-  const { data: savings } = useCurrentSavingsQuery()
+  const { openModal } = useSavingModalStore()
+  const { data: savings } = useSavingsQuery()
 
   const sortedSavings = useMemo(
     () => savings?.sort((a, b) => b.date.localeCompare(a.date)) || [],
@@ -29,10 +29,10 @@ const MonerateContent = (props: Props) => {
             <Button
               fullWidth
               onClick={() => {
-                openModal(new MyCurrentSavingValidInput())
+                openModal(new MySavingValidInput())
               }}
             >
-              + Current Saving
+              + Saving
             </Button>
             <ScrollArea mt={24} sx={{ height: 200 }} type="auto">
               <Flex direction="column">

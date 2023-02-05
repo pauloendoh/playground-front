@@ -1,15 +1,15 @@
 import useCategoryModalStore from '../../../hooks/zustand/modals/useCategoryModalStore'
-import useCurrentSavingModalStore from '../../../hooks/zustand/modals/useCurrentSavingModalStore'
 import useExpenseModalStore from '../../../hooks/zustand/modals/useExpenseModalStore'
 import useRecipeModalStore from '../../../hooks/zustand/modals/useRecipeModalStore'
+import useSavingModalStore from '../../../hooks/zustand/modals/useSavingModalStore'
 import CategoryModal from './CategoryModal/CategoryModal'
-import CurrentSavingModal from './CurrentSavingModal/CurrentSavingModal'
 import ExpenseModal from './ExpenseModal/ExpenseModal'
 import RecipeModal from './RecipeModal/RecipeModal'
+import SavingModal from './SavingModal/SavingModal'
 
 const GlobalModals = () => {
   const recipeModalStore = useRecipeModalStore()
-  const currentSavingModalStore = useCurrentSavingModalStore()
+  const currentSavingModalStore = useSavingModalStore()
   const expenseModalStore = useExpenseModalStore()
   const categoryModalStore = useCategoryModalStore()
   return (
@@ -20,7 +20,7 @@ const GlobalModals = () => {
         onClose={recipeModalStore.onClose}
       />
 
-      <CurrentSavingModal
+      <SavingModal
         isOpen={currentSavingModalStore.isOpen}
         onClose={currentSavingModalStore.onClose}
         initialValue={currentSavingModalStore.initialValue}

@@ -3,20 +3,20 @@ import { Button, CloseButton, Flex, Grid, Modal, Title } from '@mantine/core'
 import { DatePicker } from '@mantine/dates'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useSaveCurrentSavingMutation } from '../../../../hooks/react-query/monerate/current-saving/useSaveCurrentSavingMutation'
-import { MyCurrentSavingValidInput } from '../../../../types/domains/monerate/current-saving/MyCurrentSavingValidInput'
+import { useSaveSavingMutation } from '../../../../hooks/react-query/monerate/saving/useSaveSavingMutation'
+import { MySavingValidInput } from '../../../../types/domains/monerate/saving/MySavingValidInput'
 import MyTextInput from '../../inputs/MyTextInput'
 import { SavingMoreMenu } from './SavingMoreMenu/SavingMoreMenu'
 
 type Props = {
   isOpen: boolean
-  initialValue?: MyCurrentSavingValidInput
+  initialValue?: MySavingValidInput
   onClose: () => void
 }
 
-const resolver = classValidatorResolver(MyCurrentSavingValidInput)
+const resolver = classValidatorResolver(MySavingValidInput)
 
-export default function CurrentSavingModal(props: Props) {
+export default function SavingModal(props: Props) {
   const {
     register,
     handleSubmit,
@@ -24,7 +24,7 @@ export default function CurrentSavingModal(props: Props) {
     setFocus,
     reset,
     setValue,
-  } = useForm<MyCurrentSavingValidInput>({
+  } = useForm<MySavingValidInput>({
     resolver,
     defaultValues: props.initialValue,
   })
@@ -38,9 +38,9 @@ export default function CurrentSavingModal(props: Props) {
     }
   }, [props.isOpen])
 
-  const { mutate: submitSave } = useSaveCurrentSavingMutation()
+  const { mutate: submitSave } = useSaveSavingMutation()
 
-  const onSubmit = (data: MyCurrentSavingValidInput) => {
+  const onSubmit = (data: MySavingValidInput) => {
     submitSave(data, {
       onSuccess: () => {
         props.onClose()

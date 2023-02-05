@@ -3,34 +3,34 @@ import { upsert } from 'endoh-utils'
 import gql from 'graphql-tag'
 import { CurrentSavingFragment } from '../../../../graphql/generated/graphql'
 import { sdk } from '../../../../graphql/sdk'
-import { MyCurrentSavingValidInput } from '../../../../types/domains/monerate/current-saving/MyCurrentSavingValidInput'
+import { MySavingValidInput } from '../../../../types/domains/monerate/saving/MySavingValidInput'
 import { myNotifications } from '../../../../utils/mantine/myNotifications'
 import { queryKeys } from '../../../../utils/queryKeys'
 
 gql`
-  mutation SaveCurrentSavingMutation($data: CurrentSavingValidInput!) {
-    saveCurrentSavingMutation(data: $data) {
+  mutation SaveSavingMutation($data: SavingValidInput!) {
+    saveSavingMutation(data: $data) {
       ...CurrentSaving
     }
   }
 `
 
-export const useSaveCurrentSavingMutation = () => {
+export const useSaveSavingMutation = () => {
   const queryClient = useQueryClient()
 
   return useMutation(
-    (data: MyCurrentSavingValidInput) =>
+    (data: MySavingValidInput) =>
       sdk
-        .SaveCurrentSavingMutation({
+        .SaveSavingMutation({
           data: {
             ...data,
             value: data.value,
           },
         })
-        .then((res) => res.saveCurrentSavingMutation),
+        .then((res) => res.saveSavingMutation),
     {
       onSuccess: (saved) => {
-        myNotifications.success('Current saving saved!')
+        myNotifications.success('saving saved!')
         if (!saved) return
         queryClient.setQueryData<CurrentSavingFragment[]>(
           queryKeys.currentSavings,
