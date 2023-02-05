@@ -60,7 +60,7 @@ function App() {
                 height: '100vh',
               }}
             >
-              <LoadingOverlay visible={loading} />
+              <LoadingOverlay visible={true} overlayOpacity={1} />
 
               {authUser ? (
                 <>
