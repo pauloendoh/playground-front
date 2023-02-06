@@ -7,6 +7,7 @@ import useExpenseFilterStore from '../../../hooks/zustand/useExpenseFilterStore'
 import { MyExpenseInput } from '../../../types/domains/monerate/expense/MyExpenseInput'
 import MyPaper from '../../_common/overrides/MyPaper'
 import ExpenseFilters from './ExpenseFilters/ExpenseFilters'
+import ExpenseItem from './ExpenseItem/ExpenseItem'
 
 type Props = {
   test?: string
@@ -58,7 +59,8 @@ const ExpensesContent = (props: Props) => {
       <MyPaper mt={16}>
         <Flex direction="column">
           {flatExpenses?.map((expense) => (
-            <Button
+            <ExpenseItem
+              expense={expense}
               key={expense.id}
               onClick={() => {
                 openModal({
@@ -68,17 +70,7 @@ const ExpensesContent = (props: Props) => {
                   ),
                 })
               }}
-              color="dark"
-              styles={{
-                label: {
-                  width: '100%',
-                  justifyContent: 'space-between',
-                },
-              }}
-              variant="subtle"
-            >
-              {expense?.name} - {expense?.value}
-            </Button>
+            />
           ))}
           {hasNextPage && (
             <Center ref={ref} sx={{ height: 32 }}>
