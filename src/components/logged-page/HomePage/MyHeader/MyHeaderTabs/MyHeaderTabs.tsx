@@ -1,22 +1,18 @@
 import { Tabs, Title } from '@mantine/core'
 import { useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import useRouterStore from '../../../../../hooks/zustand/useRouterStore'
 
 type Props = {
   test?: string
 }
 
 const MyHeaderTabs = (props: Props) => {
-  const { currentPage, setCurrentPage } = useRouterStore()
   const location = useLocation()
   const tabValue = useMemo(() => {
-    if (location.pathname === '/') {
-      return 'monerate'
-    }
-    if (location.pathname === '/recipes') {
+    if (location.pathname.startsWith('/recipes')) {
       return 'recipes'
     }
+    return 'monerate'
   }, [location])
 
   return (

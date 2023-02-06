@@ -1,8 +1,10 @@
 import { AppShell, Container } from '@mantine/core'
 import { Route, Routes } from 'react-router-dom'
 import useRouterStore from '../../../hooks/zustand/useRouterStore'
+import ExpensesContent from '../../monerate-page/ExpensesContent/ExpensesContent'
 import RecipesContent from '../../recipes-page/RecipesContent/RecipesContent'
 import MonerateContent from '../MonerateContent/MonerateContent'
+import OthersContent from '../MonerateContent/OthersContent/OthersContent'
 import MyHeader from './MyHeader/MyHeader'
 
 type Props = {
@@ -27,8 +29,11 @@ const HomePage = (props: Props) => {
     >
       <Container>
         <Routes>
-          <Route path="/" element={<MonerateContent />} />
           <Route path="/recipes" element={<RecipesContent />} />
+          <Route path="/" element={<MonerateContent />}>
+            <Route path="monerate/others" element={<OthersContent />} />
+            <Route path="/" element={<ExpensesContent />} />
+          </Route>
         </Routes>
       </Container>
     </AppShell>
