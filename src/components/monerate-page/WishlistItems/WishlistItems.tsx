@@ -42,7 +42,7 @@ const WishlistItems = (props: Props) => {
         + Add Wishlist Item
       </Button>
 
-      <ScrollArea mt={24} sx={{ maxHeight: 'calc(100vh - 320px)' }} type="auto">
+      <ScrollArea mt={24} sx={{ height: 'calc(100vh - 320px)' }} type="auto">
         <Flex direction="column">
           {sortedItems?.map((item) => (
             <Button

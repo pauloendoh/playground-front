@@ -19,7 +19,7 @@ const MonerateSubtabs = (props: Props) => {
 
   return (
     <Tabs value={tabValue}>
-      <Tabs.List>
+      <Tabs.List sx={{ borderBottom: 'none' }}>
         {monerateSubtabs.map((tab) => (
           <Link key={tab.to} to={tab.to} style={{ textDecoration: 'unset' }}>
             <Tabs.Tab value={tab.to}>{tab.label}</Tabs.Tab>
