@@ -1,4 +1,4 @@
-import { Button, Grid } from '@mantine/core'
+import { Button, Grid, Text } from '@mantine/core'
 import { ExpenseFragment } from '../../../../graphql/generated/graphql'
 
 type Props = {
@@ -15,13 +15,17 @@ const ExpenseItem = ({ expense, ...props }: Props) => {
       styles={{
         label: {
           width: '100%',
-          justifyContent: 'space-between',
+          height: 'fit-content',
+          padding: '8px 0px',
         },
       }}
+      sx={{ height: 'unset' }}
       variant="subtle"
     >
-      <Grid sx={{ width: '100%' }}>
-        <Grid.Col span={4}>{expense.name}</Grid.Col>
+      <Grid sx={{ width: '100%' }} align="center">
+        <Grid.Col span={4} sx={{ whiteSpace: 'normal' }}>
+          <Text>{expense.name}</Text>
+        </Grid.Col>
         <Grid.Col
           span={3}
           sx={(theme) => ({

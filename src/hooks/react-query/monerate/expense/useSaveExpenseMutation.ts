@@ -5,6 +5,7 @@ import { sdk } from '../../../../graphql/sdk'
 import { MyExpenseInput } from '../../../../types/domains/monerate/expense/MyExpenseInput'
 import { myNotifications } from '../../../../utils/mantine/myNotifications'
 import { queryKeys } from '../../../../utils/queryKeys'
+import { IExpenseFilter } from '../../../zustand/useExpenseFilterStore'
 
 gql`
   mutation SaveExpenseV2($data: ExpenseInput!) {
@@ -14,7 +15,7 @@ gql`
   }
 `
 
-export const useSaveExpenseMutation = () => {
+export const useSaveExpenseMutation = (filter?: IExpenseFilter) => {
   const queryClient = useQueryClient()
 
   return useMutation(
@@ -35,7 +36,7 @@ export const useSaveExpenseMutation = () => {
       onSuccess: (saved) => {
         myNotifications.success('Expense saved!')
 
-        queryClient.invalidateQueries(queryKeys.expenses())
+        queryClient.invalidateQueries(queryKeys.expenses(filter))
       },
     }
   )

@@ -13,6 +13,7 @@ import { useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveExpenseMutation } from '../../../../hooks/react-query/monerate/expense/useSaveExpenseMutation'
 import { useRecipesQuery } from '../../../../hooks/react-query/recipe/useRecipesQuery'
+import useExpenseFilterStore from '../../../../hooks/zustand/useExpenseFilterStore'
 import { MyExpenseInput } from '../../../../types/domains/monerate/expense/MyExpenseInput'
 import MyTextInput from '../../inputs/MyTextInput'
 import SaveCancelButtons from '../../inputs/SaveCancelButtons'
@@ -50,7 +51,9 @@ export default function ExpenseModal(props: Props) {
     }
   }, [props.isOpen])
 
-  const { mutate: submitCreateRecipe, isLoading } = useSaveExpenseMutation()
+  const filter = useExpenseFilterStore((s) => s.filter)
+  const { mutate: submitCreateRecipe, isLoading } =
+    useSaveExpenseMutation(filter)
 
   const onSubmit = (data: MyExpenseInput) => {
     submitCreateRecipe(data, {
