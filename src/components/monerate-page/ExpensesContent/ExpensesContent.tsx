@@ -42,47 +42,47 @@ const ExpensesContent = (props: Props) => {
   }, [entry?.isIntersecting, hasNextPage, data])
 
   return (
-    <MyPaper>
-      <Box>
-        <Button
-          onClick={() => {
-            openModal(new MyExpenseInput())
-          }}
-        >
-          + Add Expense
-        </Button>
-      </Box>
-      <Flex direction="column" mt={16}>
-        {flattedData?.map((expense) => (
-          <Button
-            key={expense.id}
-            onClick={() => {
-              openModal({
-                ...expense!,
-                categoryIds: expense?.categories?.map(
-                  (category) => category?.id
-                ),
-              })
-            }}
-            color="dark"
-            styles={{
-              label: {
-                width: '100%',
-                justifyContent: 'space-between',
-              },
-            }}
-            variant="subtle"
-          >
-            {expense?.name} - {expense?.value}
-          </Button>
-        ))}
-        {hasNextPage && (
-          <Center ref={ref} sx={{ height: 32 }}>
-            <Loader />
-          </Center>
-        )}
-      </Flex>
-    </MyPaper>
+    <Box>
+      <Button
+        onClick={() => {
+          openModal(new MyExpenseInput())
+        }}
+      >
+        + Add Expense
+      </Button>
+      <MyPaper mt={16}>
+        <Flex direction="column">
+          {flattedData?.map((expense) => (
+            <Button
+              key={expense.id}
+              onClick={() => {
+                openModal({
+                  ...expense!,
+                  categoryIds: expense?.categories?.map(
+                    (category) => category?.id
+                  ),
+                })
+              }}
+              color="dark"
+              styles={{
+                label: {
+                  width: '100%',
+                  justifyContent: 'space-between',
+                },
+              }}
+              variant="subtle"
+            >
+              {expense?.name} - {expense?.value}
+            </Button>
+          ))}
+          {hasNextPage && (
+            <Center ref={ref} sx={{ height: 32 }}>
+              <Loader />
+            </Center>
+          )}
+        </Flex>
+      </MyPaper>
+    </Box>
   )
 }
 

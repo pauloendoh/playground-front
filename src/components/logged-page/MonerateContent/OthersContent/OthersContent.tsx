@@ -30,7 +30,11 @@ const OthersContent = (props: Props) => {
           >
             + Add Saving
           </Button>
-          <ScrollArea mt={24} sx={{ height: 200 }} type="auto">
+          <ScrollArea
+            mt={24}
+            sx={{ maxHeight: 'calc(100vh - 320px)' }}
+            type="auto"
+          >
             <Flex direction="column">
               {sortedSavings?.map((saving) => (
                 <Button
