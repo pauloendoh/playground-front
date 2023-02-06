@@ -19,7 +19,7 @@ const SalarySection = (props: Props) => {
 
   useEffect(() => {}, [])
 
-  const [debouncedValue] = useDebouncedValue(value, 250)
+  const [debouncedValue] = useDebouncedValue(value, 500)
 
   const { mutate: submitSave } = useSaveSalaryMutation()
 
