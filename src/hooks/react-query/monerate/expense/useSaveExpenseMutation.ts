@@ -35,7 +35,7 @@ export const useSaveExpenseMutation = () => {
       onSuccess: (saved) => {
         myNotifications.success('Expense saved!')
 
-        queryClient.invalidateQueries(queryKeys.expenses)
+        queryClient.invalidateQueries(queryKeys.expenses())
       },
     }
   )

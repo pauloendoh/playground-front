@@ -1,6 +1,5 @@
 import { AppShell, Container } from '@mantine/core'
 import { Route, Routes } from 'react-router-dom'
-import useRouterStore from '../../../hooks/zustand/useRouterStore'
 import { urls } from '../../../utils/urls'
 import ExpensesContent from '../../monerate-page/ExpensesContent/ExpensesContent'
 import RecipesContent from '../../recipes-page/RecipesContent/RecipesContent'
@@ -13,7 +12,6 @@ type Props = {
 }
 
 const HomePage = (props: Props) => {
-  const { currentPage } = useRouterStore()
   return (
     <AppShell
       padding="md"

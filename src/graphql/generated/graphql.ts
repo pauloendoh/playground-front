@@ -702,6 +702,10 @@ export type ExpenseCreateWithoutUserInput = {
   value: Scalars['Decimal'];
 };
 
+export type ExpenseFilterInput = {
+  expensesByText: InputMaybe<Scalars['String']>;
+};
+
 export type ExpenseGroupBy = {
   _avg: Maybe<ExpenseAvgAggregate>;
   _count: Maybe<ExpenseCountAggregate>;
@@ -1787,6 +1791,7 @@ export type QueryExpensesArgs = {
 
 
 export type QueryExpensesQueryArgs = {
+  filter: InputMaybe<ExpenseFilterInput>;
   pagination: InputMaybe<PaginationInput>;
 };
 
@@ -3647,6 +3652,7 @@ export type DeleteExpenseMutationMutation = { deleteExpenseMutation: boolean };
 
 export type ExpensesQueryQueryVariables = Exact<{
   pagination: InputMaybe<PaginationInput>;
+  filter: InputMaybe<ExpenseFilterInput>;
 }>;
 
 
@@ -3834,8 +3840,8 @@ export const DeleteExpenseMutationDocument = gql`
 }
     `;
 export const ExpensesQueryDocument = gql`
-    query ExpensesQuery($pagination: PaginationInput) {
-  expensesQuery(pagination: $pagination) {
+    query ExpensesQuery($pagination: PaginationInput, $filter: ExpenseFilterInput) {
+  expensesQuery(pagination: $pagination, filter: $filter) {
     ...Expense
   }
 }

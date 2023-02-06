@@ -1,7 +1,9 @@
+import { IExpenseFilter } from '../hooks/zustand/useExpenseFilterStore'
+
 export const queryKeys = {
   recipes: ['recipes'],
   currentSavings: ['currentSavings'],
   wishlistItems: ['wishlistItems'],
-  expenses: ['expenses'],
+  expenses: (filter?: IExpenseFilter) => ['expenses', filter],
   categories: ['categories'],
 }

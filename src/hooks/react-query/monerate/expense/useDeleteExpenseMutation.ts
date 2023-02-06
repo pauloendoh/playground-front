@@ -22,7 +22,7 @@ export const useDeleteExpenseMutation = () => {
         .then((res) => res.deleteExpenseMutation),
     {
       onSuccess: (_, id) => {
-        queryClient.invalidateQueries(queryKeys.expenses)
+        queryClient.invalidateQueries(queryKeys.expenses())
 
         myNotifications.success('Expense deleted!')
       },
