@@ -43,6 +43,14 @@ export type AggregateRecipe = {
   _sum: Maybe<RecipeSumAggregate>;
 };
 
+export type AggregateSalary = {
+  _avg: Maybe<SalaryAvgAggregate>;
+  _count: Maybe<SalaryCountAggregate>;
+  _max: Maybe<SalaryMaxAggregate>;
+  _min: Maybe<SalaryMinAggregate>;
+  _sum: Maybe<SalarySumAggregate>;
+};
+
 export type AggregateSaving = {
   _avg: Maybe<SavingAvgAggregate>;
   _count: Maybe<SavingCountAggregate>;
@@ -1021,6 +1029,25 @@ export type ExpenseWhereUniqueInput = {
   id: InputMaybe<Scalars['String']>;
 };
 
+export type IntFieldUpdateOperationsInput = {
+  decrement: InputMaybe<Scalars['Int']>;
+  divide: InputMaybe<Scalars['Int']>;
+  increment: InputMaybe<Scalars['Int']>;
+  multiply: InputMaybe<Scalars['Int']>;
+  set: InputMaybe<Scalars['Int']>;
+};
+
+export type IntFilter = {
+  equals: InputMaybe<Scalars['Int']>;
+  gt: InputMaybe<Scalars['Int']>;
+  gte: InputMaybe<Scalars['Int']>;
+  in: InputMaybe<Array<Scalars['Int']>>;
+  lt: InputMaybe<Scalars['Int']>;
+  lte: InputMaybe<Scalars['Int']>;
+  not: InputMaybe<NestedIntFilter>;
+  notIn: InputMaybe<Array<Scalars['Int']>>;
+};
+
 export type IntNullableFilter = {
   equals: InputMaybe<Scalars['Int']>;
   gt: InputMaybe<Scalars['Int']>;
@@ -1048,6 +1075,22 @@ export type IntNullableWithAggregatesFilter = {
   notIn: InputMaybe<Array<Scalars['Int']>>;
 };
 
+export type IntWithAggregatesFilter = {
+  _avg: InputMaybe<NestedFloatFilter>;
+  _count: InputMaybe<NestedIntFilter>;
+  _max: InputMaybe<NestedIntFilter>;
+  _min: InputMaybe<NestedIntFilter>;
+  _sum: InputMaybe<NestedIntFilter>;
+  equals: InputMaybe<Scalars['Int']>;
+  gt: InputMaybe<Scalars['Int']>;
+  gte: InputMaybe<Scalars['Int']>;
+  in: InputMaybe<Array<Scalars['Int']>>;
+  lt: InputMaybe<Scalars['Int']>;
+  lte: InputMaybe<Scalars['Int']>;
+  not: InputMaybe<NestedIntWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['Int']>>;
+};
+
 export type LoginValidInput = {
   password: Scalars['String'];
   usernameOrEmail: Scalars['String'];
@@ -1057,12 +1100,14 @@ export type Mutation = {
   createManyCategory: AffectedRowsOutput;
   createManyExpense: AffectedRowsOutput;
   createManyRecipe: AffectedRowsOutput;
+  createManySalary: AffectedRowsOutput;
   createManySaving: AffectedRowsOutput;
   createManyUser: AffectedRowsOutput;
   createManyWishlistItem: AffectedRowsOutput;
   createOneCategory: Category;
   createOneExpense: Expense;
   createOneRecipe: Recipe;
+  createOneSalary: Salary;
   createOneSaving: Saving;
   createOneUser: User;
   createOneWishlistItem: WishlistItem;
@@ -1071,12 +1116,14 @@ export type Mutation = {
   deleteManyCategory: AffectedRowsOutput;
   deleteManyExpense: AffectedRowsOutput;
   deleteManyRecipe: AffectedRowsOutput;
+  deleteManySalary: AffectedRowsOutput;
   deleteManySaving: AffectedRowsOutput;
   deleteManyUser: AffectedRowsOutput;
   deleteManyWishlistItem: AffectedRowsOutput;
   deleteOneCategory: Maybe<Category>;
   deleteOneExpense: Maybe<Expense>;
   deleteOneRecipe: Maybe<Recipe>;
+  deleteOneSalary: Maybe<Salary>;
   deleteOneSaving: Maybe<Saving>;
   deleteOneUser: Maybe<User>;
   deleteOneWishlistItem: Maybe<WishlistItem>;
@@ -1088,23 +1135,27 @@ export type Mutation = {
   saveCategoryMutation: Category;
   saveExpenseMutation: Expense;
   saveRecipeMutation: Recipe;
+  saveSalaryMutation: Salary;
   saveSavingMutation: Saving;
   saveWishlistItemMutation: WishlistItem;
   updateManyCategory: AffectedRowsOutput;
   updateManyExpense: AffectedRowsOutput;
   updateManyRecipe: AffectedRowsOutput;
+  updateManySalary: AffectedRowsOutput;
   updateManySaving: AffectedRowsOutput;
   updateManyUser: AffectedRowsOutput;
   updateManyWishlistItem: AffectedRowsOutput;
   updateOneCategory: Maybe<Category>;
   updateOneExpense: Maybe<Expense>;
   updateOneRecipe: Maybe<Recipe>;
+  updateOneSalary: Maybe<Salary>;
   updateOneSaving: Maybe<Saving>;
   updateOneUser: Maybe<User>;
   updateOneWishlistItem: Maybe<WishlistItem>;
   upsertOneCategory: Category;
   upsertOneExpense: Expense;
   upsertOneRecipe: Recipe;
+  upsertOneSalary: Salary;
   upsertOneSaving: Saving;
   upsertOneUser: User;
   upsertOneWishlistItem: WishlistItem;
@@ -1125,6 +1176,12 @@ export type MutationCreateManyExpenseArgs = {
 
 export type MutationCreateManyRecipeArgs = {
   data: Array<RecipeCreateManyInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreateManySalaryArgs = {
+  data: Array<SalaryCreateManyInput>;
   skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -1159,6 +1216,11 @@ export type MutationCreateOneExpenseArgs = {
 
 export type MutationCreateOneRecipeArgs = {
   data: RecipeCreateInput;
+};
+
+
+export type MutationCreateOneSalaryArgs = {
+  data: SalaryCreateInput;
 };
 
 
@@ -1202,6 +1264,11 @@ export type MutationDeleteManyRecipeArgs = {
 };
 
 
+export type MutationDeleteManySalaryArgs = {
+  where: InputMaybe<SalaryWhereInput>;
+};
+
+
 export type MutationDeleteManySavingArgs = {
   where: InputMaybe<SavingWhereInput>;
 };
@@ -1229,6 +1296,11 @@ export type MutationDeleteOneExpenseArgs = {
 
 export type MutationDeleteOneRecipeArgs = {
   where: RecipeWhereUniqueInput;
+};
+
+
+export type MutationDeleteOneSalaryArgs = {
+  where: SalaryWhereUniqueInput;
 };
 
 
@@ -1287,6 +1359,11 @@ export type MutationSaveRecipeMutationArgs = {
 };
 
 
+export type MutationSaveSalaryMutationArgs = {
+  data: SalaryValidInput;
+};
+
+
 export type MutationSaveSavingMutationArgs = {
   data: SavingValidInput;
 };
@@ -1312,6 +1389,12 @@ export type MutationUpdateManyExpenseArgs = {
 export type MutationUpdateManyRecipeArgs = {
   data: RecipeUpdateManyMutationInput;
   where: InputMaybe<RecipeWhereInput>;
+};
+
+
+export type MutationUpdateManySalaryArgs = {
+  data: SalaryUpdateManyMutationInput;
+  where: InputMaybe<SalaryWhereInput>;
 };
 
 
@@ -1351,6 +1434,12 @@ export type MutationUpdateOneRecipeArgs = {
 };
 
 
+export type MutationUpdateOneSalaryArgs = {
+  data: SalaryUpdateInput;
+  where: SalaryWhereUniqueInput;
+};
+
+
 export type MutationUpdateOneSavingArgs = {
   data: SavingUpdateInput;
   where: SavingWhereUniqueInput;
@@ -1387,6 +1476,13 @@ export type MutationUpsertOneRecipeArgs = {
   create: RecipeCreateInput;
   update: RecipeUpdateInput;
   where: RecipeWhereUniqueInput;
+};
+
+
+export type MutationUpsertOneSalaryArgs = {
+  create: SalaryCreateInput;
+  update: SalaryUpdateInput;
+  where: SalaryWhereUniqueInput;
 };
 
 
@@ -1514,6 +1610,17 @@ export type NestedDecimalWithAggregatesFilter = {
   notIn: InputMaybe<Array<Scalars['Decimal']>>;
 };
 
+export type NestedFloatFilter = {
+  equals: InputMaybe<Scalars['Float']>;
+  gt: InputMaybe<Scalars['Float']>;
+  gte: InputMaybe<Scalars['Float']>;
+  in: InputMaybe<Array<Scalars['Float']>>;
+  lt: InputMaybe<Scalars['Float']>;
+  lte: InputMaybe<Scalars['Float']>;
+  not: InputMaybe<NestedFloatFilter>;
+  notIn: InputMaybe<Array<Scalars['Float']>>;
+};
+
 export type NestedFloatNullableFilter = {
   equals: InputMaybe<Scalars['Float']>;
   gt: InputMaybe<Scalars['Float']>;
@@ -1560,6 +1667,22 @@ export type NestedIntNullableWithAggregatesFilter = {
   lt: InputMaybe<Scalars['Int']>;
   lte: InputMaybe<Scalars['Int']>;
   not: InputMaybe<NestedIntNullableWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['Int']>>;
+};
+
+export type NestedIntWithAggregatesFilter = {
+  _avg: InputMaybe<NestedFloatFilter>;
+  _count: InputMaybe<NestedIntFilter>;
+  _max: InputMaybe<NestedIntFilter>;
+  _min: InputMaybe<NestedIntFilter>;
+  _sum: InputMaybe<NestedIntFilter>;
+  equals: InputMaybe<Scalars['Int']>;
+  gt: InputMaybe<Scalars['Int']>;
+  gte: InputMaybe<Scalars['Int']>;
+  in: InputMaybe<Array<Scalars['Int']>>;
+  lt: InputMaybe<Scalars['Int']>;
+  lte: InputMaybe<Scalars['Int']>;
+  not: InputMaybe<NestedIntWithAggregatesFilter>;
   notIn: InputMaybe<Array<Scalars['Int']>>;
 };
 
@@ -1658,6 +1781,7 @@ export type Query = {
   aggregateCategory: AggregateCategory;
   aggregateExpense: AggregateExpense;
   aggregateRecipe: AggregateRecipe;
+  aggregateSalary: AggregateSalary;
   aggregateSaving: AggregateSaving;
   aggregateUser: AggregateUser;
   aggregateWishlistItem: AggregateWishlistItem;
@@ -1673,6 +1797,8 @@ export type Query = {
   findFirstExpenseOrThrow: Maybe<Expense>;
   findFirstRecipe: Maybe<Recipe>;
   findFirstRecipeOrThrow: Maybe<Recipe>;
+  findFirstSalary: Maybe<Salary>;
+  findFirstSalaryOrThrow: Maybe<Salary>;
   findFirstSaving: Maybe<Saving>;
   findFirstSavingOrThrow: Maybe<Saving>;
   findFirstUser: Maybe<User>;
@@ -1683,18 +1809,23 @@ export type Query = {
   getExpense: Maybe<Expense>;
   getRecipe: Maybe<Recipe>;
   getRecipesQuery: Array<Recipe>;
+  getSalary: Maybe<Salary>;
   getSaving: Maybe<Saving>;
   getUser: Maybe<User>;
   getWishlistItem: Maybe<WishlistItem>;
   groupByCategory: Array<CategoryGroupBy>;
   groupByExpense: Array<ExpenseGroupBy>;
   groupByRecipe: Array<RecipeGroupBy>;
+  groupBySalary: Array<SalaryGroupBy>;
   groupBySaving: Array<SavingGroupBy>;
   groupByUser: Array<UserGroupBy>;
   groupByWishlistItem: Array<WishlistItemGroupBy>;
   meQuery: AuthUserOutput;
   recipe: Maybe<Recipe>;
   recipes: Array<Recipe>;
+  salaries: Array<Salary>;
+  salary: Maybe<Salary>;
+  salaryQuery: Maybe<Salary>;
   saving: Maybe<Saving>;
   savings: Array<Saving>;
   savingsQuery: Array<Saving>;
@@ -1730,6 +1861,15 @@ export type QueryAggregateRecipeArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<RecipeWhereInput>;
+};
+
+
+export type QueryAggregateSalaryArgs = {
+  cursor: InputMaybe<SalaryWhereUniqueInput>;
+  orderBy: InputMaybe<Array<SalaryOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<SalaryWhereInput>;
 };
 
 
@@ -1856,6 +1996,26 @@ export type QueryFindFirstRecipeOrThrowArgs = {
 };
 
 
+export type QueryFindFirstSalaryArgs = {
+  cursor: InputMaybe<SalaryWhereUniqueInput>;
+  distinct: InputMaybe<Array<SalaryScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<SalaryOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<SalaryWhereInput>;
+};
+
+
+export type QueryFindFirstSalaryOrThrowArgs = {
+  cursor: InputMaybe<SalaryWhereUniqueInput>;
+  distinct: InputMaybe<Array<SalaryScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<SalaryOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<SalaryWhereInput>;
+};
+
+
 export type QueryFindFirstSavingArgs = {
   cursor: InputMaybe<SavingWhereUniqueInput>;
   distinct: InputMaybe<Array<SavingScalarFieldEnum>>;
@@ -1931,6 +2091,11 @@ export type QueryGetRecipeArgs = {
 };
 
 
+export type QueryGetSalaryArgs = {
+  where: SalaryWhereUniqueInput;
+};
+
+
 export type QueryGetSavingArgs = {
   where: SavingWhereUniqueInput;
 };
@@ -1976,6 +2141,16 @@ export type QueryGroupByRecipeArgs = {
 };
 
 
+export type QueryGroupBySalaryArgs = {
+  by: Array<SalaryScalarFieldEnum>;
+  having: InputMaybe<SalaryScalarWhereWithAggregatesInput>;
+  orderBy: InputMaybe<Array<SalaryOrderByWithAggregationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<SalaryWhereInput>;
+};
+
+
 export type QueryGroupBySavingArgs = {
   by: Array<SavingScalarFieldEnum>;
   having: InputMaybe<SavingScalarWhereWithAggregatesInput>;
@@ -2018,6 +2193,21 @@ export type QueryRecipesArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<RecipeWhereInput>;
+};
+
+
+export type QuerySalariesArgs = {
+  cursor: InputMaybe<SalaryWhereUniqueInput>;
+  distinct: InputMaybe<Array<SalaryScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<SalaryOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<SalaryWhereInput>;
+};
+
+
+export type QuerySalaryArgs = {
+  where: SalaryWhereUniqueInput;
 };
 
 
@@ -2419,6 +2609,232 @@ export type RegisterValidInput = {
   username: Scalars['String'];
 };
 
+export type Salary = {
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  user: User;
+  userId: Scalars['String'];
+  value: Scalars['Int'];
+};
+
+export type SalaryAvgAggregate = {
+  value: Maybe<Scalars['Float']>;
+};
+
+export type SalaryAvgOrderByAggregateInput = {
+  value: InputMaybe<SortOrder>;
+};
+
+export type SalaryCountAggregate = {
+  _all: Scalars['Int'];
+  createdAt: Scalars['Int'];
+  id: Scalars['Int'];
+  updatedAt: Scalars['Int'];
+  userId: Scalars['Int'];
+  value: Scalars['Int'];
+};
+
+export type SalaryCountOrderByAggregateInput = {
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
+};
+
+export type SalaryCreateInput = {
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutSalaryInput;
+  value: Scalars['Int'];
+};
+
+export type SalaryCreateManyInput = {
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  userId: Scalars['String'];
+  value: Scalars['Int'];
+};
+
+export type SalaryCreateNestedOneWithoutUserInput = {
+  connect: InputMaybe<SalaryWhereUniqueInput>;
+  connectOrCreate: InputMaybe<SalaryCreateOrConnectWithoutUserInput>;
+  create: InputMaybe<SalaryCreateWithoutUserInput>;
+};
+
+export type SalaryCreateOrConnectWithoutUserInput = {
+  create: SalaryCreateWithoutUserInput;
+  where: SalaryWhereUniqueInput;
+};
+
+export type SalaryCreateWithoutUserInput = {
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  value: Scalars['Int'];
+};
+
+export type SalaryGroupBy = {
+  _avg: Maybe<SalaryAvgAggregate>;
+  _count: Maybe<SalaryCountAggregate>;
+  _max: Maybe<SalaryMaxAggregate>;
+  _min: Maybe<SalaryMinAggregate>;
+  _sum: Maybe<SalarySumAggregate>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+  value: Scalars['Int'];
+};
+
+export type SalaryMaxAggregate = {
+  createdAt: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
+  value: Maybe<Scalars['Int']>;
+};
+
+export type SalaryMaxOrderByAggregateInput = {
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
+};
+
+export type SalaryMinAggregate = {
+  createdAt: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
+  value: Maybe<Scalars['Int']>;
+};
+
+export type SalaryMinOrderByAggregateInput = {
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
+};
+
+export type SalaryOrderByWithAggregationInput = {
+  _avg: InputMaybe<SalaryAvgOrderByAggregateInput>;
+  _count: InputMaybe<SalaryCountOrderByAggregateInput>;
+  _max: InputMaybe<SalaryMaxOrderByAggregateInput>;
+  _min: InputMaybe<SalaryMinOrderByAggregateInput>;
+  _sum: InputMaybe<SalarySumOrderByAggregateInput>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
+};
+
+export type SalaryOrderByWithRelationInput = {
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  user: InputMaybe<UserOrderByWithRelationInput>;
+  userId: InputMaybe<SortOrder>;
+  value: InputMaybe<SortOrder>;
+};
+
+export type SalaryRelationFilter = {
+  is: InputMaybe<SalaryWhereInput>;
+  isNot: InputMaybe<SalaryWhereInput>;
+};
+
+export enum SalaryScalarFieldEnum {
+  CreatedAt = 'createdAt',
+  Id = 'id',
+  UpdatedAt = 'updatedAt',
+  UserId = 'userId',
+  Value = 'value'
+}
+
+export type SalaryScalarWhereWithAggregatesInput = {
+  AND: InputMaybe<Array<SalaryScalarWhereWithAggregatesInput>>;
+  NOT: InputMaybe<Array<SalaryScalarWhereWithAggregatesInput>>;
+  OR: InputMaybe<Array<SalaryScalarWhereWithAggregatesInput>>;
+  createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  id: InputMaybe<StringWithAggregatesFilter>;
+  updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  userId: InputMaybe<StringWithAggregatesFilter>;
+  value: InputMaybe<IntWithAggregatesFilter>;
+};
+
+export type SalarySumAggregate = {
+  value: Maybe<Scalars['Int']>;
+};
+
+export type SalarySumOrderByAggregateInput = {
+  value: InputMaybe<SortOrder>;
+};
+
+export type SalaryUpdateInput = {
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutSalaryNestedInput>;
+  value: InputMaybe<IntFieldUpdateOperationsInput>;
+};
+
+export type SalaryUpdateManyMutationInput = {
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  value: InputMaybe<IntFieldUpdateOperationsInput>;
+};
+
+export type SalaryUpdateOneWithoutUserNestedInput = {
+  connect: InputMaybe<SalaryWhereUniqueInput>;
+  connectOrCreate: InputMaybe<SalaryCreateOrConnectWithoutUserInput>;
+  create: InputMaybe<SalaryCreateWithoutUserInput>;
+  delete: InputMaybe<Scalars['Boolean']>;
+  disconnect: InputMaybe<Scalars['Boolean']>;
+  update: InputMaybe<SalaryUpdateWithoutUserInput>;
+  upsert: InputMaybe<SalaryUpsertWithoutUserInput>;
+};
+
+export type SalaryUpdateWithoutUserInput = {
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  value: InputMaybe<IntFieldUpdateOperationsInput>;
+};
+
+export type SalaryUpsertWithoutUserInput = {
+  create: SalaryCreateWithoutUserInput;
+  update: SalaryUpdateWithoutUserInput;
+};
+
+export type SalaryValidInput = {
+  id: InputMaybe<Scalars['String']>;
+  value: InputMaybe<Scalars['Int']>;
+};
+
+export type SalaryWhereInput = {
+  AND: InputMaybe<Array<SalaryWhereInput>>;
+  NOT: InputMaybe<Array<SalaryWhereInput>>;
+  OR: InputMaybe<Array<SalaryWhereInput>>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  id: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  user: InputMaybe<UserRelationFilter>;
+  userId: InputMaybe<StringFilter>;
+  value: InputMaybe<IntFilter>;
+};
+
+export type SalaryWhereUniqueInput = {
+  id: InputMaybe<Scalars['String']>;
+  userId: InputMaybe<Scalars['String']>;
+};
+
 export type Saving = {
   createdAt: Scalars['DateTime'];
   date: Scalars['DateTime'];
@@ -2461,7 +2877,7 @@ export type SavingCreateInput = {
   date: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
-  user: UserCreateNestedOneWithoutCurrentSavingsInput;
+  user: UserCreateNestedOneWithoutSavingsInput;
   value: Scalars['Decimal'];
 };
 
@@ -2637,7 +3053,7 @@ export type SavingUpdateInput = {
   date: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  user: InputMaybe<UserUpdateOneRequiredWithoutCurrentSavingsNestedInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutSavingsNestedInput>;
   value: InputMaybe<DecimalFieldUpdateOperationsInput>;
 };
 
@@ -2792,12 +3208,13 @@ export type User = {
   _count: Maybe<UserCount>;
   categories: Array<Category>;
   createdAt: Scalars['DateTime'];
-  currentSavings: Array<Saving>;
   email: Scalars['String'];
   expenses: Array<Expense>;
   id: Scalars['String'];
   password: Scalars['String'];
   recipe: Array<Recipe>;
+  salary: Maybe<Salary>;
+  savings: Array<Saving>;
   updatedAt: Scalars['DateTime'];
   username: Scalars['String'];
   wishlistItems: Array<WishlistItem>;
@@ -2811,16 +3228,6 @@ export type UserCategoriesArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<CategoryWhereInput>;
-};
-
-
-export type UserCurrentSavingsArgs = {
-  cursor: InputMaybe<SavingWhereUniqueInput>;
-  distinct: InputMaybe<Array<SavingScalarFieldEnum>>;
-  orderBy: InputMaybe<Array<SavingOrderByWithRelationInput>>;
-  skip: InputMaybe<Scalars['Int']>;
-  take: InputMaybe<Scalars['Int']>;
-  where: InputMaybe<SavingWhereInput>;
 };
 
 
@@ -2844,6 +3251,16 @@ export type UserRecipeArgs = {
 };
 
 
+export type UserSavingsArgs = {
+  cursor: InputMaybe<SavingWhereUniqueInput>;
+  distinct: InputMaybe<Array<SavingScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<SavingOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<SavingWhereInput>;
+};
+
+
 export type UserWishlistItemsArgs = {
   cursor: InputMaybe<WishlistItemWhereUniqueInput>;
   distinct: InputMaybe<Array<WishlistItemScalarFieldEnum>>;
@@ -2855,9 +3272,9 @@ export type UserWishlistItemsArgs = {
 
 export type UserCount = {
   categories: Scalars['Int'];
-  currentSavings: Scalars['Int'];
   expenses: Scalars['Int'];
   recipe: Scalars['Int'];
+  savings: Scalars['Int'];
   wishlistItems: Scalars['Int'];
 };
 
@@ -2883,12 +3300,13 @@ export type UserCountOrderByAggregateInput = {
 export type UserCreateInput = {
   categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
   createdAt: InputMaybe<Scalars['DateTime']>;
-  currentSavings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
+  savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
   wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
@@ -2909,12 +3327,6 @@ export type UserCreateNestedOneWithoutCategoriesInput = {
   create: InputMaybe<UserCreateWithoutCategoriesInput>;
 };
 
-export type UserCreateNestedOneWithoutCurrentSavingsInput = {
-  connect: InputMaybe<UserWhereUniqueInput>;
-  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutCurrentSavingsInput>;
-  create: InputMaybe<UserCreateWithoutCurrentSavingsInput>;
-};
-
 export type UserCreateNestedOneWithoutExpensesInput = {
   connect: InputMaybe<UserWhereUniqueInput>;
   connectOrCreate: InputMaybe<UserCreateOrConnectWithoutExpensesInput>;
@@ -2925,6 +3337,18 @@ export type UserCreateNestedOneWithoutRecipeInput = {
   connect: InputMaybe<UserWhereUniqueInput>;
   connectOrCreate: InputMaybe<UserCreateOrConnectWithoutRecipeInput>;
   create: InputMaybe<UserCreateWithoutRecipeInput>;
+};
+
+export type UserCreateNestedOneWithoutSalaryInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutSalaryInput>;
+  create: InputMaybe<UserCreateWithoutSalaryInput>;
+};
+
+export type UserCreateNestedOneWithoutSavingsInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutSavingsInput>;
+  create: InputMaybe<UserCreateWithoutSavingsInput>;
 };
 
 export type UserCreateNestedOneWithoutWishlistItemsInput = {
@@ -2938,11 +3362,6 @@ export type UserCreateOrConnectWithoutCategoriesInput = {
   where: UserWhereUniqueInput;
 };
 
-export type UserCreateOrConnectWithoutCurrentSavingsInput = {
-  create: UserCreateWithoutCurrentSavingsInput;
-  where: UserWhereUniqueInput;
-};
-
 export type UserCreateOrConnectWithoutExpensesInput = {
   create: UserCreateWithoutExpensesInput;
   where: UserWhereUniqueInput;
@@ -2953,6 +3372,16 @@ export type UserCreateOrConnectWithoutRecipeInput = {
   where: UserWhereUniqueInput;
 };
 
+export type UserCreateOrConnectWithoutSalaryInput = {
+  create: UserCreateWithoutSalaryInput;
+  where: UserWhereUniqueInput;
+};
+
+export type UserCreateOrConnectWithoutSavingsInput = {
+  create: UserCreateWithoutSavingsInput;
+  where: UserWhereUniqueInput;
+};
+
 export type UserCreateOrConnectWithoutWishlistItemsInput = {
   create: UserCreateWithoutWishlistItemsInput;
   where: UserWhereUniqueInput;
@@ -2960,25 +3389,13 @@ export type UserCreateOrConnectWithoutWishlistItemsInput = {
 
 export type UserCreateWithoutCategoriesInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
-  currentSavings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
-  updatedAt: InputMaybe<Scalars['DateTime']>;
-  username: Scalars['String'];
-  wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
-};
-
-export type UserCreateWithoutCurrentSavingsInput = {
-  categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
-  createdAt: InputMaybe<Scalars['DateTime']>;
-  email: Scalars['String'];
-  expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
-  id: InputMaybe<Scalars['String']>;
-  password: Scalars['String'];
-  recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
+  savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
   wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
@@ -2987,11 +3404,12 @@ export type UserCreateWithoutCurrentSavingsInput = {
 export type UserCreateWithoutExpensesInput = {
   categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
   createdAt: InputMaybe<Scalars['DateTime']>;
-  currentSavings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
   email: Scalars['String'];
   id: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
+  savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
   wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
@@ -3000,11 +3418,40 @@ export type UserCreateWithoutExpensesInput = {
 export type UserCreateWithoutRecipeInput = {
   categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
   createdAt: InputMaybe<Scalars['DateTime']>;
-  currentSavings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
+  salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
+  savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  username: Scalars['String'];
+  wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
+};
+
+export type UserCreateWithoutSalaryInput = {
+  categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  email: Scalars['String'];
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
+  id: InputMaybe<Scalars['String']>;
+  password: Scalars['String'];
+  recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  username: Scalars['String'];
+  wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
+};
+
+export type UserCreateWithoutSavingsInput = {
+  categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  email: Scalars['String'];
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
+  id: InputMaybe<Scalars['String']>;
+  password: Scalars['String'];
+  recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
   wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
@@ -3013,12 +3460,13 @@ export type UserCreateWithoutRecipeInput = {
 export type UserCreateWithoutWishlistItemsInput = {
   categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
   createdAt: InputMaybe<Scalars['DateTime']>;
-  currentSavings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
+  savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   username: Scalars['String'];
 };
@@ -3086,12 +3534,13 @@ export type UserOrderByWithAggregationInput = {
 export type UserOrderByWithRelationInput = {
   categories: InputMaybe<CategoryOrderByRelationAggregateInput>;
   createdAt: InputMaybe<SortOrder>;
-  currentSavings: InputMaybe<SavingOrderByRelationAggregateInput>;
   email: InputMaybe<SortOrder>;
   expenses: InputMaybe<ExpenseOrderByRelationAggregateInput>;
   id: InputMaybe<SortOrder>;
   password: InputMaybe<SortOrder>;
   recipe: InputMaybe<RecipeOrderByRelationAggregateInput>;
+  salary: InputMaybe<SalaryOrderByWithRelationInput>;
+  savings: InputMaybe<SavingOrderByRelationAggregateInput>;
   updatedAt: InputMaybe<SortOrder>;
   username: InputMaybe<SortOrder>;
   wishlistItems: InputMaybe<WishlistItemOrderByRelationAggregateInput>;
@@ -3126,12 +3575,13 @@ export type UserScalarWhereWithAggregatesInput = {
 export type UserUpdateInput = {
   categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  currentSavings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
+  savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   username: InputMaybe<StringFieldUpdateOperationsInput>;
   wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
@@ -3154,14 +3604,6 @@ export type UserUpdateOneRequiredWithoutCategoriesNestedInput = {
   upsert: InputMaybe<UserUpsertWithoutCategoriesInput>;
 };
 
-export type UserUpdateOneRequiredWithoutCurrentSavingsNestedInput = {
-  connect: InputMaybe<UserWhereUniqueInput>;
-  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutCurrentSavingsInput>;
-  create: InputMaybe<UserCreateWithoutCurrentSavingsInput>;
-  update: InputMaybe<UserUpdateWithoutCurrentSavingsInput>;
-  upsert: InputMaybe<UserUpsertWithoutCurrentSavingsInput>;
-};
-
 export type UserUpdateOneRequiredWithoutExpensesNestedInput = {
   connect: InputMaybe<UserWhereUniqueInput>;
   connectOrCreate: InputMaybe<UserCreateOrConnectWithoutExpensesInput>;
@@ -3178,6 +3620,22 @@ export type UserUpdateOneRequiredWithoutRecipeNestedInput = {
   upsert: InputMaybe<UserUpsertWithoutRecipeInput>;
 };
 
+export type UserUpdateOneRequiredWithoutSalaryNestedInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutSalaryInput>;
+  create: InputMaybe<UserCreateWithoutSalaryInput>;
+  update: InputMaybe<UserUpdateWithoutSalaryInput>;
+  upsert: InputMaybe<UserUpsertWithoutSalaryInput>;
+};
+
+export type UserUpdateOneRequiredWithoutSavingsNestedInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutSavingsInput>;
+  create: InputMaybe<UserCreateWithoutSavingsInput>;
+  update: InputMaybe<UserUpdateWithoutSavingsInput>;
+  upsert: InputMaybe<UserUpsertWithoutSavingsInput>;
+};
+
 export type UserUpdateOneRequiredWithoutWishlistItemsNestedInput = {
   connect: InputMaybe<UserWhereUniqueInput>;
   connectOrCreate: InputMaybe<UserCreateOrConnectWithoutWishlistItemsInput>;
@@ -3188,25 +3646,13 @@ export type UserUpdateOneRequiredWithoutWishlistItemsNestedInput = {
 
 export type UserUpdateWithoutCategoriesInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  currentSavings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
-  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  username: InputMaybe<StringFieldUpdateOperationsInput>;
-  wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
-};
-
-export type UserUpdateWithoutCurrentSavingsInput = {
-  categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
-  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  email: InputMaybe<StringFieldUpdateOperationsInput>;
-  expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
-  id: InputMaybe<StringFieldUpdateOperationsInput>;
-  password: InputMaybe<StringFieldUpdateOperationsInput>;
-  recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
+  savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   username: InputMaybe<StringFieldUpdateOperationsInput>;
   wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
@@ -3215,11 +3661,12 @@ export type UserUpdateWithoutCurrentSavingsInput = {
 export type UserUpdateWithoutExpensesInput = {
   categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  currentSavings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
+  savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   username: InputMaybe<StringFieldUpdateOperationsInput>;
   wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
@@ -3228,11 +3675,40 @@ export type UserUpdateWithoutExpensesInput = {
 export type UserUpdateWithoutRecipeInput = {
   categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  currentSavings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
+  salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
+  savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
+};
+
+export type UserUpdateWithoutSalaryInput = {
+  categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
+};
+
+export type UserUpdateWithoutSavingsInput = {
+  categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   username: InputMaybe<StringFieldUpdateOperationsInput>;
   wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
@@ -3241,12 +3717,13 @@ export type UserUpdateWithoutRecipeInput = {
 export type UserUpdateWithoutWishlistItemsInput = {
   categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  currentSavings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
+  savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   username: InputMaybe<StringFieldUpdateOperationsInput>;
 };
@@ -3254,11 +3731,6 @@ export type UserUpdateWithoutWishlistItemsInput = {
 export type UserUpsertWithoutCategoriesInput = {
   create: UserCreateWithoutCategoriesInput;
   update: UserUpdateWithoutCategoriesInput;
-};
-
-export type UserUpsertWithoutCurrentSavingsInput = {
-  create: UserCreateWithoutCurrentSavingsInput;
-  update: UserUpdateWithoutCurrentSavingsInput;
 };
 
 export type UserUpsertWithoutExpensesInput = {
@@ -3269,6 +3741,16 @@ export type UserUpsertWithoutExpensesInput = {
 export type UserUpsertWithoutRecipeInput = {
   create: UserCreateWithoutRecipeInput;
   update: UserUpdateWithoutRecipeInput;
+};
+
+export type UserUpsertWithoutSalaryInput = {
+  create: UserCreateWithoutSalaryInput;
+  update: UserUpdateWithoutSalaryInput;
+};
+
+export type UserUpsertWithoutSavingsInput = {
+  create: UserCreateWithoutSavingsInput;
+  update: UserUpdateWithoutSavingsInput;
 };
 
 export type UserUpsertWithoutWishlistItemsInput = {
@@ -3282,12 +3764,13 @@ export type UserWhereInput = {
   OR: InputMaybe<Array<UserWhereInput>>;
   categories: InputMaybe<CategoryListRelationFilter>;
   createdAt: InputMaybe<DateTimeFilter>;
-  currentSavings: InputMaybe<SavingListRelationFilter>;
   email: InputMaybe<StringFilter>;
   expenses: InputMaybe<ExpenseListRelationFilter>;
   id: InputMaybe<StringFilter>;
   password: InputMaybe<StringFilter>;
   recipe: InputMaybe<RecipeListRelationFilter>;
+  salary: InputMaybe<SalaryRelationFilter>;
+  savings: InputMaybe<SavingListRelationFilter>;
   updatedAt: InputMaybe<DateTimeFilter>;
   username: InputMaybe<StringFilter>;
   wishlistItems: InputMaybe<WishlistItemListRelationFilter>;
@@ -3605,6 +4088,8 @@ export type ExpenseFragment = { id: string, userId: string, name: string, value:
 
 export type CategoryFragment = { id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string };
 
+export type SalaryFragment = { id: string, userId: string, value: number, createdAt: string, updatedAt: string };
+
 export type MeQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3664,6 +4149,18 @@ export type SaveExpenseV2MutationVariables = Exact<{
 
 
 export type SaveExpenseV2Mutation = { saveExpenseMutation: { id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, categories: Array<{ id: string }> } };
+
+export type SalaryQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SalaryQueryQuery = { salaryQuery: { id: string, userId: string, value: number, createdAt: string, updatedAt: string } | null };
+
+export type SaveSalaryMutationMutationVariables = Exact<{
+  data: SalaryValidInput;
+}>;
+
+
+export type SaveSalaryMutationMutation = { saveSalaryMutation: { id: string, userId: string, value: number, createdAt: string, updatedAt: string } };
 
 export type DeleteSavingMutationMutationVariables = Exact<{
   savingId: Scalars['String'];
@@ -3790,6 +4287,15 @@ export const CategoryFragmentDoc = gql`
   updatedAt
 }
     `;
+export const SalaryFragmentDoc = gql`
+    fragment Salary on Salary {
+  id
+  userId
+  value
+  createdAt
+  updatedAt
+}
+    `;
 export const MeQueryDocument = gql`
     query MeQuery {
   meQuery {
@@ -3853,6 +4359,20 @@ export const SaveExpenseV2Document = gql`
   }
 }
     ${ExpenseFragmentDoc}`;
+export const SalaryQueryDocument = gql`
+    query SalaryQuery {
+  salaryQuery {
+    ...Salary
+  }
+}
+    ${SalaryFragmentDoc}`;
+export const SaveSalaryMutationDocument = gql`
+    mutation SaveSalaryMutation($data: SalaryValidInput!) {
+  saveSalaryMutation(data: $data) {
+    ...Salary
+  }
+}
+    ${SalaryFragmentDoc}`;
 export const DeleteSavingMutationDocument = gql`
     mutation DeleteSavingMutation($savingId: String!) {
   deleteSavingMutation(savingId: $savingId)
@@ -3944,6 +4464,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     SaveExpenseV2(variables: SaveExpenseV2MutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveExpenseV2Mutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<SaveExpenseV2Mutation>(SaveExpenseV2Document, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveExpenseV2', 'mutation');
+    },
+    SalaryQuery(variables?: SalaryQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SalaryQueryQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SalaryQueryQuery>(SalaryQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SalaryQuery', 'query');
+    },
+    SaveSalaryMutation(variables: SaveSalaryMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveSalaryMutationMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SaveSalaryMutationMutation>(SaveSalaryMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveSalaryMutation', 'mutation');
     },
     DeleteSavingMutation(variables: DeleteSavingMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteSavingMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<DeleteSavingMutationMutation>(DeleteSavingMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DeleteSavingMutation', 'mutation');

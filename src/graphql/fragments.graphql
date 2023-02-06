@@ -59,3 +59,11 @@ fragment Category on Category {
   createdAt
   updatedAt
 }
+
+fragment Salary on Salary {
+  id
+  userId
+  value
+  createdAt
+  updatedAt
+}

@@ -6,4 +6,5 @@ export const queryKeys = {
   wishlistItems: ['wishlistItems'],
   expenses: (filter?: IExpenseFilter) => ['expenses', filter],
   categories: ['categories'],
+  salary: ['salary'],
 }
