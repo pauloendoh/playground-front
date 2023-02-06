@@ -1,4 +1,5 @@
 import { AppShell, Container } from '@mantine/core'
+import { Route, Routes } from 'react-router-dom'
 import useRouterStore from '../../../hooks/zustand/useRouterStore'
 import RecipesContent from '../../recipes-page/RecipesContent/RecipesContent'
 import MonerateContent from '../MonerateContent/MonerateContent'
@@ -14,7 +15,7 @@ const HomePage = (props: Props) => {
     <AppShell
       padding="md"
       header={<MyHeader />}
-      navbar={currentPage === 'recipes' ? <></> : <></>}
+      navbar={undefined}
       styles={(theme) => ({
         main: {
           backgroundColor:
@@ -25,8 +26,10 @@ const HomePage = (props: Props) => {
       })}
     >
       <Container>
-        {currentPage === 'recipes' && <RecipesContent />}
-        {currentPage === 'monerate' && <MonerateContent />}
+        <Routes>
+          <Route path="/" element={<MonerateContent />} />
+          <Route path="/recipes" element={<RecipesContent />} />
+        </Routes>
       </Container>
     </AppShell>
   )
