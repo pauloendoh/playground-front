@@ -2,7 +2,7 @@ import { ActionIcon, Menu } from '@mantine/core'
 import { useState } from 'react'
 
 import { MdDelete, MdMoreHoriz } from 'react-icons/md'
-import { useDeleteRecipeMutation } from '../../../../../hooks/react-query/recipe/useDeleteRecipeMutation'
+import { useDeleteWishlistMutation } from '../../../../../hooks/react-query/monerate/wishlist-item/useDeleteWishlistMutation'
 import { MyWishlistItemValidInput } from '../../../../../types/domains/monerate/wishlist-item/MyWishlistItemValidInput'
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const WishlistItemMoreMenu = (props: Props) => {
-  const { mutate: submitDeleteRecipe } = useDeleteRecipeMutation()
+  const { mutate: submitDelete } = useDeleteWishlistMutation()
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -26,8 +26,10 @@ export const WishlistItemMoreMenu = (props: Props) => {
         <Menu.Item
           color="red"
           onClick={() => {
-            if (confirm('Are you sure you want to delete this recipe?')) {
-              submitDeleteRecipe(props.recipe.id!, {
+            if (
+              confirm('Are you sure you want to delete this wishlist item?')
+            ) {
+              submitDelete(props.recipe.id!, {
                 onSuccess: () => {
                   props.afterDelete()
                   setIsOpen(false)

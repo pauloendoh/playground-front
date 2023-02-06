@@ -1078,6 +1078,7 @@ export type Mutation = {
   deleteOneWishlistItem: Maybe<WishlistItem>;
   deleteRecipeMutation: Scalars['Boolean'];
   deleteSavingMutation: Scalars['Boolean'];
+  deleteWishlistMutation: Scalars['Boolean'];
   loginMutation: AuthUserOutput;
   registerMutation: AuthUserOutput;
   saveCategoryMutation: Category;
@@ -1249,6 +1250,11 @@ export type MutationDeleteRecipeMutationArgs = {
 
 export type MutationDeleteSavingMutationArgs = {
   savingId: Scalars['String'];
+};
+
+
+export type MutationDeleteWishlistMutationArgs = {
+  id: Scalars['String'];
 };
 
 
@@ -3672,6 +3678,13 @@ export type SavingsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SavingsQueryQuery = { savingsQuery: Array<{ id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string }> };
 
+export type DeleteWishlistMutationMutationVariables = Exact<{
+  deleteWishlistMutationId: Scalars['String'];
+}>;
+
+
+export type DeleteWishlistMutationMutation = { deleteWishlistMutation: boolean };
+
 export type SaveWishlistItemMutationMutationVariables = Exact<{
   data: WishlistItemValidInput;
 }>;
@@ -3853,6 +3866,11 @@ export const SavingsQueryDocument = gql`
   }
 }
     ${CurrentSavingFragmentDoc}`;
+export const DeleteWishlistMutationDocument = gql`
+    mutation DeleteWishlistMutation($deleteWishlistMutationId: String!) {
+  deleteWishlistMutation(id: $deleteWishlistMutationId)
+}
+    `;
 export const SaveWishlistItemMutationDocument = gql`
     mutation SaveWishlistItemMutation($data: WishlistItemValidInput!) {
   saveWishlistItemMutation(data: $data) {
@@ -3929,6 +3947,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     SavingsQuery(variables?: SavingsQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SavingsQueryQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SavingsQueryQuery>(SavingsQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SavingsQuery', 'query');
+    },
+    DeleteWishlistMutation(variables: DeleteWishlistMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteWishlistMutationMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DeleteWishlistMutationMutation>(DeleteWishlistMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DeleteWishlistMutation', 'mutation');
     },
     SaveWishlistItemMutation(variables: SaveWishlistItemMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveWishlistItemMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<SaveWishlistItemMutationMutation>(SaveWishlistItemMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveWishlistItemMutation', 'mutation');
