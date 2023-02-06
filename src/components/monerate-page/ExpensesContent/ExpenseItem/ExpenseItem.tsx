@@ -17,6 +17,7 @@ const ExpenseItem = ({ expense, ...props }: Props) => {
           width: '100%',
           height: 'fit-content',
           padding: '8px 0px',
+          fontWeight: 'initial',
         },
       }}
       sx={{ height: 'unset' }}
