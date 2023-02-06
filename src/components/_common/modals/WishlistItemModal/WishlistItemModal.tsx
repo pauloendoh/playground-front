@@ -72,7 +72,7 @@ export default function WishlistItemModal(props: Props) {
             </Title>
             {props.initialValue?.id ? (
               <WishlistItemMoreMenu
-                recipe={props.initialValue}
+                item={props.initialValue}
                 afterDelete={() => props.onClose()}
               />
             ) : (
