@@ -1,11 +1,11 @@
-import { Button, Flex, ScrollArea, Text } from '@mantine/core'
+import { Button, Flex, ScrollArea } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { upToNDecimals } from 'endoh-utils'
 import { useMemo, useState } from 'react'
 import { useWishlistItemsQuery } from '../../../hooks/react-query/monerate/wishlist-item/useWishlistItemsQuery'
 import { MyWishlistItemValidInput } from '../../../types/domains/monerate/wishlist-item/MyWishlistItemValidInput'
 import WishlistItemModal from '../../_common/modals/WishlistItemModal/WishlistItemModal'
 import MyPaper from '../../_common/overrides/MyPaper'
+import WishlistItemButton from './WishlistItemButton/WishlistItemButton'
 
 type Props = {
   test?: string
@@ -45,25 +45,14 @@ const WishlistItems = (props: Props) => {
       <ScrollArea mt={24} sx={{ height: 'calc(100vh - 320px)' }} type="auto">
         <Flex direction="column">
           {sortedItems?.map((item) => (
-            <Button
+            <WishlistItemButton
               key={item.id}
+              item={item}
               onClick={() => {
                 setModalInitialValue(item)
                 handlers.open()
               }}
-              styles={{
-                label: {
-                  justifyContent: 'space-between',
-                  width: '100%',
-                },
-              }}
-              variant="subtle"
-            >
-              <Text>{item.itemName}</Text>
-              <Text>
-                R$ {upToNDecimals(Number(item.priceInThousands), 1)} K
-              </Text>
-            </Button>
+            />
           ))}
         </Flex>
       </ScrollArea>
