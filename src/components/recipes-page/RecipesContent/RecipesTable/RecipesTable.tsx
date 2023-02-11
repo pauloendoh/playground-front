@@ -81,11 +81,11 @@ export default function RecipesTable(props: Props) {
                   <TbGripVertical size={18} />
                 </div>
               </td>
-              <td>{item.title}</td>
+              <td style={{ whiteSpace: 'pre' }}>{item.title}</td>
               <td>
                 <Rating value={item.rating || undefined} readOnly />
               </td>
-              <td>{item.description}</td>
+              <td style={{ whiteSpace: 'pre' }}>{item.description}</td>
             </tr>
           )}
         </Draggable>

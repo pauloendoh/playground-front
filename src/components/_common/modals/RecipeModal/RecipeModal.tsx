@@ -9,7 +9,6 @@ import {
   Modal,
   Rating,
   Textarea,
-  TextInput,
   Title,
   useMantineTheme,
 } from '@mantine/core'
@@ -101,8 +100,9 @@ export default function RecipeModal(props: Props) {
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid>
-            <Grid.Col span={6}>
-              <TextInput
+            <Grid.Col span={12}>
+              <Textarea
+                autosize
                 label="Title"
                 {...register('title')}
                 error={errors.title?.message}
@@ -144,6 +144,7 @@ export default function RecipeModal(props: Props) {
 
           <Textarea
             mt={16}
+            autosize
             label="Description"
             {...register('description')}
             error={errors.description?.message}
