@@ -63,6 +63,14 @@ const RecurrentExpensesSection = (props: Props) => {
                 width: '100%',
               },
             }}
+            onClick={() => {
+              openModal({
+                ...expense!,
+                categoryIds: expense?.categories?.map(
+                  (category) => category?.id
+                ),
+              })
+            }}
           >
             <FlexVCenter
               key={expense.id}
