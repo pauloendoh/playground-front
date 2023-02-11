@@ -3,6 +3,7 @@ import { upToNDecimals } from 'endoh-utils'
 import { useMemo } from 'react'
 import { WishlistItemFragment } from '../../../../graphql/generated/graphql'
 import { useLastSavingQueryUtils } from '../../../../hooks/react-query/monerate/saving/useLastSavingQueryUtils'
+import MyReactLinkify from '../../../_common/text/MyReactLinkify'
 
 type Props = {
   item: WishlistItemFragment
@@ -40,16 +41,27 @@ const WishlistItemButton = (props: Props) => {
         label: {
           justifyContent: 'space-between',
           width: '100%',
+          whiteSpace: 'unset',
+          display: 'flex',
+          alignItems: 'flex-start',
+          gap: 12,
+          padding: 4,
         },
       }}
+      sx={{ height: 'unset' }}
       variant="subtle"
     >
-      <Text>{props.item.itemName}</Text>
+      <Text>
+        <MyReactLinkify openNewTab truncateWidth={200} stopPropagation>
+          {props.item.itemName}
+        </MyReactLinkify>
+      </Text>
       <Tooltip label={tooltipLabel} withArrow>
         <Text
           sx={(theme) => ({
             color:
               valueToReach > 0 ? theme.colors.red[5] : theme.colors.green[5],
+            minWidth: 80,
           })}
         >
           R$ {upToNDecimals(Number(props.item.priceInThousands), 1)} K
