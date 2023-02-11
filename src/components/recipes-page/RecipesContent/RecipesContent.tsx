@@ -1,4 +1,5 @@
 import { Box } from '@mantine/core'
+import { useEffect } from 'react'
 import RecipesTable from './RecipesTable/RecipesTable'
 
 type Props = {
@@ -6,6 +7,10 @@ type Props = {
 }
 
 const RecipesContent = (props: Props) => {
+  useEffect(() => {
+    document.title = 'Recipes'
+  }, [])
+
   return (
     <>
       Recipes :D

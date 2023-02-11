@@ -15,7 +15,7 @@ const ExpenseFilters = (props: Props) => {
       <Flex>
         <Title order={4}>Expense Filters</Title>
       </Flex>
-      <Grid sx={{ marginTop: 16 }}>
+      <Grid sx={{ marginTop: 4 }}>
         <Grid.Col span={3}>
           <MyTextInput
             label="By Text"
