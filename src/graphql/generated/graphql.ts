@@ -1823,6 +1823,7 @@ export type Query = {
   meQuery: AuthUserOutput;
   recipe: Maybe<Recipe>;
   recipes: Array<Recipe>;
+  recurrentExpensesQuery: Array<Expense>;
   salaries: Array<Salary>;
   salary: Maybe<Salary>;
   salaryQuery: Maybe<Salary>;
@@ -4143,6 +4144,11 @@ export type ExpensesQueryQueryVariables = Exact<{
 
 export type ExpensesQueryQuery = { expensesQuery: Array<{ id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, categories: Array<{ id: string }> }> };
 
+export type RecurrentExpensesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RecurrentExpensesQueryQuery = { recurrentExpensesQuery: Array<{ id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, categories: Array<{ id: string }> }> };
+
 export type SaveExpenseV2MutationVariables = Exact<{
   data: ExpenseInput;
 }>;
@@ -4352,6 +4358,13 @@ export const ExpensesQueryDocument = gql`
   }
 }
     ${ExpenseFragmentDoc}`;
+export const RecurrentExpensesQueryDocument = gql`
+    query RecurrentExpensesQuery {
+  recurrentExpensesQuery {
+    ...Expense
+  }
+}
+    ${ExpenseFragmentDoc}`;
 export const SaveExpenseV2Document = gql`
     mutation SaveExpenseV2($data: ExpenseInput!) {
   saveExpenseMutation(data: $data) {
@@ -4461,6 +4474,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     ExpensesQuery(variables?: ExpensesQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ExpensesQueryQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ExpensesQueryQuery>(ExpensesQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ExpensesQuery', 'query');
+    },
+    RecurrentExpensesQuery(variables?: RecurrentExpensesQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RecurrentExpensesQueryQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RecurrentExpensesQueryQuery>(RecurrentExpensesQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'RecurrentExpensesQuery', 'query');
     },
     SaveExpenseV2(variables: SaveExpenseV2MutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveExpenseV2Mutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<SaveExpenseV2Mutation>(SaveExpenseV2Document, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveExpenseV2', 'mutation');

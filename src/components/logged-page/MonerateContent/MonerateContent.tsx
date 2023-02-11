@@ -1,6 +1,6 @@
 import { Box, Flex } from '@mantine/core'
 import { useEffect } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import MonerateSubtabs from './MonerateSubtabs/MonerateSubtabs'
 
 type Props = {
@@ -8,7 +8,6 @@ type Props = {
 }
 
 const MonerateContent = (props: Props) => {
-  const location = useLocation()
   useEffect(() => {
     document.title = 'Monerate'
   }, [])

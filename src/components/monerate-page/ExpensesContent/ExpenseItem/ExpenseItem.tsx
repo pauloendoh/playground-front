@@ -24,7 +24,7 @@ const ExpenseItem = ({ expense, ...props }: Props) => {
       variant="subtle"
     >
       <Grid sx={{ width: '100%' }} align="center">
-        <Grid.Col span={4} sx={{ whiteSpace: 'normal' }}>
+        <Grid.Col span={9} sx={{ whiteSpace: 'normal' }}>
           <Text>{expense.name}</Text>
         </Grid.Col>
         <Grid.Col

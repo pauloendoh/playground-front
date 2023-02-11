@@ -37,6 +37,7 @@ export const useSaveExpenseMutation = (filter?: IExpenseFilter) => {
         myNotifications.success('Expense saved!')
 
         queryClient.invalidateQueries(queryKeys.expenses(filter))
+        queryClient.invalidateQueries(queryKeys.recurrentExpenses)
       },
     }
   )

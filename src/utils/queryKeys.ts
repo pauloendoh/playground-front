@@ -7,4 +7,5 @@ export const queryKeys = {
   expenses: (filter?: IExpenseFilter) => ['expenses', filter],
   categories: ['categories'],
   salary: ['salary'],
+  recurrentExpenses: ['recurrentExpenses'],
 }

@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Loader } from '@mantine/core'
+import { Box, Button, Center, Flex, Grid, Loader } from '@mantine/core'
 import { useDebouncedValue, useIntersection } from '@mantine/hooks'
 import { useEffect, useMemo, useRef } from 'react'
 import { useExpensesQuery } from '../../../hooks/react-query/monerate/expense/useExpensesQuery'
@@ -8,6 +8,7 @@ import { MyExpenseInput } from '../../../types/domains/monerate/expense/MyExpens
 import MyPaper from '../../_common/overrides/MyPaper'
 import ExpenseFilters from './ExpenseFilters/ExpenseFilters'
 import ExpenseItem from './ExpenseItem/ExpenseItem'
+import RecurrentExpensesSection from './RecurrentExpensesSection/RecurrentExpensesSection'
 
 type Props = {
   test?: string
@@ -45,40 +46,47 @@ const ExpensesContent = (props: Props) => {
 
   return (
     <Box>
-      <Button
-        onClick={() => {
-          openModal(new MyExpenseInput())
-        }}
-      >
-        + Add Expense
-      </Button>
+      <Grid>
+        <Grid.Col span={6}>
+          <Button
+            onClick={() => {
+              openModal(new MyExpenseInput())
+            }}
+          >
+            + Add Expense
+          </Button>
 
-      <Box mt={16} />
-      <ExpenseFilters />
+          <Box mt={16} />
+          <ExpenseFilters />
 
-      <MyPaper mt={16}>
-        <Flex direction="column">
-          {flatExpenses?.map((expense) => (
-            <ExpenseItem
-              expense={expense}
-              key={expense.id}
-              onClick={() => {
-                openModal({
-                  ...expense!,
-                  categoryIds: expense?.categories?.map(
-                    (category) => category?.id
-                  ),
-                })
-              }}
-            />
-          ))}
-          {hasNextPage && (
-            <Center ref={ref} sx={{ height: 32 }}>
-              <Loader />
-            </Center>
-          )}
-        </Flex>
-      </MyPaper>
+          <MyPaper mt={16}>
+            <Flex direction="column">
+              {flatExpenses?.map((expense) => (
+                <ExpenseItem
+                  expense={expense}
+                  key={expense.id}
+                  onClick={() => {
+                    openModal({
+                      ...expense!,
+                      categoryIds: expense?.categories?.map(
+                        (category) => category?.id
+                      ),
+                    })
+                  }}
+                />
+              ))}
+              {hasNextPage && (
+                <Center ref={ref} sx={{ height: 32 }}>
+                  <Loader />
+                </Center>
+              )}
+            </Flex>
+          </MyPaper>
+        </Grid.Col>
+        <Grid.Col span={6}>
+          <RecurrentExpensesSection />
+        </Grid.Col>
+      </Grid>
     </Box>
   )
 }
