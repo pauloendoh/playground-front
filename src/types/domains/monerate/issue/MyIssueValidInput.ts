@@ -1,13 +1,23 @@
-import {
+import { Expose } from 'class-transformer'
+import type {
   InputMaybe,
-  IssueValidInput,
+  IssueInput,
 } from '../../../../graphql/generated/graphql'
 
-export class MyIssueValidInput implements IssueValidInput {
+export class MyIssueInput implements IssueInput {
+  @Expose()
   id: InputMaybe<string>
+
+  @Expose()
   isSolved: boolean
+
+  @Expose()
   solution: string
+
+  @Expose()
   title: string
+
+  @Expose()
   userId: InputMaybe<string>
 
   constructor() {
@@ -15,4 +25,16 @@ export class MyIssueValidInput implements IssueValidInput {
     this.solution = ''
     this.title = ''
   }
+
+  @Expose()
+  createdAt: InputMaybe<string>
+
+  @Expose()
+  updatedAt: InputMaybe<string>
+
+  @Expose()
+  labelIds: InputMaybe<string[]>
+
+  @Expose()
+  position: InputMaybe<number>
 }

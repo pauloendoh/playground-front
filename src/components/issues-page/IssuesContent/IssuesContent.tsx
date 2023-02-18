@@ -2,9 +2,10 @@ import { Box, Button, Text, Title } from '@mantine/core'
 import { useEffect } from 'react'
 import { useIssuesQuery } from '../../../hooks/react-query/monerate/issue/useIssuesQuery'
 import useIssueModalStore from '../../../hooks/zustand/modals/useIssueModalStore'
-import { MyIssueValidInput } from '../../../types/domains/monerate/issue/MyIssueValidInput'
+import { MyIssueInput } from '../../../types/domains/monerate/issue/MyIssueValidInput'
 import FlexVCenter from '../../_common/flex/FlexVCenter'
 import MyPaper from '../../_common/overrides/MyPaper'
+import IssuesTable from './IssuesTable/IssuesTable'
 
 type Props = {
   test?: string
@@ -29,15 +30,13 @@ const IssuesContent = (props: Props) => {
 
         <Box mt={16} />
         <Box>
-          {issues?.map((issue) => (
-            <Text key={issue.id}>{issue.title}</Text>
-          ))}
+          <IssuesTable issues={issues || []} />
         </Box>
 
         <FlexVCenter mt={24} justify={'space-between'}>
           <Button
             onClick={() => {
-              openModal(new MyIssueValidInput())
+              openModal(new MyIssueInput())
             }}
           >
             + Add Issue

@@ -1,11 +1,13 @@
 import useCategoryModalStore from '../../../hooks/zustand/modals/useCategoryModalStore'
 import useExpenseModalStore from '../../../hooks/zustand/modals/useExpenseModalStore'
+import useIssueLabelModalStore from '../../../hooks/zustand/modals/useIssueLabelModalStore'
 import useIssueModalStore from '../../../hooks/zustand/modals/useIssueModalStore'
 import useRecipeModalStore from '../../../hooks/zustand/modals/useRecipeModalStore'
 import useSavingModalStore from '../../../hooks/zustand/modals/useSavingModalStore'
 import CategoryModal from './CategoryModal/CategoryModal'
-import IssueModal from './ExpenseModal copy/IssueModal'
 import ExpenseModal from './ExpenseModal/ExpenseModal'
+import IssueLabelModal from './IssueLabelModal/IssueLabelModal'
+import IssueModal from './IssueModal/IssueModal'
 import RecipeModal from './RecipeModal/RecipeModal'
 import SavingModal from './SavingModal/SavingModal'
 
@@ -15,6 +17,7 @@ const GlobalModals = () => {
   const expenseModalStore = useExpenseModalStore()
   const categoryModalStore = useCategoryModalStore()
   const issueModalStore = useIssueModalStore()
+  const issueLabelModalStore = useIssueLabelModalStore()
 
   return (
     <>
@@ -46,6 +49,12 @@ const GlobalModals = () => {
         isOpen={issueModalStore.isOpen}
         onClose={issueModalStore.onClose}
         initialValue={issueModalStore.initialValue}
+      />
+
+      <IssueLabelModal
+        isOpen={issueLabelModalStore.isOpen}
+        onClose={issueLabelModalStore.onClose}
+        initialValue={issueLabelModalStore.initialValue}
       />
     </>
   )

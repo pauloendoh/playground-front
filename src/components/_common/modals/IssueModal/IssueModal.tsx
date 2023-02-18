@@ -1,20 +1,22 @@
-import { CloseButton, Flex, Grid, Modal, Textarea, Title } from '@mantine/core'
+import { CloseButton, Flex, Modal, Text, Textarea, Title } from '@mantine/core'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveIssueMutation } from '../../../../hooks/react-query/monerate/issue/useSaveIssueMutation'
-import { MyIssueValidInput } from '../../../../types/domains/monerate/issue/MyIssueValidInput'
+import { MyIssueInput } from '../../../../types/domains/monerate/issue/MyIssueValidInput'
+import FlexVCenter from '../../flex/FlexVCenter'
 import MyTextInput from '../../inputs/MyTextInput'
 import SaveCancelButtons from '../../inputs/SaveCancelButtons'
+import IssueLabelsSelector from './IssueLabelsSelector/IssueLabelsSelector'
 
 type Props = {
   isOpen: boolean
-  initialValue?: MyIssueValidInput
+  initialValue?: MyIssueInput
   onClose: () => void
 }
 
 export default function IssueModal(props: Props) {
   const { register, handleSubmit, setFocus, reset, watch, setValue } =
-    useForm<MyIssueValidInput>({
+    useForm<MyIssueInput>({
       defaultValues: props.initialValue,
     })
 
@@ -29,7 +31,7 @@ export default function IssueModal(props: Props) {
 
   const { mutate: submitSave, isLoading } = useSaveIssueMutation()
 
-  const onSubmit = (data: MyIssueValidInput) => {
+  const onSubmit = (data: MyIssueInput) => {
     submitSave(data, {
       onSuccess: () => {
         props.onClose()
@@ -61,11 +63,7 @@ export default function IssueModal(props: Props) {
         }
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid>
-            <Grid.Col span={9}>
-              <MyTextInput label="Issue Name" {...register('title')} />
-            </Grid.Col>
-          </Grid>
+          <MyTextInput label="Issue Name" {...register('title')} />
 
           <Textarea
             mt={16}
@@ -75,7 +73,18 @@ export default function IssueModal(props: Props) {
             minRows={2}
           />
 
-          <Flex align="center" justify="space-between" mt={16}>
+          <FlexVCenter justify={'space-between'} mt={16}>
+            <Text>solved</Text>
+
+            <FlexVCenter gap={16}>
+              <IssueLabelsSelector
+                issueLabelIds={watch('labelIds') || []}
+                onChange={(labelIds) => setValue('labelIds', labelIds)}
+              />
+            </FlexVCenter>
+          </FlexVCenter>
+
+          <Flex align="center" justify="space-between" mt={24}>
             <SaveCancelButtons
               onCancel={() => props.onClose()}
               onEnabledAndCtrlEnter={handleSubmit(onSubmit)}

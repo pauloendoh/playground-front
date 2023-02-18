@@ -36,9 +36,17 @@ export type AggregateExpense = {
 };
 
 export type AggregateIssue = {
+  _avg: Maybe<IssueAvgAggregate>;
   _count: Maybe<IssueCountAggregate>;
   _max: Maybe<IssueMaxAggregate>;
   _min: Maybe<IssueMinAggregate>;
+  _sum: Maybe<IssueSumAggregate>;
+};
+
+export type AggregateIssueLabel = {
+  _count: Maybe<IssueLabelCountAggregate>;
+  _max: Maybe<IssueLabelMaxAggregate>;
+  _min: Maybe<IssueLabelMinAggregate>;
 };
 
 export type AggregateRecipe = {
@@ -1115,14 +1123,42 @@ export type IntWithAggregatesFilter = {
 };
 
 export type Issue = {
+  _count: Maybe<IssueCount>;
   createdAt: Scalars['DateTime'];
   id: Scalars['String'];
   isSolved: Scalars['Boolean'];
+  labels: Array<IssueLabel>;
+  position: Scalars['Int'];
   solution: Scalars['String'];
+  solvedPosition: Scalars['Int'];
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   user: User;
   userId: Scalars['String'];
+};
+
+
+export type IssueLabelsArgs = {
+  cursor: InputMaybe<IssueLabelWhereUniqueInput>;
+  distinct: InputMaybe<Array<IssueLabelScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<IssueLabelOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<IssueLabelWhereInput>;
+};
+
+export type IssueAvgAggregate = {
+  position: Maybe<Scalars['Float']>;
+  solvedPosition: Maybe<Scalars['Float']>;
+};
+
+export type IssueAvgOrderByAggregateInput = {
+  position: InputMaybe<SortOrder>;
+  solvedPosition: InputMaybe<SortOrder>;
+};
+
+export type IssueCount = {
+  labels: Scalars['Int'];
 };
 
 export type IssueCountAggregate = {
@@ -1130,7 +1166,9 @@ export type IssueCountAggregate = {
   createdAt: Scalars['Int'];
   id: Scalars['Int'];
   isSolved: Scalars['Int'];
+  position: Scalars['Int'];
   solution: Scalars['Int'];
+  solvedPosition: Scalars['Int'];
   title: Scalars['Int'];
   updatedAt: Scalars['Int'];
   userId: Scalars['Int'];
@@ -1140,7 +1178,9 @@ export type IssueCountOrderByAggregateInput = {
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   isSolved: InputMaybe<SortOrder>;
+  position: InputMaybe<SortOrder>;
   solution: InputMaybe<SortOrder>;
+  solvedPosition: InputMaybe<SortOrder>;
   title: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
@@ -1150,7 +1190,10 @@ export type IssueCreateInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   isSolved: InputMaybe<Scalars['Boolean']>;
+  labels: InputMaybe<IssueLabelCreateNestedManyWithoutIssuesInput>;
+  position: InputMaybe<Scalars['Int']>;
   solution: Scalars['String'];
+  solvedPosition: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutIssuesInput;
@@ -1160,7 +1203,9 @@ export type IssueCreateManyInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   isSolved: InputMaybe<Scalars['Boolean']>;
+  position: InputMaybe<Scalars['Int']>;
   solution: Scalars['String'];
+  solvedPosition: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
@@ -1170,7 +1215,9 @@ export type IssueCreateManyUserInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   isSolved: InputMaybe<Scalars['Boolean']>;
+  position: InputMaybe<Scalars['Int']>;
   solution: Scalars['String'];
+  solvedPosition: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
 };
@@ -1180,6 +1227,12 @@ export type IssueCreateManyUserInputEnvelope = {
   skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
+export type IssueCreateNestedManyWithoutLabelsInput = {
+  connect: InputMaybe<Array<IssueWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<IssueCreateOrConnectWithoutLabelsInput>>;
+  create: InputMaybe<Array<IssueCreateWithoutLabelsInput>>;
+};
+
 export type IssueCreateNestedManyWithoutUserInput = {
   connect: InputMaybe<Array<IssueWhereUniqueInput>>;
   connectOrCreate: InputMaybe<Array<IssueCreateOrConnectWithoutUserInput>>;
@@ -1187,31 +1240,418 @@ export type IssueCreateNestedManyWithoutUserInput = {
   createMany: InputMaybe<IssueCreateManyUserInputEnvelope>;
 };
 
+export type IssueCreateOrConnectWithoutLabelsInput = {
+  create: IssueCreateWithoutLabelsInput;
+  where: IssueWhereUniqueInput;
+};
+
 export type IssueCreateOrConnectWithoutUserInput = {
   create: IssueCreateWithoutUserInput;
   where: IssueWhereUniqueInput;
+};
+
+export type IssueCreateWithoutLabelsInput = {
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  isSolved: InputMaybe<Scalars['Boolean']>;
+  position: InputMaybe<Scalars['Int']>;
+  solution: Scalars['String'];
+  solvedPosition: InputMaybe<Scalars['Int']>;
+  title: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutIssuesInput;
 };
 
 export type IssueCreateWithoutUserInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   isSolved: InputMaybe<Scalars['Boolean']>;
+  labels: InputMaybe<IssueLabelCreateNestedManyWithoutIssuesInput>;
+  position: InputMaybe<Scalars['Int']>;
   solution: Scalars['String'];
+  solvedPosition: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
 };
 
 export type IssueGroupBy = {
+  _avg: Maybe<IssueAvgAggregate>;
   _count: Maybe<IssueCountAggregate>;
   _max: Maybe<IssueMaxAggregate>;
   _min: Maybe<IssueMinAggregate>;
+  _sum: Maybe<IssueSumAggregate>;
   createdAt: Scalars['DateTime'];
   id: Scalars['String'];
   isSolved: Scalars['Boolean'];
+  position: Scalars['Int'];
   solution: Scalars['String'];
+  solvedPosition: Scalars['Int'];
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   userId: Scalars['String'];
+};
+
+export type IssueInput = {
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  isSolved: Scalars['Boolean'];
+  labelIds: InputMaybe<Array<Scalars['String']>>;
+  position: InputMaybe<Scalars['Int']>;
+  solution: Scalars['String'];
+  title: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  userId: InputMaybe<Scalars['String']>;
+};
+
+export type IssueLabel = {
+  _count: Maybe<IssueLabelCount>;
+  bgColor: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  issues: Array<Issue>;
+  name: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  user: User;
+  userId: Scalars['String'];
+};
+
+
+export type IssueLabelIssuesArgs = {
+  cursor: InputMaybe<IssueWhereUniqueInput>;
+  distinct: InputMaybe<Array<IssueScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<IssueOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<IssueWhereInput>;
+};
+
+export type IssueLabelCount = {
+  issues: Scalars['Int'];
+};
+
+export type IssueLabelCountAggregate = {
+  _all: Scalars['Int'];
+  bgColor: Scalars['Int'];
+  createdAt: Scalars['Int'];
+  id: Scalars['Int'];
+  name: Scalars['Int'];
+  updatedAt: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type IssueLabelCountOrderByAggregateInput = {
+  bgColor: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type IssueLabelCreateInput = {
+  bgColor: Scalars['String'];
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  issues: InputMaybe<IssueCreateNestedManyWithoutLabelsInput>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutIssueLabelsInput;
+};
+
+export type IssueLabelCreateManyInput = {
+  bgColor: Scalars['String'];
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  userId: Scalars['String'];
+};
+
+export type IssueLabelCreateManyUserInput = {
+  bgColor: Scalars['String'];
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+};
+
+export type IssueLabelCreateManyUserInputEnvelope = {
+  data: Array<IssueLabelCreateManyUserInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+export type IssueLabelCreateNestedManyWithoutIssuesInput = {
+  connect: InputMaybe<Array<IssueLabelWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<IssueLabelCreateOrConnectWithoutIssuesInput>>;
+  create: InputMaybe<Array<IssueLabelCreateWithoutIssuesInput>>;
+};
+
+export type IssueLabelCreateNestedManyWithoutUserInput = {
+  connect: InputMaybe<Array<IssueLabelWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<IssueLabelCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<IssueLabelCreateWithoutUserInput>>;
+  createMany: InputMaybe<IssueLabelCreateManyUserInputEnvelope>;
+};
+
+export type IssueLabelCreateOrConnectWithoutIssuesInput = {
+  create: IssueLabelCreateWithoutIssuesInput;
+  where: IssueLabelWhereUniqueInput;
+};
+
+export type IssueLabelCreateOrConnectWithoutUserInput = {
+  create: IssueLabelCreateWithoutUserInput;
+  where: IssueLabelWhereUniqueInput;
+};
+
+export type IssueLabelCreateWithoutIssuesInput = {
+  bgColor: Scalars['String'];
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutIssueLabelsInput;
+};
+
+export type IssueLabelCreateWithoutUserInput = {
+  bgColor: Scalars['String'];
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  issues: InputMaybe<IssueCreateNestedManyWithoutLabelsInput>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+};
+
+export type IssueLabelGroupBy = {
+  _count: Maybe<IssueLabelCountAggregate>;
+  _max: Maybe<IssueLabelMaxAggregate>;
+  _min: Maybe<IssueLabelMinAggregate>;
+  bgColor: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  name: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+};
+
+export type IssueLabelInput = {
+  bgColor: Scalars['String'];
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+};
+
+export type IssueLabelListRelationFilter = {
+  every: InputMaybe<IssueLabelWhereInput>;
+  none: InputMaybe<IssueLabelWhereInput>;
+  some: InputMaybe<IssueLabelWhereInput>;
+};
+
+export type IssueLabelMaxAggregate = {
+  bgColor: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
+};
+
+export type IssueLabelMaxOrderByAggregateInput = {
+  bgColor: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type IssueLabelMinAggregate = {
+  bgColor: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
+};
+
+export type IssueLabelMinOrderByAggregateInput = {
+  bgColor: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type IssueLabelOrderByRelationAggregateInput = {
+  _count: InputMaybe<SortOrder>;
+};
+
+export type IssueLabelOrderByWithAggregationInput = {
+  _count: InputMaybe<IssueLabelCountOrderByAggregateInput>;
+  _max: InputMaybe<IssueLabelMaxOrderByAggregateInput>;
+  _min: InputMaybe<IssueLabelMinOrderByAggregateInput>;
+  bgColor: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type IssueLabelOrderByWithRelationInput = {
+  bgColor: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  issues: InputMaybe<IssueOrderByRelationAggregateInput>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  user: InputMaybe<UserOrderByWithRelationInput>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export enum IssueLabelScalarFieldEnum {
+  BgColor = 'bgColor',
+  CreatedAt = 'createdAt',
+  Id = 'id',
+  Name = 'name',
+  UpdatedAt = 'updatedAt',
+  UserId = 'userId'
+}
+
+export type IssueLabelScalarWhereInput = {
+  AND: InputMaybe<Array<IssueLabelScalarWhereInput>>;
+  NOT: InputMaybe<Array<IssueLabelScalarWhereInput>>;
+  OR: InputMaybe<Array<IssueLabelScalarWhereInput>>;
+  bgColor: InputMaybe<StringFilter>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  id: InputMaybe<StringFilter>;
+  name: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  userId: InputMaybe<StringFilter>;
+};
+
+export type IssueLabelScalarWhereWithAggregatesInput = {
+  AND: InputMaybe<Array<IssueLabelScalarWhereWithAggregatesInput>>;
+  NOT: InputMaybe<Array<IssueLabelScalarWhereWithAggregatesInput>>;
+  OR: InputMaybe<Array<IssueLabelScalarWhereWithAggregatesInput>>;
+  bgColor: InputMaybe<StringWithAggregatesFilter>;
+  createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  id: InputMaybe<StringWithAggregatesFilter>;
+  name: InputMaybe<StringWithAggregatesFilter>;
+  updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  userId: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type IssueLabelUpdateInput = {
+  bgColor: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issues: InputMaybe<IssueUpdateManyWithoutLabelsNestedInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutIssueLabelsNestedInput>;
+};
+
+export type IssueLabelUpdateManyMutationInput = {
+  bgColor: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type IssueLabelUpdateManyWithWhereWithoutIssuesInput = {
+  data: IssueLabelUpdateManyMutationInput;
+  where: IssueLabelScalarWhereInput;
+};
+
+export type IssueLabelUpdateManyWithWhereWithoutUserInput = {
+  data: IssueLabelUpdateManyMutationInput;
+  where: IssueLabelScalarWhereInput;
+};
+
+export type IssueLabelUpdateManyWithoutIssuesNestedInput = {
+  connect: InputMaybe<Array<IssueLabelWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<IssueLabelCreateOrConnectWithoutIssuesInput>>;
+  create: InputMaybe<Array<IssueLabelCreateWithoutIssuesInput>>;
+  delete: InputMaybe<Array<IssueLabelWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<IssueLabelScalarWhereInput>>;
+  disconnect: InputMaybe<Array<IssueLabelWhereUniqueInput>>;
+  set: InputMaybe<Array<IssueLabelWhereUniqueInput>>;
+  update: InputMaybe<Array<IssueLabelUpdateWithWhereUniqueWithoutIssuesInput>>;
+  updateMany: InputMaybe<Array<IssueLabelUpdateManyWithWhereWithoutIssuesInput>>;
+  upsert: InputMaybe<Array<IssueLabelUpsertWithWhereUniqueWithoutIssuesInput>>;
+};
+
+export type IssueLabelUpdateManyWithoutUserNestedInput = {
+  connect: InputMaybe<Array<IssueLabelWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<IssueLabelCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<IssueLabelCreateWithoutUserInput>>;
+  createMany: InputMaybe<IssueLabelCreateManyUserInputEnvelope>;
+  delete: InputMaybe<Array<IssueLabelWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<IssueLabelScalarWhereInput>>;
+  disconnect: InputMaybe<Array<IssueLabelWhereUniqueInput>>;
+  set: InputMaybe<Array<IssueLabelWhereUniqueInput>>;
+  update: InputMaybe<Array<IssueLabelUpdateWithWhereUniqueWithoutUserInput>>;
+  updateMany: InputMaybe<Array<IssueLabelUpdateManyWithWhereWithoutUserInput>>;
+  upsert: InputMaybe<Array<IssueLabelUpsertWithWhereUniqueWithoutUserInput>>;
+};
+
+export type IssueLabelUpdateWithWhereUniqueWithoutIssuesInput = {
+  data: IssueLabelUpdateWithoutIssuesInput;
+  where: IssueLabelWhereUniqueInput;
+};
+
+export type IssueLabelUpdateWithWhereUniqueWithoutUserInput = {
+  data: IssueLabelUpdateWithoutUserInput;
+  where: IssueLabelWhereUniqueInput;
+};
+
+export type IssueLabelUpdateWithoutIssuesInput = {
+  bgColor: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutIssueLabelsNestedInput>;
+};
+
+export type IssueLabelUpdateWithoutUserInput = {
+  bgColor: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issues: InputMaybe<IssueUpdateManyWithoutLabelsNestedInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type IssueLabelUpsertWithWhereUniqueWithoutIssuesInput = {
+  create: IssueLabelCreateWithoutIssuesInput;
+  update: IssueLabelUpdateWithoutIssuesInput;
+  where: IssueLabelWhereUniqueInput;
+};
+
+export type IssueLabelUpsertWithWhereUniqueWithoutUserInput = {
+  create: IssueLabelCreateWithoutUserInput;
+  update: IssueLabelUpdateWithoutUserInput;
+  where: IssueLabelWhereUniqueInput;
+};
+
+export type IssueLabelWhereInput = {
+  AND: InputMaybe<Array<IssueLabelWhereInput>>;
+  NOT: InputMaybe<Array<IssueLabelWhereInput>>;
+  OR: InputMaybe<Array<IssueLabelWhereInput>>;
+  bgColor: InputMaybe<StringFilter>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  id: InputMaybe<StringFilter>;
+  issues: InputMaybe<IssueListRelationFilter>;
+  name: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  user: InputMaybe<UserRelationFilter>;
+  userId: InputMaybe<StringFilter>;
+};
+
+export type IssueLabelWhereUniqueInput = {
+  id: InputMaybe<Scalars['String']>;
 };
 
 export type IssueListRelationFilter = {
@@ -1224,7 +1664,9 @@ export type IssueMaxAggregate = {
   createdAt: Maybe<Scalars['DateTime']>;
   id: Maybe<Scalars['String']>;
   isSolved: Maybe<Scalars['Boolean']>;
+  position: Maybe<Scalars['Int']>;
   solution: Maybe<Scalars['String']>;
+  solvedPosition: Maybe<Scalars['Int']>;
   title: Maybe<Scalars['String']>;
   updatedAt: Maybe<Scalars['DateTime']>;
   userId: Maybe<Scalars['String']>;
@@ -1234,7 +1676,9 @@ export type IssueMaxOrderByAggregateInput = {
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   isSolved: InputMaybe<SortOrder>;
+  position: InputMaybe<SortOrder>;
   solution: InputMaybe<SortOrder>;
+  solvedPosition: InputMaybe<SortOrder>;
   title: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
@@ -1244,7 +1688,9 @@ export type IssueMinAggregate = {
   createdAt: Maybe<Scalars['DateTime']>;
   id: Maybe<Scalars['String']>;
   isSolved: Maybe<Scalars['Boolean']>;
+  position: Maybe<Scalars['Int']>;
   solution: Maybe<Scalars['String']>;
+  solvedPosition: Maybe<Scalars['Int']>;
   title: Maybe<Scalars['String']>;
   updatedAt: Maybe<Scalars['DateTime']>;
   userId: Maybe<Scalars['String']>;
@@ -1254,7 +1700,9 @@ export type IssueMinOrderByAggregateInput = {
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   isSolved: InputMaybe<SortOrder>;
+  position: InputMaybe<SortOrder>;
   solution: InputMaybe<SortOrder>;
+  solvedPosition: InputMaybe<SortOrder>;
   title: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
@@ -1265,13 +1713,17 @@ export type IssueOrderByRelationAggregateInput = {
 };
 
 export type IssueOrderByWithAggregationInput = {
+  _avg: InputMaybe<IssueAvgOrderByAggregateInput>;
   _count: InputMaybe<IssueCountOrderByAggregateInput>;
   _max: InputMaybe<IssueMaxOrderByAggregateInput>;
   _min: InputMaybe<IssueMinOrderByAggregateInput>;
+  _sum: InputMaybe<IssueSumOrderByAggregateInput>;
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   isSolved: InputMaybe<SortOrder>;
+  position: InputMaybe<SortOrder>;
   solution: InputMaybe<SortOrder>;
+  solvedPosition: InputMaybe<SortOrder>;
   title: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
@@ -1281,7 +1733,10 @@ export type IssueOrderByWithRelationInput = {
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   isSolved: InputMaybe<SortOrder>;
+  labels: InputMaybe<IssueLabelOrderByRelationAggregateInput>;
+  position: InputMaybe<SortOrder>;
   solution: InputMaybe<SortOrder>;
+  solvedPosition: InputMaybe<SortOrder>;
   title: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   user: InputMaybe<UserOrderByWithRelationInput>;
@@ -1292,7 +1747,9 @@ export enum IssueScalarFieldEnum {
   CreatedAt = 'createdAt',
   Id = 'id',
   IsSolved = 'isSolved',
+  Position = 'position',
   Solution = 'solution',
+  SolvedPosition = 'solvedPosition',
   Title = 'title',
   UpdatedAt = 'updatedAt',
   UserId = 'userId'
@@ -1305,7 +1762,9 @@ export type IssueScalarWhereInput = {
   createdAt: InputMaybe<DateTimeFilter>;
   id: InputMaybe<StringFilter>;
   isSolved: InputMaybe<BoolFilter>;
+  position: InputMaybe<IntFilter>;
   solution: InputMaybe<StringFilter>;
+  solvedPosition: InputMaybe<IntFilter>;
   title: InputMaybe<StringFilter>;
   updatedAt: InputMaybe<DateTimeFilter>;
   userId: InputMaybe<StringFilter>;
@@ -1318,17 +1777,32 @@ export type IssueScalarWhereWithAggregatesInput = {
   createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
   id: InputMaybe<StringWithAggregatesFilter>;
   isSolved: InputMaybe<BoolWithAggregatesFilter>;
+  position: InputMaybe<IntWithAggregatesFilter>;
   solution: InputMaybe<StringWithAggregatesFilter>;
+  solvedPosition: InputMaybe<IntWithAggregatesFilter>;
   title: InputMaybe<StringWithAggregatesFilter>;
   updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
   userId: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type IssueSumAggregate = {
+  position: Maybe<Scalars['Int']>;
+  solvedPosition: Maybe<Scalars['Int']>;
+};
+
+export type IssueSumOrderByAggregateInput = {
+  position: InputMaybe<SortOrder>;
+  solvedPosition: InputMaybe<SortOrder>;
 };
 
 export type IssueUpdateInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   isSolved: InputMaybe<BoolFieldUpdateOperationsInput>;
+  labels: InputMaybe<IssueLabelUpdateManyWithoutIssuesNestedInput>;
+  position: InputMaybe<IntFieldUpdateOperationsInput>;
   solution: InputMaybe<StringFieldUpdateOperationsInput>;
+  solvedPosition: InputMaybe<IntFieldUpdateOperationsInput>;
   title: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   user: InputMaybe<UserUpdateOneRequiredWithoutIssuesNestedInput>;
@@ -1338,14 +1812,34 @@ export type IssueUpdateManyMutationInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   isSolved: InputMaybe<BoolFieldUpdateOperationsInput>;
+  position: InputMaybe<IntFieldUpdateOperationsInput>;
   solution: InputMaybe<StringFieldUpdateOperationsInput>;
+  solvedPosition: InputMaybe<IntFieldUpdateOperationsInput>;
   title: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type IssueUpdateManyWithWhereWithoutLabelsInput = {
+  data: IssueUpdateManyMutationInput;
+  where: IssueScalarWhereInput;
 };
 
 export type IssueUpdateManyWithWhereWithoutUserInput = {
   data: IssueUpdateManyMutationInput;
   where: IssueScalarWhereInput;
+};
+
+export type IssueUpdateManyWithoutLabelsNestedInput = {
+  connect: InputMaybe<Array<IssueWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<IssueCreateOrConnectWithoutLabelsInput>>;
+  create: InputMaybe<Array<IssueCreateWithoutLabelsInput>>;
+  delete: InputMaybe<Array<IssueWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<IssueScalarWhereInput>>;
+  disconnect: InputMaybe<Array<IssueWhereUniqueInput>>;
+  set: InputMaybe<Array<IssueWhereUniqueInput>>;
+  update: InputMaybe<Array<IssueUpdateWithWhereUniqueWithoutLabelsInput>>;
+  updateMany: InputMaybe<Array<IssueUpdateManyWithWhereWithoutLabelsInput>>;
+  upsert: InputMaybe<Array<IssueUpsertWithWhereUniqueWithoutLabelsInput>>;
 };
 
 export type IssueUpdateManyWithoutUserNestedInput = {
@@ -1362,32 +1856,50 @@ export type IssueUpdateManyWithoutUserNestedInput = {
   upsert: InputMaybe<Array<IssueUpsertWithWhereUniqueWithoutUserInput>>;
 };
 
+export type IssueUpdateWithWhereUniqueWithoutLabelsInput = {
+  data: IssueUpdateWithoutLabelsInput;
+  where: IssueWhereUniqueInput;
+};
+
 export type IssueUpdateWithWhereUniqueWithoutUserInput = {
   data: IssueUpdateWithoutUserInput;
   where: IssueWhereUniqueInput;
+};
+
+export type IssueUpdateWithoutLabelsInput = {
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  isSolved: InputMaybe<BoolFieldUpdateOperationsInput>;
+  position: InputMaybe<IntFieldUpdateOperationsInput>;
+  solution: InputMaybe<StringFieldUpdateOperationsInput>;
+  solvedPosition: InputMaybe<IntFieldUpdateOperationsInput>;
+  title: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutIssuesNestedInput>;
 };
 
 export type IssueUpdateWithoutUserInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   isSolved: InputMaybe<BoolFieldUpdateOperationsInput>;
+  labels: InputMaybe<IssueLabelUpdateManyWithoutIssuesNestedInput>;
+  position: InputMaybe<IntFieldUpdateOperationsInput>;
   solution: InputMaybe<StringFieldUpdateOperationsInput>;
+  solvedPosition: InputMaybe<IntFieldUpdateOperationsInput>;
   title: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type IssueUpsertWithWhereUniqueWithoutLabelsInput = {
+  create: IssueCreateWithoutLabelsInput;
+  update: IssueUpdateWithoutLabelsInput;
+  where: IssueWhereUniqueInput;
 };
 
 export type IssueUpsertWithWhereUniqueWithoutUserInput = {
   create: IssueCreateWithoutUserInput;
   update: IssueUpdateWithoutUserInput;
   where: IssueWhereUniqueInput;
-};
-
-export type IssueValidInput = {
-  id: InputMaybe<Scalars['String']>;
-  isSolved: Scalars['Boolean'];
-  solution: Scalars['String'];
-  title: Scalars['String'];
-  userId: InputMaybe<Scalars['String']>;
 };
 
 export type IssueWhereInput = {
@@ -1397,7 +1909,10 @@ export type IssueWhereInput = {
   createdAt: InputMaybe<DateTimeFilter>;
   id: InputMaybe<StringFilter>;
   isSolved: InputMaybe<BoolFilter>;
+  labels: InputMaybe<IssueLabelListRelationFilter>;
+  position: InputMaybe<IntFilter>;
   solution: InputMaybe<StringFilter>;
+  solvedPosition: InputMaybe<IntFilter>;
   title: InputMaybe<StringFilter>;
   updatedAt: InputMaybe<DateTimeFilter>;
   user: InputMaybe<UserRelationFilter>;
@@ -1417,6 +1932,7 @@ export type Mutation = {
   createManyCategory: AffectedRowsOutput;
   createManyExpense: AffectedRowsOutput;
   createManyIssue: AffectedRowsOutput;
+  createManyIssueLabel: AffectedRowsOutput;
   createManyRecipe: AffectedRowsOutput;
   createManySalary: AffectedRowsOutput;
   createManySaving: AffectedRowsOutput;
@@ -1425,6 +1941,7 @@ export type Mutation = {
   createOneCategory: Category;
   createOneExpense: Expense;
   createOneIssue: Issue;
+  createOneIssueLabel: IssueLabel;
   createOneRecipe: Recipe;
   createOneSalary: Salary;
   createOneSaving: Saving;
@@ -1432,10 +1949,12 @@ export type Mutation = {
   createOneWishlistItem: WishlistItem;
   deleteCategoryMutation: Scalars['Boolean'];
   deleteExpenseMutation: Scalars['Boolean'];
+  deleteIssueLabelMutation: Scalars['Boolean'];
   deleteIssueMutation: Scalars['Boolean'];
   deleteManyCategory: AffectedRowsOutput;
   deleteManyExpense: AffectedRowsOutput;
   deleteManyIssue: AffectedRowsOutput;
+  deleteManyIssueLabel: AffectedRowsOutput;
   deleteManyRecipe: AffectedRowsOutput;
   deleteManySalary: AffectedRowsOutput;
   deleteManySaving: AffectedRowsOutput;
@@ -1444,6 +1963,7 @@ export type Mutation = {
   deleteOneCategory: Maybe<Category>;
   deleteOneExpense: Maybe<Expense>;
   deleteOneIssue: Maybe<Issue>;
+  deleteOneIssueLabel: Maybe<IssueLabel>;
   deleteOneRecipe: Maybe<Recipe>;
   deleteOneSalary: Maybe<Salary>;
   deleteOneSaving: Maybe<Saving>;
@@ -1456,6 +1976,7 @@ export type Mutation = {
   registerMutation: AuthUserOutput;
   saveCategoryMutation: Category;
   saveExpenseMutation: Expense;
+  saveIssueLabelMutation: IssueLabel;
   saveIssueMutation: Issue;
   saveRecipeMutation: Recipe;
   saveSalaryMutation: Salary;
@@ -1464,6 +1985,7 @@ export type Mutation = {
   updateManyCategory: AffectedRowsOutput;
   updateManyExpense: AffectedRowsOutput;
   updateManyIssue: AffectedRowsOutput;
+  updateManyIssueLabel: AffectedRowsOutput;
   updateManyRecipe: AffectedRowsOutput;
   updateManySalary: AffectedRowsOutput;
   updateManySaving: AffectedRowsOutput;
@@ -1472,6 +1994,7 @@ export type Mutation = {
   updateOneCategory: Maybe<Category>;
   updateOneExpense: Maybe<Expense>;
   updateOneIssue: Maybe<Issue>;
+  updateOneIssueLabel: Maybe<IssueLabel>;
   updateOneRecipe: Maybe<Recipe>;
   updateOneSalary: Maybe<Salary>;
   updateOneSaving: Maybe<Saving>;
@@ -1480,6 +2003,7 @@ export type Mutation = {
   upsertOneCategory: Category;
   upsertOneExpense: Expense;
   upsertOneIssue: Issue;
+  upsertOneIssueLabel: IssueLabel;
   upsertOneRecipe: Recipe;
   upsertOneSalary: Salary;
   upsertOneSaving: Saving;
@@ -1502,6 +2026,12 @@ export type MutationCreateManyExpenseArgs = {
 
 export type MutationCreateManyIssueArgs = {
   data: Array<IssueCreateManyInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreateManyIssueLabelArgs = {
+  data: Array<IssueLabelCreateManyInput>;
   skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -1551,6 +2081,11 @@ export type MutationCreateOneIssueArgs = {
 };
 
 
+export type MutationCreateOneIssueLabelArgs = {
+  data: IssueLabelCreateInput;
+};
+
+
 export type MutationCreateOneRecipeArgs = {
   data: RecipeCreateInput;
 };
@@ -1586,6 +2121,11 @@ export type MutationDeleteExpenseMutationArgs = {
 };
 
 
+export type MutationDeleteIssueLabelMutationArgs = {
+  id: Scalars['String'];
+};
+
+
 export type MutationDeleteIssueMutationArgs = {
   issueId: Scalars['String'];
 };
@@ -1603,6 +2143,11 @@ export type MutationDeleteManyExpenseArgs = {
 
 export type MutationDeleteManyIssueArgs = {
   where: InputMaybe<IssueWhereInput>;
+};
+
+
+export type MutationDeleteManyIssueLabelArgs = {
+  where: InputMaybe<IssueLabelWhereInput>;
 };
 
 
@@ -1643,6 +2188,11 @@ export type MutationDeleteOneExpenseArgs = {
 
 export type MutationDeleteOneIssueArgs = {
   where: IssueWhereUniqueInput;
+};
+
+
+export type MutationDeleteOneIssueLabelArgs = {
+  where: IssueLabelWhereUniqueInput;
 };
 
 
@@ -1706,8 +2256,13 @@ export type MutationSaveExpenseMutationArgs = {
 };
 
 
+export type MutationSaveIssueLabelMutationArgs = {
+  data: IssueLabelInput;
+};
+
+
 export type MutationSaveIssueMutationArgs = {
-  data: IssueValidInput;
+  data: IssueInput;
 };
 
 
@@ -1746,6 +2301,12 @@ export type MutationUpdateManyExpenseArgs = {
 export type MutationUpdateManyIssueArgs = {
   data: IssueUpdateManyMutationInput;
   where: InputMaybe<IssueWhereInput>;
+};
+
+
+export type MutationUpdateManyIssueLabelArgs = {
+  data: IssueLabelUpdateManyMutationInput;
+  where: InputMaybe<IssueLabelWhereInput>;
 };
 
 
@@ -1797,6 +2358,12 @@ export type MutationUpdateOneIssueArgs = {
 };
 
 
+export type MutationUpdateOneIssueLabelArgs = {
+  data: IssueLabelUpdateInput;
+  where: IssueLabelWhereUniqueInput;
+};
+
+
 export type MutationUpdateOneRecipeArgs = {
   data: RecipeUpdateInput;
   where: RecipeWhereUniqueInput;
@@ -1845,6 +2412,13 @@ export type MutationUpsertOneIssueArgs = {
   create: IssueCreateInput;
   update: IssueUpdateInput;
   where: IssueWhereUniqueInput;
+};
+
+
+export type MutationUpsertOneIssueLabelArgs = {
+  create: IssueLabelCreateInput;
+  update: IssueLabelUpdateInput;
+  where: IssueLabelWhereUniqueInput;
 };
 
 
@@ -2170,6 +2744,7 @@ export type Query = {
   aggregateCategory: AggregateCategory;
   aggregateExpense: AggregateExpense;
   aggregateIssue: AggregateIssue;
+  aggregateIssueLabel: AggregateIssueLabel;
   aggregateRecipe: AggregateRecipe;
   aggregateSalary: AggregateSalary;
   aggregateSaving: AggregateSaving;
@@ -2186,6 +2761,8 @@ export type Query = {
   findFirstExpense: Maybe<Expense>;
   findFirstExpenseOrThrow: Maybe<Expense>;
   findFirstIssue: Maybe<Issue>;
+  findFirstIssueLabel: Maybe<IssueLabel>;
+  findFirstIssueLabelOrThrow: Maybe<IssueLabel>;
   findFirstIssueOrThrow: Maybe<Issue>;
   findFirstRecipe: Maybe<Recipe>;
   findFirstRecipeOrThrow: Maybe<Recipe>;
@@ -2200,6 +2777,7 @@ export type Query = {
   getCategory: Maybe<Category>;
   getExpense: Maybe<Expense>;
   getIssue: Maybe<Issue>;
+  getIssueLabel: Maybe<IssueLabel>;
   getRecipe: Maybe<Recipe>;
   getRecipesQuery: Array<Recipe>;
   getSalary: Maybe<Salary>;
@@ -2209,12 +2787,16 @@ export type Query = {
   groupByCategory: Array<CategoryGroupBy>;
   groupByExpense: Array<ExpenseGroupBy>;
   groupByIssue: Array<IssueGroupBy>;
+  groupByIssueLabel: Array<IssueLabelGroupBy>;
   groupByRecipe: Array<RecipeGroupBy>;
   groupBySalary: Array<SalaryGroupBy>;
   groupBySaving: Array<SavingGroupBy>;
   groupByUser: Array<UserGroupBy>;
   groupByWishlistItem: Array<WishlistItemGroupBy>;
   issue: Maybe<Issue>;
+  issueLabel: Maybe<IssueLabel>;
+  issueLabels: Array<IssueLabel>;
+  issueLabelsQuery: Array<IssueLabel>;
   issues: Array<Issue>;
   issuesQuery: Array<Issue>;
   meQuery: AuthUserOutput;
@@ -2259,6 +2841,15 @@ export type QueryAggregateIssueArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<IssueWhereInput>;
+};
+
+
+export type QueryAggregateIssueLabelArgs = {
+  cursor: InputMaybe<IssueLabelWhereUniqueInput>;
+  orderBy: InputMaybe<Array<IssueLabelOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<IssueLabelWhereInput>;
 };
 
 
@@ -2393,6 +2984,26 @@ export type QueryFindFirstIssueArgs = {
 };
 
 
+export type QueryFindFirstIssueLabelArgs = {
+  cursor: InputMaybe<IssueLabelWhereUniqueInput>;
+  distinct: InputMaybe<Array<IssueLabelScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<IssueLabelOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<IssueLabelWhereInput>;
+};
+
+
+export type QueryFindFirstIssueLabelOrThrowArgs = {
+  cursor: InputMaybe<IssueLabelWhereUniqueInput>;
+  distinct: InputMaybe<Array<IssueLabelScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<IssueLabelOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<IssueLabelWhereInput>;
+};
+
+
 export type QueryFindFirstIssueOrThrowArgs = {
   cursor: InputMaybe<IssueWhereUniqueInput>;
   distinct: InputMaybe<Array<IssueScalarFieldEnum>>;
@@ -2518,6 +3129,11 @@ export type QueryGetIssueArgs = {
 };
 
 
+export type QueryGetIssueLabelArgs = {
+  where: IssueLabelWhereUniqueInput;
+};
+
+
 export type QueryGetRecipeArgs = {
   where: RecipeWhereUniqueInput;
 };
@@ -2573,6 +3189,16 @@ export type QueryGroupByIssueArgs = {
 };
 
 
+export type QueryGroupByIssueLabelArgs = {
+  by: Array<IssueLabelScalarFieldEnum>;
+  having: InputMaybe<IssueLabelScalarWhereWithAggregatesInput>;
+  orderBy: InputMaybe<Array<IssueLabelOrderByWithAggregationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<IssueLabelWhereInput>;
+};
+
+
 export type QueryGroupByRecipeArgs = {
   by: Array<RecipeScalarFieldEnum>;
   having: InputMaybe<RecipeScalarWhereWithAggregatesInput>;
@@ -2625,6 +3251,21 @@ export type QueryGroupByWishlistItemArgs = {
 
 export type QueryIssueArgs = {
   where: IssueWhereUniqueInput;
+};
+
+
+export type QueryIssueLabelArgs = {
+  where: IssueLabelWhereUniqueInput;
+};
+
+
+export type QueryIssueLabelsArgs = {
+  cursor: InputMaybe<IssueLabelWhereUniqueInput>;
+  distinct: InputMaybe<Array<IssueLabelScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<IssueLabelOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<IssueLabelWhereInput>;
 };
 
 
@@ -3668,6 +4309,7 @@ export type User = {
   email: Scalars['String'];
   expenses: Array<Expense>;
   id: Scalars['String'];
+  issueLabels: Array<IssueLabel>;
   issues: Array<Issue>;
   password: Scalars['String'];
   recipe: Array<Recipe>;
@@ -3696,6 +4338,16 @@ export type UserExpensesArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<ExpenseWhereInput>;
+};
+
+
+export type UserIssueLabelsArgs = {
+  cursor: InputMaybe<IssueLabelWhereUniqueInput>;
+  distinct: InputMaybe<Array<IssueLabelScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<IssueLabelOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<IssueLabelWhereInput>;
 };
 
 
@@ -3741,6 +4393,7 @@ export type UserWishlistItemsArgs = {
 export type UserCount = {
   categories: Scalars['Int'];
   expenses: Scalars['Int'];
+  issueLabels: Scalars['Int'];
   issues: Scalars['Int'];
   recipe: Scalars['Int'];
   savings: Scalars['Int'];
@@ -3772,6 +4425,7 @@ export type UserCreateInput = {
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
+  issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -3801,6 +4455,12 @@ export type UserCreateNestedOneWithoutExpensesInput = {
   connect: InputMaybe<UserWhereUniqueInput>;
   connectOrCreate: InputMaybe<UserCreateOrConnectWithoutExpensesInput>;
   create: InputMaybe<UserCreateWithoutExpensesInput>;
+};
+
+export type UserCreateNestedOneWithoutIssueLabelsInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutIssueLabelsInput>;
+  create: InputMaybe<UserCreateWithoutIssueLabelsInput>;
 };
 
 export type UserCreateNestedOneWithoutIssuesInput = {
@@ -3843,6 +4503,11 @@ export type UserCreateOrConnectWithoutExpensesInput = {
   where: UserWhereUniqueInput;
 };
 
+export type UserCreateOrConnectWithoutIssueLabelsInput = {
+  create: UserCreateWithoutIssueLabelsInput;
+  where: UserWhereUniqueInput;
+};
+
 export type UserCreateOrConnectWithoutIssuesInput = {
   create: UserCreateWithoutIssuesInput;
   where: UserWhereUniqueInput;
@@ -3873,6 +4538,7 @@ export type UserCreateWithoutCategoriesInput = {
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
+  issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -3887,6 +4553,23 @@ export type UserCreateWithoutExpensesInput = {
   categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
+  id: InputMaybe<Scalars['String']>;
+  issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
+  issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  password: Scalars['String'];
+  recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
+  savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  username: Scalars['String'];
+  wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
+};
+
+export type UserCreateWithoutIssueLabelsInput = {
+  categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  email: Scalars['String'];
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
@@ -3904,6 +4587,7 @@ export type UserCreateWithoutIssuesInput = {
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
+  issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
   salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
@@ -3919,6 +4603,7 @@ export type UserCreateWithoutRecipeInput = {
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
+  issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
@@ -3934,6 +4619,7 @@ export type UserCreateWithoutSalaryInput = {
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
+  issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -3949,6 +4635,7 @@ export type UserCreateWithoutSavingsInput = {
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
+  issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -3964,6 +4651,7 @@ export type UserCreateWithoutWishlistItemsInput = {
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
+  issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -4039,6 +4727,7 @@ export type UserOrderByWithRelationInput = {
   email: InputMaybe<SortOrder>;
   expenses: InputMaybe<ExpenseOrderByRelationAggregateInput>;
   id: InputMaybe<SortOrder>;
+  issueLabels: InputMaybe<IssueLabelOrderByRelationAggregateInput>;
   issues: InputMaybe<IssueOrderByRelationAggregateInput>;
   password: InputMaybe<SortOrder>;
   recipe: InputMaybe<RecipeOrderByRelationAggregateInput>;
@@ -4081,6 +4770,7 @@ export type UserUpdateInput = {
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -4114,6 +4804,14 @@ export type UserUpdateOneRequiredWithoutExpensesNestedInput = {
   create: InputMaybe<UserCreateWithoutExpensesInput>;
   update: InputMaybe<UserUpdateWithoutExpensesInput>;
   upsert: InputMaybe<UserUpsertWithoutExpensesInput>;
+};
+
+export type UserUpdateOneRequiredWithoutIssueLabelsNestedInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutIssueLabelsInput>;
+  create: InputMaybe<UserCreateWithoutIssueLabelsInput>;
+  update: InputMaybe<UserUpdateWithoutIssueLabelsInput>;
+  upsert: InputMaybe<UserUpsertWithoutIssueLabelsInput>;
 };
 
 export type UserUpdateOneRequiredWithoutIssuesNestedInput = {
@@ -4161,6 +4859,7 @@ export type UserUpdateWithoutCategoriesInput = {
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -4175,6 +4874,23 @@ export type UserUpdateWithoutExpensesInput = {
   categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
+  issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
+  savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
+};
+
+export type UserUpdateWithoutIssueLabelsInput = {
+  categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
@@ -4192,6 +4908,7 @@ export type UserUpdateWithoutIssuesInput = {
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
   salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
@@ -4207,6 +4924,7 @@ export type UserUpdateWithoutRecipeInput = {
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
@@ -4222,6 +4940,7 @@ export type UserUpdateWithoutSalaryInput = {
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -4237,6 +4956,7 @@ export type UserUpdateWithoutSavingsInput = {
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -4252,6 +4972,7 @@ export type UserUpdateWithoutWishlistItemsInput = {
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -4269,6 +4990,11 @@ export type UserUpsertWithoutCategoriesInput = {
 export type UserUpsertWithoutExpensesInput = {
   create: UserCreateWithoutExpensesInput;
   update: UserUpdateWithoutExpensesInput;
+};
+
+export type UserUpsertWithoutIssueLabelsInput = {
+  create: UserCreateWithoutIssueLabelsInput;
+  update: UserUpdateWithoutIssueLabelsInput;
 };
 
 export type UserUpsertWithoutIssuesInput = {
@@ -4305,6 +5031,7 @@ export type UserWhereInput = {
   email: InputMaybe<StringFilter>;
   expenses: InputMaybe<ExpenseListRelationFilter>;
   id: InputMaybe<StringFilter>;
+  issueLabels: InputMaybe<IssueLabelListRelationFilter>;
   issues: InputMaybe<IssueListRelationFilter>;
   password: InputMaybe<StringFilter>;
   recipe: InputMaybe<RecipeListRelationFilter>;
@@ -4631,7 +5358,9 @@ export type SalaryFragment = { id: string, userId: string, value: number, create
 
 export type SavingFragment = { id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string };
 
-export type IssueFragment = { id: string, userId: string, title: string, solution: string, isSolved: boolean, createdAt: string, updatedAt: string };
+export type IssueFragment = { id: string, userId: string, title: string, solution: string, isSolved: boolean, position: number, createdAt: string, updatedAt: string, labels: Array<{ id: string }> };
+
+export type IssueLabelFragment = { id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string };
 
 export type MeQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4698,6 +5427,25 @@ export type SaveExpenseV2MutationVariables = Exact<{
 
 export type SaveExpenseV2Mutation = { saveExpenseMutation: { id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, categories: Array<{ id: string }> } };
 
+export type DeleteIssueLabelMutationMutationVariables = Exact<{
+  deleteIssueLabelMutationId: Scalars['String'];
+}>;
+
+
+export type DeleteIssueLabelMutationMutation = { deleteIssueLabelMutation: boolean };
+
+export type IssueLabelsQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type IssueLabelsQueryQuery = { issueLabelsQuery: Array<{ id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string }> };
+
+export type SaveIssueLabelMutationMutationVariables = Exact<{
+  data: IssueLabelInput;
+}>;
+
+
+export type SaveIssueLabelMutationMutation = { saveIssueLabelMutation: { id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string } };
+
 export type DeleteIssueMutationMutationVariables = Exact<{
   issueId: Scalars['String'];
 }>;
@@ -4708,14 +5456,14 @@ export type DeleteIssueMutationMutation = { deleteIssueMutation: boolean };
 export type IssuesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type IssuesQueryQuery = { issuesQuery: Array<{ id: string, userId: string, title: string, solution: string, isSolved: boolean, createdAt: string, updatedAt: string }> };
+export type IssuesQueryQuery = { issuesQuery: Array<{ id: string, userId: string, title: string, solution: string, isSolved: boolean, position: number, createdAt: string, updatedAt: string, labels: Array<{ id: string }> }> };
 
 export type SaveIssueMutationMutationVariables = Exact<{
-  data: IssueValidInput;
+  data: IssueInput;
 }>;
 
 
-export type SaveIssueMutationMutation = { saveIssueMutation: { id: string, userId: string, title: string, solution: string, isSolved: boolean, createdAt: string, updatedAt: string } };
+export type SaveIssueMutationMutation = { saveIssueMutation: { id: string, userId: string, title: string, solution: string, isSolved: boolean, position: number, createdAt: string, updatedAt: string, labels: Array<{ id: string }> } };
 
 export type SalaryQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4880,6 +5628,20 @@ export const IssueFragmentDoc = gql`
   title
   solution
   isSolved
+  position
+  createdAt
+  labels {
+    id
+  }
+  updatedAt
+}
+    `;
+export const IssueLabelFragmentDoc = gql`
+    fragment IssueLabel on IssueLabel {
+  id
+  userId
+  name
+  bgColor
   createdAt
   updatedAt
 }
@@ -4954,6 +5716,25 @@ export const SaveExpenseV2Document = gql`
   }
 }
     ${ExpenseFragmentDoc}`;
+export const DeleteIssueLabelMutationDocument = gql`
+    mutation DeleteIssueLabelMutation($deleteIssueLabelMutationId: String!) {
+  deleteIssueLabelMutation(id: $deleteIssueLabelMutationId)
+}
+    `;
+export const IssueLabelsQueryDocument = gql`
+    query IssueLabelsQuery {
+  issueLabelsQuery {
+    ...IssueLabel
+  }
+}
+    ${IssueLabelFragmentDoc}`;
+export const SaveIssueLabelMutationDocument = gql`
+    mutation SaveIssueLabelMutation($data: IssueLabelInput!) {
+  saveIssueLabelMutation(data: $data) {
+    ...IssueLabel
+  }
+}
+    ${IssueLabelFragmentDoc}`;
 export const DeleteIssueMutationDocument = gql`
     mutation DeleteIssueMutation($issueId: String!) {
   deleteIssueMutation(issueId: $issueId)
@@ -4967,7 +5748,7 @@ export const IssuesQueryDocument = gql`
 }
     ${IssueFragmentDoc}`;
 export const SaveIssueMutationDocument = gql`
-    mutation SaveIssueMutation($data: IssueValidInput!) {
+    mutation SaveIssueMutation($data: IssueInput!) {
   saveIssueMutation(data: $data) {
     ...Issue
   }
@@ -5081,6 +5862,15 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     SaveExpenseV2(variables: SaveExpenseV2MutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveExpenseV2Mutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<SaveExpenseV2Mutation>(SaveExpenseV2Document, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveExpenseV2', 'mutation');
+    },
+    DeleteIssueLabelMutation(variables: DeleteIssueLabelMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteIssueLabelMutationMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DeleteIssueLabelMutationMutation>(DeleteIssueLabelMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DeleteIssueLabelMutation', 'mutation');
+    },
+    IssueLabelsQuery(variables?: IssueLabelsQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<IssueLabelsQueryQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<IssueLabelsQueryQuery>(IssueLabelsQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'IssueLabelsQuery', 'query');
+    },
+    SaveIssueLabelMutation(variables: SaveIssueLabelMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveIssueLabelMutationMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SaveIssueLabelMutationMutation>(SaveIssueLabelMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveIssueLabelMutation', 'mutation');
     },
     DeleteIssueMutation(variables: DeleteIssueMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteIssueMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<DeleteIssueMutationMutation>(DeleteIssueMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DeleteIssueMutation', 'mutation');

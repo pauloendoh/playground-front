@@ -7,24 +7,23 @@ import {
   Grid,
   Modal,
   TextInput,
-  Title
+  Title,
 } from '@mantine/core'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import MyCategoryInput from '../../../../hooks/react-query/monerate/category/types/MyCategoryInput'
-import { useSaveCategoryMutation } from '../../../../hooks/react-query/monerate/category/useSaveCategoryMutation'
+import MyIssueLabelInput from '../../../../hooks/react-query/monerate/issue-label/types/MyIssueLabelInput'
+import { useSaveIssueLabelMutation } from '../../../../hooks/react-query/monerate/issue-label/useSaveIssueLabelMutation'
 import { useRecipesQuery } from '../../../../hooks/react-query/recipe/useRecipesQuery'
-import { CategoryMoreMenu } from './CategoryMoreMenu/CategoryMoreMenu'
 
 type Props = {
   isOpen: boolean
-  initialValue?: MyCategoryInput
+  initialValue?: MyIssueLabelInput
   onClose: () => void
 }
 
-const resolver = classValidatorResolver(MyCategoryInput)
+const resolver = classValidatorResolver(MyIssueLabelInput)
 
-export default function CategoryModal(props: Props) {
+export default function IssueLabelModal(props: Props) {
   const {
     register,
     handleSubmit,
@@ -33,7 +32,7 @@ export default function CategoryModal(props: Props) {
     reset,
     watch,
     setValue,
-  } = useForm<MyCategoryInput>({
+  } = useForm<MyIssueLabelInput>({
     resolver,
     defaultValues: props.initialValue,
   })
@@ -47,9 +46,9 @@ export default function CategoryModal(props: Props) {
     }
   }, [props.isOpen])
 
-  const { mutate: submitCreateRecipe } = useSaveCategoryMutation()
+  const { mutate: submitCreateRecipe } = useSaveIssueLabelMutation()
 
-  const onSubmit = (data: MyCategoryInput) => {
+  const onSubmit = (data: MyIssueLabelInput) => {
     submitCreateRecipe(data, {
       onSuccess: () => {
         props.onClose()
@@ -74,14 +73,11 @@ export default function CategoryModal(props: Props) {
         title={
           <Flex align={'center'} justify="space-between">
             <Title order={3}>
-              {props.initialValue?.id ? 'Edit Category' : 'Create Category'}
+              {props.initialValue?.id ? 'Edit Label' : 'Create Label'}
             </Title>
-            {props.initialValue?.id ? (
-              <CategoryMoreMenu
-                input={props.initialValue}
-                afterDelete={() => props.onClose()}
-              />
-            ) : (
+            {props.initialValue?.id ? //   afterDelete={() => props.onClose()} //   input={props.initialValue} // <IssueLabelMoreMenu
+            // />
+            null : (
               <CloseButton onClick={() => props.onClose()} />
             )}
           </Flex>
@@ -94,6 +90,7 @@ export default function CategoryModal(props: Props) {
                 label="Name"
                 {...register('name')}
                 error={errors.name?.message}
+                autoComplete="off"
               />
             </Grid.Col>
 

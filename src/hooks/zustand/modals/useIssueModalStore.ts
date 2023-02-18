@@ -1,10 +1,10 @@
 import { create } from 'zustand'
-import { MyIssueValidInput } from '../../../types/domains/monerate/issue/MyIssueValidInput'
+import { MyIssueInput } from '../../../types/domains/monerate/issue/MyIssueValidInput'
 
 interface IStore {
   isOpen: boolean
-  initialValue?: MyIssueValidInput
-  openModal: (value?: MyIssueValidInput) => void
+  initialValue?: MyIssueInput
+  openModal: (value?: MyIssueInput) => void
   onClose: () => void
 }
 

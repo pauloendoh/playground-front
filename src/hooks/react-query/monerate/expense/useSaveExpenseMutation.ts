@@ -27,7 +27,6 @@ export const useSaveExpenseMutation = (filter?: IExpenseFilter) => {
         .SaveExpenseV2({
           data: {
             ...clearData,
-            categoryIds: [],
           },
         })
         .then((res) => res.saveExpenseMutation)

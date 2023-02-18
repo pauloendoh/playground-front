@@ -1,14 +1,15 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { plainToClass } from 'class-transformer'
 import { upsert } from 'endoh-utils'
 import gql from 'graphql-tag'
 import { IssueFragment } from '../../../../graphql/generated/graphql'
 import { sdk } from '../../../../graphql/sdk'
-import { MyIssueValidInput } from '../../../../types/domains/monerate/issue/MyIssueValidInput'
+import { MyIssueInput } from '../../../../types/domains/monerate/issue/MyIssueValidInput'
 import { myNotifications } from '../../../../utils/mantine/myNotifications'
 import { queryKeys } from '../../../../utils/queryKeys'
 
 gql`
-  mutation SaveIssueMutation($data: IssueValidInput!) {
+  mutation SaveIssueMutation($data: IssueInput!) {
     saveIssueMutation(data: $data) {
       ...Issue
     }
@@ -19,14 +20,18 @@ export const useSaveIssueMutation = () => {
   const queryClient = useQueryClient()
 
   return useMutation(
-    (data: MyIssueValidInput) =>
-      sdk
+    async (data: MyIssueInput) => {
+      const clearData = plainToClass(MyIssueInput, data, {
+        strategy: 'excludeAll',
+      })
+      return sdk
         .SaveIssueMutation({
           data: {
-            ...data,
+            ...clearData,
           },
         })
-        .then((res) => res.saveIssueMutation),
+        .then((res) => res.saveIssueMutation)
+    },
     {
       onSuccess: (saved) => {
         myNotifications.success('Issue saved!')

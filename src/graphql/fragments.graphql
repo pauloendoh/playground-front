@@ -83,6 +83,19 @@ fragment Issue on Issue {
   title
   solution
   isSolved
+  position
+  createdAt
+  labels {
+    id
+  }
+  updatedAt
+}
+
+fragment IssueLabel on IssueLabel {
+  id
+  userId
+  name
+  bgColor
   createdAt
   updatedAt
 }

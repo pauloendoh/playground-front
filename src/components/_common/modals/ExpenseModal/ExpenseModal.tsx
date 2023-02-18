@@ -51,11 +51,10 @@ export default function ExpenseModal(props: Props) {
   }, [props.isOpen])
 
   const filter = useExpenseFilterStore((s) => s.filter)
-  const { mutate: submitCreateRecipe, isLoading } =
-    useSaveExpenseMutation(filter)
+  const { mutate: submitSave, isLoading } = useSaveExpenseMutation(filter)
 
   const onSubmit = (data: MyExpenseInput) => {
-    submitCreateRecipe(data, {
+    submitSave(data, {
       onSuccess: () => {
         props.onClose()
       },
