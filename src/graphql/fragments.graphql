@@ -67,3 +67,22 @@ fragment Salary on Salary {
   createdAt
   updatedAt
 }
+
+fragment Saving on Saving {
+  id
+  userId
+  value
+  date
+  createdAt
+  updatedAt
+}
+
+fragment Issue on Issue {
+  id
+  userId
+  title
+  solution
+  isSolved
+  createdAt
+  updatedAt
+}

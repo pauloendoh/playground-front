@@ -1,6 +1,7 @@
 import { AppShell, Container } from '@mantine/core'
 import { Route, Routes } from 'react-router-dom'
 import { urls } from '../../../utils/urls'
+import IssuesContent from '../../issues-page/IssuesContent/IssuesContent'
 import ExpensesContent from '../../monerate-page/ExpensesContent/ExpensesContent'
 import RecipesContent from '../../recipes-page/RecipesContent/RecipesContent'
 import MonerateContent from '../MonerateContent/MonerateContent'
@@ -29,6 +30,7 @@ const HomePage = (props: Props) => {
       <Container>
         <Routes>
           <Route path="/recipes" element={<RecipesContent />} />
+          <Route path="/issues" element={<IssuesContent />} />
           <Route element={<MonerateContent />}>
             <Route
               path={urls.pages.monerateOthers}

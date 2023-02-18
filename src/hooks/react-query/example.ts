@@ -1,12 +1,12 @@
-import ExpenseModal from '../../components/_common/modals/ExpenseModal/ExpenseModal'
+import IssueModal from '../../components/_common/modals/ExpenseModal copy/IssueModal'
 import { MySavingValidInput } from '../../types/domains/monerate/saving/MySavingValidInput'
-import useExpenseModalStore from '../zustand/modals/useExpenseModalStore'
-import { useSaveSavingMutation } from './monerate/saving/useSaveSavingMutation'
-import { useSavingsQuery } from './monerate/saving/useSavingsQuery'
+import useIssueModalStore from '../zustand/modals/useIssueModalStore'
+import { useIssuesQuery } from './monerate/issue/useIssuesQuery'
+import { useSaveIssueMutation } from './monerate/issue/useSaveIssueMutation'
 
-const queryHook = useSavingsQuery()
-const mutationHook = useSaveSavingMutation()
+const queryHook = useIssuesQuery()
+const mutationHook = useSaveIssueMutation()
 const inputValidator = MySavingValidInput
 
-const modalStore = useExpenseModalStore()
-const modal = ExpenseModal
+const modalStore = useIssueModalStore()
+const modal = IssueModal
