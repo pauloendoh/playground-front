@@ -38,7 +38,7 @@ export function DndIssuesTable(props: Props) {
   return (
     <ScrollArea
       style={{
-        height: 'calc(100vh - 300px)',
+        maxHeight: 'calc(100vh - 300px)',
       }}
     >
       <LoadingOverlay visible={!!isChangingPosition} />
