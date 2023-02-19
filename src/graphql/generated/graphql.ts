@@ -463,6 +463,12 @@ export type CategoryWhereUniqueInput = {
   id: InputMaybe<Scalars['String']>;
 };
 
+export type ChangeIssuePositionInput = {
+  fromPosition: Scalars['Int'];
+  issueId: Scalars['String'];
+  toPosition: Scalars['Int'];
+};
+
 export type DateTimeFieldUpdateOperationsInput = {
   set: InputMaybe<Scalars['DateTime']>;
 };
@@ -1929,6 +1935,7 @@ export type LoginValidInput = {
 };
 
 export type Mutation = {
+  changeIssuePositionMutation: Scalars['Boolean'];
   createManyCategory: AffectedRowsOutput;
   createManyExpense: AffectedRowsOutput;
   createManyIssue: AffectedRowsOutput;
@@ -2009,6 +2016,11 @@ export type Mutation = {
   upsertOneSaving: Saving;
   upsertOneUser: User;
   upsertOneWishlistItem: WishlistItem;
+};
+
+
+export type MutationChangeIssuePositionMutationArgs = {
+  data: ChangeIssuePositionInput;
 };
 
 
@@ -5446,6 +5458,13 @@ export type SaveIssueLabelMutationMutationVariables = Exact<{
 
 export type SaveIssueLabelMutationMutation = { saveIssueLabelMutation: { id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string } };
 
+export type ChangeIssuePositionMutationMutationVariables = Exact<{
+  data: ChangeIssuePositionInput;
+}>;
+
+
+export type ChangeIssuePositionMutationMutation = { changeIssuePositionMutation: boolean };
+
 export type DeleteIssueMutationMutationVariables = Exact<{
   issueId: Scalars['String'];
 }>;
@@ -5735,6 +5754,11 @@ export const SaveIssueLabelMutationDocument = gql`
   }
 }
     ${IssueLabelFragmentDoc}`;
+export const ChangeIssuePositionMutationDocument = gql`
+    mutation ChangeIssuePositionMutation($data: ChangeIssuePositionInput!) {
+  changeIssuePositionMutation(data: $data)
+}
+    `;
 export const DeleteIssueMutationDocument = gql`
     mutation DeleteIssueMutation($issueId: String!) {
   deleteIssueMutation(issueId: $issueId)
@@ -5871,6 +5895,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     SaveIssueLabelMutation(variables: SaveIssueLabelMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveIssueLabelMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<SaveIssueLabelMutationMutation>(SaveIssueLabelMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveIssueLabelMutation', 'mutation');
+    },
+    ChangeIssuePositionMutation(variables: ChangeIssuePositionMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ChangeIssuePositionMutationMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ChangeIssuePositionMutationMutation>(ChangeIssuePositionMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ChangeIssuePositionMutation', 'mutation');
     },
     DeleteIssueMutation(variables: DeleteIssueMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteIssueMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<DeleteIssueMutationMutation>(DeleteIssueMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DeleteIssueMutation', 'mutation');

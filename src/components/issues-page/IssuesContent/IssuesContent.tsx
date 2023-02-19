@@ -35,27 +35,29 @@ const IssuesContent = (props: Props) => {
         <FlexVCenter justify={'space-between'} align="center">
           <Title>Issues</Title>
 
-          <IssueLabelsSelector
-            issueLabelIds={filterIssueLabelIds}
-            onChange={(value) => {
-              setFilterIssueLabelIds(value)
-            }}
-          />
+          <FlexVCenter gap={16}>
+            <IssueLabelsSelector
+              issueLabelIds={filterIssueLabelIds}
+              onChange={(value) => {
+                setFilterIssueLabelIds(value)
+              }}
+            />
 
-          <TextInput
-            label="Highlight top"
-            sx={{ width: 96 }}
-            value={highlightTopUnsolved}
-            onChange={(e) => {
-              const num = parseInt(e.currentTarget.value)
-              if (num >= 0) {
-                setHighlightTopUnsolved(num)
-                return
-              }
+            <TextInput
+              label="Highlight top"
+              sx={{ width: 96 }}
+              value={highlightTopUnsolved}
+              onChange={(e) => {
+                const num = parseInt(e.currentTarget.value)
+                if (num >= 0) {
+                  setHighlightTopUnsolved(num)
+                  return
+                }
 
-              setHighlightTopUnsolved(0)
-            }}
-          />
+                setHighlightTopUnsolved(0)
+              }}
+            />
+          </FlexVCenter>
         </FlexVCenter>
 
         <Box mt={16} />
@@ -73,7 +75,7 @@ const IssuesContent = (props: Props) => {
           </Button>
 
           <Switch
-            label={filterByIsSolved ? 'Solved issues' : 'Unsolved issues'}
+            label={'Solved issues only'}
             checked={filterByIsSolved}
             onChange={toggleFilterByIsSolved}
           />

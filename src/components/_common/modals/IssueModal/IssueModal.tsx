@@ -88,7 +88,7 @@ export default function IssueModal(props: Props) {
 
           <FlexVCenter justify={'space-between'} mt={16}>
             <Checkbox
-              label={watch('isSolved') ? 'Solved' : 'Not Solved'}
+              label={'Solved'}
               checked={watch('isSolved')}
               onChange={(event) =>
                 setValue('isSolved', event.currentTarget.checked)

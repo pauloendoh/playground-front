@@ -1,3 +1,5 @@
+import { persist } from 'zustand/middleware'
+
 import { create } from 'zustand'
 
 interface IStore {
@@ -11,27 +13,34 @@ interface IStore {
   setFilterIssueLabelIds: (value: string[]) => void
 }
 
-const useIssueFilterStore = create<IStore>((set, get) => ({
-  filterByIsSolved: false,
-  toggleFilterByIsSolved: () => {
-    set((state) => ({
-      filterByIsSolved: !state.filterByIsSolved,
-    }))
-  },
+const useIssueFilterStore = create(
+  persist<IStore>(
+    (set, get) => ({
+      filterByIsSolved: false,
+      toggleFilterByIsSolved: () => {
+        set((state) => ({
+          filterByIsSolved: !state.filterByIsSolved,
+        }))
+      },
 
-  highlightTop: 0,
-  setHighlightTop: (value: number) => {
-    set((state) => ({
-      highlightTop: value,
-    }))
-  },
+      highlightTop: 5,
+      setHighlightTop: (value: number) => {
+        set((state) => ({
+          highlightTop: value,
+        }))
+      },
 
-  filterIssueLabelIds: [],
-  setFilterIssueLabelIds: (value: string[]) => {
-    set((state) => ({
-      filterIssueLabelIds: value,
-    }))
-  },
-}))
+      filterIssueLabelIds: [],
+      setFilterIssueLabelIds: (value: string[]) => {
+        set((state) => ({
+          filterIssueLabelIds: value,
+        }))
+      },
+    }),
+    {
+      name: 'issue-filter',
+    }
+  )
+)
 
 export default useIssueFilterStore
