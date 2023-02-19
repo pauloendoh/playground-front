@@ -36,7 +36,11 @@ export function DndIssuesTable(props: Props) {
   const isChangingPosition = useIsMutating(mutationKeys.changeIssuePosition)
 
   return (
-    <ScrollArea>
+    <ScrollArea
+      style={{
+        height: 'calc(100vh - 300px)',
+      }}
+    >
       <LoadingOverlay visible={!!isChangingPosition} />
       <DragDropContext onDragEnd={onDragEnd}>
         <Table

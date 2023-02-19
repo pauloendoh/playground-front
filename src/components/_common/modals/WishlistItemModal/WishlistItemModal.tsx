@@ -39,7 +39,7 @@ export default function WishlistItemModal(props: Props) {
     }
   }, [props.isOpen])
 
-  const { mutate: submitSave } = useSaveWishlistItemMutation()
+  const { mutate: submitSave, isLoading } = useSaveWishlistItemMutation()
 
   const onSubmit = (data: MyWishlistItemValidInput) => {
     console.log({
@@ -103,7 +103,10 @@ export default function WishlistItemModal(props: Props) {
           </Grid>
 
           <Flex align="center" justify="space-between" mt={16}>
-            <SaveCancelButtons onEnabledAndCtrlEnter={handleSubmit(onSubmit)} />
+            <SaveCancelButtons
+              onEnabledAndCtrlEnter={handleSubmit(onSubmit)}
+              isLoading={isLoading}
+            />
           </Flex>
         </form>
       </Modal>

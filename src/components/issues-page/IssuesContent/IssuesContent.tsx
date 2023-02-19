@@ -15,7 +15,7 @@ type Props = {
 
 const IssuesContent = (props: Props) => {
   useEffect(() => {
-    document.title = 'Recipes'
+    document.title = 'Issues'
   }, [])
 
   const { openModal } = useIssueModalStore()
