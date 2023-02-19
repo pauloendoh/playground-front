@@ -3,6 +3,7 @@ import { useMemo } from 'react'
 import { IssueFragment } from '../../../../../graphql/generated/graphql'
 import { useIssueLabelsQuery } from '../../../../../hooks/react-query/monerate/issue-label/useIssueLabelsQuery'
 import useIssueModalStore from '../../../../../hooks/zustand/modals/useIssueModalStore'
+import useIssueFilterStore from '../../../../../hooks/zustand/useIssueFilterStore'
 
 type Props = {
   issue: IssueFragment
@@ -21,6 +22,12 @@ const IssuesTableRow = ({ issue }: Props) => {
     )
   }, [labels, issue])
 
+  const { highlightTop } = useIssueFilterStore()
+
+  const isHighlighted = useMemo(() => {
+    return issue.position <= highlightTop
+  }, [issue.position, highlightTop])
+
   return (
     <tr
       onClick={() => {
@@ -31,9 +38,21 @@ const IssuesTableRow = ({ issue }: Props) => {
       }}
     >
       <td>{issue.position}</td>
-      <td>{issue.title}</td>
+      <td
+        style={{
+          fontWeight: isHighlighted ? 'bold' : 'normal',
+        }}
+      >
+        {issue.title}
+      </td>
       {/* <td>{issue.isSolved ? 'Yes' : 'No'}</td> */}
-      <td>{issue.solution}</td>
+      <td
+        style={{
+          fontWeight: isHighlighted ? 'bold' : 'normal',
+        }}
+      >
+        {issue.solution}
+      </td>
       <td>
         <Flex wrap={'wrap'} gap={2}>
           {visibleLabels.map((label) => (

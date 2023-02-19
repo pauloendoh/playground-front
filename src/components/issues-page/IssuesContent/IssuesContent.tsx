@@ -1,4 +1,4 @@
-import { Box, Button, Switch, Title } from '@mantine/core'
+import { Box, Button, Switch, TextInput, Title } from '@mantine/core'
 import { useEffect } from 'react'
 import { useIssuesQuery } from '../../../hooks/react-query/monerate/issue/useIssuesQuery'
 import useIssueModalStore from '../../../hooks/zustand/modals/useIssueModalStore'
@@ -21,14 +21,32 @@ const IssuesContent = (props: Props) => {
   const { data: issues } = useIssuesQuery()
 
   const { filterByIsSolved, toggleFilterByIsSolved } = useIssueFilterStore()
-
+  const {
+    highlightTop: highlightTopUnsolved,
+    setHighlightTop: setHighlightTopUnsolved,
+  } = useIssueFilterStore()
   return (
     <>
       Issues
       <Box mt={16} />
       <MyPaper>
-        <FlexVCenter>
+        <FlexVCenter justify={'space-between'} align="center">
           <Title>Issues</Title>
+
+          <TextInput
+            label="Highlight top"
+            sx={{ width: 96 }}
+            value={highlightTopUnsolved}
+            onChange={(e) => {
+              const num = parseInt(e.currentTarget.value)
+              if (num >= 0) {
+                setHighlightTopUnsolved(num)
+                return
+              }
+
+              setHighlightTopUnsolved(0)
+            }}
+          />
         </FlexVCenter>
 
         <Box mt={16} />
