@@ -1,8 +1,10 @@
 import { Expose } from 'class-transformer'
+import { ArrayNotEmpty } from 'class-validator'
 import type {
   InputMaybe,
   IssueInput,
 } from '../../../../graphql/generated/graphql'
+import { IsArrayExpose, IsStringExpose } from '../../../../utils/decorators'
 
 export class MyIssueInput implements IssueInput {
   @Expose()
@@ -11,11 +13,10 @@ export class MyIssueInput implements IssueInput {
   @Expose()
   isSolved: boolean
 
+  @IsStringExpose()
+  title: string
   @Expose()
   solution: string
-
-  @Expose()
-  title: string
 
   @Expose()
   userId: InputMaybe<string>
@@ -32,6 +33,10 @@ export class MyIssueInput implements IssueInput {
   @Expose()
   updatedAt: InputMaybe<string>
 
+  @IsArrayExpose()
+  @ArrayNotEmpty({
+    message: 'Please select at least one label',
+  })
   @Expose()
   labelIds: InputMaybe<string[]>
 

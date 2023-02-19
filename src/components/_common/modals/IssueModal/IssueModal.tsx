@@ -1,3 +1,4 @@
+import { classValidatorResolver } from '@hookform/resolvers/class-validator'
 import {
   Checkbox,
   CloseButton,
@@ -9,7 +10,7 @@ import {
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveIssueMutation } from '../../../../hooks/react-query/monerate/issue/useSaveIssueMutation'
-import { MyIssueInput } from '../../../../types/domains/monerate/issue/MyIssueValidInput'
+import { MyIssueInput } from '../../../../types/domains/monerate/issue/MyIssueInput'
 import FlexVCenter from '../../flex/FlexVCenter'
 import SaveCancelButtons from '../../inputs/SaveCancelButtons'
 import IssueLabelsSelector from './IssueLabelsSelector/IssueLabelsSelector'
@@ -21,11 +22,21 @@ type Props = {
   onClose: () => void
 }
 
+const resolver = classValidatorResolver(MyIssueInput)
+
 export default function IssueModal(props: Props) {
-  const { register, handleSubmit, setFocus, reset, watch, setValue } =
-    useForm<MyIssueInput>({
-      defaultValues: props.initialValue,
-    })
+  const {
+    register,
+    handleSubmit,
+    setFocus,
+    reset,
+    watch,
+    setValue,
+    formState: { errors, isValid },
+  } = useForm<MyIssueInput>({
+    defaultValues: props.initialValue,
+    resolver,
+  })
 
   useEffect(() => {
     if (props.isOpen) {
@@ -103,6 +114,7 @@ export default function IssueModal(props: Props) {
               <IssueLabelsSelector
                 issueLabelIds={watch('labelIds') || []}
                 onChange={(labelIds) => setValue('labelIds', labelIds)}
+                errors={errors.labelIds}
               />
             </FlexVCenter>
           </FlexVCenter>

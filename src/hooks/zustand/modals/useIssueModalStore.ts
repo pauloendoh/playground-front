@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { MyIssueInput } from '../../../types/domains/monerate/issue/MyIssueValidInput'
+import { MyIssueInput } from '../../../types/domains/monerate/issue/MyIssueInput'
 
 interface IStore {
   isOpen: boolean

@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import { MdDelete, MdMoreHoriz } from 'react-icons/md'
 import { useDeleteIssueMutation } from '../../../../../hooks/react-query/monerate/issue/useDeleteIssueMutation'
-import { MyIssueInput } from '../../../../../types/domains/monerate/issue/MyIssueValidInput'
+import { MyIssueInput } from '../../../../../types/domains/monerate/issue/MyIssueInput'
 
 type Props = {
   input: MyIssueInput

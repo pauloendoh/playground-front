@@ -1,5 +1,6 @@
 import { Box, MultiSelect, SelectItem, SelectItemProps } from '@mantine/core'
 import { forwardRef, useMemo } from 'react'
+import { FieldError, Merge } from 'react-hook-form'
 import MyIssueLabelInput from '../../../../../hooks/react-query/monerate/issue-label/types/MyIssueLabelInput'
 import { useIssueLabelsQuery } from '../../../../../hooks/react-query/monerate/issue-label/useIssueLabelsQuery'
 import useIssueLabelModalStore from '../../../../../hooks/zustand/modals/useIssueLabelModalStore'
@@ -8,6 +9,7 @@ type Props = {
   issueLabelIds: string[]
   onChange: (issueLabelIds: string[]) => void
   inputWidth?: number
+  errors?: Merge<FieldError, (FieldError | undefined)[]> | undefined
 }
 
 const IssueLabelsSelector = (props: Props) => {
@@ -53,6 +55,7 @@ const IssueLabelsSelector = (props: Props) => {
       itemComponent={Item}
       placeholder="Pick Labels"
       label="Labels"
+      error={props.errors?.message}
     />
   )
 }

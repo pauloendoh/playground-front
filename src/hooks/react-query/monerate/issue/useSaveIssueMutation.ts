@@ -4,7 +4,7 @@ import { upsert } from 'endoh-utils'
 import gql from 'graphql-tag'
 import { IssueFragment } from '../../../../graphql/generated/graphql'
 import { sdk } from '../../../../graphql/sdk'
-import { MyIssueInput } from '../../../../types/domains/monerate/issue/MyIssueValidInput'
+import { MyIssueInput } from '../../../../types/domains/monerate/issue/MyIssueInput'
 import { myNotifications } from '../../../../utils/mantine/myNotifications'
 import { queryKeys } from '../../../../utils/queryKeys'
 
