@@ -36,11 +36,7 @@ export function DndIssuesTable(props: Props) {
   const isChangingPosition = useIsMutating(mutationKeys.changeIssuePosition)
 
   return (
-    <ScrollArea
-      style={{
-        maxHeight: 'calc(100vh - 300px)',
-      }}
-    >
+    <ScrollArea.Autosize maxHeight="calc(100vh - 300px)">
       <LoadingOverlay visible={!!isChangingPosition} />
       <DragDropContext onDragEnd={onDragEnd}>
         <Table
@@ -77,6 +73,6 @@ export function DndIssuesTable(props: Props) {
           </Droppable>
         </Table>
       </DragDropContext>
-    </ScrollArea>
+    </ScrollArea.Autosize>
   )
 }
