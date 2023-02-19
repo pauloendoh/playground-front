@@ -1,7 +1,8 @@
-import { Box, Button, Text, Title } from '@mantine/core'
+import { Box, Button, Switch, Title } from '@mantine/core'
 import { useEffect } from 'react'
 import { useIssuesQuery } from '../../../hooks/react-query/monerate/issue/useIssuesQuery'
 import useIssueModalStore from '../../../hooks/zustand/modals/useIssueModalStore'
+import useIssueFilterStore from '../../../hooks/zustand/useIssueFilterStore'
 import { MyIssueInput } from '../../../types/domains/monerate/issue/MyIssueValidInput'
 import FlexVCenter from '../../_common/flex/FlexVCenter'
 import MyPaper from '../../_common/overrides/MyPaper'
@@ -18,6 +19,8 @@ const IssuesContent = (props: Props) => {
 
   const { openModal } = useIssueModalStore()
   const { data: issues } = useIssuesQuery()
+
+  const { filterByIsSolved, toggleFilterByIsSolved } = useIssueFilterStore()
 
   return (
     <>
@@ -42,7 +45,11 @@ const IssuesContent = (props: Props) => {
             + Add Issue
           </Button>
 
-          <Text>hello</Text>
+          <Switch
+            label={filterByIsSolved ? 'Solved issues' : 'Unsolved issues'}
+            checked={filterByIsSolved}
+            onChange={toggleFilterByIsSolved}
+          />
         </FlexVCenter>
       </MyPaper>
     </>

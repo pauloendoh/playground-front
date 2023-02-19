@@ -1,5 +1,7 @@
 import { Table } from '@mantine/core'
+import { useMemo } from 'react'
 import { IssueFragment } from '../../../../graphql/generated/graphql'
+import useIssueFilterStore from '../../../../hooks/zustand/useIssueFilterStore'
 import IssuesTableRow from './IssuesTableRow/IssuesTableRow'
 
 type Props = {
@@ -7,6 +9,20 @@ type Props = {
 }
 
 const IssuesTable = (props: Props) => {
+  const { filterByIsSolved } = useIssueFilterStore()
+
+  const visibleIssues = useMemo(() => {
+    return props.issues
+      .filter((issue) => {
+        return issue.isSolved === filterByIsSolved
+      })
+      .sort(
+        (a, b) =>
+          // position
+          a.position - b.position
+      )
+  }, [props.issues, filterByIsSolved])
+
   return (
     <Table
       highlightOnHover
@@ -29,7 +45,7 @@ const IssuesTable = (props: Props) => {
         </tr>
       </thead>
       <tbody>
-        {props.issues?.map((issue) => (
+        {visibleIssues.map((issue) => (
           <IssuesTableRow key={issue.id} issue={issue} />
         ))}
       </tbody>

@@ -1,4 +1,11 @@
-import { CloseButton, Flex, Modal, Text, Textarea, Title } from '@mantine/core'
+import {
+  Checkbox,
+  CloseButton,
+  Flex,
+  Modal,
+  Textarea,
+  Title,
+} from '@mantine/core'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveIssueMutation } from '../../../../hooks/react-query/monerate/issue/useSaveIssueMutation'
@@ -74,7 +81,13 @@ export default function IssueModal(props: Props) {
           />
 
           <FlexVCenter justify={'space-between'} mt={16}>
-            <Text>solved</Text>
+            <Checkbox
+              label={watch('isSolved') ? 'Solved' : 'Not Solved'}
+              checked={watch('isSolved')}
+              onChange={(event) =>
+                setValue('isSolved', event.currentTarget.checked)
+              }
+            />
 
             <FlexVCenter gap={16}>
               <IssueLabelsSelector
