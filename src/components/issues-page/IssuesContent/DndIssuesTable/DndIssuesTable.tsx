@@ -54,9 +54,9 @@ export function DndIssuesTable(props: Props) {
           <thead>
             <tr>
               <th style={{ width: 40 }} />
-              <th style={{ width: 80 }}>Position</th>
-              <th style={{ width: 240 }}>Issue</th>
-              <th style={{ width: 240 }}>Solution</th>
+              <th style={{ width: 40 }}>#</th>
+              <th style={{ width: 280 }}>Issue</th>
+              <th style={{ width: 280 }}>Solution</th>
               <th>Labels</th>
             </tr>
           </thead>
