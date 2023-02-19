@@ -1,0 +1,118 @@
+import { createStyles, Flex, useMantineTheme } from '@mantine/core'
+import { IconGripVertical } from '@tabler/icons-react'
+import { useMemo } from 'react'
+import { Draggable } from 'react-beautiful-dnd'
+import { IssueFragment } from '../../../../../graphql/generated/graphql'
+import { useIssueLabelsQuery } from '../../../../../hooks/react-query/monerate/issue-label/useIssueLabelsQuery'
+import useIssueModalStore from '../../../../../hooks/zustand/modals/useIssueModalStore'
+import useIssueFilterStore from '../../../../../hooks/zustand/useIssueFilterStore'
+
+type Props = {
+  issue: IssueFragment
+  index: number
+}
+
+const IssuesTableRow = ({ issue, ...props }: Props) => {
+  const { openModal } = useIssueModalStore()
+  const { data: labels } = useIssueLabelsQuery()
+
+  const visibleLabels = useMemo(() => {
+    // where issue.labels
+    return (
+      labels?.filter((label) =>
+        issue.labels?.some((issueLabel) => issueLabel.id === label.id)
+      ) || []
+    )
+  }, [labels, issue])
+
+  const { highlightTop } = useIssueFilterStore()
+
+  const isHighlighted = useMemo(() => {
+    return issue.position <= highlightTop
+  }, [issue.position, highlightTop])
+
+  const theme = useMantineTheme()
+
+  const { classes } = useStyles()
+
+  return (
+    <Draggable index={props.index} draggableId={issue.id}>
+      {(provided) => (
+        <tr
+          onClick={() => {
+            openModal({
+              ...issue,
+              labelIds: issue.labels?.map((label) => label.id) || [],
+            })
+          }}
+          className={classes.item}
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+        >
+          <td>
+            <div className={classes.dragHandle} {...provided.dragHandleProps}>
+              <IconGripVertical size={18} stroke={1.5} />
+            </div>
+          </td>
+
+          <td>{issue.position}</td>
+          <td
+            style={{
+              fontWeight: isHighlighted ? 'bold' : 'normal',
+            }}
+          >
+            {issue.title}
+          </td>
+          {/* <td>{issue.isSolved ? 'Yes' : 'No'}</td> */}
+          <td
+            style={{
+              fontWeight: isHighlighted ? 'bold' : 'normal',
+            }}
+          >
+            {issue.solution}
+          </td>
+          <td>
+            <Flex wrap={'wrap'} gap={2}>
+              {visibleLabels.map((label) => (
+                <span
+                  key={label.id}
+                  style={{
+                    backgroundColor: label.bgColor,
+                    padding: '4px 12px',
+                    borderRadius: 4,
+                    marginRight: 4,
+                  }}
+                >
+                  {label.name}
+                </span>
+              ))}
+            </Flex>
+          </td>
+          {/* <td>{isue.labels?.map((label) => label.name).join(', ')}</td> */}
+        </tr>
+      )}
+    </Draggable>
+  )
+}
+
+export default IssuesTableRow
+
+const useStyles = createStyles((theme) => ({
+  item: {
+    backgroundColor:
+      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+  },
+
+  dragHandle: {
+    ...theme.fn.focusStyles(),
+    width: 40,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[1]
+        : theme.colors.gray[6],
+  },
+}))

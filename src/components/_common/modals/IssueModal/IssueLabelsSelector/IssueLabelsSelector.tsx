@@ -7,6 +7,7 @@ import useIssueLabelModalStore from '../../../../../hooks/zustand/modals/useIssu
 type Props = {
   issueLabelIds: string[]
   onChange: (issueLabelIds: string[]) => void
+  inputWidth?: number
 }
 
 const IssueLabelsSelector = (props: Props) => {
@@ -34,6 +35,11 @@ const IssueLabelsSelector = (props: Props) => {
 
   return (
     <MultiSelect
+      styles={{
+        input: {
+          width: props.inputWidth || 240,
+        },
+      }}
       data={items}
       value={props.issueLabelIds}
       onChange={(values) => {

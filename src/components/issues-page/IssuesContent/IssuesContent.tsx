@@ -5,8 +5,9 @@ import useIssueModalStore from '../../../hooks/zustand/modals/useIssueModalStore
 import useIssueFilterStore from '../../../hooks/zustand/useIssueFilterStore'
 import { MyIssueInput } from '../../../types/domains/monerate/issue/MyIssueValidInput'
 import FlexVCenter from '../../_common/flex/FlexVCenter'
+import IssueLabelsSelector from '../../_common/modals/IssueModal/IssueLabelsSelector/IssueLabelsSelector'
 import MyPaper from '../../_common/overrides/MyPaper'
-import IssuesTable from './IssuesTable/IssuesTable'
+import { DndIssuesTable } from './DndIssuesTable/DndIssuesTable'
 
 type Props = {
   test?: string
@@ -24,14 +25,22 @@ const IssuesContent = (props: Props) => {
   const {
     highlightTop: highlightTopUnsolved,
     setHighlightTop: setHighlightTopUnsolved,
+    filterIssueLabelIds,
+    setFilterIssueLabelIds,
   } = useIssueFilterStore()
   return (
     <>
-      Issues
       <Box mt={16} />
       <MyPaper>
         <FlexVCenter justify={'space-between'} align="center">
           <Title>Issues</Title>
+
+          <IssueLabelsSelector
+            issueLabelIds={filterIssueLabelIds}
+            onChange={(value) => {
+              setFilterIssueLabelIds(value)
+            }}
+          />
 
           <TextInput
             label="Highlight top"
@@ -51,7 +60,7 @@ const IssuesContent = (props: Props) => {
 
         <Box mt={16} />
         <Box>
-          <IssuesTable issues={issues || []} />
+          <DndIssuesTable issues={issues || []} />
         </Box>
 
         <FlexVCenter mt={24} justify={'space-between'}>

@@ -6,6 +6,9 @@ interface IStore {
 
   highlightTop: number
   setHighlightTop: (value: number) => void
+
+  filterIssueLabelIds: string[]
+  setFilterIssueLabelIds: (value: string[]) => void
 }
 
 const useIssueFilterStore = create<IStore>((set, get) => ({
@@ -20,6 +23,13 @@ const useIssueFilterStore = create<IStore>((set, get) => ({
   setHighlightTop: (value: number) => {
     set((state) => ({
       highlightTop: value,
+    }))
+  },
+
+  filterIssueLabelIds: [],
+  setFilterIssueLabelIds: (value: string[]) => {
+    set((state) => ({
+      filterIssueLabelIds: value,
     }))
   },
 }))
