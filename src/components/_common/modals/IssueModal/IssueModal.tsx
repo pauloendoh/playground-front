@@ -11,7 +11,6 @@ import { useForm } from 'react-hook-form'
 import { useSaveIssueMutation } from '../../../../hooks/react-query/monerate/issue/useSaveIssueMutation'
 import { MyIssueInput } from '../../../../types/domains/monerate/issue/MyIssueValidInput'
 import FlexVCenter from '../../flex/FlexVCenter'
-import MyTextInput from '../../inputs/MyTextInput'
 import SaveCancelButtons from '../../inputs/SaveCancelButtons'
 import IssueLabelsSelector from './IssueLabelsSelector/IssueLabelsSelector'
 import { IssueMoreMenu } from './IssueMoreMenu/IssueMoreMenu'
@@ -76,11 +75,16 @@ export default function IssueModal(props: Props) {
         }
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <MyTextInput label="Issue Name" {...register('title')} />
+          <Textarea
+            label="Issue Name"
+            {...register('title')}
+            autosize
+            minRows={2}
+          />
 
           <Textarea
             mt={16}
-            label="Description"
+            label="Solution"
             {...register('solution')}
             autosize
             minRows={2}

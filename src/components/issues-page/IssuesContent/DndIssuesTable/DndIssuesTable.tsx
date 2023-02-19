@@ -46,6 +46,9 @@ export function DndIssuesTable(props: Props) {
                 backgroundColor: theme.colors.dark[4],
               },
             },
+            td: {
+              whiteSpace: 'pre-line',
+            },
           })}
         >
           <thead>
