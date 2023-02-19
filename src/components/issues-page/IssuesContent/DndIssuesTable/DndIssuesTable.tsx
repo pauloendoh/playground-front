@@ -48,7 +48,6 @@ export function DndIssuesTable(props: Props) {
             },
             td: {
               whiteSpace: 'pre-line',
-              verticalAlign: 'top',
             },
           })}
         >
