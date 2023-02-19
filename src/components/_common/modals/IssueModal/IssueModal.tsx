@@ -14,6 +14,7 @@ import FlexVCenter from '../../flex/FlexVCenter'
 import MyTextInput from '../../inputs/MyTextInput'
 import SaveCancelButtons from '../../inputs/SaveCancelButtons'
 import IssueLabelsSelector from './IssueLabelsSelector/IssueLabelsSelector'
+import { IssueMoreMenu } from './IssueMoreMenu/IssueMoreMenu'
 
 type Props = {
   isOpen: boolean
@@ -63,7 +64,12 @@ export default function IssueModal(props: Props) {
             <Title order={3}>
               {props.initialValue?.id ? 'Edit Issue' : 'Create Issue'}
             </Title>
-            {props.initialValue?.id ? null : ( // /> //   afterDelete={() => props.onClose()} //   input={props.initialValue} // <IssueMoreMenu
+            {props.initialValue?.id ? (
+              <IssueMoreMenu
+                afterDelete={() => props.onClose()}
+                input={props.initialValue}
+              />
+            ) : (
               <CloseButton onClick={() => props.onClose()} />
             )}
           </Flex>

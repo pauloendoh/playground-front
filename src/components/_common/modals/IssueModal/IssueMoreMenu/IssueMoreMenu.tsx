@@ -2,16 +2,16 @@ import { ActionIcon, Menu } from '@mantine/core'
 import { useState } from 'react'
 
 import { MdDelete, MdMoreHoriz } from 'react-icons/md'
-import { useDeleteExpenseMutation } from '../../../../../hooks/react-query/monerate/expense/useDeleteExpenseMutation'
-import { MyExpenseInput } from '../../../../../types/domains/monerate/expense/MyExpenseInput'
+import { useDeleteIssueMutation } from '../../../../../hooks/react-query/monerate/issue/useDeleteIssueMutation'
+import { MyIssueInput } from '../../../../../types/domains/monerate/issue/MyIssueValidInput'
 
 type Props = {
-  input: MyExpenseInput
+  input: MyIssueInput
   afterDelete: () => void
 }
 
-export const ExpenseMoreMenu = (props: Props) => {
-  const { mutate: submitDelete } = useDeleteExpenseMutation()
+export const IssueMoreMenu = (props: Props) => {
+  const { mutate: submitDelete } = useDeleteIssueMutation()
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -26,7 +26,7 @@ export const ExpenseMoreMenu = (props: Props) => {
         <Menu.Item
           color="red"
           onClick={() => {
-            if (confirm('Are you sure you want to delete this expense?')) {
+            if (confirm('Are you sure you want to delete this issue?')) {
               submitDelete(props.input.id!, {
                 onSuccess: () => {
                   console.log({
@@ -40,7 +40,7 @@ export const ExpenseMoreMenu = (props: Props) => {
           }}
           icon={<MdDelete />}
         >
-          Delete Expense
+          Delete Issue
         </Menu.Item>
       </Menu.Dropdown>
     </Menu>

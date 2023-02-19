@@ -32,7 +32,7 @@ const IssuesTableRow = ({ issue }: Props) => {
     >
       <td>{issue.position}</td>
       <td>{issue.title}</td>
-      <td>{issue.isSolved ? 'Yes' : 'No'}</td>
+      {/* <td>{issue.isSolved ? 'Yes' : 'No'}</td> */}
       <td>{issue.solution}</td>
       <td>
         <Flex wrap={'wrap'} gap={2}>

@@ -39,7 +39,7 @@ const IssuesTable = (props: Props) => {
         <tr>
           <th style={{ width: 40 }}>#</th>
           <th style={{ width: 240 }}>Issue</th>
-          <th style={{ width: 40 }}>Solved</th>
+          {/* <th style={{ width: 40 }}>Solved</th> */}
           <th style={{ width: 240 }}>Solution</th>
           <th>Labels</th>
         </tr>
