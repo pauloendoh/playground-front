@@ -1,4 +1,4 @@
-import IssueModal from '../../components/_common/modals/ExpenseModal copy/IssueModal'
+import IssueModal from '../../components/_common/modals/IssueModal/IssueModal'
 import { MySavingValidInput } from '../../types/domains/monerate/saving/MySavingValidInput'
 import useIssueModalStore from '../zustand/modals/useIssueModalStore'
 import { useIssuesQuery } from './monerate/issue/useIssuesQuery'

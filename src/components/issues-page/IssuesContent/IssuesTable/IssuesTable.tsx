@@ -1,15 +1,24 @@
 import { Table } from '@mantine/core'
 import { IssueFragment } from '../../../../graphql/generated/graphql'
-import useIssueModalStore from '../../../../hooks/zustand/modals/useIssueModalStore'
+import IssuesTableRow from './IssuesTableRow/IssuesTableRow'
 
 type Props = {
   issues: IssueFragment[]
 }
 
 const IssuesTable = (props: Props) => {
-  const { openModal } = useIssueModalStore()
   return (
-    <Table highlightOnHover>
+    <Table
+      highlightOnHover
+      sx={(theme) => ({
+        'tbody > tr': {
+          cursor: 'pointer',
+          ':hover td': {
+            backgroundColor: theme.colors.dark[4],
+          },
+        },
+      })}
+    >
       <thead>
         <tr>
           <th style={{ width: 40 }}>#</th>
@@ -21,22 +30,7 @@ const IssuesTable = (props: Props) => {
       </thead>
       <tbody>
         {props.issues?.map((issue) => (
-          <tr
-            key={issue.id}
-            onClick={() => {
-              openModal({
-                ...issue,
-                labelIds: issue.labels?.map((label) => label.id) || [],
-              })
-            }}
-          >
-            <td>{issue.position}</td>
-            <td>{issue.title}</td>
-            <td>{issue.isSolved ? 'Yes' : 'No'}</td>
-            <td>{issue.solution}</td>
-            <td></td>
-            {/* <td>{isue.labels?.map((label) => label.name).join(', ')}</td> */}
-          </tr>
+          <IssuesTableRow key={issue.id} issue={issue} />
         ))}
       </tbody>
     </Table>
