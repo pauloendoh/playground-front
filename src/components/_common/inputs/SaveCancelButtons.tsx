@@ -44,9 +44,13 @@ const SaveCancelButtons = (props: Props) => {
       <Button
         loading={props.isLoading}
         type="submit"
-        variant="filled"
         id={props.submitButtonId}
-        disabled={props.disabled || props.isLoading}
+        disabled={props.disabled}
+        styles={(theme) => ({
+          label: {
+            color: theme.colors.dark[0],
+          },
+        })}
         onClick={props.onSave}
       >
         Save

@@ -51,14 +51,18 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
         >
           <td>
             <div className={classes.dragHandle} {...provided.dragHandleProps}>
-              <IconGripVertical size={18} stroke={1.5} />
+              <IconGripVertical
+                size={18}
+                stroke={1.5}
+                style={{ marginTop: 2 }}
+              />
             </div>
           </td>
 
           <td>{issue.position}</td>
           <td
             style={{
-              fontWeight: isHighlighted ? 'bold' : 'normal',
+              fontWeight: isHighlighted ? 500 : 'normal',
             }}
           >
             {issue.title}
@@ -66,7 +70,7 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
           {/* <td>{issue.isSolved ? 'Yes' : 'No'}</td> */}
           <td
             style={{
-              fontWeight: isHighlighted ? 'bold' : 'normal',
+              fontWeight: isHighlighted ? 500 : 'normal',
             }}
           >
             {issue.solution}

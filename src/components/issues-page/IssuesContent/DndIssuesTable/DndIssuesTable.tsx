@@ -48,16 +48,21 @@ export function DndIssuesTable(props: Props) {
             },
             td: {
               whiteSpace: 'pre-line',
+              verticalAlign: 'top',
             },
           })}
         >
           <thead>
             <tr>
-              <th style={{ width: 40 }} />
-              <th style={{ width: 40 }}>#</th>
-              <th style={{ width: 280 }}>Issue</th>
-              <th style={{ width: 280 }}>Solution</th>
-              <th>Labels</th>
+              <th style={{ width: 24 }} />
+              <th style={{ width: 24 }}>#</th>
+              <th style={{ width: 'calc(50% - 12px - 12px - 100px)' }}>
+                Issue
+              </th>
+              <th style={{ width: 'calc(50% - 12px - 12px - 100px)' }}>
+                Solution
+              </th>
+              <th style={{ width: 200 }}>Labels</th>
             </tr>
           </thead>
           <Droppable droppableId="dnd-list" direction="vertical">

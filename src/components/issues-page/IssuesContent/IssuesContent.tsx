@@ -1,4 +1,4 @@
-import { Box, Button, Switch, TextInput, Title } from '@mantine/core'
+import { Box, Button, Container, Switch, TextInput, Title } from '@mantine/core'
 import { useEffect } from 'react'
 import { useIssuesQuery } from '../../../hooks/react-query/monerate/issue/useIssuesQuery'
 import useIssueModalStore from '../../../hooks/zustand/modals/useIssueModalStore'
@@ -29,7 +29,7 @@ const IssuesContent = (props: Props) => {
     setFilterIssueLabelIds,
   } = useIssueFilterStore()
   return (
-    <>
+    <Container size="xl">
       <Box mt={16} />
       <MyPaper>
         <FlexVCenter justify={'space-between'} align="center">
@@ -81,7 +81,7 @@ const IssuesContent = (props: Props) => {
           />
         </FlexVCenter>
       </MyPaper>
-    </>
+    </Container>
   )
 }
 

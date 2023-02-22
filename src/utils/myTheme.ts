@@ -29,9 +29,9 @@ export const myTheme: MantineThemeOverride = {
       '#C862AC',
     ],
     dark: [
-      '#D5D5D5',
-      '#B3B3B3',
-      '#919191',
+      'white',
+      '#d9d9d9',
+      '#afafaf',
       '#6F6F6F',
       '#4D4D4D',
       '#2B2B2B',

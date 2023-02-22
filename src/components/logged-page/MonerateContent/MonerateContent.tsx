@@ -1,4 +1,4 @@
-import { Box, Flex } from '@mantine/core'
+import { Box, Container, Flex } from '@mantine/core'
 import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import MonerateSubtabs from './MonerateSubtabs/MonerateSubtabs'
@@ -13,14 +13,14 @@ const MonerateContent = (props: Props) => {
   }, [])
 
   return (
-    <Box>
+    <Container>
       <Flex justify={'center'}>
         <MonerateSubtabs />
       </Flex>
 
       <Box mt={24} />
       <Outlet />
-    </Box>
+    </Container>
   )
 }
 

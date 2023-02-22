@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core'
+import { Box, Container } from '@mantine/core'
 import { useEffect } from 'react'
 import RecipesTable from './RecipesTable/RecipesTable'
 
@@ -12,11 +12,11 @@ const RecipesContent = (props: Props) => {
   }, [])
 
   return (
-    <>
+    <Container>
       Recipes :D
       <Box mt={16} />
       <RecipesTable />
-    </>
+    </Container>
   )
 }
 
