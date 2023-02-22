@@ -56,10 +56,10 @@ export function DndIssuesTable(props: Props) {
             <tr>
               <th style={{ width: 24 }} />
               <th style={{ width: 24 }}>#</th>
-              <th style={{ width: 'calc(50% - 12px - 12px - 100px)' }}>
+              <th style={{ width: 'calc(50% - (12px + 12px + 100px))' }}>
                 Issue
               </th>
-              <th style={{ width: 'calc(50% - 12px - 12px - 100px)' }}>
+              <th style={{ width: 'calc(50% - (12px + 12px + 100px))' }}>
                 Solution
               </th>
               <th style={{ width: 200 }}>Labels</th>

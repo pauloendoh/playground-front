@@ -29,7 +29,7 @@ const IssuesContent = (props: Props) => {
     setFilterIssueLabelIds,
   } = useIssueFilterStore()
   return (
-    <Container size="xl">
+    <Container size="lg">
       <Box mt={16} />
       <MyPaper>
         <FlexVCenter justify={'space-between'} align="center">
