@@ -21,12 +21,13 @@ const IssuesContent = (props: Props) => {
   const { openModal } = useIssueModalStore()
   const { data: issues } = useIssuesQuery()
 
-  const { filterByIsSolved, toggleFilterByIsSolved } = useIssueFilterStore()
   const {
     highlightTop: highlightTopUnsolved,
     setHighlightTop: setHighlightTopUnsolved,
     filterIssueLabelIds,
     setFilterIssueLabelIds,
+    filterByIsSolved,
+    toggleFilterByIsSolved,
   } = useIssueFilterStore()
   return (
     <Container size="lg">
@@ -68,7 +69,12 @@ const IssuesContent = (props: Props) => {
         <FlexVCenter mt={24} justify={'space-between'}>
           <Button
             onClick={() => {
-              openModal(new MyIssueInput())
+              const newIssue = new MyIssueInput()
+              if (filterIssueLabelIds.length > 0) {
+                newIssue.labelIds = filterIssueLabelIds
+              }
+
+              openModal(newIssue)
             }}
           >
             + Add Issue
