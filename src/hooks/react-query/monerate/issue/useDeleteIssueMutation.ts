@@ -1,7 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { deleteFromArray } from 'endoh-utils'
 import gql from 'graphql-tag'
-import { IssueFragment } from '../../../../graphql/generated/graphql'
 import { sdk } from '../../../../graphql/sdk'
 import { myNotifications } from '../../../../utils/mantine/myNotifications'
 import { queryKeys } from '../../../../utils/queryKeys'
@@ -24,9 +22,8 @@ export const useDeleteIssueMutation = () => {
         .then((res) => res.deleteIssueMutation),
     {
       onSuccess: (_, id) => {
-        queryClient.setQueryData<IssueFragment[]>(queryKeys.issues, (curr) =>
-          deleteFromArray(curr, (currItem) => currItem.id === id)
-        )
+        queryClient.invalidateQueries(queryKeys.issues)
+
         myNotifications.success('Issue deleted!')
       },
     }
