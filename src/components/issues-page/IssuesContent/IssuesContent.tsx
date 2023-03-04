@@ -77,6 +77,10 @@ const IssuesContent = (props: Props) => {
                 newIssue.labelIds = filterIssueLabelIds
               }
 
+              if (filterByIsSolved) {
+                newIssue.isSolved = true
+              }
+
               openModal(newIssue)
             }}
           >
