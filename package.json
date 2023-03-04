@@ -37,7 +37,7 @@
     "react-icons": "^4.7.1",
     "react-linkify": "^1.0.0-alpha",
     "react-router-dom": "^6.8.0",
-    "sort-by": "^1.2.0",
+    "sort-by": "^0.0.2",
     "timeago.js": "^4.0.2",
     "zod": "^3.20.2",
     "zustand": "^4.3.2"

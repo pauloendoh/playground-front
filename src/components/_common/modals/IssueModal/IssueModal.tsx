@@ -3,6 +3,7 @@ import {
   Checkbox,
   CloseButton,
   Flex,
+  Grid,
   Modal,
   Textarea,
   Title,
@@ -86,20 +87,24 @@ export default function IssueModal(props: Props) {
         }
       >
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Textarea
-            label="Issue Name"
-            {...register('title')}
-            autosize
-            minRows={2}
-          />
-
-          <Textarea
-            mt={16}
-            label="Solution"
-            {...register('solution')}
-            autosize
-            minRows={2}
-          />
+          <Grid>
+            <Grid.Col span={6}>
+              <Textarea
+                label="Issue Name"
+                {...register('title')}
+                autosize
+                minRows={2}
+              />
+            </Grid.Col>
+            <Grid.Col span={6}>
+              <Textarea
+                label="Solution"
+                {...register('solution')}
+                autosize
+                minRows={2}
+              />
+            </Grid.Col>
+          </Grid>
 
           <FlexVCenter justify={'space-between'} mt={16}>
             <Checkbox

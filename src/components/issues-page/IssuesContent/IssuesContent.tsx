@@ -8,6 +8,7 @@ import FlexVCenter from '../../_common/flex/FlexVCenter'
 import IssueLabelsSelector from '../../_common/modals/IssueModal/IssueLabelsSelector/IssueLabelsSelector'
 import MyPaper from '../../_common/overrides/MyPaper'
 import { DndIssuesTable } from './DndIssuesTable/DndIssuesTable'
+import IssuesSearchBar from './IssuesSearchBar/IssuesSearchBar'
 
 type Props = {
   test?: string
@@ -32,10 +33,12 @@ const IssuesContent = (props: Props) => {
   return (
     <Container size="lg">
       <Box mt={16} />
-      <MyPaper>
-        <FlexVCenter justify={'space-between'} align="center">
-          <Title>Issues</Title>
 
+      <Title>Issues</Title>
+
+      <MyPaper mt={8}>
+        <FlexVCenter justify={'space-between'} align="center">
+          <IssuesSearchBar />
           <FlexVCenter gap={16}>
             <IssueLabelsSelector
               issueLabelIds={filterIssueLabelIds}
