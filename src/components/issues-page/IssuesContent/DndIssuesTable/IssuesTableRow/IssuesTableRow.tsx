@@ -1,4 +1,5 @@
-import { createStyles, Flex, useMantineTheme } from '@mantine/core'
+import { createStyles, Flex, Text, useMantineTheme } from '@mantine/core'
+import { useElementSize } from '@mantine/hooks'
 import { IconGripVertical } from '@tabler/icons-react'
 import { useMemo } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
@@ -35,6 +36,9 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
 
   const { classes } = useStyles()
 
+  const { ref: titleTdRef, height: titleTdHeight } = useElementSize()
+  const { ref: solutionRef, height: solutionHeight } = useElementSize()
+
   return (
     <Draggable index={props.index} draggableId={issue.id}>
       {(provided) => (
@@ -63,17 +67,18 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
           <td
             style={{
               fontWeight: isHighlighted ? 500 : 'normal',
+              maxHeight: 120,
             }}
+            ref={titleTdRef}
           >
-            {issue.title}
+            <Text lineClamp={6}>{issue.title}</Text>
           </td>
-          {/* <td>{issue.isSolved ? 'Yes' : 'No'}</td> */}
           <td
             style={{
               fontWeight: isHighlighted ? 500 : 'normal',
             }}
           >
-            {issue.solution}
+            <Text lineClamp={6}>{issue.solution}</Text>
           </td>
           <td>
             <Flex wrap={'wrap'} gap={2}>
@@ -92,7 +97,6 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
               ))}
             </Flex>
           </td>
-          {/* <td>{isue.labels?.map((label) => label.name).join(', ')}</td> */}
         </tr>
       )}
     </Draggable>
