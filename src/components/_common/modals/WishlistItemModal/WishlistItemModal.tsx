@@ -106,6 +106,7 @@ export default function WishlistItemModal(props: Props) {
             <SaveCancelButtons
               onEnabledAndCtrlEnter={handleSubmit(onSubmit)}
               isLoading={isLoading}
+              onCancel={() => props.onClose()}
             />
           </Flex>
         </form>

@@ -53,6 +53,7 @@ const IssuesSearchBar = (props: Props) => {
           })
         }
       }}
+      w={300}
       data={items}
       placeholder={'Search issues'}
       itemComponent={AutoCompleteItem}
