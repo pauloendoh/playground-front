@@ -1,6 +1,16 @@
-import { Box, Button, Container, Switch, TextInput, Title } from '@mantine/core'
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Grid,
+  Switch,
+  TextInput,
+  Title,
+} from '@mantine/core'
 import { useEffect } from 'react'
 import { useIssuesQuery } from '../../../hooks/react-query/monerate/issue/useIssuesQuery'
+import { useMyMediaQuery } from '../../../hooks/useMyMediaQuery'
 import useIssueModalStore from '../../../hooks/zustand/modals/useIssueModalStore'
 import useIssueFilterStore from '../../../hooks/zustand/useIssueFilterStore'
 import { MyIssueInput } from '../../../types/domains/monerate/issue/MyIssueInput'
@@ -30,6 +40,9 @@ const IssuesContent = (props: Props) => {
     filterByIsSolved,
     toggleFilterByIsSolved,
   } = useIssueFilterStore()
+
+  const { isMobile } = useMyMediaQuery()
+
   return (
     <Container size="lg">
       <Box mt={16} />
@@ -37,32 +50,42 @@ const IssuesContent = (props: Props) => {
       <Title>Issues</Title>
 
       <MyPaper mt={8}>
-        <FlexVCenter justify={'space-between'} align="center">
-          <IssuesSearchBar />
-          <FlexVCenter gap={16}>
-            <IssueLabelsSelector
-              issueLabelIds={filterIssueLabelIds}
-              onChange={(value) => {
-                setFilterIssueLabelIds(value)
-              }}
-            />
+        <Grid>
+          <Grid.Col sm={6}>
+            <IssuesSearchBar />
+          </Grid.Col>
+          <Grid.Col
+            sm={6}
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+            }}
+          >
+            <Flex gap={16}>
+              <IssueLabelsSelector
+                issueLabelIds={filterIssueLabelIds}
+                onChange={(value) => {
+                  setFilterIssueLabelIds(value)
+                }}
+              />
 
-            <TextInput
-              label="Highlight top"
-              sx={{ width: 96 }}
-              value={highlightTopUnsolved}
-              onChange={(e) => {
-                const num = parseInt(e.currentTarget.value)
-                if (num >= 0) {
-                  setHighlightTopUnsolved(num)
-                  return
-                }
+              <TextInput
+                label="Highlight top"
+                maw={100}
+                value={highlightTopUnsolved}
+                onChange={(e) => {
+                  const num = parseInt(e.currentTarget.value)
+                  if (num >= 0) {
+                    setHighlightTopUnsolved(num)
+                    return
+                  }
 
-                setHighlightTopUnsolved(0)
-              }}
-            />
-          </FlexVCenter>
-        </FlexVCenter>
+                  setHighlightTopUnsolved(0)
+                }}
+              />
+            </Flex>
+          </Grid.Col>
+        </Grid>
 
         <Box mt={16} />
         <Box>
@@ -84,7 +107,7 @@ const IssuesContent = (props: Props) => {
               openModal(newIssue)
             }}
           >
-            + Add Issue
+            {isMobile ? '+ Add' : '+ Add Issue'}
           </Button>
 
           <Switch

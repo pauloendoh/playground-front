@@ -1,10 +1,11 @@
-import { createStyles, Flex, Text, useMantineTheme } from '@mantine/core'
+import { createStyles, Flex, Text } from '@mantine/core'
 import { useElementSize } from '@mantine/hooks'
 import { IconGripVertical } from '@tabler/icons-react'
 import { useMemo } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import { IssueFragment } from '../../../../../graphql/generated/graphql'
 import { useIssueLabelsQuery } from '../../../../../hooks/react-query/monerate/issue-label/useIssueLabelsQuery'
+import { useMyMediaQuery } from '../../../../../hooks/useMyMediaQuery'
 import useIssueModalStore from '../../../../../hooks/zustand/modals/useIssueModalStore'
 import useIssueFilterStore from '../../../../../hooks/zustand/useIssueFilterStore'
 
@@ -32,13 +33,10 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
     return issue.position <= highlightTop
   }, [issue.position, highlightTop])
 
-  const theme = useMantineTheme()
-
   const { classes } = useStyles()
 
   const { ref: titleTdRef, height: titleTdHeight } = useElementSize()
-  const { ref: solutionRef, height: solutionHeight } = useElementSize()
-
+  const { isMobile } = useMyMediaQuery()
   return (
     <Draggable index={props.index} draggableId={issue.id}>
       {(provided) => (
@@ -62,8 +60,8 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
               />
             </div>
           </td>
+          {!isMobile && <td>{issue.position}</td>}
 
-          <td>{issue.position}</td>
           <td
             style={{
               fontWeight: isHighlighted ? 500 : 'normal',
@@ -80,23 +78,25 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
           >
             <Text lineClamp={6}>{issue.solution}</Text>
           </td>
-          <td>
-            <Flex wrap={'wrap'} gap={2}>
-              {visibleLabels.map((label) => (
-                <span
-                  key={label.id}
-                  style={{
-                    backgroundColor: label.bgColor,
-                    padding: '4px 12px',
-                    borderRadius: 4,
-                    marginRight: 4,
-                  }}
-                >
-                  {label.name}
-                </span>
-              ))}
-            </Flex>
-          </td>
+          {!isMobile && (
+            <td>
+              <Flex wrap={'wrap'} gap={2}>
+                {visibleLabels.map((label) => (
+                  <span
+                    key={label.id}
+                    style={{
+                      backgroundColor: label.bgColor,
+                      padding: '4px 12px',
+                      borderRadius: 4,
+                      marginRight: 4,
+                    }}
+                  >
+                    {label.name}
+                  </span>
+                ))}
+              </Flex>
+            </td>
+          )}
         </tr>
       )}
     </Draggable>
@@ -113,7 +113,7 @@ const useStyles = createStyles((theme) => ({
 
   dragHandle: {
     ...theme.fn.focusStyles(),
-    width: 40,
+
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

@@ -1,6 +1,7 @@
-import { Tabs, Title } from '@mantine/core'
+import { Tabs, Text, Title } from '@mantine/core'
 import { useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useMyMediaQuery } from '../../../../../hooks/useMyMediaQuery'
 import { navbarTabOptions } from './navbarTabOptions/navbarTabOptions'
 
 type Props = {
@@ -20,21 +21,28 @@ const MyHeaderTabs = (props: Props) => {
     return 'monerate'
   }, [location])
 
+  const { isMobile } = useMyMediaQuery()
+
   return (
     <Tabs
       value={tabValue}
+      styles={{
+        root: {
+          position: 'relative',
+          top: 5,
+        },
+      }}
       // onTabChange={(value) => setCurrentPage(value as PageType)}
     >
       <Tabs.List>
         {navbarTabOptions.map((tab) => (
           <Link to={tab.to} style={{ textDecoration: 'unset' }}>
-            <Tabs.Tab
-              value={tab.tabValue}
-              sx={{
-                paddingBottom: 12,
-              }}
-            >
-              <Title order={4}>{tab.label}</Title>
+            <Tabs.Tab value={tab.tabValue}>
+              {isMobile ? (
+                <Text>{tab.label}</Text>
+              ) : (
+                <Title order={4}>{tab.label}</Title>
+              )}
             </Tabs.Tab>
           </Link>
         ))}

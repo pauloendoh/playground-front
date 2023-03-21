@@ -36,6 +36,7 @@ const IssuesSearchBar = (props: Props) => {
 
   return (
     <Autocomplete
+      label="Search"
       value={text}
       onChange={(text) => {
         setText(text)
@@ -53,7 +54,7 @@ const IssuesSearchBar = (props: Props) => {
           })
         }
       }}
-      w={300}
+      maw={300}
       data={items}
       placeholder={'Search issues'}
       itemComponent={AutoCompleteItem}

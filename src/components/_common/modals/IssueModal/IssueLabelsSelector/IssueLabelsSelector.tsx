@@ -37,11 +37,7 @@ const IssueLabelsSelector = (props: Props) => {
 
   return (
     <MultiSelect
-      styles={{
-        input: {
-          width: props.inputWidth || 240,
-        },
-      }}
+      maw={240}
       data={items}
       value={props.issueLabelIds}
       onChange={(values) => {
