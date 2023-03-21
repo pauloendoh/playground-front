@@ -88,7 +88,7 @@ export default function IssueModal(props: Props) {
       >
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid>
-            <Grid.Col span={6}>
+            <Grid.Col md={6}>
               <Textarea
                 label="Issue Name"
                 {...register('title')}
@@ -96,7 +96,7 @@ export default function IssueModal(props: Props) {
                 minRows={2}
               />
             </Grid.Col>
-            <Grid.Col span={6}>
+            <Grid.Col md={6}>
               <Textarea
                 label="Solution"
                 {...register('solution')}

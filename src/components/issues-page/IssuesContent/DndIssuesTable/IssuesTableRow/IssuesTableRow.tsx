@@ -69,14 +69,18 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
             }}
             ref={titleTdRef}
           >
-            <Text lineClamp={6}>{issue.title}</Text>
+            <Text lineClamp={6} maw={isMobile ? 100 : undefined}>
+              {issue.title}
+            </Text>
           </td>
           <td
             style={{
               fontWeight: isHighlighted ? 500 : 'normal',
             }}
           >
-            <Text lineClamp={6}>{issue.solution}</Text>
+            <Text lineClamp={6} maw={isMobile ? 100 : undefined}>
+              {issue.solution}
+            </Text>
           </td>
           {!isMobile && (
             <td>
