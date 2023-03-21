@@ -61,6 +61,7 @@ const ExpensesContent = (props: Props) => {
 
           <MyPaper mt={16}>
             <Flex direction="column">
+              {flatExpenses && flatExpenses.length === 0 && 'No expenses found'}
               {flatExpenses?.map((expense) => (
                 <ExpenseItem
                   expense={expense}

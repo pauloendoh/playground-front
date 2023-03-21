@@ -4,6 +4,9 @@ import {
   SelectItemProps,
   Text,
 } from '@mantine/core'
+import { IconTemplate } from '@tabler/icons-react'
+import multiwordSearch from 'endoh-utils/dist/text/multiwordSearch'
+
 import { forwardRef, useMemo, useState } from 'react'
 import { useIssuesQuery } from '../../../../hooks/react-query/monerate/issue/useIssuesQuery'
 import useIssueModalStore from '../../../../hooks/zustand/modals/useIssueModalStore'
@@ -13,6 +16,7 @@ type Props = {}
 type MyAutocompleteItem = AutocompleteItem & {
   label: string
   isSolved: boolean
+  solution: string
 }
 
 const IssuesSearchBar = (props: Props) => {
@@ -27,6 +31,7 @@ const IssuesSearchBar = (props: Props) => {
           label: issueLabel.title,
           value: issueLabel.id,
           isSolved: issueLabel.isSolved,
+          solution: issueLabel.solution,
         }
       }) || []
     )
@@ -41,8 +46,11 @@ const IssuesSearchBar = (props: Props) => {
       onChange={(text) => {
         setText(text)
       }}
-      filter={(query, item) => {
-        return item.label.toLowerCase().includes(query.toLowerCase())
+      filter={(query, item: MyAutocompleteItem) => {
+        return (
+          multiwordSearch(item.label, query) ||
+          multiwordSearch(item.solution, query)
+        )
       }}
       onItemSubmit={(item) => {
         setText('')
