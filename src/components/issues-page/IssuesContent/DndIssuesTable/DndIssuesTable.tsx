@@ -26,8 +26,8 @@ export function DndIssuesTable(props: Props) {
         return issue.isSolved === filterByIsSolved && containsAllLabels
       })
       .sort((a, b) => {
-        const avgA = (a.frequency + a.intensity) / 2
-        const avgB = (b.frequency + b.intensity) / 2
+        const avgA = a.frequency * a.intensity
+        const avgB = b.frequency * b.intensity
 
         // highest avg first
         return avgB - avgA
@@ -58,7 +58,7 @@ export function DndIssuesTable(props: Props) {
         >
           <thead>
             <tr>
-              <th style={{ width: 40 }}>Avg</th>
+              <th style={{ width: 40 }}>#</th>
 
               <th style={{ width: 'calc(50% - (12px + 12px + 100px))' }}>
                 Issue

@@ -38,8 +38,8 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
   const { ref: titleTdRef, height: titleTdHeight } = useElementSize()
   const { isMobile } = useMyMediaQuery()
 
-  const avg = useMemo(() => {
-    return (issue.frequency + issue.intensity) / 2
+  const mult = useMemo(() => {
+    return issue.frequency * issue.intensity
   }, [issue])
 
   return (
@@ -56,7 +56,7 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
           ref={provided.innerRef}
           {...provided.draggableProps}
         >
-          <td align="center">{avg}</td>
+          <td align="center">{mult}</td>
 
           <td
             style={{
