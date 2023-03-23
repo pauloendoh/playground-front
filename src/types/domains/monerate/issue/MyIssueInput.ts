@@ -25,7 +25,15 @@ export class MyIssueInput implements IssueInput {
     this.isSolved = false
     this.solution = ''
     this.title = ''
+    this.frequency = 1
+    this.intensity = 1
   }
+
+  @Expose()
+  frequency: number
+
+  @Expose()
+  intensity: number
 
   @Expose()
   createdAt: InputMaybe<string>

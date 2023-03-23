@@ -5,6 +5,7 @@ import {
   Flex,
   Grid,
   Modal,
+  NumberInput,
   Textarea,
   Title,
 } from '@mantine/core'
@@ -12,6 +13,7 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveIssueMutation } from '../../../../hooks/react-query/monerate/issue/useSaveIssueMutation'
 import { MyIssueInput } from '../../../../types/domains/monerate/issue/MyIssueInput'
+import FlexCol from '../../flex/FlexCol'
 import FlexVCenter from '../../flex/FlexVCenter'
 import SaveCancelButtons from '../../inputs/SaveCancelButtons'
 import IssueLabelsSelector from './IssueLabelsSelector/IssueLabelsSelector'
@@ -106,23 +108,50 @@ export default function IssueModal(props: Props) {
             </Grid.Col>
           </Grid>
 
-          <FlexVCenter justify={'space-between'} mt={16}>
-            <Checkbox
-              label={'Solved'}
-              checked={watch('isSolved')}
-              onChange={(event) =>
-                setValue('isSolved', event.currentTarget.checked)
-              }
-            />
+          <Grid>
+            <Grid.Col span={3}>
+              <NumberInput
+                label="Frequency"
+                value={watch('frequency') || 1}
+                min={1}
+                max={5}
+                onChange={(value) => setValue('frequency', value || 1)}
+              />
+            </Grid.Col>
+            <Grid.Col span={3}>
+              <NumberInput
+                label="Intensity"
+                value={watch('intensity') || 1}
+                min={1}
+                max={5}
+                onChange={(value) => setValue('intensity', value || 1)}
+              />
+            </Grid.Col>
+            <Grid.Col
+              span={3}
+              sx={{
+                display: 'flex',
+                alignItems: 'flex-end',
+                marginBottom: 8,
+              }}
+            >
+              <Checkbox
+                label={'Solved'}
+                checked={watch('isSolved')}
+                onChange={(event) =>
+                  setValue('isSolved', event.currentTarget.checked)
+                }
+              />
+            </Grid.Col>
 
-            <FlexVCenter gap={16}>
+            <Grid.Col span={12}>
               <IssueLabelsSelector
                 issueLabelIds={watch('labelIds') || []}
                 onChange={(labelIds) => setValue('labelIds', labelIds)}
                 errors={errors.labelIds}
               />
-            </FlexVCenter>
-          </FlexVCenter>
+            </Grid.Col>
+          </Grid>
 
           <Flex align="center" justify="space-between" mt={24}>
             <SaveCancelButtons

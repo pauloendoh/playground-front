@@ -84,6 +84,8 @@ fragment Issue on Issue {
   solution
   isSolved
   position
+  frequency
+  intensity
   createdAt
   labels {
     id

@@ -25,11 +25,13 @@ export function DndIssuesTable(props: Props) {
 
         return issue.isSolved === filterByIsSolved && containsAllLabels
       })
-      .sort(
-        (a, b) =>
-          // position
-          a.position - b.position
-      )
+      .sort((a, b) => {
+        const avgA = (a.frequency + a.intensity) / 2
+        const avgB = (b.frequency + b.intensity) / 2
+
+        // highest avg first
+        return avgB - avgA
+      })
   }, [props.issues, filterByIsSolved, filterIssueLabelIds])
 
   const onDragEnd = useDragEndIssue(visibleIssues)
@@ -56,8 +58,7 @@ export function DndIssuesTable(props: Props) {
         >
           <thead>
             <tr>
-              <th style={{ width: 24 }} />
-              {!isMobile && <th style={{ width: 24 }}>#</th>}
+              <th style={{ width: 40 }}>Avg</th>
 
               <th style={{ width: 'calc(50% - (12px + 12px + 100px))' }}>
                 Issue

@@ -37,6 +37,11 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
 
   const { ref: titleTdRef, height: titleTdHeight } = useElementSize()
   const { isMobile } = useMyMediaQuery()
+
+  const avg = useMemo(() => {
+    return (issue.frequency + issue.intensity) / 2
+  }, [issue])
+
   return (
     <Draggable index={props.index} draggableId={issue.id}>
       {(provided) => (
@@ -51,16 +56,7 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
           ref={provided.innerRef}
           {...provided.draggableProps}
         >
-          <td>
-            <div className={classes.dragHandle} {...provided.dragHandleProps}>
-              <IconGripVertical
-                size={18}
-                stroke={1.5}
-                style={{ marginTop: 2 }}
-              />
-            </div>
-          </td>
-          {!isMobile && <td>{issue.position}</td>}
+          <td align="center">{avg}</td>
 
           <td
             style={{
