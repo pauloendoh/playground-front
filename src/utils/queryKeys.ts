@@ -9,5 +9,6 @@ export const queryKeys = {
   salary: ['salary'],
   recurrentExpenses: ['recurrentExpenses'],
   issues: ['issues'],
+  rawColors: ['rawColors'],
   issueLabels: ['issueLabels'],
 }

@@ -101,3 +101,12 @@ fragment IssueLabel on IssueLabel {
   createdAt
   updatedAt
 }
+
+fragment RawColor on RawColor {
+  id
+  userId
+  name
+  color
+  createdAt
+  updatedAt
+}

@@ -27,6 +27,14 @@ export type AggregateCategory = {
   _min: Maybe<CategoryMinAggregate>;
 };
 
+export type AggregateColorProportion = {
+  _avg: Maybe<ColorProportionAvgAggregate>;
+  _count: Maybe<ColorProportionCountAggregate>;
+  _max: Maybe<ColorProportionMaxAggregate>;
+  _min: Maybe<ColorProportionMinAggregate>;
+  _sum: Maybe<ColorProportionSumAggregate>;
+};
+
 export type AggregateExpense = {
   _avg: Maybe<ExpenseAvgAggregate>;
   _count: Maybe<ExpenseCountAggregate>;
@@ -47,6 +55,18 @@ export type AggregateIssueLabel = {
   _count: Maybe<IssueLabelCountAggregate>;
   _max: Maybe<IssueLabelMaxAggregate>;
   _min: Maybe<IssueLabelMinAggregate>;
+};
+
+export type AggregateMixedColor = {
+  _count: Maybe<MixedColorCountAggregate>;
+  _max: Maybe<MixedColorMaxAggregate>;
+  _min: Maybe<MixedColorMinAggregate>;
+};
+
+export type AggregateRawColor = {
+  _count: Maybe<RawColorCountAggregate>;
+  _max: Maybe<RawColorMaxAggregate>;
+  _min: Maybe<RawColorMinAggregate>;
 };
 
 export type AggregateRecipe = {
@@ -467,6 +487,464 @@ export type ChangeIssuePositionInput = {
   fromPosition: Scalars['Int'];
   issueId: Scalars['String'];
   toPosition: Scalars['Int'];
+};
+
+export type ColorProportion = {
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  mixedColor: MixedColor;
+  mixedColorId: Scalars['String'];
+  proportion: Scalars['Decimal'];
+  rawColor: RawColor;
+  rawColorId: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  user: User;
+  userId: Scalars['String'];
+};
+
+export type ColorProportionAvgAggregate = {
+  proportion: Maybe<Scalars['Decimal']>;
+};
+
+export type ColorProportionAvgOrderByAggregateInput = {
+  proportion: InputMaybe<SortOrder>;
+};
+
+export type ColorProportionCountAggregate = {
+  _all: Scalars['Int'];
+  createdAt: Scalars['Int'];
+  id: Scalars['Int'];
+  mixedColorId: Scalars['Int'];
+  proportion: Scalars['Int'];
+  rawColorId: Scalars['Int'];
+  updatedAt: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type ColorProportionCountOrderByAggregateInput = {
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  mixedColorId: InputMaybe<SortOrder>;
+  proportion: InputMaybe<SortOrder>;
+  rawColorId: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type ColorProportionCreateInput = {
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  mixedColor: MixedColorCreateNestedOneWithoutColorProportionsInput;
+  proportion: Scalars['Decimal'];
+  rawColor: RawColorCreateNestedOneWithoutColorProportionsInput;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutColorProportionsInput;
+};
+
+export type ColorProportionCreateManyInput = {
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  mixedColorId: Scalars['String'];
+  proportion: Scalars['Decimal'];
+  rawColorId: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  userId: Scalars['String'];
+};
+
+export type ColorProportionCreateManyMixedColorInput = {
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  proportion: Scalars['Decimal'];
+  rawColorId: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  userId: Scalars['String'];
+};
+
+export type ColorProportionCreateManyMixedColorInputEnvelope = {
+  data: Array<ColorProportionCreateManyMixedColorInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ColorProportionCreateManyRawColorInput = {
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  mixedColorId: Scalars['String'];
+  proportion: Scalars['Decimal'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  userId: Scalars['String'];
+};
+
+export type ColorProportionCreateManyRawColorInputEnvelope = {
+  data: Array<ColorProportionCreateManyRawColorInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ColorProportionCreateManyUserInput = {
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  mixedColorId: Scalars['String'];
+  proportion: Scalars['Decimal'];
+  rawColorId: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ColorProportionCreateManyUserInputEnvelope = {
+  data: Array<ColorProportionCreateManyUserInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ColorProportionCreateNestedManyWithoutMixedColorInput = {
+  connect: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<ColorProportionCreateOrConnectWithoutMixedColorInput>>;
+  create: InputMaybe<Array<ColorProportionCreateWithoutMixedColorInput>>;
+  createMany: InputMaybe<ColorProportionCreateManyMixedColorInputEnvelope>;
+};
+
+export type ColorProportionCreateNestedManyWithoutRawColorInput = {
+  connect: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<ColorProportionCreateOrConnectWithoutRawColorInput>>;
+  create: InputMaybe<Array<ColorProportionCreateWithoutRawColorInput>>;
+  createMany: InputMaybe<ColorProportionCreateManyRawColorInputEnvelope>;
+};
+
+export type ColorProportionCreateNestedManyWithoutUserInput = {
+  connect: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<ColorProportionCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<ColorProportionCreateWithoutUserInput>>;
+  createMany: InputMaybe<ColorProportionCreateManyUserInputEnvelope>;
+};
+
+export type ColorProportionCreateOrConnectWithoutMixedColorInput = {
+  create: ColorProportionCreateWithoutMixedColorInput;
+  where: ColorProportionWhereUniqueInput;
+};
+
+export type ColorProportionCreateOrConnectWithoutRawColorInput = {
+  create: ColorProportionCreateWithoutRawColorInput;
+  where: ColorProportionWhereUniqueInput;
+};
+
+export type ColorProportionCreateOrConnectWithoutUserInput = {
+  create: ColorProportionCreateWithoutUserInput;
+  where: ColorProportionWhereUniqueInput;
+};
+
+export type ColorProportionCreateWithoutMixedColorInput = {
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  proportion: Scalars['Decimal'];
+  rawColor: RawColorCreateNestedOneWithoutColorProportionsInput;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutColorProportionsInput;
+};
+
+export type ColorProportionCreateWithoutRawColorInput = {
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  mixedColor: MixedColorCreateNestedOneWithoutColorProportionsInput;
+  proportion: Scalars['Decimal'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutColorProportionsInput;
+};
+
+export type ColorProportionCreateWithoutUserInput = {
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  mixedColor: MixedColorCreateNestedOneWithoutColorProportionsInput;
+  proportion: Scalars['Decimal'];
+  rawColor: RawColorCreateNestedOneWithoutColorProportionsInput;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ColorProportionGroupBy = {
+  _avg: Maybe<ColorProportionAvgAggregate>;
+  _count: Maybe<ColorProportionCountAggregate>;
+  _max: Maybe<ColorProportionMaxAggregate>;
+  _min: Maybe<ColorProportionMinAggregate>;
+  _sum: Maybe<ColorProportionSumAggregate>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  mixedColorId: Scalars['String'];
+  proportion: Scalars['Decimal'];
+  rawColorId: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+};
+
+export type ColorProportionListRelationFilter = {
+  every: InputMaybe<ColorProportionWhereInput>;
+  none: InputMaybe<ColorProportionWhereInput>;
+  some: InputMaybe<ColorProportionWhereInput>;
+};
+
+export type ColorProportionMaxAggregate = {
+  createdAt: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  mixedColorId: Maybe<Scalars['String']>;
+  proportion: Maybe<Scalars['Decimal']>;
+  rawColorId: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
+};
+
+export type ColorProportionMaxOrderByAggregateInput = {
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  mixedColorId: InputMaybe<SortOrder>;
+  proportion: InputMaybe<SortOrder>;
+  rawColorId: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type ColorProportionMinAggregate = {
+  createdAt: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  mixedColorId: Maybe<Scalars['String']>;
+  proportion: Maybe<Scalars['Decimal']>;
+  rawColorId: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
+};
+
+export type ColorProportionMinOrderByAggregateInput = {
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  mixedColorId: InputMaybe<SortOrder>;
+  proportion: InputMaybe<SortOrder>;
+  rawColorId: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type ColorProportionOrderByRelationAggregateInput = {
+  _count: InputMaybe<SortOrder>;
+};
+
+export type ColorProportionOrderByWithAggregationInput = {
+  _avg: InputMaybe<ColorProportionAvgOrderByAggregateInput>;
+  _count: InputMaybe<ColorProportionCountOrderByAggregateInput>;
+  _max: InputMaybe<ColorProportionMaxOrderByAggregateInput>;
+  _min: InputMaybe<ColorProportionMinOrderByAggregateInput>;
+  _sum: InputMaybe<ColorProportionSumOrderByAggregateInput>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  mixedColorId: InputMaybe<SortOrder>;
+  proportion: InputMaybe<SortOrder>;
+  rawColorId: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type ColorProportionOrderByWithRelationInput = {
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  mixedColor: InputMaybe<MixedColorOrderByWithRelationInput>;
+  mixedColorId: InputMaybe<SortOrder>;
+  proportion: InputMaybe<SortOrder>;
+  rawColor: InputMaybe<RawColorOrderByWithRelationInput>;
+  rawColorId: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  user: InputMaybe<UserOrderByWithRelationInput>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export enum ColorProportionScalarFieldEnum {
+  CreatedAt = 'createdAt',
+  Id = 'id',
+  MixedColorId = 'mixedColorId',
+  Proportion = 'proportion',
+  RawColorId = 'rawColorId',
+  UpdatedAt = 'updatedAt',
+  UserId = 'userId'
+}
+
+export type ColorProportionScalarWhereInput = {
+  AND: InputMaybe<Array<ColorProportionScalarWhereInput>>;
+  NOT: InputMaybe<Array<ColorProportionScalarWhereInput>>;
+  OR: InputMaybe<Array<ColorProportionScalarWhereInput>>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  id: InputMaybe<StringFilter>;
+  mixedColorId: InputMaybe<StringFilter>;
+  proportion: InputMaybe<DecimalFilter>;
+  rawColorId: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  userId: InputMaybe<StringFilter>;
+};
+
+export type ColorProportionScalarWhereWithAggregatesInput = {
+  AND: InputMaybe<Array<ColorProportionScalarWhereWithAggregatesInput>>;
+  NOT: InputMaybe<Array<ColorProportionScalarWhereWithAggregatesInput>>;
+  OR: InputMaybe<Array<ColorProportionScalarWhereWithAggregatesInput>>;
+  createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  id: InputMaybe<StringWithAggregatesFilter>;
+  mixedColorId: InputMaybe<StringWithAggregatesFilter>;
+  proportion: InputMaybe<DecimalWithAggregatesFilter>;
+  rawColorId: InputMaybe<StringWithAggregatesFilter>;
+  updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  userId: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type ColorProportionSumAggregate = {
+  proportion: Maybe<Scalars['Decimal']>;
+};
+
+export type ColorProportionSumOrderByAggregateInput = {
+  proportion: InputMaybe<SortOrder>;
+};
+
+export type ColorProportionUpdateInput = {
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  mixedColor: InputMaybe<MixedColorUpdateOneRequiredWithoutColorProportionsNestedInput>;
+  proportion: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  rawColor: InputMaybe<RawColorUpdateOneRequiredWithoutColorProportionsNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutColorProportionsNestedInput>;
+};
+
+export type ColorProportionUpdateManyMutationInput = {
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  proportion: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type ColorProportionUpdateManyWithWhereWithoutMixedColorInput = {
+  data: ColorProportionUpdateManyMutationInput;
+  where: ColorProportionScalarWhereInput;
+};
+
+export type ColorProportionUpdateManyWithWhereWithoutRawColorInput = {
+  data: ColorProportionUpdateManyMutationInput;
+  where: ColorProportionScalarWhereInput;
+};
+
+export type ColorProportionUpdateManyWithWhereWithoutUserInput = {
+  data: ColorProportionUpdateManyMutationInput;
+  where: ColorProportionScalarWhereInput;
+};
+
+export type ColorProportionUpdateManyWithoutMixedColorNestedInput = {
+  connect: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<ColorProportionCreateOrConnectWithoutMixedColorInput>>;
+  create: InputMaybe<Array<ColorProportionCreateWithoutMixedColorInput>>;
+  createMany: InputMaybe<ColorProportionCreateManyMixedColorInputEnvelope>;
+  delete: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<ColorProportionScalarWhereInput>>;
+  disconnect: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  set: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  update: InputMaybe<Array<ColorProportionUpdateWithWhereUniqueWithoutMixedColorInput>>;
+  updateMany: InputMaybe<Array<ColorProportionUpdateManyWithWhereWithoutMixedColorInput>>;
+  upsert: InputMaybe<Array<ColorProportionUpsertWithWhereUniqueWithoutMixedColorInput>>;
+};
+
+export type ColorProportionUpdateManyWithoutRawColorNestedInput = {
+  connect: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<ColorProportionCreateOrConnectWithoutRawColorInput>>;
+  create: InputMaybe<Array<ColorProportionCreateWithoutRawColorInput>>;
+  createMany: InputMaybe<ColorProportionCreateManyRawColorInputEnvelope>;
+  delete: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<ColorProportionScalarWhereInput>>;
+  disconnect: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  set: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  update: InputMaybe<Array<ColorProportionUpdateWithWhereUniqueWithoutRawColorInput>>;
+  updateMany: InputMaybe<Array<ColorProportionUpdateManyWithWhereWithoutRawColorInput>>;
+  upsert: InputMaybe<Array<ColorProportionUpsertWithWhereUniqueWithoutRawColorInput>>;
+};
+
+export type ColorProportionUpdateManyWithoutUserNestedInput = {
+  connect: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<ColorProportionCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<ColorProportionCreateWithoutUserInput>>;
+  createMany: InputMaybe<ColorProportionCreateManyUserInputEnvelope>;
+  delete: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<ColorProportionScalarWhereInput>>;
+  disconnect: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  set: InputMaybe<Array<ColorProportionWhereUniqueInput>>;
+  update: InputMaybe<Array<ColorProportionUpdateWithWhereUniqueWithoutUserInput>>;
+  updateMany: InputMaybe<Array<ColorProportionUpdateManyWithWhereWithoutUserInput>>;
+  upsert: InputMaybe<Array<ColorProportionUpsertWithWhereUniqueWithoutUserInput>>;
+};
+
+export type ColorProportionUpdateWithWhereUniqueWithoutMixedColorInput = {
+  data: ColorProportionUpdateWithoutMixedColorInput;
+  where: ColorProportionWhereUniqueInput;
+};
+
+export type ColorProportionUpdateWithWhereUniqueWithoutRawColorInput = {
+  data: ColorProportionUpdateWithoutRawColorInput;
+  where: ColorProportionWhereUniqueInput;
+};
+
+export type ColorProportionUpdateWithWhereUniqueWithoutUserInput = {
+  data: ColorProportionUpdateWithoutUserInput;
+  where: ColorProportionWhereUniqueInput;
+};
+
+export type ColorProportionUpdateWithoutMixedColorInput = {
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  proportion: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  rawColor: InputMaybe<RawColorUpdateOneRequiredWithoutColorProportionsNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutColorProportionsNestedInput>;
+};
+
+export type ColorProportionUpdateWithoutRawColorInput = {
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  mixedColor: InputMaybe<MixedColorUpdateOneRequiredWithoutColorProportionsNestedInput>;
+  proportion: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutColorProportionsNestedInput>;
+};
+
+export type ColorProportionUpdateWithoutUserInput = {
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  mixedColor: InputMaybe<MixedColorUpdateOneRequiredWithoutColorProportionsNestedInput>;
+  proportion: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  rawColor: InputMaybe<RawColorUpdateOneRequiredWithoutColorProportionsNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type ColorProportionUpsertWithWhereUniqueWithoutMixedColorInput = {
+  create: ColorProportionCreateWithoutMixedColorInput;
+  update: ColorProportionUpdateWithoutMixedColorInput;
+  where: ColorProportionWhereUniqueInput;
+};
+
+export type ColorProportionUpsertWithWhereUniqueWithoutRawColorInput = {
+  create: ColorProportionCreateWithoutRawColorInput;
+  update: ColorProportionUpdateWithoutRawColorInput;
+  where: ColorProportionWhereUniqueInput;
+};
+
+export type ColorProportionUpsertWithWhereUniqueWithoutUserInput = {
+  create: ColorProportionCreateWithoutUserInput;
+  update: ColorProportionUpdateWithoutUserInput;
+  where: ColorProportionWhereUniqueInput;
+};
+
+export type ColorProportionWhereInput = {
+  AND: InputMaybe<Array<ColorProportionWhereInput>>;
+  NOT: InputMaybe<Array<ColorProportionWhereInput>>;
+  OR: InputMaybe<Array<ColorProportionWhereInput>>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  id: InputMaybe<StringFilter>;
+  mixedColor: InputMaybe<MixedColorRelationFilter>;
+  mixedColorId: InputMaybe<StringFilter>;
+  proportion: InputMaybe<DecimalFilter>;
+  rawColor: InputMaybe<RawColorRelationFilter>;
+  rawColorId: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  user: InputMaybe<UserRelationFilter>;
+  userId: InputMaybe<StringFilter>;
+};
+
+export type ColorProportionWhereUniqueInput = {
+  id: InputMaybe<Scalars['String']>;
 };
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -1990,21 +2468,361 @@ export type LoginValidInput = {
   usernameOrEmail: Scalars['String'];
 };
 
+export type MixedColor = {
+  _count: Maybe<MixedColorCount>;
+  color: Scalars['String'];
+  colorProportions: Array<ColorProportion>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  name: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  user: User;
+  userId: Scalars['String'];
+};
+
+
+export type MixedColorColorProportionsArgs = {
+  cursor: InputMaybe<ColorProportionWhereUniqueInput>;
+  distinct: InputMaybe<Array<ColorProportionScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<ColorProportionOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ColorProportionWhereInput>;
+};
+
+export type MixedColorCount = {
+  colorProportions: Scalars['Int'];
+};
+
+export type MixedColorCountAggregate = {
+  _all: Scalars['Int'];
+  color: Scalars['Int'];
+  createdAt: Scalars['Int'];
+  id: Scalars['Int'];
+  name: Scalars['Int'];
+  updatedAt: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type MixedColorCountOrderByAggregateInput = {
+  color: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type MixedColorCreateInput = {
+  color: Scalars['String'];
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutMixedColorInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutMixedColorsInput;
+};
+
+export type MixedColorCreateManyInput = {
+  color: Scalars['String'];
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  userId: Scalars['String'];
+};
+
+export type MixedColorCreateManyUserInput = {
+  color: Scalars['String'];
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+};
+
+export type MixedColorCreateManyUserInputEnvelope = {
+  data: Array<MixedColorCreateManyUserInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+export type MixedColorCreateNestedManyWithoutUserInput = {
+  connect: InputMaybe<Array<MixedColorWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<MixedColorCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<MixedColorCreateWithoutUserInput>>;
+  createMany: InputMaybe<MixedColorCreateManyUserInputEnvelope>;
+};
+
+export type MixedColorCreateNestedOneWithoutColorProportionsInput = {
+  connect: InputMaybe<MixedColorWhereUniqueInput>;
+  connectOrCreate: InputMaybe<MixedColorCreateOrConnectWithoutColorProportionsInput>;
+  create: InputMaybe<MixedColorCreateWithoutColorProportionsInput>;
+};
+
+export type MixedColorCreateOrConnectWithoutColorProportionsInput = {
+  create: MixedColorCreateWithoutColorProportionsInput;
+  where: MixedColorWhereUniqueInput;
+};
+
+export type MixedColorCreateOrConnectWithoutUserInput = {
+  create: MixedColorCreateWithoutUserInput;
+  where: MixedColorWhereUniqueInput;
+};
+
+export type MixedColorCreateWithoutColorProportionsInput = {
+  color: Scalars['String'];
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutMixedColorsInput;
+};
+
+export type MixedColorCreateWithoutUserInput = {
+  color: Scalars['String'];
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutMixedColorInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+};
+
+export type MixedColorGroupBy = {
+  _count: Maybe<MixedColorCountAggregate>;
+  _max: Maybe<MixedColorMaxAggregate>;
+  _min: Maybe<MixedColorMinAggregate>;
+  color: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  name: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+};
+
+export type MixedColorListRelationFilter = {
+  every: InputMaybe<MixedColorWhereInput>;
+  none: InputMaybe<MixedColorWhereInput>;
+  some: InputMaybe<MixedColorWhereInput>;
+};
+
+export type MixedColorMaxAggregate = {
+  color: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
+};
+
+export type MixedColorMaxOrderByAggregateInput = {
+  color: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type MixedColorMinAggregate = {
+  color: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
+};
+
+export type MixedColorMinOrderByAggregateInput = {
+  color: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type MixedColorOrderByRelationAggregateInput = {
+  _count: InputMaybe<SortOrder>;
+};
+
+export type MixedColorOrderByWithAggregationInput = {
+  _count: InputMaybe<MixedColorCountOrderByAggregateInput>;
+  _max: InputMaybe<MixedColorMaxOrderByAggregateInput>;
+  _min: InputMaybe<MixedColorMinOrderByAggregateInput>;
+  color: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type MixedColorOrderByWithRelationInput = {
+  color: InputMaybe<SortOrder>;
+  colorProportions: InputMaybe<ColorProportionOrderByRelationAggregateInput>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  user: InputMaybe<UserOrderByWithRelationInput>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type MixedColorRelationFilter = {
+  is: InputMaybe<MixedColorWhereInput>;
+  isNot: InputMaybe<MixedColorWhereInput>;
+};
+
+export enum MixedColorScalarFieldEnum {
+  Color = 'color',
+  CreatedAt = 'createdAt',
+  Id = 'id',
+  Name = 'name',
+  UpdatedAt = 'updatedAt',
+  UserId = 'userId'
+}
+
+export type MixedColorScalarWhereInput = {
+  AND: InputMaybe<Array<MixedColorScalarWhereInput>>;
+  NOT: InputMaybe<Array<MixedColorScalarWhereInput>>;
+  OR: InputMaybe<Array<MixedColorScalarWhereInput>>;
+  color: InputMaybe<StringFilter>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  id: InputMaybe<StringFilter>;
+  name: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  userId: InputMaybe<StringFilter>;
+};
+
+export type MixedColorScalarWhereWithAggregatesInput = {
+  AND: InputMaybe<Array<MixedColorScalarWhereWithAggregatesInput>>;
+  NOT: InputMaybe<Array<MixedColorScalarWhereWithAggregatesInput>>;
+  OR: InputMaybe<Array<MixedColorScalarWhereWithAggregatesInput>>;
+  color: InputMaybe<StringWithAggregatesFilter>;
+  createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  id: InputMaybe<StringWithAggregatesFilter>;
+  name: InputMaybe<StringWithAggregatesFilter>;
+  updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  userId: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type MixedColorUpdateInput = {
+  color: InputMaybe<StringFieldUpdateOperationsInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutMixedColorNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutMixedColorsNestedInput>;
+};
+
+export type MixedColorUpdateManyMutationInput = {
+  color: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type MixedColorUpdateManyWithWhereWithoutUserInput = {
+  data: MixedColorUpdateManyMutationInput;
+  where: MixedColorScalarWhereInput;
+};
+
+export type MixedColorUpdateManyWithoutUserNestedInput = {
+  connect: InputMaybe<Array<MixedColorWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<MixedColorCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<MixedColorCreateWithoutUserInput>>;
+  createMany: InputMaybe<MixedColorCreateManyUserInputEnvelope>;
+  delete: InputMaybe<Array<MixedColorWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<MixedColorScalarWhereInput>>;
+  disconnect: InputMaybe<Array<MixedColorWhereUniqueInput>>;
+  set: InputMaybe<Array<MixedColorWhereUniqueInput>>;
+  update: InputMaybe<Array<MixedColorUpdateWithWhereUniqueWithoutUserInput>>;
+  updateMany: InputMaybe<Array<MixedColorUpdateManyWithWhereWithoutUserInput>>;
+  upsert: InputMaybe<Array<MixedColorUpsertWithWhereUniqueWithoutUserInput>>;
+};
+
+export type MixedColorUpdateOneRequiredWithoutColorProportionsNestedInput = {
+  connect: InputMaybe<MixedColorWhereUniqueInput>;
+  connectOrCreate: InputMaybe<MixedColorCreateOrConnectWithoutColorProportionsInput>;
+  create: InputMaybe<MixedColorCreateWithoutColorProportionsInput>;
+  update: InputMaybe<MixedColorUpdateWithoutColorProportionsInput>;
+  upsert: InputMaybe<MixedColorUpsertWithoutColorProportionsInput>;
+};
+
+export type MixedColorUpdateWithWhereUniqueWithoutUserInput = {
+  data: MixedColorUpdateWithoutUserInput;
+  where: MixedColorWhereUniqueInput;
+};
+
+export type MixedColorUpdateWithoutColorProportionsInput = {
+  color: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutMixedColorsNestedInput>;
+};
+
+export type MixedColorUpdateWithoutUserInput = {
+  color: InputMaybe<StringFieldUpdateOperationsInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutMixedColorNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type MixedColorUpsertWithWhereUniqueWithoutUserInput = {
+  create: MixedColorCreateWithoutUserInput;
+  update: MixedColorUpdateWithoutUserInput;
+  where: MixedColorWhereUniqueInput;
+};
+
+export type MixedColorUpsertWithoutColorProportionsInput = {
+  create: MixedColorCreateWithoutColorProportionsInput;
+  update: MixedColorUpdateWithoutColorProportionsInput;
+};
+
+export type MixedColorWhereInput = {
+  AND: InputMaybe<Array<MixedColorWhereInput>>;
+  NOT: InputMaybe<Array<MixedColorWhereInput>>;
+  OR: InputMaybe<Array<MixedColorWhereInput>>;
+  color: InputMaybe<StringFilter>;
+  colorProportions: InputMaybe<ColorProportionListRelationFilter>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  id: InputMaybe<StringFilter>;
+  name: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  user: InputMaybe<UserRelationFilter>;
+  userId: InputMaybe<StringFilter>;
+};
+
+export type MixedColorWhereUniqueInput = {
+  id: InputMaybe<Scalars['String']>;
+};
+
 export type Mutation = {
   changeIssuePositionMutation: Scalars['Boolean'];
   createManyCategory: AffectedRowsOutput;
+  createManyColorProportion: AffectedRowsOutput;
   createManyExpense: AffectedRowsOutput;
   createManyIssue: AffectedRowsOutput;
   createManyIssueLabel: AffectedRowsOutput;
+  createManyMixedColor: AffectedRowsOutput;
+  createManyRawColor: AffectedRowsOutput;
   createManyRecipe: AffectedRowsOutput;
   createManySalary: AffectedRowsOutput;
   createManySaving: AffectedRowsOutput;
   createManyUser: AffectedRowsOutput;
   createManyWishlistItem: AffectedRowsOutput;
   createOneCategory: Category;
+  createOneColorProportion: ColorProportion;
   createOneExpense: Expense;
   createOneIssue: Issue;
   createOneIssueLabel: IssueLabel;
+  createOneMixedColor: MixedColor;
+  createOneRawColor: RawColor;
   createOneRecipe: Recipe;
   createOneSalary: Salary;
   createOneSaving: Saving;
@@ -2015,18 +2833,24 @@ export type Mutation = {
   deleteIssueLabelMutation: Scalars['Boolean'];
   deleteIssueMutation: Scalars['Boolean'];
   deleteManyCategory: AffectedRowsOutput;
+  deleteManyColorProportion: AffectedRowsOutput;
   deleteManyExpense: AffectedRowsOutput;
   deleteManyIssue: AffectedRowsOutput;
   deleteManyIssueLabel: AffectedRowsOutput;
+  deleteManyMixedColor: AffectedRowsOutput;
+  deleteManyRawColor: AffectedRowsOutput;
   deleteManyRecipe: AffectedRowsOutput;
   deleteManySalary: AffectedRowsOutput;
   deleteManySaving: AffectedRowsOutput;
   deleteManyUser: AffectedRowsOutput;
   deleteManyWishlistItem: AffectedRowsOutput;
   deleteOneCategory: Maybe<Category>;
+  deleteOneColorProportion: Maybe<ColorProportion>;
   deleteOneExpense: Maybe<Expense>;
   deleteOneIssue: Maybe<Issue>;
   deleteOneIssueLabel: Maybe<IssueLabel>;
+  deleteOneMixedColor: Maybe<MixedColor>;
+  deleteOneRawColor: Maybe<RawColor>;
   deleteOneRecipe: Maybe<Recipe>;
   deleteOneSalary: Maybe<Salary>;
   deleteOneSaving: Maybe<Saving>;
@@ -2041,32 +2865,42 @@ export type Mutation = {
   saveExpenseMutation: Expense;
   saveIssueLabelMutation: IssueLabel;
   saveIssueMutation: Issue;
+  saveRawColorMutation: RawColor;
   saveRecipeMutation: Recipe;
   saveSalaryMutation: Salary;
   saveSavingMutation: Saving;
   saveWishlistItemMutation: WishlistItem;
   updateManyCategory: AffectedRowsOutput;
+  updateManyColorProportion: AffectedRowsOutput;
   updateManyExpense: AffectedRowsOutput;
   updateManyIssue: AffectedRowsOutput;
   updateManyIssueLabel: AffectedRowsOutput;
+  updateManyMixedColor: AffectedRowsOutput;
+  updateManyRawColor: AffectedRowsOutput;
   updateManyRecipe: AffectedRowsOutput;
   updateManySalary: AffectedRowsOutput;
   updateManySaving: AffectedRowsOutput;
   updateManyUser: AffectedRowsOutput;
   updateManyWishlistItem: AffectedRowsOutput;
   updateOneCategory: Maybe<Category>;
+  updateOneColorProportion: Maybe<ColorProportion>;
   updateOneExpense: Maybe<Expense>;
   updateOneIssue: Maybe<Issue>;
   updateOneIssueLabel: Maybe<IssueLabel>;
+  updateOneMixedColor: Maybe<MixedColor>;
+  updateOneRawColor: Maybe<RawColor>;
   updateOneRecipe: Maybe<Recipe>;
   updateOneSalary: Maybe<Salary>;
   updateOneSaving: Maybe<Saving>;
   updateOneUser: Maybe<User>;
   updateOneWishlistItem: Maybe<WishlistItem>;
   upsertOneCategory: Category;
+  upsertOneColorProportion: ColorProportion;
   upsertOneExpense: Expense;
   upsertOneIssue: Issue;
   upsertOneIssueLabel: IssueLabel;
+  upsertOneMixedColor: MixedColor;
+  upsertOneRawColor: RawColor;
   upsertOneRecipe: Recipe;
   upsertOneSalary: Salary;
   upsertOneSaving: Saving;
@@ -2086,6 +2920,12 @@ export type MutationCreateManyCategoryArgs = {
 };
 
 
+export type MutationCreateManyColorProportionArgs = {
+  data: Array<ColorProportionCreateManyInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+
 export type MutationCreateManyExpenseArgs = {
   data: Array<ExpenseCreateManyInput>;
   skipDuplicates: InputMaybe<Scalars['Boolean']>;
@@ -2100,6 +2940,18 @@ export type MutationCreateManyIssueArgs = {
 
 export type MutationCreateManyIssueLabelArgs = {
   data: Array<IssueLabelCreateManyInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreateManyMixedColorArgs = {
+  data: Array<MixedColorCreateManyInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreateManyRawColorArgs = {
+  data: Array<RawColorCreateManyInput>;
   skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -2139,6 +2991,11 @@ export type MutationCreateOneCategoryArgs = {
 };
 
 
+export type MutationCreateOneColorProportionArgs = {
+  data: ColorProportionCreateInput;
+};
+
+
 export type MutationCreateOneExpenseArgs = {
   data: ExpenseCreateInput;
 };
@@ -2151,6 +3008,16 @@ export type MutationCreateOneIssueArgs = {
 
 export type MutationCreateOneIssueLabelArgs = {
   data: IssueLabelCreateInput;
+};
+
+
+export type MutationCreateOneMixedColorArgs = {
+  data: MixedColorCreateInput;
+};
+
+
+export type MutationCreateOneRawColorArgs = {
+  data: RawColorCreateInput;
 };
 
 
@@ -2204,6 +3071,11 @@ export type MutationDeleteManyCategoryArgs = {
 };
 
 
+export type MutationDeleteManyColorProportionArgs = {
+  where: InputMaybe<ColorProportionWhereInput>;
+};
+
+
 export type MutationDeleteManyExpenseArgs = {
   where: InputMaybe<ExpenseWhereInput>;
 };
@@ -2216,6 +3088,16 @@ export type MutationDeleteManyIssueArgs = {
 
 export type MutationDeleteManyIssueLabelArgs = {
   where: InputMaybe<IssueLabelWhereInput>;
+};
+
+
+export type MutationDeleteManyMixedColorArgs = {
+  where: InputMaybe<MixedColorWhereInput>;
+};
+
+
+export type MutationDeleteManyRawColorArgs = {
+  where: InputMaybe<RawColorWhereInput>;
 };
 
 
@@ -2249,6 +3131,11 @@ export type MutationDeleteOneCategoryArgs = {
 };
 
 
+export type MutationDeleteOneColorProportionArgs = {
+  where: ColorProportionWhereUniqueInput;
+};
+
+
 export type MutationDeleteOneExpenseArgs = {
   where: ExpenseWhereUniqueInput;
 };
@@ -2261,6 +3148,16 @@ export type MutationDeleteOneIssueArgs = {
 
 export type MutationDeleteOneIssueLabelArgs = {
   where: IssueLabelWhereUniqueInput;
+};
+
+
+export type MutationDeleteOneMixedColorArgs = {
+  where: MixedColorWhereUniqueInput;
+};
+
+
+export type MutationDeleteOneRawColorArgs = {
+  where: RawColorWhereUniqueInput;
 };
 
 
@@ -2334,6 +3231,11 @@ export type MutationSaveIssueMutationArgs = {
 };
 
 
+export type MutationSaveRawColorMutationArgs = {
+  data: RawColorInput;
+};
+
+
 export type MutationSaveRecipeMutationArgs = {
   data: RecipeInput;
 };
@@ -2360,6 +3262,12 @@ export type MutationUpdateManyCategoryArgs = {
 };
 
 
+export type MutationUpdateManyColorProportionArgs = {
+  data: ColorProportionUpdateManyMutationInput;
+  where: InputMaybe<ColorProportionWhereInput>;
+};
+
+
 export type MutationUpdateManyExpenseArgs = {
   data: ExpenseUpdateManyMutationInput;
   where: InputMaybe<ExpenseWhereInput>;
@@ -2375,6 +3283,18 @@ export type MutationUpdateManyIssueArgs = {
 export type MutationUpdateManyIssueLabelArgs = {
   data: IssueLabelUpdateManyMutationInput;
   where: InputMaybe<IssueLabelWhereInput>;
+};
+
+
+export type MutationUpdateManyMixedColorArgs = {
+  data: MixedColorUpdateManyMutationInput;
+  where: InputMaybe<MixedColorWhereInput>;
+};
+
+
+export type MutationUpdateManyRawColorArgs = {
+  data: RawColorUpdateManyMutationInput;
+  where: InputMaybe<RawColorWhereInput>;
 };
 
 
@@ -2414,6 +3334,12 @@ export type MutationUpdateOneCategoryArgs = {
 };
 
 
+export type MutationUpdateOneColorProportionArgs = {
+  data: ColorProportionUpdateInput;
+  where: ColorProportionWhereUniqueInput;
+};
+
+
 export type MutationUpdateOneExpenseArgs = {
   data: ExpenseUpdateInput;
   where: ExpenseWhereUniqueInput;
@@ -2429,6 +3355,18 @@ export type MutationUpdateOneIssueArgs = {
 export type MutationUpdateOneIssueLabelArgs = {
   data: IssueLabelUpdateInput;
   where: IssueLabelWhereUniqueInput;
+};
+
+
+export type MutationUpdateOneMixedColorArgs = {
+  data: MixedColorUpdateInput;
+  where: MixedColorWhereUniqueInput;
+};
+
+
+export type MutationUpdateOneRawColorArgs = {
+  data: RawColorUpdateInput;
+  where: RawColorWhereUniqueInput;
 };
 
 
@@ -2469,6 +3407,13 @@ export type MutationUpsertOneCategoryArgs = {
 };
 
 
+export type MutationUpsertOneColorProportionArgs = {
+  create: ColorProportionCreateInput;
+  update: ColorProportionUpdateInput;
+  where: ColorProportionWhereUniqueInput;
+};
+
+
 export type MutationUpsertOneExpenseArgs = {
   create: ExpenseCreateInput;
   update: ExpenseUpdateInput;
@@ -2487,6 +3432,20 @@ export type MutationUpsertOneIssueLabelArgs = {
   create: IssueLabelCreateInput;
   update: IssueLabelUpdateInput;
   where: IssueLabelWhereUniqueInput;
+};
+
+
+export type MutationUpsertOneMixedColorArgs = {
+  create: MixedColorCreateInput;
+  update: MixedColorUpdateInput;
+  where: MixedColorWhereUniqueInput;
+};
+
+
+export type MutationUpsertOneRawColorArgs = {
+  create: RawColorCreateInput;
+  update: RawColorUpdateInput;
+  where: RawColorWhereUniqueInput;
 };
 
 
@@ -2810,9 +3769,12 @@ export type PaginationInput = {
 
 export type Query = {
   aggregateCategory: AggregateCategory;
+  aggregateColorProportion: AggregateColorProportion;
   aggregateExpense: AggregateExpense;
   aggregateIssue: AggregateIssue;
   aggregateIssueLabel: AggregateIssueLabel;
+  aggregateMixedColor: AggregateMixedColor;
+  aggregateRawColor: AggregateRawColor;
   aggregateRecipe: AggregateRecipe;
   aggregateSalary: AggregateSalary;
   aggregateSaving: AggregateSaving;
@@ -2821,17 +3783,25 @@ export type Query = {
   categories: Array<Category>;
   categoriesQuery: Array<Category>;
   category: Maybe<Category>;
+  colorProportion: Maybe<ColorProportion>;
+  colorProportions: Array<ColorProportion>;
   expense: Maybe<Expense>;
   expenses: Array<Expense>;
   expensesQuery: Array<Expense>;
   findFirstCategory: Maybe<Category>;
   findFirstCategoryOrThrow: Maybe<Category>;
+  findFirstColorProportion: Maybe<ColorProportion>;
+  findFirstColorProportionOrThrow: Maybe<ColorProportion>;
   findFirstExpense: Maybe<Expense>;
   findFirstExpenseOrThrow: Maybe<Expense>;
   findFirstIssue: Maybe<Issue>;
   findFirstIssueLabel: Maybe<IssueLabel>;
   findFirstIssueLabelOrThrow: Maybe<IssueLabel>;
   findFirstIssueOrThrow: Maybe<Issue>;
+  findFirstMixedColor: Maybe<MixedColor>;
+  findFirstMixedColorOrThrow: Maybe<MixedColor>;
+  findFirstRawColor: Maybe<RawColor>;
+  findFirstRawColorOrThrow: Maybe<RawColor>;
   findFirstRecipe: Maybe<Recipe>;
   findFirstRecipeOrThrow: Maybe<Recipe>;
   findFirstSalary: Maybe<Salary>;
@@ -2843,9 +3813,12 @@ export type Query = {
   findFirstWishlistItem: Maybe<WishlistItem>;
   findFirstWishlistItemOrThrow: Maybe<WishlistItem>;
   getCategory: Maybe<Category>;
+  getColorProportion: Maybe<ColorProportion>;
   getExpense: Maybe<Expense>;
   getIssue: Maybe<Issue>;
   getIssueLabel: Maybe<IssueLabel>;
+  getMixedColor: Maybe<MixedColor>;
+  getRawColor: Maybe<RawColor>;
   getRecipe: Maybe<Recipe>;
   getRecipesQuery: Array<Recipe>;
   getSalary: Maybe<Salary>;
@@ -2853,9 +3826,12 @@ export type Query = {
   getUser: Maybe<User>;
   getWishlistItem: Maybe<WishlistItem>;
   groupByCategory: Array<CategoryGroupBy>;
+  groupByColorProportion: Array<ColorProportionGroupBy>;
   groupByExpense: Array<ExpenseGroupBy>;
   groupByIssue: Array<IssueGroupBy>;
   groupByIssueLabel: Array<IssueLabelGroupBy>;
+  groupByMixedColor: Array<MixedColorGroupBy>;
+  groupByRawColor: Array<RawColorGroupBy>;
   groupByRecipe: Array<RecipeGroupBy>;
   groupBySalary: Array<SalaryGroupBy>;
   groupBySaving: Array<SavingGroupBy>;
@@ -2868,6 +3844,11 @@ export type Query = {
   issues: Array<Issue>;
   issuesQuery: Array<Issue>;
   meQuery: AuthUserOutput;
+  mixedColor: Maybe<MixedColor>;
+  mixedColors: Array<MixedColor>;
+  rawColor: Maybe<RawColor>;
+  rawColors: Array<RawColor>;
+  rawColorsQuery: Array<RawColor>;
   recipe: Maybe<Recipe>;
   recipes: Array<Recipe>;
   recurrentExpensesQuery: Array<Expense>;
@@ -2891,6 +3872,15 @@ export type QueryAggregateCategoryArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<CategoryWhereInput>;
+};
+
+
+export type QueryAggregateColorProportionArgs = {
+  cursor: InputMaybe<ColorProportionWhereUniqueInput>;
+  orderBy: InputMaybe<Array<ColorProportionOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ColorProportionWhereInput>;
 };
 
 
@@ -2918,6 +3908,24 @@ export type QueryAggregateIssueLabelArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<IssueLabelWhereInput>;
+};
+
+
+export type QueryAggregateMixedColorArgs = {
+  cursor: InputMaybe<MixedColorWhereUniqueInput>;
+  orderBy: InputMaybe<Array<MixedColorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<MixedColorWhereInput>;
+};
+
+
+export type QueryAggregateRawColorArgs = {
+  cursor: InputMaybe<RawColorWhereUniqueInput>;
+  orderBy: InputMaybe<Array<RawColorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<RawColorWhereInput>;
 };
 
 
@@ -2981,6 +3989,21 @@ export type QueryCategoryArgs = {
 };
 
 
+export type QueryColorProportionArgs = {
+  where: ColorProportionWhereUniqueInput;
+};
+
+
+export type QueryColorProportionsArgs = {
+  cursor: InputMaybe<ColorProportionWhereUniqueInput>;
+  distinct: InputMaybe<Array<ColorProportionScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<ColorProportionOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ColorProportionWhereInput>;
+};
+
+
 export type QueryExpenseArgs = {
   where: ExpenseWhereUniqueInput;
 };
@@ -3019,6 +4042,26 @@ export type QueryFindFirstCategoryOrThrowArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<CategoryWhereInput>;
+};
+
+
+export type QueryFindFirstColorProportionArgs = {
+  cursor: InputMaybe<ColorProportionWhereUniqueInput>;
+  distinct: InputMaybe<Array<ColorProportionScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<ColorProportionOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ColorProportionWhereInput>;
+};
+
+
+export type QueryFindFirstColorProportionOrThrowArgs = {
+  cursor: InputMaybe<ColorProportionWhereUniqueInput>;
+  distinct: InputMaybe<Array<ColorProportionScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<ColorProportionOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ColorProportionWhereInput>;
 };
 
 
@@ -3079,6 +4122,46 @@ export type QueryFindFirstIssueOrThrowArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<IssueWhereInput>;
+};
+
+
+export type QueryFindFirstMixedColorArgs = {
+  cursor: InputMaybe<MixedColorWhereUniqueInput>;
+  distinct: InputMaybe<Array<MixedColorScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<MixedColorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<MixedColorWhereInput>;
+};
+
+
+export type QueryFindFirstMixedColorOrThrowArgs = {
+  cursor: InputMaybe<MixedColorWhereUniqueInput>;
+  distinct: InputMaybe<Array<MixedColorScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<MixedColorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<MixedColorWhereInput>;
+};
+
+
+export type QueryFindFirstRawColorArgs = {
+  cursor: InputMaybe<RawColorWhereUniqueInput>;
+  distinct: InputMaybe<Array<RawColorScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<RawColorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<RawColorWhereInput>;
+};
+
+
+export type QueryFindFirstRawColorOrThrowArgs = {
+  cursor: InputMaybe<RawColorWhereUniqueInput>;
+  distinct: InputMaybe<Array<RawColorScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<RawColorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<RawColorWhereInput>;
 };
 
 
@@ -3187,6 +4270,11 @@ export type QueryGetCategoryArgs = {
 };
 
 
+export type QueryGetColorProportionArgs = {
+  where: ColorProportionWhereUniqueInput;
+};
+
+
 export type QueryGetExpenseArgs = {
   where: ExpenseWhereUniqueInput;
 };
@@ -3199,6 +4287,16 @@ export type QueryGetIssueArgs = {
 
 export type QueryGetIssueLabelArgs = {
   where: IssueLabelWhereUniqueInput;
+};
+
+
+export type QueryGetMixedColorArgs = {
+  where: MixedColorWhereUniqueInput;
+};
+
+
+export type QueryGetRawColorArgs = {
+  where: RawColorWhereUniqueInput;
 };
 
 
@@ -3237,6 +4335,16 @@ export type QueryGroupByCategoryArgs = {
 };
 
 
+export type QueryGroupByColorProportionArgs = {
+  by: Array<ColorProportionScalarFieldEnum>;
+  having: InputMaybe<ColorProportionScalarWhereWithAggregatesInput>;
+  orderBy: InputMaybe<Array<ColorProportionOrderByWithAggregationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ColorProportionWhereInput>;
+};
+
+
 export type QueryGroupByExpenseArgs = {
   by: Array<ExpenseScalarFieldEnum>;
   having: InputMaybe<ExpenseScalarWhereWithAggregatesInput>;
@@ -3264,6 +4372,26 @@ export type QueryGroupByIssueLabelArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<IssueLabelWhereInput>;
+};
+
+
+export type QueryGroupByMixedColorArgs = {
+  by: Array<MixedColorScalarFieldEnum>;
+  having: InputMaybe<MixedColorScalarWhereWithAggregatesInput>;
+  orderBy: InputMaybe<Array<MixedColorOrderByWithAggregationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<MixedColorWhereInput>;
+};
+
+
+export type QueryGroupByRawColorArgs = {
+  by: Array<RawColorScalarFieldEnum>;
+  having: InputMaybe<RawColorScalarWhereWithAggregatesInput>;
+  orderBy: InputMaybe<Array<RawColorOrderByWithAggregationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<RawColorWhereInput>;
 };
 
 
@@ -3347,6 +4475,36 @@ export type QueryIssuesArgs = {
 };
 
 
+export type QueryMixedColorArgs = {
+  where: MixedColorWhereUniqueInput;
+};
+
+
+export type QueryMixedColorsArgs = {
+  cursor: InputMaybe<MixedColorWhereUniqueInput>;
+  distinct: InputMaybe<Array<MixedColorScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<MixedColorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<MixedColorWhereInput>;
+};
+
+
+export type QueryRawColorArgs = {
+  where: RawColorWhereUniqueInput;
+};
+
+
+export type QueryRawColorsArgs = {
+  cursor: InputMaybe<RawColorWhereUniqueInput>;
+  distinct: InputMaybe<Array<RawColorScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<RawColorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<RawColorWhereInput>;
+};
+
+
 export type QueryRecipeArgs = {
   where: RecipeWhereUniqueInput;
 };
@@ -3425,6 +4583,349 @@ export enum QueryMode {
   Default = 'default',
   Insensitive = 'insensitive'
 }
+
+export type RawColor = {
+  _count: Maybe<RawColorCount>;
+  color: Scalars['String'];
+  colorProportions: Array<ColorProportion>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  name: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  user: User;
+  userId: Scalars['String'];
+};
+
+
+export type RawColorColorProportionsArgs = {
+  cursor: InputMaybe<ColorProportionWhereUniqueInput>;
+  distinct: InputMaybe<Array<ColorProportionScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<ColorProportionOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ColorProportionWhereInput>;
+};
+
+export type RawColorCount = {
+  colorProportions: Scalars['Int'];
+};
+
+export type RawColorCountAggregate = {
+  _all: Scalars['Int'];
+  color: Scalars['Int'];
+  createdAt: Scalars['Int'];
+  id: Scalars['Int'];
+  name: Scalars['Int'];
+  updatedAt: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type RawColorCountOrderByAggregateInput = {
+  color: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type RawColorCreateInput = {
+  color: Scalars['String'];
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutRawColorInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutRawColorsInput;
+};
+
+export type RawColorCreateManyInput = {
+  color: Scalars['String'];
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  userId: Scalars['String'];
+};
+
+export type RawColorCreateManyUserInput = {
+  color: Scalars['String'];
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+};
+
+export type RawColorCreateManyUserInputEnvelope = {
+  data: Array<RawColorCreateManyUserInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+export type RawColorCreateNestedManyWithoutUserInput = {
+  connect: InputMaybe<Array<RawColorWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<RawColorCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<RawColorCreateWithoutUserInput>>;
+  createMany: InputMaybe<RawColorCreateManyUserInputEnvelope>;
+};
+
+export type RawColorCreateNestedOneWithoutColorProportionsInput = {
+  connect: InputMaybe<RawColorWhereUniqueInput>;
+  connectOrCreate: InputMaybe<RawColorCreateOrConnectWithoutColorProportionsInput>;
+  create: InputMaybe<RawColorCreateWithoutColorProportionsInput>;
+};
+
+export type RawColorCreateOrConnectWithoutColorProportionsInput = {
+  create: RawColorCreateWithoutColorProportionsInput;
+  where: RawColorWhereUniqueInput;
+};
+
+export type RawColorCreateOrConnectWithoutUserInput = {
+  create: RawColorCreateWithoutUserInput;
+  where: RawColorWhereUniqueInput;
+};
+
+export type RawColorCreateWithoutColorProportionsInput = {
+  color: Scalars['String'];
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  user: UserCreateNestedOneWithoutRawColorsInput;
+};
+
+export type RawColorCreateWithoutUserInput = {
+  color: Scalars['String'];
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutRawColorInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+};
+
+export type RawColorGroupBy = {
+  _count: Maybe<RawColorCountAggregate>;
+  _max: Maybe<RawColorMaxAggregate>;
+  _min: Maybe<RawColorMinAggregate>;
+  color: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  name: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+  userId: Scalars['String'];
+};
+
+export type RawColorInput = {
+  color: Scalars['String'];
+  createdAt: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['String']>;
+  userId: InputMaybe<Scalars['String']>;
+};
+
+export type RawColorListRelationFilter = {
+  every: InputMaybe<RawColorWhereInput>;
+  none: InputMaybe<RawColorWhereInput>;
+  some: InputMaybe<RawColorWhereInput>;
+};
+
+export type RawColorMaxAggregate = {
+  color: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
+};
+
+export type RawColorMaxOrderByAggregateInput = {
+  color: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type RawColorMinAggregate = {
+  color: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  id: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  userId: Maybe<Scalars['String']>;
+};
+
+export type RawColorMinOrderByAggregateInput = {
+  color: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type RawColorOrderByRelationAggregateInput = {
+  _count: InputMaybe<SortOrder>;
+};
+
+export type RawColorOrderByWithAggregationInput = {
+  _count: InputMaybe<RawColorCountOrderByAggregateInput>;
+  _max: InputMaybe<RawColorMaxOrderByAggregateInput>;
+  _min: InputMaybe<RawColorMinOrderByAggregateInput>;
+  color: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type RawColorOrderByWithRelationInput = {
+  color: InputMaybe<SortOrder>;
+  colorProportions: InputMaybe<ColorProportionOrderByRelationAggregateInput>;
+  createdAt: InputMaybe<SortOrder>;
+  id: InputMaybe<SortOrder>;
+  name: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  user: InputMaybe<UserOrderByWithRelationInput>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type RawColorRelationFilter = {
+  is: InputMaybe<RawColorWhereInput>;
+  isNot: InputMaybe<RawColorWhereInput>;
+};
+
+export enum RawColorScalarFieldEnum {
+  Color = 'color',
+  CreatedAt = 'createdAt',
+  Id = 'id',
+  Name = 'name',
+  UpdatedAt = 'updatedAt',
+  UserId = 'userId'
+}
+
+export type RawColorScalarWhereInput = {
+  AND: InputMaybe<Array<RawColorScalarWhereInput>>;
+  NOT: InputMaybe<Array<RawColorScalarWhereInput>>;
+  OR: InputMaybe<Array<RawColorScalarWhereInput>>;
+  color: InputMaybe<StringFilter>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  id: InputMaybe<StringFilter>;
+  name: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  userId: InputMaybe<StringFilter>;
+};
+
+export type RawColorScalarWhereWithAggregatesInput = {
+  AND: InputMaybe<Array<RawColorScalarWhereWithAggregatesInput>>;
+  NOT: InputMaybe<Array<RawColorScalarWhereWithAggregatesInput>>;
+  OR: InputMaybe<Array<RawColorScalarWhereWithAggregatesInput>>;
+  color: InputMaybe<StringWithAggregatesFilter>;
+  createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  id: InputMaybe<StringWithAggregatesFilter>;
+  name: InputMaybe<StringWithAggregatesFilter>;
+  updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  userId: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type RawColorUpdateInput = {
+  color: InputMaybe<StringFieldUpdateOperationsInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutRawColorNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutRawColorsNestedInput>;
+};
+
+export type RawColorUpdateManyMutationInput = {
+  color: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type RawColorUpdateManyWithWhereWithoutUserInput = {
+  data: RawColorUpdateManyMutationInput;
+  where: RawColorScalarWhereInput;
+};
+
+export type RawColorUpdateManyWithoutUserNestedInput = {
+  connect: InputMaybe<Array<RawColorWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<RawColorCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<RawColorCreateWithoutUserInput>>;
+  createMany: InputMaybe<RawColorCreateManyUserInputEnvelope>;
+  delete: InputMaybe<Array<RawColorWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<RawColorScalarWhereInput>>;
+  disconnect: InputMaybe<Array<RawColorWhereUniqueInput>>;
+  set: InputMaybe<Array<RawColorWhereUniqueInput>>;
+  update: InputMaybe<Array<RawColorUpdateWithWhereUniqueWithoutUserInput>>;
+  updateMany: InputMaybe<Array<RawColorUpdateManyWithWhereWithoutUserInput>>;
+  upsert: InputMaybe<Array<RawColorUpsertWithWhereUniqueWithoutUserInput>>;
+};
+
+export type RawColorUpdateOneRequiredWithoutColorProportionsNestedInput = {
+  connect: InputMaybe<RawColorWhereUniqueInput>;
+  connectOrCreate: InputMaybe<RawColorCreateOrConnectWithoutColorProportionsInput>;
+  create: InputMaybe<RawColorCreateWithoutColorProportionsInput>;
+  update: InputMaybe<RawColorUpdateWithoutColorProportionsInput>;
+  upsert: InputMaybe<RawColorUpsertWithoutColorProportionsInput>;
+};
+
+export type RawColorUpdateWithWhereUniqueWithoutUserInput = {
+  data: RawColorUpdateWithoutUserInput;
+  where: RawColorWhereUniqueInput;
+};
+
+export type RawColorUpdateWithoutColorProportionsInput = {
+  color: InputMaybe<StringFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutRawColorsNestedInput>;
+};
+
+export type RawColorUpdateWithoutUserInput = {
+  color: InputMaybe<StringFieldUpdateOperationsInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutRawColorNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  name: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type RawColorUpsertWithWhereUniqueWithoutUserInput = {
+  create: RawColorCreateWithoutUserInput;
+  update: RawColorUpdateWithoutUserInput;
+  where: RawColorWhereUniqueInput;
+};
+
+export type RawColorUpsertWithoutColorProportionsInput = {
+  create: RawColorCreateWithoutColorProportionsInput;
+  update: RawColorUpdateWithoutColorProportionsInput;
+};
+
+export type RawColorWhereInput = {
+  AND: InputMaybe<Array<RawColorWhereInput>>;
+  NOT: InputMaybe<Array<RawColorWhereInput>>;
+  OR: InputMaybe<Array<RawColorWhereInput>>;
+  color: InputMaybe<StringFilter>;
+  colorProportions: InputMaybe<ColorProportionListRelationFilter>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  id: InputMaybe<StringFilter>;
+  name: InputMaybe<StringFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  user: InputMaybe<UserRelationFilter>;
+  userId: InputMaybe<StringFilter>;
+};
+
+export type RawColorWhereUniqueInput = {
+  id: InputMaybe<Scalars['String']>;
+};
 
 export type Recipe = {
   createdAt: Scalars['DateTime'];
@@ -4373,13 +5874,16 @@ export type StringWithAggregatesFilter = {
 export type User = {
   _count: Maybe<UserCount>;
   categories: Array<Category>;
+  colorProportions: Array<ColorProportion>;
   createdAt: Scalars['DateTime'];
   email: Scalars['String'];
   expenses: Array<Expense>;
   id: Scalars['String'];
   issueLabels: Array<IssueLabel>;
   issues: Array<Issue>;
+  mixedColors: Array<MixedColor>;
   password: Scalars['String'];
+  rawColors: Array<RawColor>;
   recipe: Array<Recipe>;
   salary: Maybe<Salary>;
   savings: Array<Saving>;
@@ -4396,6 +5900,16 @@ export type UserCategoriesArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<CategoryWhereInput>;
+};
+
+
+export type UserColorProportionsArgs = {
+  cursor: InputMaybe<ColorProportionWhereUniqueInput>;
+  distinct: InputMaybe<Array<ColorProportionScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<ColorProportionOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<ColorProportionWhereInput>;
 };
 
 
@@ -4426,6 +5940,26 @@ export type UserIssuesArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<IssueWhereInput>;
+};
+
+
+export type UserMixedColorsArgs = {
+  cursor: InputMaybe<MixedColorWhereUniqueInput>;
+  distinct: InputMaybe<Array<MixedColorScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<MixedColorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<MixedColorWhereInput>;
+};
+
+
+export type UserRawColorsArgs = {
+  cursor: InputMaybe<RawColorWhereUniqueInput>;
+  distinct: InputMaybe<Array<RawColorScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<RawColorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<RawColorWhereInput>;
 };
 
 
@@ -4460,9 +5994,12 @@ export type UserWishlistItemsArgs = {
 
 export type UserCount = {
   categories: Scalars['Int'];
+  colorProportions: Scalars['Int'];
   expenses: Scalars['Int'];
   issueLabels: Scalars['Int'];
   issues: Scalars['Int'];
+  mixedColors: Scalars['Int'];
+  rawColors: Scalars['Int'];
   recipe: Scalars['Int'];
   savings: Scalars['Int'];
   wishlistItems: Scalars['Int'];
@@ -4489,13 +6026,16 @@ export type UserCountOrderByAggregateInput = {
 
 export type UserCreateInput = {
   categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutUserInput>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
+  rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
   salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
   savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
@@ -4519,6 +6059,12 @@ export type UserCreateNestedOneWithoutCategoriesInput = {
   create: InputMaybe<UserCreateWithoutCategoriesInput>;
 };
 
+export type UserCreateNestedOneWithoutColorProportionsInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutColorProportionsInput>;
+  create: InputMaybe<UserCreateWithoutColorProportionsInput>;
+};
+
 export type UserCreateNestedOneWithoutExpensesInput = {
   connect: InputMaybe<UserWhereUniqueInput>;
   connectOrCreate: InputMaybe<UserCreateOrConnectWithoutExpensesInput>;
@@ -4535,6 +6081,18 @@ export type UserCreateNestedOneWithoutIssuesInput = {
   connect: InputMaybe<UserWhereUniqueInput>;
   connectOrCreate: InputMaybe<UserCreateOrConnectWithoutIssuesInput>;
   create: InputMaybe<UserCreateWithoutIssuesInput>;
+};
+
+export type UserCreateNestedOneWithoutMixedColorsInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutMixedColorsInput>;
+  create: InputMaybe<UserCreateWithoutMixedColorsInput>;
+};
+
+export type UserCreateNestedOneWithoutRawColorsInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutRawColorsInput>;
+  create: InputMaybe<UserCreateWithoutRawColorsInput>;
 };
 
 export type UserCreateNestedOneWithoutRecipeInput = {
@@ -4566,6 +6124,11 @@ export type UserCreateOrConnectWithoutCategoriesInput = {
   where: UserWhereUniqueInput;
 };
 
+export type UserCreateOrConnectWithoutColorProportionsInput = {
+  create: UserCreateWithoutColorProportionsInput;
+  where: UserWhereUniqueInput;
+};
+
 export type UserCreateOrConnectWithoutExpensesInput = {
   create: UserCreateWithoutExpensesInput;
   where: UserWhereUniqueInput;
@@ -4578,6 +6141,16 @@ export type UserCreateOrConnectWithoutIssueLabelsInput = {
 
 export type UserCreateOrConnectWithoutIssuesInput = {
   create: UserCreateWithoutIssuesInput;
+  where: UserWhereUniqueInput;
+};
+
+export type UserCreateOrConnectWithoutMixedColorsInput = {
+  create: UserCreateWithoutMixedColorsInput;
+  where: UserWhereUniqueInput;
+};
+
+export type UserCreateOrConnectWithoutRawColorsInput = {
+  create: UserCreateWithoutRawColorsInput;
   where: UserWhereUniqueInput;
 };
 
@@ -4602,13 +6175,35 @@ export type UserCreateOrConnectWithoutWishlistItemsInput = {
 };
 
 export type UserCreateWithoutCategoriesInput = {
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutUserInput>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
+  rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
+  recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
+  savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  username: Scalars['String'];
+  wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
+};
+
+export type UserCreateWithoutColorProportionsInput = {
+  categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  email: Scalars['String'];
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
+  id: InputMaybe<Scalars['String']>;
+  issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
+  issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  password: Scalars['String'];
+  rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
   salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
   savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
@@ -4619,12 +6214,15 @@ export type UserCreateWithoutCategoriesInput = {
 
 export type UserCreateWithoutExpensesInput = {
   categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutUserInput>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   id: InputMaybe<Scalars['String']>;
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
+  rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
   salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
   savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
@@ -4635,12 +6233,15 @@ export type UserCreateWithoutExpensesInput = {
 
 export type UserCreateWithoutIssueLabelsInput = {
   categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutUserInput>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
+  rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
   salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
   savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
@@ -4651,11 +6252,52 @@ export type UserCreateWithoutIssueLabelsInput = {
 
 export type UserCreateWithoutIssuesInput = {
   categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutUserInput>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
+  mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  password: Scalars['String'];
+  rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
+  recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
+  savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  username: Scalars['String'];
+  wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
+};
+
+export type UserCreateWithoutMixedColorsInput = {
+  categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutUserInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  email: Scalars['String'];
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
+  id: InputMaybe<Scalars['String']>;
+  issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
+  issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  password: Scalars['String'];
+  rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
+  recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
+  savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  username: Scalars['String'];
+  wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
+};
+
+export type UserCreateWithoutRawColorsInput = {
+  categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutUserInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  email: Scalars['String'];
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
+  id: InputMaybe<Scalars['String']>;
+  issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
+  issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
   salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
@@ -4667,13 +6309,16 @@ export type UserCreateWithoutIssuesInput = {
 
 export type UserCreateWithoutRecipeInput = {
   categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutUserInput>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
+  rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
   savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
@@ -4683,13 +6328,16 @@ export type UserCreateWithoutRecipeInput = {
 
 export type UserCreateWithoutSalaryInput = {
   categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutUserInput>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
+  rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
   savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
@@ -4699,13 +6347,16 @@ export type UserCreateWithoutSalaryInput = {
 
 export type UserCreateWithoutSavingsInput = {
   categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutUserInput>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
+  rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
   salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
@@ -4715,13 +6366,16 @@ export type UserCreateWithoutSavingsInput = {
 
 export type UserCreateWithoutWishlistItemsInput = {
   categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutUserInput>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
   id: InputMaybe<Scalars['String']>;
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
+  rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
   salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
   savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
@@ -4791,13 +6445,16 @@ export type UserOrderByWithAggregationInput = {
 
 export type UserOrderByWithRelationInput = {
   categories: InputMaybe<CategoryOrderByRelationAggregateInput>;
+  colorProportions: InputMaybe<ColorProportionOrderByRelationAggregateInput>;
   createdAt: InputMaybe<SortOrder>;
   email: InputMaybe<SortOrder>;
   expenses: InputMaybe<ExpenseOrderByRelationAggregateInput>;
   id: InputMaybe<SortOrder>;
   issueLabels: InputMaybe<IssueLabelOrderByRelationAggregateInput>;
   issues: InputMaybe<IssueOrderByRelationAggregateInput>;
+  mixedColors: InputMaybe<MixedColorOrderByRelationAggregateInput>;
   password: InputMaybe<SortOrder>;
+  rawColors: InputMaybe<RawColorOrderByRelationAggregateInput>;
   recipe: InputMaybe<RecipeOrderByRelationAggregateInput>;
   salary: InputMaybe<SalaryOrderByWithRelationInput>;
   savings: InputMaybe<SavingOrderByRelationAggregateInput>;
@@ -4834,13 +6491,16 @@ export type UserScalarWhereWithAggregatesInput = {
 
 export type UserUpdateInput = {
   categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutUserNestedInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
+  rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
   salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
   savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
@@ -4866,6 +6526,14 @@ export type UserUpdateOneRequiredWithoutCategoriesNestedInput = {
   upsert: InputMaybe<UserUpsertWithoutCategoriesInput>;
 };
 
+export type UserUpdateOneRequiredWithoutColorProportionsNestedInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutColorProportionsInput>;
+  create: InputMaybe<UserCreateWithoutColorProportionsInput>;
+  update: InputMaybe<UserUpdateWithoutColorProportionsInput>;
+  upsert: InputMaybe<UserUpsertWithoutColorProportionsInput>;
+};
+
 export type UserUpdateOneRequiredWithoutExpensesNestedInput = {
   connect: InputMaybe<UserWhereUniqueInput>;
   connectOrCreate: InputMaybe<UserCreateOrConnectWithoutExpensesInput>;
@@ -4888,6 +6556,22 @@ export type UserUpdateOneRequiredWithoutIssuesNestedInput = {
   create: InputMaybe<UserCreateWithoutIssuesInput>;
   update: InputMaybe<UserUpdateWithoutIssuesInput>;
   upsert: InputMaybe<UserUpsertWithoutIssuesInput>;
+};
+
+export type UserUpdateOneRequiredWithoutMixedColorsNestedInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutMixedColorsInput>;
+  create: InputMaybe<UserCreateWithoutMixedColorsInput>;
+  update: InputMaybe<UserUpdateWithoutMixedColorsInput>;
+  upsert: InputMaybe<UserUpsertWithoutMixedColorsInput>;
+};
+
+export type UserUpdateOneRequiredWithoutRawColorsNestedInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutRawColorsInput>;
+  create: InputMaybe<UserCreateWithoutRawColorsInput>;
+  update: InputMaybe<UserUpdateWithoutRawColorsInput>;
+  upsert: InputMaybe<UserUpsertWithoutRawColorsInput>;
 };
 
 export type UserUpdateOneRequiredWithoutRecipeNestedInput = {
@@ -4923,13 +6607,35 @@ export type UserUpdateOneRequiredWithoutWishlistItemsNestedInput = {
 };
 
 export type UserUpdateWithoutCategoriesInput = {
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutUserNestedInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
+  rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
+  recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
+  savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
+};
+
+export type UserUpdateWithoutColorProportionsInput = {
+  categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
+  issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
   salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
   savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
@@ -4940,12 +6646,15 @@ export type UserUpdateWithoutCategoriesInput = {
 
 export type UserUpdateWithoutExpensesInput = {
   categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutUserNestedInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
+  rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
   salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
   savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
@@ -4956,12 +6665,15 @@ export type UserUpdateWithoutExpensesInput = {
 
 export type UserUpdateWithoutIssueLabelsInput = {
   categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutUserNestedInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
+  rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
   salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
   savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
@@ -4972,11 +6684,52 @@ export type UserUpdateWithoutIssueLabelsInput = {
 
 export type UserUpdateWithoutIssuesInput = {
   categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutUserNestedInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
+  mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
+  recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
+  savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
+};
+
+export type UserUpdateWithoutMixedColorsInput = {
+  categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutUserNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
+  issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
+  recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
+  savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
+};
+
+export type UserUpdateWithoutRawColorsInput = {
+  categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutUserNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
+  issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
   salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
@@ -4988,13 +6741,16 @@ export type UserUpdateWithoutIssuesInput = {
 
 export type UserUpdateWithoutRecipeInput = {
   categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutUserNestedInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
+  rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
   savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -5004,13 +6760,16 @@ export type UserUpdateWithoutRecipeInput = {
 
 export type UserUpdateWithoutSalaryInput = {
   categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutUserNestedInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
+  rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
   savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -5020,13 +6779,16 @@ export type UserUpdateWithoutSalaryInput = {
 
 export type UserUpdateWithoutSavingsInput = {
   categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutUserNestedInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
+  rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
   salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -5036,13 +6798,16 @@ export type UserUpdateWithoutSavingsInput = {
 
 export type UserUpdateWithoutWishlistItemsInput = {
   categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutUserNestedInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   email: InputMaybe<StringFieldUpdateOperationsInput>;
   expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
+  rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
   salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
   savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
@@ -5053,6 +6818,11 @@ export type UserUpdateWithoutWishlistItemsInput = {
 export type UserUpsertWithoutCategoriesInput = {
   create: UserCreateWithoutCategoriesInput;
   update: UserUpdateWithoutCategoriesInput;
+};
+
+export type UserUpsertWithoutColorProportionsInput = {
+  create: UserCreateWithoutColorProportionsInput;
+  update: UserUpdateWithoutColorProportionsInput;
 };
 
 export type UserUpsertWithoutExpensesInput = {
@@ -5068,6 +6838,16 @@ export type UserUpsertWithoutIssueLabelsInput = {
 export type UserUpsertWithoutIssuesInput = {
   create: UserCreateWithoutIssuesInput;
   update: UserUpdateWithoutIssuesInput;
+};
+
+export type UserUpsertWithoutMixedColorsInput = {
+  create: UserCreateWithoutMixedColorsInput;
+  update: UserUpdateWithoutMixedColorsInput;
+};
+
+export type UserUpsertWithoutRawColorsInput = {
+  create: UserCreateWithoutRawColorsInput;
+  update: UserUpdateWithoutRawColorsInput;
 };
 
 export type UserUpsertWithoutRecipeInput = {
@@ -5095,13 +6875,16 @@ export type UserWhereInput = {
   NOT: InputMaybe<Array<UserWhereInput>>;
   OR: InputMaybe<Array<UserWhereInput>>;
   categories: InputMaybe<CategoryListRelationFilter>;
+  colorProportions: InputMaybe<ColorProportionListRelationFilter>;
   createdAt: InputMaybe<DateTimeFilter>;
   email: InputMaybe<StringFilter>;
   expenses: InputMaybe<ExpenseListRelationFilter>;
   id: InputMaybe<StringFilter>;
   issueLabels: InputMaybe<IssueLabelListRelationFilter>;
   issues: InputMaybe<IssueListRelationFilter>;
+  mixedColors: InputMaybe<MixedColorListRelationFilter>;
   password: InputMaybe<StringFilter>;
+  rawColors: InputMaybe<RawColorListRelationFilter>;
   recipe: InputMaybe<RecipeListRelationFilter>;
   salary: InputMaybe<SalaryRelationFilter>;
   savings: InputMaybe<SavingListRelationFilter>;
@@ -5430,6 +7213,8 @@ export type IssueFragment = { id: string, userId: string, title: string, solutio
 
 export type IssueLabelFragment = { id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string };
 
+export type RawColorFragment = { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string };
+
 export type MeQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5448,6 +7233,18 @@ export type RegisterMutationMutationVariables = Exact<{
 
 
 export type RegisterMutationMutation = { registerMutation: { id: string, username: string, email: string, token: string, expiresAt: string } };
+
+export type RawColorsQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RawColorsQueryQuery = { rawColorsQuery: Array<{ id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string }> };
+
+export type SaveRawColorMutationMutationVariables = Exact<{
+  data: RawColorInput;
+}>;
+
+
+export type SaveRawColorMutationMutation = { saveRawColorMutation: { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string } };
 
 export type CategoriesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5723,6 +7520,16 @@ export const IssueLabelFragmentDoc = gql`
   updatedAt
 }
     `;
+export const RawColorFragmentDoc = gql`
+    fragment RawColor on RawColor {
+  id
+  userId
+  name
+  color
+  createdAt
+  updatedAt
+}
+    `;
 export const MeQueryDocument = gql`
     query MeQuery {
   meQuery {
@@ -5748,6 +7555,20 @@ export const RegisterMutationDocument = gql`
   }
 }
     ${AuthUserFragmentDoc}`;
+export const RawColorsQueryDocument = gql`
+    query RawColorsQuery {
+  rawColorsQuery {
+    ...RawColor
+  }
+}
+    ${RawColorFragmentDoc}`;
+export const SaveRawColorMutationDocument = gql`
+    mutation SaveRawColorMutation($data: RawColorInput!) {
+  saveRawColorMutation(data: $data) {
+    ...RawColor
+  }
+}
+    ${RawColorFragmentDoc}`;
 export const CategoriesQueryDocument = gql`
     query CategoriesQuery {
   categoriesQuery {
@@ -5923,6 +7744,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     RegisterMutation(variables: RegisterMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RegisterMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<RegisterMutationMutation>(RegisterMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'RegisterMutation', 'mutation');
+    },
+    RawColorsQuery(variables?: RawColorsQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RawColorsQueryQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RawColorsQueryQuery>(RawColorsQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'RawColorsQuery', 'query');
+    },
+    SaveRawColorMutation(variables: SaveRawColorMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveRawColorMutationMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SaveRawColorMutationMutation>(SaveRawColorMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveRawColorMutation', 'mutation');
     },
     CategoriesQuery(variables?: CategoriesQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CategoriesQueryQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CategoriesQueryQuery>(CategoriesQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CategoriesQuery', 'query');

@@ -18,6 +18,10 @@ const MyHeaderTabs = (props: Props) => {
       return 'issues'
     }
 
+    if (location.pathname.startsWith('/color-mixer')) {
+      return 'color-mixer'
+    }
+
     return 'monerate'
   }, [location])
 

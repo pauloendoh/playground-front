@@ -4,6 +4,7 @@ import { urls } from '../../../utils/urls'
 import IssuesContent from '../../issues-page/IssuesContent/IssuesContent'
 import ExpensesContent from '../../monerate-page/ExpensesContent/ExpensesContent'
 import RecipesContent from '../../recipes-page/RecipesContent/RecipesContent'
+import ColorMixerPage from '../ColorMixerPage/ColorMixerPage'
 import MonerateContent from '../MonerateContent/MonerateContent'
 import OthersContent from '../MonerateContent/OthersContent/OthersContent'
 import MyHeader from './MyHeader/MyHeader'
@@ -30,6 +31,7 @@ const HomePage = (props: Props) => {
       <Routes>
         <Route path="/recipes" element={<RecipesContent />} />
         <Route path="/issues" element={<IssuesContent />} />
+        <Route path="/color-mixer" element={<ColorMixerPage />} />
         <Route element={<MonerateContent />}>
           <Route path={urls.pages.monerateOthers} element={<OthersContent />} />
           <Route index element={<ExpensesContent />} />
