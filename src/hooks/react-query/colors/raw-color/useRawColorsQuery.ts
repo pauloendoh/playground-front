@@ -13,7 +13,7 @@ gql`
 
 export const useRawColorsQuery = () => {
   return useQuery({
-    queryKey: queryKeys.issues,
+    queryKey: queryKeys.rawColors,
     queryFn: () => sdk.RawColorsQuery().then((res) => res.rawColorsQuery),
   })
 }

@@ -62,7 +62,9 @@ const RawColorsModal = (props: Props) => {
             const input = new MyRawColorInput()
             input.name = name
             input.color = color
-            input.id = selectedColor!.id
+            if (selectedColor?.id) {
+              input.id = selectedColor.id
+            }
             mutate(input)
           }}
         >
