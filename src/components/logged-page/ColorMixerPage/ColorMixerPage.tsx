@@ -56,9 +56,6 @@ const ColorMixerPage = (props: Props) => {
       <canvas
         id="canvas"
         ref={canvasRef}
-        style={{
-          touchAction: 'none',
-        }}
         onMouseMove={(e) => {
           const canvas = canvasRef.current
           if (canvas) {
