@@ -671,6 +671,16 @@ export type ColorProportionGroupBy = {
   userId: Scalars['String'];
 };
 
+export type ColorProportionInput = {
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  id: InputMaybe<Scalars['String']>;
+  mixedColorId: InputMaybe<Scalars['String']>;
+  proportion: Scalars['String'];
+  rawColorId: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  userId: InputMaybe<Scalars['String']>;
+};
+
 export type ColorProportionListRelationFilter = {
   every: InputMaybe<ColorProportionWhereInput>;
   none: InputMaybe<ColorProportionWhereInput>;
@@ -2598,6 +2608,16 @@ export type MixedColorGroupBy = {
   userId: Scalars['String'];
 };
 
+export type MixedColorInput = {
+  color: Scalars['String'];
+  colorProportions: InputMaybe<Array<ColorProportionInput>>;
+  createdAt: InputMaybe<Scalars['String']>;
+  id: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  updatedAt: InputMaybe<Scalars['String']>;
+  userId: InputMaybe<Scalars['String']>;
+};
+
 export type MixedColorListRelationFilter = {
   every: InputMaybe<MixedColorWhereInput>;
   none: InputMaybe<MixedColorWhereInput>;
@@ -2865,6 +2885,7 @@ export type Mutation = {
   saveExpenseMutation: Expense;
   saveIssueLabelMutation: IssueLabel;
   saveIssueMutation: Issue;
+  saveMixedColorMutation: MixedColor;
   saveRawColorMutation: RawColor;
   saveRecipeMutation: Recipe;
   saveSalaryMutation: Salary;
@@ -3228,6 +3249,11 @@ export type MutationSaveIssueLabelMutationArgs = {
 
 export type MutationSaveIssueMutationArgs = {
   data: IssueInput;
+};
+
+
+export type MutationSaveMixedColorMutationArgs = {
+  data: MixedColorInput;
 };
 
 
@@ -3846,6 +3872,7 @@ export type Query = {
   meQuery: AuthUserOutput;
   mixedColor: Maybe<MixedColor>;
   mixedColors: Array<MixedColor>;
+  mixedColorsQuery: Array<MixedColor>;
   rawColor: Maybe<RawColor>;
   rawColors: Array<RawColor>;
   rawColorsQuery: Array<RawColor>;
@@ -7215,6 +7242,10 @@ export type IssueLabelFragment = { id: string, userId: string, name: string, bgC
 
 export type RawColorFragment = { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string };
 
+export type MixedColorFragment = { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string }> };
+
+export type ColorProportionFragment = { id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string };
+
 export type MeQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -7233,6 +7264,18 @@ export type RegisterMutationMutationVariables = Exact<{
 
 
 export type RegisterMutationMutation = { registerMutation: { id: string, username: string, email: string, token: string, expiresAt: string } };
+
+export type MixedColorsQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MixedColorsQueryQuery = { mixedColorsQuery: Array<{ id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string }> }> };
+
+export type SaveMixedColorMutationMutationVariables = Exact<{
+  data: MixedColorInput;
+}>;
+
+
+export type SaveMixedColorMutationMutation = { saveMixedColorMutation: { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string }> } };
 
 export type RawColorsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -7530,6 +7573,29 @@ export const RawColorFragmentDoc = gql`
   updatedAt
 }
     `;
+export const ColorProportionFragmentDoc = gql`
+    fragment ColorProportion on ColorProportion {
+  id
+  userId
+  rawColorId
+  proportion
+  createdAt
+  updatedAt
+}
+    `;
+export const MixedColorFragmentDoc = gql`
+    fragment MixedColor on MixedColor {
+  id
+  userId
+  name
+  color
+  colorProportions {
+    ...ColorProportion
+  }
+  createdAt
+  updatedAt
+}
+    ${ColorProportionFragmentDoc}`;
 export const MeQueryDocument = gql`
     query MeQuery {
   meQuery {
@@ -7555,6 +7621,20 @@ export const RegisterMutationDocument = gql`
   }
 }
     ${AuthUserFragmentDoc}`;
+export const MixedColorsQueryDocument = gql`
+    query MixedColorsQuery {
+  mixedColorsQuery {
+    ...MixedColor
+  }
+}
+    ${MixedColorFragmentDoc}`;
+export const SaveMixedColorMutationDocument = gql`
+    mutation SaveMixedColorMutation($data: MixedColorInput!) {
+  saveMixedColorMutation(data: $data) {
+    ...MixedColor
+  }
+}
+    ${MixedColorFragmentDoc}`;
 export const RawColorsQueryDocument = gql`
     query RawColorsQuery {
   rawColorsQuery {
@@ -7744,6 +7824,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     RegisterMutation(variables: RegisterMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RegisterMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<RegisterMutationMutation>(RegisterMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'RegisterMutation', 'mutation');
+    },
+    MixedColorsQuery(variables?: MixedColorsQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MixedColorsQueryQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MixedColorsQueryQuery>(MixedColorsQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'MixedColorsQuery', 'query');
+    },
+    SaveMixedColorMutation(variables: SaveMixedColorMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveMixedColorMutationMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SaveMixedColorMutationMutation>(SaveMixedColorMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveMixedColorMutation', 'mutation');
     },
     RawColorsQuery(variables?: RawColorsQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RawColorsQueryQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<RawColorsQueryQuery>(RawColorsQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'RawColorsQuery', 'query');

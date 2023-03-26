@@ -1,4 +1,4 @@
-import { IsNotIn, IsString } from 'class-validator'
+import { IsNotIn, IsOptional, IsString } from 'class-validator'
 import {
   InputMaybe,
   RawColorInput,
@@ -15,7 +15,10 @@ export class MyRawColorInput implements RawColorInput {
   color: string
 
   createdAt: string
-  id: InputMaybe<string>
+
+  @IsString()
+  @IsOptional()
+  id: string
 
   @IsString()
   name: string

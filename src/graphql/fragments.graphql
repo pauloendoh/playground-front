@@ -110,3 +110,24 @@ fragment RawColor on RawColor {
   createdAt
   updatedAt
 }
+
+fragment MixedColor on MixedColor {
+  id
+  userId
+  name
+  color
+  colorProportions {
+    ...ColorProportion
+  }
+  createdAt
+  updatedAt
+}
+
+fragment ColorProportion on ColorProportion {
+  id
+  userId
+  rawColorId
+  proportion
+  createdAt
+  updatedAt
+}

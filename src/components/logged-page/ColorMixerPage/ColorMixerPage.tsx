@@ -77,7 +77,6 @@ const ColorMixerPage = (props: Props) => {
         }}
         // on touch drag
         onTouchMove={(e) => {
-          e.preventDefault()
           const canvas = canvasRef.current
           if (canvas) {
             const ctx = canvas.getContext('2d')
@@ -121,19 +120,9 @@ const ColorMixerPage = (props: Props) => {
         >
           {hoveringColor}
         </Center>
-
-        <Center
-          style={{
-            width: '100px',
-            height: '100px',
-            backgroundColor: color,
-          }}
-        >
-          {color}
-        </Center>
       </FlexVCenter>
 
-      <MixColorModal initialRgba={color} />
+      <MixColorModal initialRgba={hoveringColor || 'rgba(0, 0, 0, 0)'} />
 
       <RawColorsModal />
     </Box>
