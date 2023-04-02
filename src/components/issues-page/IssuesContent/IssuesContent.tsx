@@ -20,6 +20,7 @@ import IssueLabelsSelector from '../../_common/modals/IssueModal/IssueLabelsSele
 import MyPaper from '../../_common/overrides/MyPaper'
 import { DndIssuesTable } from './DndIssuesTable/DndIssuesTable'
 import IssuesSearchBar from './IssuesSearchBar/IssuesSearchBar'
+import { useIssuesLastWeekCount } from './useIssuesLastWeekCount/useIssuesLastWeekCount'
 
 type Props = {
   test?: string
@@ -46,12 +47,16 @@ const IssuesContent = (props: Props) => {
 
   const { openModal: openInsightsModal } = useIssueInsightsModalStore()
 
+  const solvedLastWeek = useIssuesLastWeekCount()
+
   return (
     <Container size="lg">
       <Box mt={16} />
 
       <FlexVCenter justify={'space-between'}>
         <Title>Issues</Title>
+
+        <FlexVCenter>Solved last week: {solvedLastWeek} | Goal: 10</FlexVCenter>
         <Button
           onClick={() => {
             openInsightsModal()
