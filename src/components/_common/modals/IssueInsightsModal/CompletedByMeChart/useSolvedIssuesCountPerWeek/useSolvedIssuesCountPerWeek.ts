@@ -36,7 +36,11 @@ export const useSolvedIssuesCountPerMonth = () => {
       })
     }
 
-    return ideaCounts
+    return ideaCounts.sort(
+      (a, b) =>
+        DateTime.fromFormat(a.LLLyy, 'LLLyy').toMillis() -
+        DateTime.fromFormat(b.LLLyy, 'LLLyy').toMillis()
+    )
   }, [solvedIssues])
 
   return solvedIssuesCountPerMonth
