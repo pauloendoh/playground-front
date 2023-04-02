@@ -1,4 +1,4 @@
-import { createStyles, Flex, Text } from '@mantine/core'
+import { createStyles, Flex, Text, useMantineTheme } from '@mantine/core'
 import { useElementSize } from '@mantine/hooks'
 import { useMemo } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
@@ -41,10 +41,14 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
     return issue.frequency * issue.intensity
   }, [issue])
 
+  const theme = useMantineTheme()
   return (
     <Draggable index={props.index} draggableId={issue.id}>
       {(provided) => (
         <tr
+          style={{
+            background: mult >= 12 ? theme.colors.dark[5] : undefined,
+          }}
           onClick={() => {
             openModal({
               ...issue,
