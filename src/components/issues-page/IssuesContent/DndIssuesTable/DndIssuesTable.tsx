@@ -73,7 +73,7 @@ export function DndIssuesTable(props: Props) {
               >
                 Solution
               </th>
-              {/* {!isMobile && <th style={{ width: 200 }}>Labels</th>} */}
+              {!isMobile && <th style={{ width: 200 }}>Labels</th>}
               <th />
             </tr>
           </thead>
