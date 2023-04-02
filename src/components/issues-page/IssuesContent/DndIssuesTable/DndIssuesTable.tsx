@@ -23,7 +23,11 @@ export function DndIssuesTable(props: Props) {
           issue.labels.some((label) => label.id === labelId)
         )
 
-        return issue.isSolved === filterByIsSolved && containsAllLabels
+        if (filterByIsSolved) {
+          return !!issue.solvedAt && containsAllLabels
+        }
+
+        return issue.solvedAt === null && containsAllLabels
       })
       .sort((a, b) => {
         const avgA = a.frequency * a.intensity
@@ -45,6 +49,7 @@ export function DndIssuesTable(props: Props) {
       <DragDropContext onDragEnd={onDragEnd}>
         <Table
           sx={(theme) => ({
+            tableLayout: 'fixed',
             'tbody > tr': {
               ':hover td': {
                 backgroundColor: theme.colors.dark[4],
@@ -60,13 +65,16 @@ export function DndIssuesTable(props: Props) {
             <tr>
               <th style={{ width: 40 }}>#</th>
 
-              <th style={{ width: 'calc(50% - (12px + 12px + 100px))' }}>
-                Issue
-              </th>
-              <th style={{ width: 'calc(50% - (12px + 12px + 100px))' }}>
+              <th style={{ width: '50%' }}>Issue</th>
+              <th
+                style={{
+                  width: '50%',
+                }}
+              >
                 Solution
               </th>
-              {!isMobile && <th style={{ width: 200 }}>Labels</th>}
+              {/* {!isMobile && <th style={{ width: 200 }}>Labels</th>} */}
+              <th />
             </tr>
           </thead>
           <Droppable droppableId="dnd-list" direction="vertical">

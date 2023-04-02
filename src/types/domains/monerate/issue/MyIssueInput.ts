@@ -30,6 +30,9 @@ export class MyIssueInput implements IssueInput {
   }
 
   @Expose()
+  solvedAt: InputMaybe<string>
+
+  @Expose()
   frequency: number
 
   @Expose()

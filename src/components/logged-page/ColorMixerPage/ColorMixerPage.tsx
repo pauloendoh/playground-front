@@ -17,6 +17,8 @@ const ColorMixerPage = (props: Props) => {
 
   const { width } = useViewportSize()
 
+  const [isZoomed, setIsZoomed] = useState(false)
+
   return (
     <Box>
       <input
@@ -52,12 +54,22 @@ const ColorMixerPage = (props: Props) => {
           }
         }}
       />
+      <button
+        onClick={() => {
+          setIsZoomed(!isZoomed)
+        }}
+      >
+        Zoom {isZoomed ? '2x' : '1x'}
+      </button>
 
       <canvas
         id="canvas"
         ref={canvasRef}
         style={{
           touchAction: 'none',
+          // zoom 2x
+          transform: isZoomed ? 'scale(2)' : 'scale(1)',
+          transformOrigin: 'top left',
         }}
         onMouseMove={(e) => {
           const canvas = canvasRef.current

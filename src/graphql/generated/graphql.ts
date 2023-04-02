@@ -1626,6 +1626,7 @@ export type Issue = {
   labels: Array<IssueLabel>;
   position: Scalars['Int'];
   solution: Scalars['String'];
+  solvedAt: Maybe<Scalars['DateTime']>;
   solvedPosition: Scalars['Int'];
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
@@ -1670,6 +1671,7 @@ export type IssueCountAggregate = {
   isSolved: Scalars['Int'];
   position: Scalars['Int'];
   solution: Scalars['Int'];
+  solvedAt: Scalars['Int'];
   solvedPosition: Scalars['Int'];
   title: Scalars['Int'];
   updatedAt: Scalars['Int'];
@@ -1684,6 +1686,7 @@ export type IssueCountOrderByAggregateInput = {
   isSolved: InputMaybe<SortOrder>;
   position: InputMaybe<SortOrder>;
   solution: InputMaybe<SortOrder>;
+  solvedAt: InputMaybe<SortOrder>;
   solvedPosition: InputMaybe<SortOrder>;
   title: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
@@ -1699,6 +1702,7 @@ export type IssueCreateInput = {
   labels: InputMaybe<IssueLabelCreateNestedManyWithoutIssuesInput>;
   position: InputMaybe<Scalars['Int']>;
   solution: Scalars['String'];
+  solvedAt: InputMaybe<Scalars['DateTime']>;
   solvedPosition: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
@@ -1713,6 +1717,7 @@ export type IssueCreateManyInput = {
   isSolved: InputMaybe<Scalars['Boolean']>;
   position: InputMaybe<Scalars['Int']>;
   solution: Scalars['String'];
+  solvedAt: InputMaybe<Scalars['DateTime']>;
   solvedPosition: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
@@ -1727,6 +1732,7 @@ export type IssueCreateManyUserInput = {
   isSolved: InputMaybe<Scalars['Boolean']>;
   position: InputMaybe<Scalars['Int']>;
   solution: Scalars['String'];
+  solvedAt: InputMaybe<Scalars['DateTime']>;
   solvedPosition: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
@@ -1768,6 +1774,7 @@ export type IssueCreateWithoutLabelsInput = {
   isSolved: InputMaybe<Scalars['Boolean']>;
   position: InputMaybe<Scalars['Int']>;
   solution: Scalars['String'];
+  solvedAt: InputMaybe<Scalars['DateTime']>;
   solvedPosition: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
@@ -1783,6 +1790,7 @@ export type IssueCreateWithoutUserInput = {
   labels: InputMaybe<IssueLabelCreateNestedManyWithoutIssuesInput>;
   position: InputMaybe<Scalars['Int']>;
   solution: Scalars['String'];
+  solvedAt: InputMaybe<Scalars['DateTime']>;
   solvedPosition: InputMaybe<Scalars['Int']>;
   title: Scalars['String'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
@@ -1801,6 +1809,7 @@ export type IssueGroupBy = {
   isSolved: Scalars['Boolean'];
   position: Scalars['Int'];
   solution: Scalars['String'];
+  solvedAt: Maybe<Scalars['DateTime']>;
   solvedPosition: Scalars['Int'];
   title: Scalars['String'];
   updatedAt: Scalars['DateTime'];
@@ -1816,6 +1825,7 @@ export type IssueInput = {
   labelIds: InputMaybe<Array<Scalars['String']>>;
   position: InputMaybe<Scalars['Int']>;
   solution: Scalars['String'];
+  solvedAt: InputMaybe<Scalars['DateTime']>;
   title: Scalars['String'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: InputMaybe<Scalars['String']>;
@@ -2186,6 +2196,7 @@ export type IssueMaxAggregate = {
   isSolved: Maybe<Scalars['Boolean']>;
   position: Maybe<Scalars['Int']>;
   solution: Maybe<Scalars['String']>;
+  solvedAt: Maybe<Scalars['DateTime']>;
   solvedPosition: Maybe<Scalars['Int']>;
   title: Maybe<Scalars['String']>;
   updatedAt: Maybe<Scalars['DateTime']>;
@@ -2200,6 +2211,7 @@ export type IssueMaxOrderByAggregateInput = {
   isSolved: InputMaybe<SortOrder>;
   position: InputMaybe<SortOrder>;
   solution: InputMaybe<SortOrder>;
+  solvedAt: InputMaybe<SortOrder>;
   solvedPosition: InputMaybe<SortOrder>;
   title: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
@@ -2214,6 +2226,7 @@ export type IssueMinAggregate = {
   isSolved: Maybe<Scalars['Boolean']>;
   position: Maybe<Scalars['Int']>;
   solution: Maybe<Scalars['String']>;
+  solvedAt: Maybe<Scalars['DateTime']>;
   solvedPosition: Maybe<Scalars['Int']>;
   title: Maybe<Scalars['String']>;
   updatedAt: Maybe<Scalars['DateTime']>;
@@ -2228,6 +2241,7 @@ export type IssueMinOrderByAggregateInput = {
   isSolved: InputMaybe<SortOrder>;
   position: InputMaybe<SortOrder>;
   solution: InputMaybe<SortOrder>;
+  solvedAt: InputMaybe<SortOrder>;
   solvedPosition: InputMaybe<SortOrder>;
   title: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
@@ -2251,6 +2265,7 @@ export type IssueOrderByWithAggregationInput = {
   isSolved: InputMaybe<SortOrder>;
   position: InputMaybe<SortOrder>;
   solution: InputMaybe<SortOrder>;
+  solvedAt: InputMaybe<SortOrder>;
   solvedPosition: InputMaybe<SortOrder>;
   title: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
@@ -2266,6 +2281,7 @@ export type IssueOrderByWithRelationInput = {
   labels: InputMaybe<IssueLabelOrderByRelationAggregateInput>;
   position: InputMaybe<SortOrder>;
   solution: InputMaybe<SortOrder>;
+  solvedAt: InputMaybe<SortOrder>;
   solvedPosition: InputMaybe<SortOrder>;
   title: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
@@ -2281,6 +2297,7 @@ export enum IssueScalarFieldEnum {
   IsSolved = 'isSolved',
   Position = 'position',
   Solution = 'solution',
+  SolvedAt = 'solvedAt',
   SolvedPosition = 'solvedPosition',
   Title = 'title',
   UpdatedAt = 'updatedAt',
@@ -2298,6 +2315,7 @@ export type IssueScalarWhereInput = {
   isSolved: InputMaybe<BoolFilter>;
   position: InputMaybe<IntFilter>;
   solution: InputMaybe<StringFilter>;
+  solvedAt: InputMaybe<DateTimeNullableFilter>;
   solvedPosition: InputMaybe<IntFilter>;
   title: InputMaybe<StringFilter>;
   updatedAt: InputMaybe<DateTimeFilter>;
@@ -2315,6 +2333,7 @@ export type IssueScalarWhereWithAggregatesInput = {
   isSolved: InputMaybe<BoolWithAggregatesFilter>;
   position: InputMaybe<IntWithAggregatesFilter>;
   solution: InputMaybe<StringWithAggregatesFilter>;
+  solvedAt: InputMaybe<DateTimeNullableWithAggregatesFilter>;
   solvedPosition: InputMaybe<IntWithAggregatesFilter>;
   title: InputMaybe<StringWithAggregatesFilter>;
   updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
@@ -2344,6 +2363,7 @@ export type IssueUpdateInput = {
   labels: InputMaybe<IssueLabelUpdateManyWithoutIssuesNestedInput>;
   position: InputMaybe<IntFieldUpdateOperationsInput>;
   solution: InputMaybe<StringFieldUpdateOperationsInput>;
+  solvedAt: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   solvedPosition: InputMaybe<IntFieldUpdateOperationsInput>;
   title: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -2358,6 +2378,7 @@ export type IssueUpdateManyMutationInput = {
   isSolved: InputMaybe<BoolFieldUpdateOperationsInput>;
   position: InputMaybe<IntFieldUpdateOperationsInput>;
   solution: InputMaybe<StringFieldUpdateOperationsInput>;
+  solvedAt: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   solvedPosition: InputMaybe<IntFieldUpdateOperationsInput>;
   title: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -2418,6 +2439,7 @@ export type IssueUpdateWithoutLabelsInput = {
   isSolved: InputMaybe<BoolFieldUpdateOperationsInput>;
   position: InputMaybe<IntFieldUpdateOperationsInput>;
   solution: InputMaybe<StringFieldUpdateOperationsInput>;
+  solvedAt: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   solvedPosition: InputMaybe<IntFieldUpdateOperationsInput>;
   title: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -2433,6 +2455,7 @@ export type IssueUpdateWithoutUserInput = {
   labels: InputMaybe<IssueLabelUpdateManyWithoutIssuesNestedInput>;
   position: InputMaybe<IntFieldUpdateOperationsInput>;
   solution: InputMaybe<StringFieldUpdateOperationsInput>;
+  solvedAt: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   solvedPosition: InputMaybe<IntFieldUpdateOperationsInput>;
   title: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -2462,6 +2485,7 @@ export type IssueWhereInput = {
   labels: InputMaybe<IssueLabelListRelationFilter>;
   position: InputMaybe<IntFilter>;
   solution: InputMaybe<StringFilter>;
+  solvedAt: InputMaybe<DateTimeNullableFilter>;
   solvedPosition: InputMaybe<IntFilter>;
   title: InputMaybe<StringFilter>;
   updatedAt: InputMaybe<DateTimeFilter>;
@@ -7236,7 +7260,7 @@ export type SalaryFragment = { id: string, userId: string, value: number, create
 
 export type SavingFragment = { id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string };
 
-export type IssueFragment = { id: string, userId: string, title: string, solution: string, isSolved: boolean, position: number, frequency: number, intensity: number, createdAt: string, updatedAt: string, labels: Array<{ id: string }> };
+export type IssueFragment = { id: string, userId: string, title: string, solution: string, isSolved: boolean, position: number, frequency: number, intensity: number, createdAt: string, solvedAt: string | null, updatedAt: string, labels: Array<{ id: string }> };
 
 export type IssueLabelFragment = { id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string };
 
@@ -7371,14 +7395,14 @@ export type DeleteIssueMutationMutation = { deleteIssueMutation: boolean };
 export type IssuesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type IssuesQueryQuery = { issuesQuery: Array<{ id: string, userId: string, title: string, solution: string, isSolved: boolean, position: number, frequency: number, intensity: number, createdAt: string, updatedAt: string, labels: Array<{ id: string }> }> };
+export type IssuesQueryQuery = { issuesQuery: Array<{ id: string, userId: string, title: string, solution: string, isSolved: boolean, position: number, frequency: number, intensity: number, createdAt: string, solvedAt: string | null, updatedAt: string, labels: Array<{ id: string }> }> };
 
 export type SaveIssueMutationMutationVariables = Exact<{
   data: IssueInput;
 }>;
 
 
-export type SaveIssueMutationMutation = { saveIssueMutation: { id: string, userId: string, title: string, solution: string, isSolved: boolean, position: number, frequency: number, intensity: number, createdAt: string, updatedAt: string, labels: Array<{ id: string }> } };
+export type SaveIssueMutationMutation = { saveIssueMutation: { id: string, userId: string, title: string, solution: string, isSolved: boolean, position: number, frequency: number, intensity: number, createdAt: string, solvedAt: string | null, updatedAt: string, labels: Array<{ id: string }> } };
 
 export type SalaryQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -7547,6 +7571,7 @@ export const IssueFragmentDoc = gql`
   frequency
   intensity
   createdAt
+  solvedAt
   labels {
     id
   }

@@ -1,6 +1,5 @@
-import { createStyles, Flex, Text } from '@mantine/core'
+import { createStyles, Text } from '@mantine/core'
 import { useElementSize } from '@mantine/hooks'
-import { IconGripVertical } from '@tabler/icons-react'
 import { useMemo } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import { IssueFragment } from '../../../../../graphql/generated/graphql'
@@ -78,7 +77,7 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
               {issue.solution}
             </Text>
           </td>
-          {!isMobile && (
+          {/* {!isMobile && (
             <td>
               <Flex wrap={'wrap'} gap={2}>
                 {visibleLabels.map((label) => (
@@ -96,7 +95,8 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
                 ))}
               </Flex>
             </td>
-          )}
+          )} */}
+          <td />
         </tr>
       )}
     </Draggable>

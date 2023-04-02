@@ -1,6 +1,5 @@
 import { classValidatorResolver } from '@hookform/resolvers/class-validator'
 import {
-  Checkbox,
   CloseButton,
   Flex,
   Grid,
@@ -9,12 +8,12 @@ import {
   Textarea,
   Title,
 } from '@mantine/core'
+import { DatePicker } from '@mantine/dates'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveIssueMutation } from '../../../../hooks/react-query/monerate/issue/useSaveIssueMutation'
 import { MyIssueInput } from '../../../../types/domains/monerate/issue/MyIssueInput'
 import FlexCol from '../../flex/FlexCol'
-import FlexVCenter from '../../flex/FlexVCenter'
 import SaveCancelButtons from '../../inputs/SaveCancelButtons'
 import IssueLabelsSelector from './IssueLabelsSelector/IssueLabelsSelector'
 import { IssueMoreMenu } from './IssueMoreMenu/IssueMoreMenu'
@@ -127,21 +126,21 @@ export default function IssueModal(props: Props) {
                 onChange={(value) => setValue('intensity', value || 1)}
               />
             </Grid.Col>
-            <Grid.Col
-              span={3}
-              sx={{
-                display: 'flex',
-                alignItems: 'flex-end',
-                marginBottom: 8,
-              }}
-            >
-              <Checkbox
-                label={'Solved'}
-                checked={watch('isSolved')}
-                onChange={(event) =>
-                  setValue('isSolved', event.currentTarget.checked)
-                }
-              />
+
+            <Grid.Col span={3}>
+              <FlexCol>
+                <DatePicker
+                  label="Solved at"
+                  value={
+                    watch('solvedAt')
+                      ? new Date(String(watch('solvedAt')))
+                      : null
+                  }
+                  onChange={(date) =>
+                    setValue('solvedAt', date?.toISOString() || null)
+                  }
+                />
+              </FlexCol>
             </Grid.Col>
 
             <Grid.Col span={12}>

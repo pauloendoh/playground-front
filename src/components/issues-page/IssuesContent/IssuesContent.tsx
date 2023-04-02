@@ -11,6 +11,7 @@ import {
 import { useEffect } from 'react'
 import { useIssuesQuery } from '../../../hooks/react-query/monerate/issue/useIssuesQuery'
 import { useMyMediaQuery } from '../../../hooks/useMyMediaQuery'
+import useIssueInsightsModalStore from '../../../hooks/zustand/modals/useIssueInsightsModalStore'
 import useIssueModalStore from '../../../hooks/zustand/modals/useIssueModalStore'
 import useIssueFilterStore from '../../../hooks/zustand/useIssueFilterStore'
 import { MyIssueInput } from '../../../types/domains/monerate/issue/MyIssueInput'
@@ -43,11 +44,22 @@ const IssuesContent = (props: Props) => {
 
   const { isMobile } = useMyMediaQuery()
 
+  const { openModal: openInsightsModal } = useIssueInsightsModalStore()
+
   return (
     <Container size="lg">
       <Box mt={16} />
 
-      <Title>Issues</Title>
+      <FlexVCenter justify={'space-between'}>
+        <Title>Issues</Title>
+        <Button
+          onClick={() => {
+            openInsightsModal()
+          }}
+        >
+          Insights
+        </Button>
+      </FlexVCenter>
 
       <MyPaper mt={8}>
         <Grid>
