@@ -46,9 +46,6 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
     <Draggable index={props.index} draggableId={issue.id}>
       {(provided) => (
         <tr
-          style={{
-            background: mult >= 12 ? theme.colors.dark[5] : undefined,
-          }}
           onClick={() => {
             openModal({
               ...issue,
@@ -65,6 +62,7 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
             style={{
               fontWeight: isHighlighted ? 500 : 'normal',
               maxHeight: 120,
+              backgroundColor: mult >= 12 ? theme.colors.dark[3] : undefined,
             }}
             ref={titleTdRef}
           >
