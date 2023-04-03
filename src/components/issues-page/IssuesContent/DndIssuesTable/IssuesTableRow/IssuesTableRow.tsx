@@ -62,7 +62,7 @@ const IssuesTableRow = ({ issue, ...props }: Props) => {
             style={{
               fontWeight: isHighlighted ? 500 : 'normal',
               maxHeight: 120,
-              backgroundColor: mult >= 12 ? theme.colors.dark[3] : undefined,
+              backgroundColor: mult >= 9 ? theme.colors.dark[3] : undefined,
             }}
             ref={titleTdRef}
           >
