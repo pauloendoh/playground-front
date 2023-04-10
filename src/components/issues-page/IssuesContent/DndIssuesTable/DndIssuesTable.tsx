@@ -44,7 +44,7 @@ export function DndIssuesTable(props: Props) {
 
   const { isMobile } = useMyMediaQuery()
   return (
-    <ScrollArea.Autosize maxHeight="calc(100vh - 300px)">
+    <ScrollArea.Autosize mah="calc(100vh - 300px)">
       <LoadingOverlay visible={!!isChangingPosition} />
       <DragDropContext onDragEnd={onDragEnd}>
         <Table
@@ -65,13 +65,15 @@ export function DndIssuesTable(props: Props) {
             <tr>
               <th style={{ width: 40 }}>#</th>
 
-              <th style={{ width: '50%' }}>Issue</th>
+              <th style={{ width: '50%' }}>
+                {isMobile ? 'Issue' : 'Main issue + motives'}
+              </th>
               <th
                 style={{
                   width: '50%',
                 }}
               >
-                Solution
+                {isMobile ? 'Solution' : 'Solution (impactful interests)'}
               </th>
               {!isMobile && <th style={{ width: 200 }}>Labels</th>}
               <th />

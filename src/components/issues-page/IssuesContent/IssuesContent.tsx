@@ -5,7 +5,6 @@ import {
   Flex,
   Grid,
   Switch,
-  TextInput,
   Title,
 } from '@mantine/core'
 import { useEffect } from 'react'
@@ -86,7 +85,8 @@ const IssuesContent = (props: Props) => {
                 }}
               />
 
-              <TextInput
+              {/* PE 1/3 - */}
+              {/* <TextInput
                 label="Highlight top"
                 maw={100}
                 value={highlightTopUnsolved}
@@ -99,7 +99,7 @@ const IssuesContent = (props: Props) => {
 
                   setHighlightTopUnsolved(0)
                 }}
-              />
+              /> */}
             </Flex>
           </Grid.Col>
         </Grid>

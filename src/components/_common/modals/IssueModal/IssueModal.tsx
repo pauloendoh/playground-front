@@ -12,6 +12,7 @@ import { DateInput } from '@mantine/dates'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveIssueMutation } from '../../../../hooks/react-query/monerate/issue/useSaveIssueMutation'
+import { useMyMediaQuery } from '../../../../hooks/useMyMediaQuery'
 import { MyIssueInput } from '../../../../types/domains/monerate/issue/MyIssueInput'
 import FlexCol from '../../flex/FlexCol'
 import SaveCancelButtons from '../../inputs/SaveCancelButtons'
@@ -40,8 +41,10 @@ export default function IssueModal(props: Props) {
     resolver,
   })
 
+  const { isMobile } = useMyMediaQuery()
+
   useEffect(() => {
-    if (props.isOpen) {
+    if (props.isOpen && !isMobile) {
       setTimeout(() => {
         setFocus('title')
         reset(props.initialValue)
