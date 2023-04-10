@@ -1,6 +1,6 @@
 import { classValidatorResolver } from '@hookform/resolvers/class-validator'
 import { Button, CloseButton, Flex, Grid, Modal, Title } from '@mantine/core'
-import { DatePicker } from '@mantine/dates'
+import { DateInput } from '@mantine/dates'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveSavingMutation } from '../../../../hooks/react-query/monerate/saving/useSaveSavingMutation'
@@ -88,7 +88,7 @@ export default function SavingModal(props: Props) {
               />
             </Grid.Col>
             <Grid.Col span={6}>
-              <DatePicker
+              <DateInput
                 placeholder="Pick date"
                 label="Date"
                 value={
@@ -96,7 +96,7 @@ export default function SavingModal(props: Props) {
                     ? new Date(props.initialValue?.date)
                     : undefined
                 }
-                inputFormat="MMM DD, YYYY"
+                valueFormat="MMM DD, YYYY"
                 onChange={(date) => {
                   setValue('date', date?.toISOString() || null)
                 }}

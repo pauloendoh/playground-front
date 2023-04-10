@@ -40,6 +40,7 @@ const IssueLabelsSelector = (props: Props) => {
       maw={240}
       data={items}
       value={props.issueLabelIds}
+      disableSelectedItemFiltering
       onChange={(values) => {
         if (values.includes('-1')) {
           openModal(new MyIssueLabelInput())

@@ -8,7 +8,7 @@ import {
   Textarea,
   Title,
 } from '@mantine/core'
-import { DatePicker } from '@mantine/dates'
+import { DateInput } from '@mantine/dates'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveIssueMutation } from '../../../../hooks/react-query/monerate/issue/useSaveIssueMutation'
@@ -108,7 +108,7 @@ export default function IssueModal(props: Props) {
           </Grid>
 
           <Grid>
-            <Grid.Col span={3}>
+            <Grid.Col span={6} md={3}>
               <NumberInput
                 label="Frequency"
                 value={watch('frequency') || 1}
@@ -117,7 +117,7 @@ export default function IssueModal(props: Props) {
                 onChange={(value) => setValue('frequency', value || 1)}
               />
             </Grid.Col>
-            <Grid.Col span={3}>
+            <Grid.Col span={6} md={3}>
               <NumberInput
                 label="Intensity"
                 value={watch('intensity') || 1}
@@ -127,9 +127,9 @@ export default function IssueModal(props: Props) {
               />
             </Grid.Col>
 
-            <Grid.Col span={3}>
+            <Grid.Col span={6} md={3}>
               <FlexCol>
-                <DatePicker
+                <DateInput
                   label="Solved at"
                   value={
                     watch('solvedAt')
