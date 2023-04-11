@@ -7,6 +7,7 @@ import RecipesContent from '../../recipes-page/RecipesContent/RecipesContent'
 import ColorMixerPage from '../ColorMixerPage/ColorMixerPage'
 import MonerateContent from '../MonerateContent/MonerateContent'
 import OthersContent from '../MonerateContent/OthersContent/OthersContent'
+import NhPage from '../NhPage/NhPage'
 import MyHeader from './MyHeader/MyHeader'
 
 type Props = {
@@ -32,6 +33,7 @@ const HomePage = (props: Props) => {
         <Route path="/recipes" element={<RecipesContent />} />
         <Route path="/issues" element={<IssuesContent />} />
         <Route path="/color-mixer" element={<ColorMixerPage />} />
+        <Route path="/nh" element={<NhPage />} />
         <Route element={<MonerateContent />}>
           <Route path={urls.pages.monerateOthers} element={<OthersContent />} />
           <Route index element={<ExpensesContent />} />

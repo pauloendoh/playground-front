@@ -63,6 +63,18 @@ export type AggregateMixedColor = {
   _min: Maybe<MixedColorMinAggregate>;
 };
 
+export type AggregateNhAuthor = {
+  _count: Maybe<NhAuthorCountAggregate>;
+  _max: Maybe<NhAuthorMaxAggregate>;
+  _min: Maybe<NhAuthorMinAggregate>;
+};
+
+export type AggregateNhFavorite = {
+  _count: Maybe<NhFavoriteCountAggregate>;
+  _max: Maybe<NhFavoriteMaxAggregate>;
+  _min: Maybe<NhFavoriteMinAggregate>;
+};
+
 export type AggregateRawColor = {
   _count: Maybe<RawColorCountAggregate>;
   _max: Maybe<RawColorMaxAggregate>;
@@ -113,6 +125,11 @@ export type AuthUserOutput = {
   id: Scalars['String'];
   token: Scalars['String'];
   username: Scalars['String'];
+};
+
+export type AuthorCount = {
+  authorUrl: Scalars['String'];
+  count: Scalars['Float'];
 };
 
 export type BoolFieldUpdateOperationsInput = {
@@ -2854,6 +2871,8 @@ export type Mutation = {
   createManyIssue: AffectedRowsOutput;
   createManyIssueLabel: AffectedRowsOutput;
   createManyMixedColor: AffectedRowsOutput;
+  createManyNhAuthor: AffectedRowsOutput;
+  createManyNhFavorite: AffectedRowsOutput;
   createManyRawColor: AffectedRowsOutput;
   createManyRecipe: AffectedRowsOutput;
   createManySalary: AffectedRowsOutput;
@@ -2866,6 +2885,8 @@ export type Mutation = {
   createOneIssue: Issue;
   createOneIssueLabel: IssueLabel;
   createOneMixedColor: MixedColor;
+  createOneNhAuthor: NhAuthor;
+  createOneNhFavorite: NhFavorite;
   createOneRawColor: RawColor;
   createOneRecipe: Recipe;
   createOneSalary: Salary;
@@ -2882,6 +2903,8 @@ export type Mutation = {
   deleteManyIssue: AffectedRowsOutput;
   deleteManyIssueLabel: AffectedRowsOutput;
   deleteManyMixedColor: AffectedRowsOutput;
+  deleteManyNhAuthor: AffectedRowsOutput;
+  deleteManyNhFavorite: AffectedRowsOutput;
   deleteManyRawColor: AffectedRowsOutput;
   deleteManyRecipe: AffectedRowsOutput;
   deleteManySalary: AffectedRowsOutput;
@@ -2894,6 +2917,8 @@ export type Mutation = {
   deleteOneIssue: Maybe<Issue>;
   deleteOneIssueLabel: Maybe<IssueLabel>;
   deleteOneMixedColor: Maybe<MixedColor>;
+  deleteOneNhAuthor: Maybe<NhAuthor>;
+  deleteOneNhFavorite: Maybe<NhFavorite>;
   deleteOneRawColor: Maybe<RawColor>;
   deleteOneRecipe: Maybe<Recipe>;
   deleteOneSalary: Maybe<Salary>;
@@ -2915,12 +2940,15 @@ export type Mutation = {
   saveSalaryMutation: Salary;
   saveSavingMutation: Saving;
   saveWishlistItemMutation: WishlistItem;
+  toggleNhAuthorMutation: NhAuthor;
   updateManyCategory: AffectedRowsOutput;
   updateManyColorProportion: AffectedRowsOutput;
   updateManyExpense: AffectedRowsOutput;
   updateManyIssue: AffectedRowsOutput;
   updateManyIssueLabel: AffectedRowsOutput;
   updateManyMixedColor: AffectedRowsOutput;
+  updateManyNhAuthor: AffectedRowsOutput;
+  updateManyNhFavorite: AffectedRowsOutput;
   updateManyRawColor: AffectedRowsOutput;
   updateManyRecipe: AffectedRowsOutput;
   updateManySalary: AffectedRowsOutput;
@@ -2933,6 +2961,8 @@ export type Mutation = {
   updateOneIssue: Maybe<Issue>;
   updateOneIssueLabel: Maybe<IssueLabel>;
   updateOneMixedColor: Maybe<MixedColor>;
+  updateOneNhAuthor: Maybe<NhAuthor>;
+  updateOneNhFavorite: Maybe<NhFavorite>;
   updateOneRawColor: Maybe<RawColor>;
   updateOneRecipe: Maybe<Recipe>;
   updateOneSalary: Maybe<Salary>;
@@ -2945,6 +2975,8 @@ export type Mutation = {
   upsertOneIssue: Issue;
   upsertOneIssueLabel: IssueLabel;
   upsertOneMixedColor: MixedColor;
+  upsertOneNhAuthor: NhAuthor;
+  upsertOneNhFavorite: NhFavorite;
   upsertOneRawColor: RawColor;
   upsertOneRecipe: Recipe;
   upsertOneSalary: Salary;
@@ -2991,6 +3023,18 @@ export type MutationCreateManyIssueLabelArgs = {
 
 export type MutationCreateManyMixedColorArgs = {
   data: Array<MixedColorCreateManyInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreateManyNhAuthorArgs = {
+  data: Array<NhAuthorCreateManyInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreateManyNhFavoriteArgs = {
+  data: Array<NhFavoriteCreateManyInput>;
   skipDuplicates: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -3058,6 +3102,16 @@ export type MutationCreateOneIssueLabelArgs = {
 
 export type MutationCreateOneMixedColorArgs = {
   data: MixedColorCreateInput;
+};
+
+
+export type MutationCreateOneNhAuthorArgs = {
+  data: NhAuthorCreateInput;
+};
+
+
+export type MutationCreateOneNhFavoriteArgs = {
+  data: NhFavoriteCreateInput;
 };
 
 
@@ -3141,6 +3195,16 @@ export type MutationDeleteManyMixedColorArgs = {
 };
 
 
+export type MutationDeleteManyNhAuthorArgs = {
+  where: InputMaybe<NhAuthorWhereInput>;
+};
+
+
+export type MutationDeleteManyNhFavoriteArgs = {
+  where: InputMaybe<NhFavoriteWhereInput>;
+};
+
+
 export type MutationDeleteManyRawColorArgs = {
   where: InputMaybe<RawColorWhereInput>;
 };
@@ -3198,6 +3262,16 @@ export type MutationDeleteOneIssueLabelArgs = {
 
 export type MutationDeleteOneMixedColorArgs = {
   where: MixedColorWhereUniqueInput;
+};
+
+
+export type MutationDeleteOneNhAuthorArgs = {
+  where: NhAuthorWhereUniqueInput;
+};
+
+
+export type MutationDeleteOneNhFavoriteArgs = {
+  where: NhFavoriteWhereUniqueInput;
 };
 
 
@@ -3306,6 +3380,11 @@ export type MutationSaveWishlistItemMutationArgs = {
 };
 
 
+export type MutationToggleNhAuthorMutationArgs = {
+  authorUrl: Scalars['String'];
+};
+
+
 export type MutationUpdateManyCategoryArgs = {
   data: CategoryUpdateManyMutationInput;
   where: InputMaybe<CategoryWhereInput>;
@@ -3339,6 +3418,18 @@ export type MutationUpdateManyIssueLabelArgs = {
 export type MutationUpdateManyMixedColorArgs = {
   data: MixedColorUpdateManyMutationInput;
   where: InputMaybe<MixedColorWhereInput>;
+};
+
+
+export type MutationUpdateManyNhAuthorArgs = {
+  data: NhAuthorUpdateManyMutationInput;
+  where: InputMaybe<NhAuthorWhereInput>;
+};
+
+
+export type MutationUpdateManyNhFavoriteArgs = {
+  data: NhFavoriteUpdateManyMutationInput;
+  where: InputMaybe<NhFavoriteWhereInput>;
 };
 
 
@@ -3411,6 +3502,18 @@ export type MutationUpdateOneIssueLabelArgs = {
 export type MutationUpdateOneMixedColorArgs = {
   data: MixedColorUpdateInput;
   where: MixedColorWhereUniqueInput;
+};
+
+
+export type MutationUpdateOneNhAuthorArgs = {
+  data: NhAuthorUpdateInput;
+  where: NhAuthorWhereUniqueInput;
+};
+
+
+export type MutationUpdateOneNhFavoriteArgs = {
+  data: NhFavoriteUpdateInput;
+  where: NhFavoriteWhereUniqueInput;
 };
 
 
@@ -3489,6 +3592,20 @@ export type MutationUpsertOneMixedColorArgs = {
   create: MixedColorCreateInput;
   update: MixedColorUpdateInput;
   where: MixedColorWhereUniqueInput;
+};
+
+
+export type MutationUpsertOneNhAuthorArgs = {
+  create: NhAuthorCreateInput;
+  update: NhAuthorUpdateInput;
+  where: NhAuthorWhereUniqueInput;
+};
+
+
+export type MutationUpsertOneNhFavoriteArgs = {
+  create: NhFavoriteCreateInput;
+  update: NhFavoriteUpdateInput;
+  where: NhFavoriteWhereUniqueInput;
 };
 
 
@@ -3788,6 +3905,583 @@ export type NestedStringWithAggregatesFilter = {
   startsWith: InputMaybe<Scalars['String']>;
 };
 
+export type NhAuthor = {
+  _count: Maybe<NhAuthorCount>;
+  checkedAt: Maybe<Scalars['DateTime']>;
+  createdAt: Scalars['DateTime'];
+  favorites: Array<NhFavorite>;
+  updatedAt: Scalars['DateTime'];
+  url: Scalars['String'];
+  user: User;
+  userId: Scalars['String'];
+};
+
+
+export type NhAuthorFavoritesArgs = {
+  cursor: InputMaybe<NhFavoriteWhereUniqueInput>;
+  distinct: InputMaybe<Array<NhFavoriteScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<NhFavoriteOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<NhFavoriteWhereInput>;
+};
+
+export type NhAuthorCount = {
+  favorites: Scalars['Int'];
+};
+
+export type NhAuthorCountAggregate = {
+  _all: Scalars['Int'];
+  checkedAt: Scalars['Int'];
+  createdAt: Scalars['Int'];
+  updatedAt: Scalars['Int'];
+  url: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type NhAuthorCountOrderByAggregateInput = {
+  checkedAt: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  url: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type NhAuthorCreateInput = {
+  checkedAt: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  favorites: InputMaybe<NhFavoriteCreateNestedManyWithoutAuthorInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  url: Scalars['String'];
+  user: UserCreateNestedOneWithoutNhAuthorsInput;
+};
+
+export type NhAuthorCreateManyInput = {
+  checkedAt: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  url: Scalars['String'];
+  userId: Scalars['String'];
+};
+
+export type NhAuthorCreateManyUserInput = {
+  checkedAt: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  url: Scalars['String'];
+};
+
+export type NhAuthorCreateManyUserInputEnvelope = {
+  data: Array<NhAuthorCreateManyUserInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+export type NhAuthorCreateNestedManyWithoutUserInput = {
+  connect: InputMaybe<Array<NhAuthorWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<NhAuthorCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<NhAuthorCreateWithoutUserInput>>;
+  createMany: InputMaybe<NhAuthorCreateManyUserInputEnvelope>;
+};
+
+export type NhAuthorCreateNestedOneWithoutFavoritesInput = {
+  connect: InputMaybe<NhAuthorWhereUniqueInput>;
+  connectOrCreate: InputMaybe<NhAuthorCreateOrConnectWithoutFavoritesInput>;
+  create: InputMaybe<NhAuthorCreateWithoutFavoritesInput>;
+};
+
+export type NhAuthorCreateOrConnectWithoutFavoritesInput = {
+  create: NhAuthorCreateWithoutFavoritesInput;
+  where: NhAuthorWhereUniqueInput;
+};
+
+export type NhAuthorCreateOrConnectWithoutUserInput = {
+  create: NhAuthorCreateWithoutUserInput;
+  where: NhAuthorWhereUniqueInput;
+};
+
+export type NhAuthorCreateWithoutFavoritesInput = {
+  checkedAt: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  url: Scalars['String'];
+  user: UserCreateNestedOneWithoutNhAuthorsInput;
+};
+
+export type NhAuthorCreateWithoutUserInput = {
+  checkedAt: InputMaybe<Scalars['DateTime']>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  favorites: InputMaybe<NhFavoriteCreateNestedManyWithoutAuthorInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  url: Scalars['String'];
+};
+
+export type NhAuthorGroupBy = {
+  _count: Maybe<NhAuthorCountAggregate>;
+  _max: Maybe<NhAuthorMaxAggregate>;
+  _min: Maybe<NhAuthorMinAggregate>;
+  checkedAt: Maybe<Scalars['DateTime']>;
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  url: Scalars['String'];
+  userId: Scalars['String'];
+};
+
+export type NhAuthorListRelationFilter = {
+  every: InputMaybe<NhAuthorWhereInput>;
+  none: InputMaybe<NhAuthorWhereInput>;
+  some: InputMaybe<NhAuthorWhereInput>;
+};
+
+export type NhAuthorMaxAggregate = {
+  checkedAt: Maybe<Scalars['DateTime']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  url: Maybe<Scalars['String']>;
+  userId: Maybe<Scalars['String']>;
+};
+
+export type NhAuthorMaxOrderByAggregateInput = {
+  checkedAt: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  url: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type NhAuthorMinAggregate = {
+  checkedAt: Maybe<Scalars['DateTime']>;
+  createdAt: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+  url: Maybe<Scalars['String']>;
+  userId: Maybe<Scalars['String']>;
+};
+
+export type NhAuthorMinOrderByAggregateInput = {
+  checkedAt: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  url: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type NhAuthorOrderByRelationAggregateInput = {
+  _count: InputMaybe<SortOrder>;
+};
+
+export type NhAuthorOrderByWithAggregationInput = {
+  _count: InputMaybe<NhAuthorCountOrderByAggregateInput>;
+  _max: InputMaybe<NhAuthorMaxOrderByAggregateInput>;
+  _min: InputMaybe<NhAuthorMinOrderByAggregateInput>;
+  checkedAt: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  updatedAt: InputMaybe<SortOrder>;
+  url: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type NhAuthorOrderByWithRelationInput = {
+  checkedAt: InputMaybe<SortOrder>;
+  createdAt: InputMaybe<SortOrder>;
+  favorites: InputMaybe<NhFavoriteOrderByRelationAggregateInput>;
+  updatedAt: InputMaybe<SortOrder>;
+  url: InputMaybe<SortOrder>;
+  user: InputMaybe<UserOrderByWithRelationInput>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type NhAuthorRelationFilter = {
+  is: InputMaybe<NhAuthorWhereInput>;
+  isNot: InputMaybe<NhAuthorWhereInput>;
+};
+
+export enum NhAuthorScalarFieldEnum {
+  CheckedAt = 'checkedAt',
+  CreatedAt = 'createdAt',
+  UpdatedAt = 'updatedAt',
+  Url = 'url',
+  UserId = 'userId'
+}
+
+export type NhAuthorScalarWhereInput = {
+  AND: InputMaybe<Array<NhAuthorScalarWhereInput>>;
+  NOT: InputMaybe<Array<NhAuthorScalarWhereInput>>;
+  OR: InputMaybe<Array<NhAuthorScalarWhereInput>>;
+  checkedAt: InputMaybe<DateTimeNullableFilter>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  url: InputMaybe<StringFilter>;
+  userId: InputMaybe<StringFilter>;
+};
+
+export type NhAuthorScalarWhereWithAggregatesInput = {
+  AND: InputMaybe<Array<NhAuthorScalarWhereWithAggregatesInput>>;
+  NOT: InputMaybe<Array<NhAuthorScalarWhereWithAggregatesInput>>;
+  OR: InputMaybe<Array<NhAuthorScalarWhereWithAggregatesInput>>;
+  checkedAt: InputMaybe<DateTimeNullableWithAggregatesFilter>;
+  createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
+  url: InputMaybe<StringWithAggregatesFilter>;
+  userId: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type NhAuthorUpdateInput = {
+  checkedAt: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  favorites: InputMaybe<NhFavoriteUpdateManyWithoutAuthorNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  url: InputMaybe<StringFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutNhAuthorsNestedInput>;
+};
+
+export type NhAuthorUpdateManyMutationInput = {
+  checkedAt: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  url: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type NhAuthorUpdateManyWithWhereWithoutUserInput = {
+  data: NhAuthorUpdateManyMutationInput;
+  where: NhAuthorScalarWhereInput;
+};
+
+export type NhAuthorUpdateManyWithoutUserNestedInput = {
+  connect: InputMaybe<Array<NhAuthorWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<NhAuthorCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<NhAuthorCreateWithoutUserInput>>;
+  createMany: InputMaybe<NhAuthorCreateManyUserInputEnvelope>;
+  delete: InputMaybe<Array<NhAuthorWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<NhAuthorScalarWhereInput>>;
+  disconnect: InputMaybe<Array<NhAuthorWhereUniqueInput>>;
+  set: InputMaybe<Array<NhAuthorWhereUniqueInput>>;
+  update: InputMaybe<Array<NhAuthorUpdateWithWhereUniqueWithoutUserInput>>;
+  updateMany: InputMaybe<Array<NhAuthorUpdateManyWithWhereWithoutUserInput>>;
+  upsert: InputMaybe<Array<NhAuthorUpsertWithWhereUniqueWithoutUserInput>>;
+};
+
+export type NhAuthorUpdateOneRequiredWithoutFavoritesNestedInput = {
+  connect: InputMaybe<NhAuthorWhereUniqueInput>;
+  connectOrCreate: InputMaybe<NhAuthorCreateOrConnectWithoutFavoritesInput>;
+  create: InputMaybe<NhAuthorCreateWithoutFavoritesInput>;
+  update: InputMaybe<NhAuthorUpdateWithoutFavoritesInput>;
+  upsert: InputMaybe<NhAuthorUpsertWithoutFavoritesInput>;
+};
+
+export type NhAuthorUpdateWithWhereUniqueWithoutUserInput = {
+  data: NhAuthorUpdateWithoutUserInput;
+  where: NhAuthorWhereUniqueInput;
+};
+
+export type NhAuthorUpdateWithoutFavoritesInput = {
+  checkedAt: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  url: InputMaybe<StringFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutNhAuthorsNestedInput>;
+};
+
+export type NhAuthorUpdateWithoutUserInput = {
+  checkedAt: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  favorites: InputMaybe<NhFavoriteUpdateManyWithoutAuthorNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  url: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type NhAuthorUpsertWithWhereUniqueWithoutUserInput = {
+  create: NhAuthorCreateWithoutUserInput;
+  update: NhAuthorUpdateWithoutUserInput;
+  where: NhAuthorWhereUniqueInput;
+};
+
+export type NhAuthorUpsertWithoutFavoritesInput = {
+  create: NhAuthorCreateWithoutFavoritesInput;
+  update: NhAuthorUpdateWithoutFavoritesInput;
+};
+
+export type NhAuthorWhereInput = {
+  AND: InputMaybe<Array<NhAuthorWhereInput>>;
+  NOT: InputMaybe<Array<NhAuthorWhereInput>>;
+  OR: InputMaybe<Array<NhAuthorWhereInput>>;
+  checkedAt: InputMaybe<DateTimeNullableFilter>;
+  createdAt: InputMaybe<DateTimeFilter>;
+  favorites: InputMaybe<NhFavoriteListRelationFilter>;
+  updatedAt: InputMaybe<DateTimeFilter>;
+  url: InputMaybe<StringFilter>;
+  user: InputMaybe<UserRelationFilter>;
+  userId: InputMaybe<StringFilter>;
+};
+
+export type NhAuthorWhereUniqueInput = {
+  url: InputMaybe<Scalars['String']>;
+};
+
+export type NhFavorite = {
+  author: NhAuthor;
+  authorUrl: Scalars['String'];
+  url: Scalars['String'];
+  user: User;
+  userId: Scalars['String'];
+};
+
+export type NhFavoriteCountAggregate = {
+  _all: Scalars['Int'];
+  authorUrl: Scalars['Int'];
+  url: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type NhFavoriteCountOrderByAggregateInput = {
+  authorUrl: InputMaybe<SortOrder>;
+  url: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type NhFavoriteCreateInput = {
+  author: NhAuthorCreateNestedOneWithoutFavoritesInput;
+  url: Scalars['String'];
+  user: UserCreateNestedOneWithoutNhFavoritesInput;
+};
+
+export type NhFavoriteCreateManyAuthorInput = {
+  url: Scalars['String'];
+  userId: Scalars['String'];
+};
+
+export type NhFavoriteCreateManyAuthorInputEnvelope = {
+  data: Array<NhFavoriteCreateManyAuthorInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+export type NhFavoriteCreateManyInput = {
+  authorUrl: Scalars['String'];
+  url: Scalars['String'];
+  userId: Scalars['String'];
+};
+
+export type NhFavoriteCreateManyUserInput = {
+  authorUrl: Scalars['String'];
+  url: Scalars['String'];
+};
+
+export type NhFavoriteCreateManyUserInputEnvelope = {
+  data: Array<NhFavoriteCreateManyUserInput>;
+  skipDuplicates: InputMaybe<Scalars['Boolean']>;
+};
+
+export type NhFavoriteCreateNestedManyWithoutAuthorInput = {
+  connect: InputMaybe<Array<NhFavoriteWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<NhFavoriteCreateOrConnectWithoutAuthorInput>>;
+  create: InputMaybe<Array<NhFavoriteCreateWithoutAuthorInput>>;
+  createMany: InputMaybe<NhFavoriteCreateManyAuthorInputEnvelope>;
+};
+
+export type NhFavoriteCreateNestedManyWithoutUserInput = {
+  connect: InputMaybe<Array<NhFavoriteWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<NhFavoriteCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<NhFavoriteCreateWithoutUserInput>>;
+  createMany: InputMaybe<NhFavoriteCreateManyUserInputEnvelope>;
+};
+
+export type NhFavoriteCreateOrConnectWithoutAuthorInput = {
+  create: NhFavoriteCreateWithoutAuthorInput;
+  where: NhFavoriteWhereUniqueInput;
+};
+
+export type NhFavoriteCreateOrConnectWithoutUserInput = {
+  create: NhFavoriteCreateWithoutUserInput;
+  where: NhFavoriteWhereUniqueInput;
+};
+
+export type NhFavoriteCreateWithoutAuthorInput = {
+  url: Scalars['String'];
+  user: UserCreateNestedOneWithoutNhFavoritesInput;
+};
+
+export type NhFavoriteCreateWithoutUserInput = {
+  author: NhAuthorCreateNestedOneWithoutFavoritesInput;
+  url: Scalars['String'];
+};
+
+export type NhFavoriteGroupBy = {
+  _count: Maybe<NhFavoriteCountAggregate>;
+  _max: Maybe<NhFavoriteMaxAggregate>;
+  _min: Maybe<NhFavoriteMinAggregate>;
+  authorUrl: Scalars['String'];
+  url: Scalars['String'];
+  userId: Scalars['String'];
+};
+
+export type NhFavoriteListRelationFilter = {
+  every: InputMaybe<NhFavoriteWhereInput>;
+  none: InputMaybe<NhFavoriteWhereInput>;
+  some: InputMaybe<NhFavoriteWhereInput>;
+};
+
+export type NhFavoriteMaxAggregate = {
+  authorUrl: Maybe<Scalars['String']>;
+  url: Maybe<Scalars['String']>;
+  userId: Maybe<Scalars['String']>;
+};
+
+export type NhFavoriteMaxOrderByAggregateInput = {
+  authorUrl: InputMaybe<SortOrder>;
+  url: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type NhFavoriteMinAggregate = {
+  authorUrl: Maybe<Scalars['String']>;
+  url: Maybe<Scalars['String']>;
+  userId: Maybe<Scalars['String']>;
+};
+
+export type NhFavoriteMinOrderByAggregateInput = {
+  authorUrl: InputMaybe<SortOrder>;
+  url: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type NhFavoriteOrderByRelationAggregateInput = {
+  _count: InputMaybe<SortOrder>;
+};
+
+export type NhFavoriteOrderByWithAggregationInput = {
+  _count: InputMaybe<NhFavoriteCountOrderByAggregateInput>;
+  _max: InputMaybe<NhFavoriteMaxOrderByAggregateInput>;
+  _min: InputMaybe<NhFavoriteMinOrderByAggregateInput>;
+  authorUrl: InputMaybe<SortOrder>;
+  url: InputMaybe<SortOrder>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export type NhFavoriteOrderByWithRelationInput = {
+  author: InputMaybe<NhAuthorOrderByWithRelationInput>;
+  authorUrl: InputMaybe<SortOrder>;
+  url: InputMaybe<SortOrder>;
+  user: InputMaybe<UserOrderByWithRelationInput>;
+  userId: InputMaybe<SortOrder>;
+};
+
+export enum NhFavoriteScalarFieldEnum {
+  AuthorUrl = 'authorUrl',
+  Url = 'url',
+  UserId = 'userId'
+}
+
+export type NhFavoriteScalarWhereInput = {
+  AND: InputMaybe<Array<NhFavoriteScalarWhereInput>>;
+  NOT: InputMaybe<Array<NhFavoriteScalarWhereInput>>;
+  OR: InputMaybe<Array<NhFavoriteScalarWhereInput>>;
+  authorUrl: InputMaybe<StringFilter>;
+  url: InputMaybe<StringFilter>;
+  userId: InputMaybe<StringFilter>;
+};
+
+export type NhFavoriteScalarWhereWithAggregatesInput = {
+  AND: InputMaybe<Array<NhFavoriteScalarWhereWithAggregatesInput>>;
+  NOT: InputMaybe<Array<NhFavoriteScalarWhereWithAggregatesInput>>;
+  OR: InputMaybe<Array<NhFavoriteScalarWhereWithAggregatesInput>>;
+  authorUrl: InputMaybe<StringWithAggregatesFilter>;
+  url: InputMaybe<StringWithAggregatesFilter>;
+  userId: InputMaybe<StringWithAggregatesFilter>;
+};
+
+export type NhFavoriteUpdateInput = {
+  author: InputMaybe<NhAuthorUpdateOneRequiredWithoutFavoritesNestedInput>;
+  url: InputMaybe<StringFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutNhFavoritesNestedInput>;
+};
+
+export type NhFavoriteUpdateManyMutationInput = {
+  url: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type NhFavoriteUpdateManyWithWhereWithoutAuthorInput = {
+  data: NhFavoriteUpdateManyMutationInput;
+  where: NhFavoriteScalarWhereInput;
+};
+
+export type NhFavoriteUpdateManyWithWhereWithoutUserInput = {
+  data: NhFavoriteUpdateManyMutationInput;
+  where: NhFavoriteScalarWhereInput;
+};
+
+export type NhFavoriteUpdateManyWithoutAuthorNestedInput = {
+  connect: InputMaybe<Array<NhFavoriteWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<NhFavoriteCreateOrConnectWithoutAuthorInput>>;
+  create: InputMaybe<Array<NhFavoriteCreateWithoutAuthorInput>>;
+  createMany: InputMaybe<NhFavoriteCreateManyAuthorInputEnvelope>;
+  delete: InputMaybe<Array<NhFavoriteWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<NhFavoriteScalarWhereInput>>;
+  disconnect: InputMaybe<Array<NhFavoriteWhereUniqueInput>>;
+  set: InputMaybe<Array<NhFavoriteWhereUniqueInput>>;
+  update: InputMaybe<Array<NhFavoriteUpdateWithWhereUniqueWithoutAuthorInput>>;
+  updateMany: InputMaybe<Array<NhFavoriteUpdateManyWithWhereWithoutAuthorInput>>;
+  upsert: InputMaybe<Array<NhFavoriteUpsertWithWhereUniqueWithoutAuthorInput>>;
+};
+
+export type NhFavoriteUpdateManyWithoutUserNestedInput = {
+  connect: InputMaybe<Array<NhFavoriteWhereUniqueInput>>;
+  connectOrCreate: InputMaybe<Array<NhFavoriteCreateOrConnectWithoutUserInput>>;
+  create: InputMaybe<Array<NhFavoriteCreateWithoutUserInput>>;
+  createMany: InputMaybe<NhFavoriteCreateManyUserInputEnvelope>;
+  delete: InputMaybe<Array<NhFavoriteWhereUniqueInput>>;
+  deleteMany: InputMaybe<Array<NhFavoriteScalarWhereInput>>;
+  disconnect: InputMaybe<Array<NhFavoriteWhereUniqueInput>>;
+  set: InputMaybe<Array<NhFavoriteWhereUniqueInput>>;
+  update: InputMaybe<Array<NhFavoriteUpdateWithWhereUniqueWithoutUserInput>>;
+  updateMany: InputMaybe<Array<NhFavoriteUpdateManyWithWhereWithoutUserInput>>;
+  upsert: InputMaybe<Array<NhFavoriteUpsertWithWhereUniqueWithoutUserInput>>;
+};
+
+export type NhFavoriteUpdateWithWhereUniqueWithoutAuthorInput = {
+  data: NhFavoriteUpdateWithoutAuthorInput;
+  where: NhFavoriteWhereUniqueInput;
+};
+
+export type NhFavoriteUpdateWithWhereUniqueWithoutUserInput = {
+  data: NhFavoriteUpdateWithoutUserInput;
+  where: NhFavoriteWhereUniqueInput;
+};
+
+export type NhFavoriteUpdateWithoutAuthorInput = {
+  url: InputMaybe<StringFieldUpdateOperationsInput>;
+  user: InputMaybe<UserUpdateOneRequiredWithoutNhFavoritesNestedInput>;
+};
+
+export type NhFavoriteUpdateWithoutUserInput = {
+  author: InputMaybe<NhAuthorUpdateOneRequiredWithoutFavoritesNestedInput>;
+  url: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type NhFavoriteUpsertWithWhereUniqueWithoutAuthorInput = {
+  create: NhFavoriteCreateWithoutAuthorInput;
+  update: NhFavoriteUpdateWithoutAuthorInput;
+  where: NhFavoriteWhereUniqueInput;
+};
+
+export type NhFavoriteUpsertWithWhereUniqueWithoutUserInput = {
+  create: NhFavoriteCreateWithoutUserInput;
+  update: NhFavoriteUpdateWithoutUserInput;
+  where: NhFavoriteWhereUniqueInput;
+};
+
+export type NhFavoriteWhereInput = {
+  AND: InputMaybe<Array<NhFavoriteWhereInput>>;
+  NOT: InputMaybe<Array<NhFavoriteWhereInput>>;
+  OR: InputMaybe<Array<NhFavoriteWhereInput>>;
+  author: InputMaybe<NhAuthorRelationFilter>;
+  authorUrl: InputMaybe<StringFilter>;
+  url: InputMaybe<StringFilter>;
+  user: InputMaybe<UserRelationFilter>;
+  userId: InputMaybe<StringFilter>;
+};
+
+export type NhFavoriteWhereUniqueInput = {
+  url: InputMaybe<Scalars['String']>;
+};
+
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set: InputMaybe<Scalars['DateTime']>;
 };
@@ -3824,6 +4518,8 @@ export type Query = {
   aggregateIssue: AggregateIssue;
   aggregateIssueLabel: AggregateIssueLabel;
   aggregateMixedColor: AggregateMixedColor;
+  aggregateNhAuthor: AggregateNhAuthor;
+  aggregateNhFavorite: AggregateNhFavorite;
   aggregateRawColor: AggregateRawColor;
   aggregateRecipe: AggregateRecipe;
   aggregateSalary: AggregateSalary;
@@ -3850,6 +4546,10 @@ export type Query = {
   findFirstIssueOrThrow: Maybe<Issue>;
   findFirstMixedColor: Maybe<MixedColor>;
   findFirstMixedColorOrThrow: Maybe<MixedColor>;
+  findFirstNhAuthor: Maybe<NhAuthor>;
+  findFirstNhAuthorOrThrow: Maybe<NhAuthor>;
+  findFirstNhFavorite: Maybe<NhFavorite>;
+  findFirstNhFavoriteOrThrow: Maybe<NhFavorite>;
   findFirstRawColor: Maybe<RawColor>;
   findFirstRawColorOrThrow: Maybe<RawColor>;
   findFirstRecipe: Maybe<Recipe>;
@@ -3868,6 +4568,8 @@ export type Query = {
   getIssue: Maybe<Issue>;
   getIssueLabel: Maybe<IssueLabel>;
   getMixedColor: Maybe<MixedColor>;
+  getNhAuthor: Maybe<NhAuthor>;
+  getNhFavorite: Maybe<NhFavorite>;
   getRawColor: Maybe<RawColor>;
   getRecipe: Maybe<Recipe>;
   getRecipesQuery: Array<Recipe>;
@@ -3881,12 +4583,15 @@ export type Query = {
   groupByIssue: Array<IssueGroupBy>;
   groupByIssueLabel: Array<IssueLabelGroupBy>;
   groupByMixedColor: Array<MixedColorGroupBy>;
+  groupByNhAuthor: Array<NhAuthorGroupBy>;
+  groupByNhFavorite: Array<NhFavoriteGroupBy>;
   groupByRawColor: Array<RawColorGroupBy>;
   groupByRecipe: Array<RecipeGroupBy>;
   groupBySalary: Array<SalaryGroupBy>;
   groupBySaving: Array<SavingGroupBy>;
   groupByUser: Array<UserGroupBy>;
   groupByWishlistItem: Array<WishlistItemGroupBy>;
+  groupedNhFavoritesQuery: Array<AuthorCount>;
   issue: Maybe<Issue>;
   issueLabel: Maybe<IssueLabel>;
   issueLabels: Array<IssueLabel>;
@@ -3897,6 +4602,11 @@ export type Query = {
   mixedColor: Maybe<MixedColor>;
   mixedColors: Array<MixedColor>;
   mixedColorsQuery: Array<MixedColor>;
+  nhAuthor: Maybe<NhAuthor>;
+  nhAuthors: Array<NhAuthor>;
+  nhAuthorsQuery: Array<NhAuthor>;
+  nhFavorite: Maybe<NhFavorite>;
+  nhFavorites: Array<NhFavorite>;
   rawColor: Maybe<RawColor>;
   rawColors: Array<RawColor>;
   rawColorsQuery: Array<RawColor>;
@@ -3968,6 +4678,24 @@ export type QueryAggregateMixedColorArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<MixedColorWhereInput>;
+};
+
+
+export type QueryAggregateNhAuthorArgs = {
+  cursor: InputMaybe<NhAuthorWhereUniqueInput>;
+  orderBy: InputMaybe<Array<NhAuthorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<NhAuthorWhereInput>;
+};
+
+
+export type QueryAggregateNhFavoriteArgs = {
+  cursor: InputMaybe<NhFavoriteWhereUniqueInput>;
+  orderBy: InputMaybe<Array<NhFavoriteOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<NhFavoriteWhereInput>;
 };
 
 
@@ -4196,6 +4924,46 @@ export type QueryFindFirstMixedColorOrThrowArgs = {
 };
 
 
+export type QueryFindFirstNhAuthorArgs = {
+  cursor: InputMaybe<NhAuthorWhereUniqueInput>;
+  distinct: InputMaybe<Array<NhAuthorScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<NhAuthorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<NhAuthorWhereInput>;
+};
+
+
+export type QueryFindFirstNhAuthorOrThrowArgs = {
+  cursor: InputMaybe<NhAuthorWhereUniqueInput>;
+  distinct: InputMaybe<Array<NhAuthorScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<NhAuthorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<NhAuthorWhereInput>;
+};
+
+
+export type QueryFindFirstNhFavoriteArgs = {
+  cursor: InputMaybe<NhFavoriteWhereUniqueInput>;
+  distinct: InputMaybe<Array<NhFavoriteScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<NhFavoriteOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<NhFavoriteWhereInput>;
+};
+
+
+export type QueryFindFirstNhFavoriteOrThrowArgs = {
+  cursor: InputMaybe<NhFavoriteWhereUniqueInput>;
+  distinct: InputMaybe<Array<NhFavoriteScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<NhFavoriteOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<NhFavoriteWhereInput>;
+};
+
+
 export type QueryFindFirstRawColorArgs = {
   cursor: InputMaybe<RawColorWhereUniqueInput>;
   distinct: InputMaybe<Array<RawColorScalarFieldEnum>>;
@@ -4346,6 +5114,16 @@ export type QueryGetMixedColorArgs = {
 };
 
 
+export type QueryGetNhAuthorArgs = {
+  where: NhAuthorWhereUniqueInput;
+};
+
+
+export type QueryGetNhFavoriteArgs = {
+  where: NhFavoriteWhereUniqueInput;
+};
+
+
 export type QueryGetRawColorArgs = {
   where: RawColorWhereUniqueInput;
 };
@@ -4433,6 +5211,26 @@ export type QueryGroupByMixedColorArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<MixedColorWhereInput>;
+};
+
+
+export type QueryGroupByNhAuthorArgs = {
+  by: Array<NhAuthorScalarFieldEnum>;
+  having: InputMaybe<NhAuthorScalarWhereWithAggregatesInput>;
+  orderBy: InputMaybe<Array<NhAuthorOrderByWithAggregationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<NhAuthorWhereInput>;
+};
+
+
+export type QueryGroupByNhFavoriteArgs = {
+  by: Array<NhFavoriteScalarFieldEnum>;
+  having: InputMaybe<NhFavoriteScalarWhereWithAggregatesInput>;
+  orderBy: InputMaybe<Array<NhFavoriteOrderByWithAggregationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<NhFavoriteWhereInput>;
 };
 
 
@@ -4538,6 +5336,36 @@ export type QueryMixedColorsArgs = {
   skip: InputMaybe<Scalars['Int']>;
   take: InputMaybe<Scalars['Int']>;
   where: InputMaybe<MixedColorWhereInput>;
+};
+
+
+export type QueryNhAuthorArgs = {
+  where: NhAuthorWhereUniqueInput;
+};
+
+
+export type QueryNhAuthorsArgs = {
+  cursor: InputMaybe<NhAuthorWhereUniqueInput>;
+  distinct: InputMaybe<Array<NhAuthorScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<NhAuthorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<NhAuthorWhereInput>;
+};
+
+
+export type QueryNhFavoriteArgs = {
+  where: NhFavoriteWhereUniqueInput;
+};
+
+
+export type QueryNhFavoritesArgs = {
+  cursor: InputMaybe<NhFavoriteWhereUniqueInput>;
+  distinct: InputMaybe<Array<NhFavoriteScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<NhFavoriteOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<NhFavoriteWhereInput>;
 };
 
 
@@ -5933,6 +6761,8 @@ export type User = {
   issueLabels: Array<IssueLabel>;
   issues: Array<Issue>;
   mixedColors: Array<MixedColor>;
+  nhAuthors: Array<NhAuthor>;
+  nhFavorites: Array<NhFavorite>;
   password: Scalars['String'];
   rawColors: Array<RawColor>;
   recipe: Array<Recipe>;
@@ -6004,6 +6834,26 @@ export type UserMixedColorsArgs = {
 };
 
 
+export type UserNhAuthorsArgs = {
+  cursor: InputMaybe<NhAuthorWhereUniqueInput>;
+  distinct: InputMaybe<Array<NhAuthorScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<NhAuthorOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<NhAuthorWhereInput>;
+};
+
+
+export type UserNhFavoritesArgs = {
+  cursor: InputMaybe<NhFavoriteWhereUniqueInput>;
+  distinct: InputMaybe<Array<NhFavoriteScalarFieldEnum>>;
+  orderBy: InputMaybe<Array<NhFavoriteOrderByWithRelationInput>>;
+  skip: InputMaybe<Scalars['Int']>;
+  take: InputMaybe<Scalars['Int']>;
+  where: InputMaybe<NhFavoriteWhereInput>;
+};
+
+
 export type UserRawColorsArgs = {
   cursor: InputMaybe<RawColorWhereUniqueInput>;
   distinct: InputMaybe<Array<RawColorScalarFieldEnum>>;
@@ -6050,6 +6900,8 @@ export type UserCount = {
   issueLabels: Scalars['Int'];
   issues: Scalars['Int'];
   mixedColors: Scalars['Int'];
+  nhAuthors: Scalars['Int'];
+  nhFavorites: Scalars['Int'];
   rawColors: Scalars['Int'];
   recipe: Scalars['Int'];
   savings: Scalars['Int'];
@@ -6085,6 +6937,8 @@ export type UserCreateInput = {
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  nhAuthors: InputMaybe<NhAuthorCreateNestedManyWithoutUserInput>;
+  nhFavorites: InputMaybe<NhFavoriteCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -6138,6 +6992,18 @@ export type UserCreateNestedOneWithoutMixedColorsInput = {
   connect: InputMaybe<UserWhereUniqueInput>;
   connectOrCreate: InputMaybe<UserCreateOrConnectWithoutMixedColorsInput>;
   create: InputMaybe<UserCreateWithoutMixedColorsInput>;
+};
+
+export type UserCreateNestedOneWithoutNhAuthorsInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutNhAuthorsInput>;
+  create: InputMaybe<UserCreateWithoutNhAuthorsInput>;
+};
+
+export type UserCreateNestedOneWithoutNhFavoritesInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutNhFavoritesInput>;
+  create: InputMaybe<UserCreateWithoutNhFavoritesInput>;
 };
 
 export type UserCreateNestedOneWithoutRawColorsInput = {
@@ -6200,6 +7066,16 @@ export type UserCreateOrConnectWithoutMixedColorsInput = {
   where: UserWhereUniqueInput;
 };
 
+export type UserCreateOrConnectWithoutNhAuthorsInput = {
+  create: UserCreateWithoutNhAuthorsInput;
+  where: UserWhereUniqueInput;
+};
+
+export type UserCreateOrConnectWithoutNhFavoritesInput = {
+  create: UserCreateWithoutNhFavoritesInput;
+  where: UserWhereUniqueInput;
+};
+
 export type UserCreateOrConnectWithoutRawColorsInput = {
   create: UserCreateWithoutRawColorsInput;
   where: UserWhereUniqueInput;
@@ -6234,6 +7110,8 @@ export type UserCreateWithoutCategoriesInput = {
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  nhAuthors: InputMaybe<NhAuthorCreateNestedManyWithoutUserInput>;
+  nhFavorites: InputMaybe<NhFavoriteCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -6253,6 +7131,8 @@ export type UserCreateWithoutColorProportionsInput = {
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  nhAuthors: InputMaybe<NhAuthorCreateNestedManyWithoutUserInput>;
+  nhFavorites: InputMaybe<NhFavoriteCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -6272,6 +7152,8 @@ export type UserCreateWithoutExpensesInput = {
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  nhAuthors: InputMaybe<NhAuthorCreateNestedManyWithoutUserInput>;
+  nhFavorites: InputMaybe<NhFavoriteCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -6291,6 +7173,8 @@ export type UserCreateWithoutIssueLabelsInput = {
   id: InputMaybe<Scalars['String']>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  nhAuthors: InputMaybe<NhAuthorCreateNestedManyWithoutUserInput>;
+  nhFavorites: InputMaybe<NhFavoriteCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -6310,6 +7194,8 @@ export type UserCreateWithoutIssuesInput = {
   id: InputMaybe<Scalars['String']>;
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  nhAuthors: InputMaybe<NhAuthorCreateNestedManyWithoutUserInput>;
+  nhFavorites: InputMaybe<NhFavoriteCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -6329,6 +7215,50 @@ export type UserCreateWithoutMixedColorsInput = {
   id: InputMaybe<Scalars['String']>;
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  nhAuthors: InputMaybe<NhAuthorCreateNestedManyWithoutUserInput>;
+  nhFavorites: InputMaybe<NhFavoriteCreateNestedManyWithoutUserInput>;
+  password: Scalars['String'];
+  rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
+  recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
+  savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  username: Scalars['String'];
+  wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
+};
+
+export type UserCreateWithoutNhAuthorsInput = {
+  categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutUserInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  email: Scalars['String'];
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
+  id: InputMaybe<Scalars['String']>;
+  issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
+  issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  nhFavorites: InputMaybe<NhFavoriteCreateNestedManyWithoutUserInput>;
+  password: Scalars['String'];
+  rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
+  recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
+  salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
+  savings: InputMaybe<SavingCreateNestedManyWithoutUserInput>;
+  updatedAt: InputMaybe<Scalars['DateTime']>;
+  username: Scalars['String'];
+  wishlistItems: InputMaybe<WishlistItemCreateNestedManyWithoutUserInput>;
+};
+
+export type UserCreateWithoutNhFavoritesInput = {
+  categories: InputMaybe<CategoryCreateNestedManyWithoutUserInput>;
+  colorProportions: InputMaybe<ColorProportionCreateNestedManyWithoutUserInput>;
+  createdAt: InputMaybe<Scalars['DateTime']>;
+  email: Scalars['String'];
+  expenses: InputMaybe<ExpenseCreateNestedManyWithoutUserInput>;
+  id: InputMaybe<Scalars['String']>;
+  issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
+  issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
+  mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  nhAuthors: InputMaybe<NhAuthorCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -6349,6 +7279,8 @@ export type UserCreateWithoutRawColorsInput = {
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  nhAuthors: InputMaybe<NhAuthorCreateNestedManyWithoutUserInput>;
+  nhFavorites: InputMaybe<NhFavoriteCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
   salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
@@ -6368,6 +7300,8 @@ export type UserCreateWithoutRecipeInput = {
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  nhAuthors: InputMaybe<NhAuthorCreateNestedManyWithoutUserInput>;
+  nhFavorites: InputMaybe<NhFavoriteCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   salary: InputMaybe<SalaryCreateNestedOneWithoutUserInput>;
@@ -6387,6 +7321,8 @@ export type UserCreateWithoutSalaryInput = {
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  nhAuthors: InputMaybe<NhAuthorCreateNestedManyWithoutUserInput>;
+  nhFavorites: InputMaybe<NhFavoriteCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -6406,6 +7342,8 @@ export type UserCreateWithoutSavingsInput = {
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  nhAuthors: InputMaybe<NhAuthorCreateNestedManyWithoutUserInput>;
+  nhFavorites: InputMaybe<NhFavoriteCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -6425,6 +7363,8 @@ export type UserCreateWithoutWishlistItemsInput = {
   issueLabels: InputMaybe<IssueLabelCreateNestedManyWithoutUserInput>;
   issues: InputMaybe<IssueCreateNestedManyWithoutUserInput>;
   mixedColors: InputMaybe<MixedColorCreateNestedManyWithoutUserInput>;
+  nhAuthors: InputMaybe<NhAuthorCreateNestedManyWithoutUserInput>;
+  nhFavorites: InputMaybe<NhFavoriteCreateNestedManyWithoutUserInput>;
   password: Scalars['String'];
   rawColors: InputMaybe<RawColorCreateNestedManyWithoutUserInput>;
   recipe: InputMaybe<RecipeCreateNestedManyWithoutUserInput>;
@@ -6504,6 +7444,8 @@ export type UserOrderByWithRelationInput = {
   issueLabels: InputMaybe<IssueLabelOrderByRelationAggregateInput>;
   issues: InputMaybe<IssueOrderByRelationAggregateInput>;
   mixedColors: InputMaybe<MixedColorOrderByRelationAggregateInput>;
+  nhAuthors: InputMaybe<NhAuthorOrderByRelationAggregateInput>;
+  nhFavorites: InputMaybe<NhFavoriteOrderByRelationAggregateInput>;
   password: InputMaybe<SortOrder>;
   rawColors: InputMaybe<RawColorOrderByRelationAggregateInput>;
   recipe: InputMaybe<RecipeOrderByRelationAggregateInput>;
@@ -6550,6 +7492,8 @@ export type UserUpdateInput = {
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  nhAuthors: InputMaybe<NhAuthorUpdateManyWithoutUserNestedInput>;
+  nhFavorites: InputMaybe<NhFavoriteUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -6617,6 +7561,22 @@ export type UserUpdateOneRequiredWithoutMixedColorsNestedInput = {
   upsert: InputMaybe<UserUpsertWithoutMixedColorsInput>;
 };
 
+export type UserUpdateOneRequiredWithoutNhAuthorsNestedInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutNhAuthorsInput>;
+  create: InputMaybe<UserCreateWithoutNhAuthorsInput>;
+  update: InputMaybe<UserUpdateWithoutNhAuthorsInput>;
+  upsert: InputMaybe<UserUpsertWithoutNhAuthorsInput>;
+};
+
+export type UserUpdateOneRequiredWithoutNhFavoritesNestedInput = {
+  connect: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate: InputMaybe<UserCreateOrConnectWithoutNhFavoritesInput>;
+  create: InputMaybe<UserCreateWithoutNhFavoritesInput>;
+  update: InputMaybe<UserUpdateWithoutNhFavoritesInput>;
+  upsert: InputMaybe<UserUpsertWithoutNhFavoritesInput>;
+};
+
 export type UserUpdateOneRequiredWithoutRawColorsNestedInput = {
   connect: InputMaybe<UserWhereUniqueInput>;
   connectOrCreate: InputMaybe<UserCreateOrConnectWithoutRawColorsInput>;
@@ -6666,6 +7626,8 @@ export type UserUpdateWithoutCategoriesInput = {
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  nhAuthors: InputMaybe<NhAuthorUpdateManyWithoutUserNestedInput>;
+  nhFavorites: InputMaybe<NhFavoriteUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -6685,6 +7647,8 @@ export type UserUpdateWithoutColorProportionsInput = {
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  nhAuthors: InputMaybe<NhAuthorUpdateManyWithoutUserNestedInput>;
+  nhFavorites: InputMaybe<NhFavoriteUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -6704,6 +7668,8 @@ export type UserUpdateWithoutExpensesInput = {
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  nhAuthors: InputMaybe<NhAuthorUpdateManyWithoutUserNestedInput>;
+  nhFavorites: InputMaybe<NhFavoriteUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -6723,6 +7689,8 @@ export type UserUpdateWithoutIssueLabelsInput = {
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  nhAuthors: InputMaybe<NhAuthorUpdateManyWithoutUserNestedInput>;
+  nhFavorites: InputMaybe<NhFavoriteUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -6742,6 +7710,8 @@ export type UserUpdateWithoutIssuesInput = {
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  nhAuthors: InputMaybe<NhAuthorUpdateManyWithoutUserNestedInput>;
+  nhFavorites: InputMaybe<NhFavoriteUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -6761,6 +7731,50 @@ export type UserUpdateWithoutMixedColorsInput = {
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  nhAuthors: InputMaybe<NhAuthorUpdateManyWithoutUserNestedInput>;
+  nhFavorites: InputMaybe<NhFavoriteUpdateManyWithoutUserNestedInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
+  recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
+  savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
+};
+
+export type UserUpdateWithoutNhAuthorsInput = {
+  categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutUserNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
+  issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  nhFavorites: InputMaybe<NhFavoriteUpdateManyWithoutUserNestedInput>;
+  password: InputMaybe<StringFieldUpdateOperationsInput>;
+  rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
+  recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
+  salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
+  savings: InputMaybe<SavingUpdateManyWithoutUserNestedInput>;
+  updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  username: InputMaybe<StringFieldUpdateOperationsInput>;
+  wishlistItems: InputMaybe<WishlistItemUpdateManyWithoutUserNestedInput>;
+};
+
+export type UserUpdateWithoutNhFavoritesInput = {
+  categories: InputMaybe<CategoryUpdateManyWithoutUserNestedInput>;
+  colorProportions: InputMaybe<ColorProportionUpdateManyWithoutUserNestedInput>;
+  createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  email: InputMaybe<StringFieldUpdateOperationsInput>;
+  expenses: InputMaybe<ExpenseUpdateManyWithoutUserNestedInput>;
+  id: InputMaybe<StringFieldUpdateOperationsInput>;
+  issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
+  issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
+  mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  nhAuthors: InputMaybe<NhAuthorUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -6781,6 +7795,8 @@ export type UserUpdateWithoutRawColorsInput = {
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  nhAuthors: InputMaybe<NhAuthorUpdateManyWithoutUserNestedInput>;
+  nhFavorites: InputMaybe<NhFavoriteUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
   salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
@@ -6800,6 +7816,8 @@ export type UserUpdateWithoutRecipeInput = {
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  nhAuthors: InputMaybe<NhAuthorUpdateManyWithoutUserNestedInput>;
+  nhFavorites: InputMaybe<NhFavoriteUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   salary: InputMaybe<SalaryUpdateOneWithoutUserNestedInput>;
@@ -6819,6 +7837,8 @@ export type UserUpdateWithoutSalaryInput = {
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  nhAuthors: InputMaybe<NhAuthorUpdateManyWithoutUserNestedInput>;
+  nhFavorites: InputMaybe<NhFavoriteUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -6838,6 +7858,8 @@ export type UserUpdateWithoutSavingsInput = {
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  nhAuthors: InputMaybe<NhAuthorUpdateManyWithoutUserNestedInput>;
+  nhFavorites: InputMaybe<NhFavoriteUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -6857,6 +7879,8 @@ export type UserUpdateWithoutWishlistItemsInput = {
   issueLabels: InputMaybe<IssueLabelUpdateManyWithoutUserNestedInput>;
   issues: InputMaybe<IssueUpdateManyWithoutUserNestedInput>;
   mixedColors: InputMaybe<MixedColorUpdateManyWithoutUserNestedInput>;
+  nhAuthors: InputMaybe<NhAuthorUpdateManyWithoutUserNestedInput>;
+  nhFavorites: InputMaybe<NhFavoriteUpdateManyWithoutUserNestedInput>;
   password: InputMaybe<StringFieldUpdateOperationsInput>;
   rawColors: InputMaybe<RawColorUpdateManyWithoutUserNestedInput>;
   recipe: InputMaybe<RecipeUpdateManyWithoutUserNestedInput>;
@@ -6894,6 +7918,16 @@ export type UserUpsertWithoutIssuesInput = {
 export type UserUpsertWithoutMixedColorsInput = {
   create: UserCreateWithoutMixedColorsInput;
   update: UserUpdateWithoutMixedColorsInput;
+};
+
+export type UserUpsertWithoutNhAuthorsInput = {
+  create: UserCreateWithoutNhAuthorsInput;
+  update: UserUpdateWithoutNhAuthorsInput;
+};
+
+export type UserUpsertWithoutNhFavoritesInput = {
+  create: UserCreateWithoutNhFavoritesInput;
+  update: UserUpdateWithoutNhFavoritesInput;
 };
 
 export type UserUpsertWithoutRawColorsInput = {
@@ -6934,6 +7968,8 @@ export type UserWhereInput = {
   issueLabels: InputMaybe<IssueLabelListRelationFilter>;
   issues: InputMaybe<IssueListRelationFilter>;
   mixedColors: InputMaybe<MixedColorListRelationFilter>;
+  nhAuthors: InputMaybe<NhAuthorListRelationFilter>;
+  nhFavorites: InputMaybe<NhFavoriteListRelationFilter>;
   password: InputMaybe<StringFilter>;
   rawColors: InputMaybe<RawColorListRelationFilter>;
   recipe: InputMaybe<RecipeListRelationFilter>;
@@ -7270,6 +8306,10 @@ export type MixedColorFragment = { id: string, userId: string, name: string, col
 
 export type ColorProportionFragment = { id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string };
 
+export type AuthorCountFragment = { authorUrl: string, count: number };
+
+export type NhAuthorFragment = { url: string, userId: string, checkedAt: string | null };
+
 export type MeQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -7454,6 +8494,23 @@ export type WishlistItemsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type WishlistItemsQueryQuery = { wishlistItemsQuery: Array<{ id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string }> };
 
+export type GroupedNhFavoritesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GroupedNhFavoritesQueryQuery = { groupedNhFavoritesQuery: Array<{ authorUrl: string, count: number }> };
+
+export type NhAuthorsQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type NhAuthorsQueryQuery = { nhAuthorsQuery: Array<{ url: string, userId: string, checkedAt: string | null }> };
+
+export type ToggleNhAuthorMutationMutationVariables = Exact<{
+  data: Scalars['String'];
+}>;
+
+
+export type ToggleNhAuthorMutationMutation = { toggleNhAuthorMutation: { url: string, userId: string, checkedAt: string | null } };
+
 export type SaveRecipeMutationMutationVariables = Exact<{
   data: RecipeInput;
 }>;
@@ -7621,6 +8678,19 @@ export const MixedColorFragmentDoc = gql`
   updatedAt
 }
     ${ColorProportionFragmentDoc}`;
+export const AuthorCountFragmentDoc = gql`
+    fragment AuthorCount on AuthorCount {
+  authorUrl
+  count
+}
+    `;
+export const NhAuthorFragmentDoc = gql`
+    fragment NhAuthor on NhAuthor {
+  url
+  userId
+  checkedAt
+}
+    `;
 export const MeQueryDocument = gql`
     query MeQuery {
   meQuery {
@@ -7814,6 +8884,27 @@ export const WishlistItemsQueryDocument = gql`
   }
 }
     ${WishlistItemFragmentDoc}`;
+export const GroupedNhFavoritesQueryDocument = gql`
+    query GroupedNhFavoritesQuery {
+  groupedNhFavoritesQuery {
+    ...AuthorCount
+  }
+}
+    ${AuthorCountFragmentDoc}`;
+export const NhAuthorsQueryDocument = gql`
+    query NhAuthorsQuery {
+  nhAuthorsQuery {
+    ...NhAuthor
+  }
+}
+    ${NhAuthorFragmentDoc}`;
+export const ToggleNhAuthorMutationDocument = gql`
+    mutation ToggleNhAuthorMutation($data: String!) {
+  toggleNhAuthorMutation(authorUrl: $data) {
+    ...NhAuthor
+  }
+}
+    ${NhAuthorFragmentDoc}`;
 export const SaveRecipeMutationDocument = gql`
     mutation SaveRecipeMutation($data: RecipeInput!) {
   saveRecipeMutation(data: $data) {
@@ -7927,6 +9018,15 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     WishlistItemsQuery(variables?: WishlistItemsQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<WishlistItemsQueryQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<WishlistItemsQueryQuery>(WishlistItemsQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'WishlistItemsQuery', 'query');
+    },
+    GroupedNhFavoritesQuery(variables?: GroupedNhFavoritesQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GroupedNhFavoritesQueryQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GroupedNhFavoritesQueryQuery>(GroupedNhFavoritesQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'GroupedNhFavoritesQuery', 'query');
+    },
+    NhAuthorsQuery(variables?: NhAuthorsQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<NhAuthorsQueryQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<NhAuthorsQueryQuery>(NhAuthorsQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'NhAuthorsQuery', 'query');
+    },
+    ToggleNhAuthorMutation(variables: ToggleNhAuthorMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ToggleNhAuthorMutationMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ToggleNhAuthorMutationMutation>(ToggleNhAuthorMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'ToggleNhAuthorMutation', 'mutation');
     },
     SaveRecipeMutation(variables: SaveRecipeMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SaveRecipeMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<SaveRecipeMutationMutation>(SaveRecipeMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SaveRecipeMutation', 'mutation');

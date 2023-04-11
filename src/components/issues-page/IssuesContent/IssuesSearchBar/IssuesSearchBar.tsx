@@ -1,10 +1,10 @@
 import {
   Autocomplete,
   AutocompleteItem,
+  Flex,
   SelectItemProps,
   Text,
 } from '@mantine/core'
-import { IconTemplate } from '@tabler/icons-react'
 import multiwordSearch from 'endoh-utils/dist/text/multiwordSearch'
 
 import { forwardRef, useMemo, useState } from 'react'
@@ -17,6 +17,7 @@ type MyAutocompleteItem = AutocompleteItem & {
   label: string
   isSolved: boolean
   solution: string
+  multiplication: number
 }
 
 const IssuesSearchBar = (props: Props) => {
@@ -25,17 +26,21 @@ const IssuesSearchBar = (props: Props) => {
   const { data } = useIssuesQuery()
 
   const items = useMemo<MyAutocompleteItem[]>(() => {
+    if (text === '') return []
     return (
-      data?.map((issueLabel) => {
-        return {
-          label: issueLabel.title,
-          value: issueLabel.id,
-          isSolved: issueLabel.isSolved,
-          solution: issueLabel.solution,
-        }
-      }) || []
+      data
+        ?.map((issueLabel) => {
+          return {
+            label: issueLabel.title,
+            value: issueLabel.id,
+            isSolved: issueLabel.isSolved,
+            solution: issueLabel.solution,
+            multiplication: issueLabel.frequency * issueLabel.intensity,
+          }
+        })
+        .sort((a, b) => b.multiplication - a.multiplication) || []
     )
-  }, [data])
+  }, [data, text])
 
   const { openModal } = useIssueModalStore()
 
@@ -73,17 +78,20 @@ const IssuesSearchBar = (props: Props) => {
 type ItemProps = SelectItemProps & MyAutocompleteItem
 
 const AutoCompleteItem = forwardRef<HTMLDivElement, ItemProps>(
-  ({ label, isSolved, ...props }, ref) => (
+  ({ label, isSolved, multiplication, ...props }, ref) => (
     <div ref={ref} {...props}>
-      <Text
+      <Flex
+        gap={8}
         sx={{
           // strike through
           textDecoration: isSolved ? 'line-through' : 'none',
           color: isSolved ? 'gray' : 'inherit',
         }}
       >
-        {label}
-      </Text>
+        <Text>{multiplication}</Text>
+
+        <Text>{label}</Text>
+      </Flex>
     </div>
   )
 )

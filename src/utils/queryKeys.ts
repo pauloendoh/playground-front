@@ -12,4 +12,7 @@ export const queryKeys = {
   rawColors: ['rawColors'],
   mixedColors: ['mixedColors'],
   issueLabels: ['issueLabels'],
+
+  nhAuthorCount: ['nhAuthorCount'],
+  nhAuthors: ['nhAuthors'],
 }

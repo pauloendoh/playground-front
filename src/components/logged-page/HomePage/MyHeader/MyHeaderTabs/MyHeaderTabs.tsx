@@ -22,6 +22,10 @@ const MyHeaderTabs = (props: Props) => {
       return 'color-mixer'
     }
 
+    if (location.pathname.startsWith('/nh')) {
+      return 'nh'
+    }
+
     return 'monerate'
   }, [location])
 

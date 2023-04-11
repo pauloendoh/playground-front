@@ -132,3 +132,14 @@ fragment ColorProportion on ColorProportion {
   createdAt
   updatedAt
 }
+
+fragment AuthorCount on AuthorCount {
+  authorUrl
+  count
+}
+
+fragment NhAuthor on NhAuthor {
+  url
+  userId
+  checkedAt
+}

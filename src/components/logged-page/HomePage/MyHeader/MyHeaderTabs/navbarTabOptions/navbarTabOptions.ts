@@ -19,4 +19,9 @@ export const navbarTabOptions = [
     to: '/color-mixer',
     label: 'Color Mixer',
   },
+  {
+    tabValue: 'nh',
+    to: '/nh',
+    label: 'NH',
+  },
 ]
