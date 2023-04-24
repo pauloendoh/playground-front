@@ -1,6 +1,5 @@
 import { Button, Flex, ScrollArea, Text } from '@mantine/core'
 import { useMemo } from 'react'
-import { AiOutlineRise } from 'react-icons/ai'
 import { useSavingsQuery } from '../../../../../hooks/react-query/monerate/saving/useSavingsQuery'
 import useAverageMonthlyGrowthModalStore from '../../../../../hooks/zustand/modals/useAverageMonthlyGrowthModalStore'
 import useSavingModalStore from '../../../../../hooks/zustand/modals/useSavingModalStore'
@@ -51,8 +50,7 @@ const SavingsSection = (props: Props) => {
 
       <FlexVCenter justify={'space-between'} mt={16}>
         <FlexVCenter gap={4}>
-          <AiOutlineRise />
-          <Text>R$ {averageMonthlyGrowth.toFixed(0)} per month</Text>
+          <Text>+ R$ {averageMonthlyGrowth.toFixed(0)} per month</Text>
         </FlexVCenter>
 
         <Button
