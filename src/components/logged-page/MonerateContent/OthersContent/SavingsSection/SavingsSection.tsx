@@ -52,7 +52,7 @@ const SavingsSection = (props: Props) => {
       <FlexVCenter justify={'space-between'} mt={16}>
         <FlexVCenter gap={4}>
           <AiOutlineRise />
-          <Text>R$ {averageMonthlyGrowth.toFixed(2)} per month</Text>
+          <Text>R$ {averageMonthlyGrowth.toFixed(0)} per month</Text>
         </FlexVCenter>
 
         <Button
