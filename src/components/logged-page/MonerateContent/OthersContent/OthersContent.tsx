@@ -8,13 +8,13 @@ type Props = {}
 const OthersContent = (props: Props) => {
   return (
     <Grid>
-      <Grid.Col span={6}>
+      <Grid.Col span={5}>
         <SavingsSection />
         <Box mt={32} />
         <SalarySection />
       </Grid.Col>
 
-      <Grid.Col span={6}>
+      <Grid.Col span={7}>
         <WishlistItems />
       </Grid.Col>
     </Grid>

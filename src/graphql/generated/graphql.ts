@@ -8018,6 +8018,7 @@ export type WishlistItem = {
   createdAt: Scalars['DateTime'];
   id: Scalars['String'];
   itemName: Scalars['String'];
+  price: Maybe<Scalars['Int']>;
   priceInThousands: Scalars['Decimal'];
   updatedAt: Scalars['DateTime'];
   user: User;
@@ -8025,10 +8026,12 @@ export type WishlistItem = {
 };
 
 export type WishlistItemAvgAggregate = {
+  price: Maybe<Scalars['Float']>;
   priceInThousands: Maybe<Scalars['Decimal']>;
 };
 
 export type WishlistItemAvgOrderByAggregateInput = {
+  price: InputMaybe<SortOrder>;
   priceInThousands: InputMaybe<SortOrder>;
 };
 
@@ -8037,6 +8040,7 @@ export type WishlistItemCountAggregate = {
   createdAt: Scalars['Int'];
   id: Scalars['Int'];
   itemName: Scalars['Int'];
+  price: Scalars['Int'];
   priceInThousands: Scalars['Int'];
   updatedAt: Scalars['Int'];
   userId: Scalars['Int'];
@@ -8046,6 +8050,7 @@ export type WishlistItemCountOrderByAggregateInput = {
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   itemName: InputMaybe<SortOrder>;
+  price: InputMaybe<SortOrder>;
   priceInThousands: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
@@ -8055,6 +8060,7 @@ export type WishlistItemCreateInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   itemName: Scalars['String'];
+  price: InputMaybe<Scalars['Int']>;
   priceInThousands: Scalars['Decimal'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutWishlistItemsInput;
@@ -8064,6 +8070,7 @@ export type WishlistItemCreateManyInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   itemName: Scalars['String'];
+  price: InputMaybe<Scalars['Int']>;
   priceInThousands: Scalars['Decimal'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
@@ -8073,6 +8080,7 @@ export type WishlistItemCreateManyUserInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   itemName: Scalars['String'];
+  price: InputMaybe<Scalars['Int']>;
   priceInThousands: Scalars['Decimal'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
 };
@@ -8098,6 +8106,7 @@ export type WishlistItemCreateWithoutUserInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   itemName: Scalars['String'];
+  price: InputMaybe<Scalars['Int']>;
   priceInThousands: Scalars['Decimal'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
 };
@@ -8111,6 +8120,7 @@ export type WishlistItemGroupBy = {
   createdAt: Scalars['DateTime'];
   id: Scalars['String'];
   itemName: Scalars['String'];
+  price: Maybe<Scalars['Int']>;
   priceInThousands: Scalars['Decimal'];
   updatedAt: Scalars['DateTime'];
   userId: Scalars['String'];
@@ -8126,6 +8136,7 @@ export type WishlistItemMaxAggregate = {
   createdAt: Maybe<Scalars['DateTime']>;
   id: Maybe<Scalars['String']>;
   itemName: Maybe<Scalars['String']>;
+  price: Maybe<Scalars['Int']>;
   priceInThousands: Maybe<Scalars['Decimal']>;
   updatedAt: Maybe<Scalars['DateTime']>;
   userId: Maybe<Scalars['String']>;
@@ -8135,6 +8146,7 @@ export type WishlistItemMaxOrderByAggregateInput = {
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   itemName: InputMaybe<SortOrder>;
+  price: InputMaybe<SortOrder>;
   priceInThousands: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
@@ -8144,6 +8156,7 @@ export type WishlistItemMinAggregate = {
   createdAt: Maybe<Scalars['DateTime']>;
   id: Maybe<Scalars['String']>;
   itemName: Maybe<Scalars['String']>;
+  price: Maybe<Scalars['Int']>;
   priceInThousands: Maybe<Scalars['Decimal']>;
   updatedAt: Maybe<Scalars['DateTime']>;
   userId: Maybe<Scalars['String']>;
@@ -8153,6 +8166,7 @@ export type WishlistItemMinOrderByAggregateInput = {
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   itemName: InputMaybe<SortOrder>;
+  price: InputMaybe<SortOrder>;
   priceInThousands: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
@@ -8171,6 +8185,7 @@ export type WishlistItemOrderByWithAggregationInput = {
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   itemName: InputMaybe<SortOrder>;
+  price: InputMaybe<SortOrder>;
   priceInThousands: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
@@ -8180,6 +8195,7 @@ export type WishlistItemOrderByWithRelationInput = {
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   itemName: InputMaybe<SortOrder>;
+  price: InputMaybe<SortOrder>;
   priceInThousands: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   user: InputMaybe<UserOrderByWithRelationInput>;
@@ -8190,6 +8206,7 @@ export enum WishlistItemScalarFieldEnum {
   CreatedAt = 'createdAt',
   Id = 'id',
   ItemName = 'itemName',
+  Price = 'price',
   PriceInThousands = 'priceInThousands',
   UpdatedAt = 'updatedAt',
   UserId = 'userId'
@@ -8202,6 +8219,7 @@ export type WishlistItemScalarWhereInput = {
   createdAt: InputMaybe<DateTimeFilter>;
   id: InputMaybe<StringFilter>;
   itemName: InputMaybe<StringFilter>;
+  price: InputMaybe<IntNullableFilter>;
   priceInThousands: InputMaybe<DecimalFilter>;
   updatedAt: InputMaybe<DateTimeFilter>;
   userId: InputMaybe<StringFilter>;
@@ -8214,16 +8232,19 @@ export type WishlistItemScalarWhereWithAggregatesInput = {
   createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
   id: InputMaybe<StringWithAggregatesFilter>;
   itemName: InputMaybe<StringWithAggregatesFilter>;
+  price: InputMaybe<IntNullableWithAggregatesFilter>;
   priceInThousands: InputMaybe<DecimalWithAggregatesFilter>;
   updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
   userId: InputMaybe<StringWithAggregatesFilter>;
 };
 
 export type WishlistItemSumAggregate = {
+  price: Maybe<Scalars['Int']>;
   priceInThousands: Maybe<Scalars['Decimal']>;
 };
 
 export type WishlistItemSumOrderByAggregateInput = {
+  price: InputMaybe<SortOrder>;
   priceInThousands: InputMaybe<SortOrder>;
 };
 
@@ -8231,6 +8252,7 @@ export type WishlistItemUpdateInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   itemName: InputMaybe<StringFieldUpdateOperationsInput>;
+  price: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   priceInThousands: InputMaybe<DecimalFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   user: InputMaybe<UserUpdateOneRequiredWithoutWishlistItemsNestedInput>;
@@ -8240,6 +8262,7 @@ export type WishlistItemUpdateManyMutationInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   itemName: InputMaybe<StringFieldUpdateOperationsInput>;
+  price: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   priceInThousands: InputMaybe<DecimalFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -8272,6 +8295,7 @@ export type WishlistItemUpdateWithoutUserInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   itemName: InputMaybe<StringFieldUpdateOperationsInput>;
+  price: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   priceInThousands: InputMaybe<DecimalFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -8286,6 +8310,7 @@ export type WishlistItemValidInput = {
   createdAt: InputMaybe<Scalars['String']>;
   id: InputMaybe<Scalars['String']>;
   itemName: Scalars['String'];
+  price: InputMaybe<Scalars['Float']>;
   priceInThousands: Scalars['String'];
   updatedAt: InputMaybe<Scalars['String']>;
   userId: InputMaybe<Scalars['String']>;
@@ -8298,6 +8323,7 @@ export type WishlistItemWhereInput = {
   createdAt: InputMaybe<DateTimeFilter>;
   id: InputMaybe<StringFilter>;
   itemName: InputMaybe<StringFilter>;
+  price: InputMaybe<IntNullableFilter>;
   priceInThousands: InputMaybe<DecimalFilter>;
   updatedAt: InputMaybe<DateTimeFilter>;
   user: InputMaybe<UserRelationFilter>;
@@ -8314,7 +8340,7 @@ export type RecipeFragment = { id: string, userId: string, title: string, descri
 
 export type CurrentSavingFragment = { id: string, userId: string, value: string, date: string, selectedAsAverageMonthlyGrowth: boolean, createdAt: string, updatedAt: string };
 
-export type WishlistItemFragment = { id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string };
+export type WishlistItemFragment = { id: string, userId: string, itemName: string, priceInThousands: string, price: number | null, createdAt: string, updatedAt: string };
 
 export type ExpenseFragment = { id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, categories: Array<{ id: string }> };
 
@@ -8522,12 +8548,12 @@ export type SaveWishlistItemMutationMutationVariables = Exact<{
 }>;
 
 
-export type SaveWishlistItemMutationMutation = { saveWishlistItemMutation: { id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string } };
+export type SaveWishlistItemMutationMutation = { saveWishlistItemMutation: { id: string, userId: string, itemName: string, priceInThousands: string, price: number | null, createdAt: string, updatedAt: string } };
 
 export type WishlistItemsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type WishlistItemsQueryQuery = { wishlistItemsQuery: Array<{ id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string }> };
+export type WishlistItemsQueryQuery = { wishlistItemsQuery: Array<{ id: string, userId: string, itemName: string, priceInThousands: string, price: number | null, createdAt: string, updatedAt: string }> };
 
 export type GroupedNhFavoritesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -8603,6 +8629,7 @@ export const WishlistItemFragmentDoc = gql`
   userId
   itemName
   priceInThousands
+  price
   createdAt
   updatedAt
 }

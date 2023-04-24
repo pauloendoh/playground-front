@@ -1,11 +1,11 @@
-import { Button, Flex, ScrollArea } from '@mantine/core'
+import { Button, ScrollArea, Table } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { useMemo, useState } from 'react'
 import { useWishlistItemsQuery } from '../../../hooks/react-query/monerate/wishlist-item/useWishlistItemsQuery'
 import { MyWishlistItemValidInput } from '../../../types/domains/monerate/wishlist-item/MyWishlistItemValidInput'
 import WishlistItemModal from '../../_common/modals/WishlistItemModal/WishlistItemModal'
 import MyPaper from '../../_common/overrides/MyPaper'
-import WishlistItemButton from './WishlistItemButton/WishlistItemButton'
+import WishlistItemTableRow from './WishlistItemTableRow/WishlistItemTableRow'
 
 type Props = {
   test?: string
@@ -43,7 +43,38 @@ const WishlistItems = (props: Props) => {
       </Button>
 
       <ScrollArea mt={24} sx={{ height: 'calc(100vh - 320px)' }} type="auto">
-        <Flex direction="column">
+        <Table
+          sx={(theme) => ({
+            //on hover body tr
+            '& tbody tr:hover': {
+              backgroundColor: theme.colors.dark[4],
+              cursor: 'pointer',
+            },
+          })}
+        >
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Threshold</th>
+              <th>Price</th>
+              <th>ETA</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sortedItems?.map((item) => (
+              <WishlistItemTableRow
+                key={item.id}
+                item={item}
+                allItems={sortedItems}
+                onClick={() => {
+                  setModalInitialValue(item)
+                  handlers.open()
+                }}
+              />
+            ))}
+          </tbody>
+        </Table>
+        {/* <Flex direction="column">
           {sortedItems?.map((item) => (
             <WishlistItemButton
               key={item.id}
@@ -54,7 +85,7 @@ const WishlistItems = (props: Props) => {
               }}
             />
           ))}
-        </Flex>
+        </Flex> */}
       </ScrollArea>
 
       <WishlistItemModal

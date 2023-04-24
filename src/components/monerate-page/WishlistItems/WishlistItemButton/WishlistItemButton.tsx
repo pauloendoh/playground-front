@@ -67,6 +67,8 @@ const WishlistItemButton = (props: Props) => {
           R$ {upToNDecimals(Number(props.item.priceInThousands), 1)} K
         </Text>
       </Tooltip>
+
+      <Text w={100}>{props.item.price ? `R$ ${props.item.price}` : ' a'}</Text>
     </Button>
   )
 }
