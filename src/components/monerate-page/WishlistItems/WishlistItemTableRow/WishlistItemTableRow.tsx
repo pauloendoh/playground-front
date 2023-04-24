@@ -61,7 +61,13 @@ const WishlistItemTableRow = (props: Props) => {
 
   return (
     <tr onClick={() => props.onClick()}>
-      <td>{props.item.itemName}</td>
+      <td
+        style={{
+          maxWidth: 280,
+        }}
+      >
+        <Text truncate>{props.item.itemName}</Text>
+      </td>
       <td
         style={{
           color: valueToReach > 0 ? theme.colors.red[5] : theme.colors.green[5],
