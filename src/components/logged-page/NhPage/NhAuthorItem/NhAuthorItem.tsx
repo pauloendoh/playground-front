@@ -1,4 +1,4 @@
-import { Box, Checkbox } from '@mantine/core'
+import { Checkbox } from '@mantine/core'
 import { useMemo } from 'react'
 import { AuthorCountFragment } from '../../../../graphql/generated/graphql'
 import { useUseNhAuthorsQuery } from '../../../../hooks/react-query/nh/useNhAuthorsQuery'
@@ -23,7 +23,7 @@ const NhAuthorItem = (props: Props) => {
   }
 
   return (
-    <FlexVCenter>
+    <FlexVCenter gap={16}>
       <Checkbox
         checked={checked}
         onClick={handleChange}
@@ -33,10 +33,7 @@ const NhAuthorItem = (props: Props) => {
           },
         }}
       />
-      <Box ml={16} w="100px">
-        {' '}
-        ({props.authorCount.count} favorites)
-      </Box>
+
       <a href={props.authorCount.authorUrl + 'popular'}>
         {props.authorCount.authorUrl}popular
       </a>

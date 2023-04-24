@@ -27,7 +27,7 @@ const SavingsSection = (props: Props) => {
       >
         + Add Saving
       </Button>
-      <ScrollArea mt={24} sx={{ height: 160 }} type="auto">
+      <ScrollArea mt={24} sx={{ height: 'calc(100vh - 600px)' }} type="auto">
         <Flex direction="column">
           {sortedSavings?.map((saving, index) => (
             <SavingItem
