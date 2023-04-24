@@ -46,7 +46,7 @@ const WishlistItemTableRow = (props: Props) => {
     )
 
     const sumPreviousPrices = previousItems.reduce((sum, curr) => {
-      const price = Number(curr.priceInThousands)
+      const price = Number(curr.price)
       return sum + price
     }, 0)
 
