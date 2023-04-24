@@ -1,4 +1,4 @@
-import { Text, Tooltip, useMantineTheme } from '@mantine/core'
+import { Text, useMantineTheme } from '@mantine/core'
 import { upToNDecimals } from 'endoh-utils'
 import { useMemo } from 'react'
 import { WishlistItemFragment } from '../../../../graphql/generated/graphql'
@@ -74,11 +74,9 @@ const WishlistItemTableRow = (props: Props) => {
           minWidth: 80,
         }}
       >
-        <Tooltip label={tooltipLabel} withArrow>
-          <Text>
-            R$ {upToNDecimals(Number(props.item.priceInThousands), 1)} K
-          </Text>
-        </Tooltip>
+        <Text>
+          R$ {upToNDecimals(Number(props.item.priceInThousands), 1)} K
+        </Text>
       </td>
       <td>{props.item.price && `R$ ${props.item.price}`}</td>
       <td>{estimatedMonths > 0 && <Text>{estimatedMonths} months</Text>}</td>
