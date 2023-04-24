@@ -1,10 +1,14 @@
-import { Button, Flex, ScrollArea } from '@mantine/core'
+import { Button, Flex, ScrollArea, Text } from '@mantine/core'
 import { useMemo } from 'react'
+import { AiOutlineRise } from 'react-icons/ai'
 import { useSavingsQuery } from '../../../../../hooks/react-query/monerate/saving/useSavingsQuery'
+import useAverageMonthlyGrowthModalStore from '../../../../../hooks/zustand/modals/useAverageMonthlyGrowthModalStore'
 import useSavingModalStore from '../../../../../hooks/zustand/modals/useSavingModalStore'
 import { MySavingValidInput } from '../../../../../types/domains/monerate/saving/MySavingValidInput'
+import FlexVCenter from '../../../../_common/flex/FlexVCenter'
 import MyPaper from '../../../../_common/overrides/MyPaper'
 import SavingItem from './SavingItem/SavingItem'
+import { useAverageMonthlyGrowth } from './useAverageMonthlyGrowth/useAverageMonthlyGrowth'
 
 type Props = {}
 
@@ -16,6 +20,11 @@ const SavingsSection = (props: Props) => {
     () => savings?.sort((a, b) => b.date.localeCompare(a.date)) || [],
     [savings]
   )
+
+  const { openModal: openAverageMonthlyGrowthModal } =
+    useAverageMonthlyGrowthModalStore()
+
+  const averageMonthlyGrowth = useAverageMonthlyGrowth()
 
   return (
     <MyPaper>
@@ -39,6 +48,23 @@ const SavingsSection = (props: Props) => {
           ))}
         </Flex>
       </ScrollArea>
+
+      <FlexVCenter justify={'space-between'} mt={16}>
+        <FlexVCenter gap={4}>
+          <AiOutlineRise />
+          <Text>R$ {averageMonthlyGrowth.toFixed(2)} per month</Text>
+        </FlexVCenter>
+
+        <Button
+          component="span"
+          variant="default"
+          onClick={() => {
+            openAverageMonthlyGrowthModal()
+          }}
+        >
+          Edit
+        </Button>
+      </FlexVCenter>
     </MyPaper>
   )
 }

@@ -1,3 +1,4 @@
+import useAverageMonthlyGrowthModalStore from '../../../hooks/zustand/modals/useAverageMonthlyGrowthModalStore'
 import useCategoryModalStore from '../../../hooks/zustand/modals/useCategoryModalStore'
 import useExpenseModalStore from '../../../hooks/zustand/modals/useExpenseModalStore'
 import useIssueInsightsModalStore from '../../../hooks/zustand/modals/useIssueInsightsModalStore'
@@ -5,6 +6,7 @@ import useIssueLabelModalStore from '../../../hooks/zustand/modals/useIssueLabel
 import useIssueModalStore from '../../../hooks/zustand/modals/useIssueModalStore'
 import useRecipeModalStore from '../../../hooks/zustand/modals/useRecipeModalStore'
 import useSavingModalStore from '../../../hooks/zustand/modals/useSavingModalStore'
+import AverageMonthlyGrowthModal from './AverageMonthlyGrowthModal/AverageMonthlyGrowthModal'
 import CategoryModal from './CategoryModal/CategoryModal'
 import ExpenseModal from './ExpenseModal/ExpenseModal'
 import IssueInsightsModal from './IssueInsightsModal/IssueInsightsModal'
@@ -21,6 +23,7 @@ const GlobalModals = () => {
   const issueModalStore = useIssueModalStore()
   const issueLabelModalStore = useIssueLabelModalStore()
   const issueInsightsModalStore = useIssueInsightsModalStore()
+  const averageMonthlyGrowthModalStore = useAverageMonthlyGrowthModalStore()
 
   return (
     <>
@@ -63,6 +66,11 @@ const GlobalModals = () => {
       <IssueInsightsModal
         isOpen={issueInsightsModalStore.isOpen}
         onClose={issueInsightsModalStore.onClose}
+      />
+
+      <AverageMonthlyGrowthModal
+        isOpen={averageMonthlyGrowthModalStore.isOpen}
+        onClose={averageMonthlyGrowthModalStore.onClose}
       />
     </>
   )

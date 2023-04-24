@@ -2940,6 +2940,7 @@ export type Mutation = {
   saveSalaryMutation: Salary;
   saveSavingMutation: Saving;
   saveWishlistItemMutation: WishlistItem;
+  selectSavingAsAverageMonthlyGrowthMutation: Saving;
   toggleNhAuthorMutation: NhAuthor;
   updateManyCategory: AffectedRowsOutput;
   updateManyColorProportion: AffectedRowsOutput;
@@ -3377,6 +3378,11 @@ export type MutationSaveSavingMutationArgs = {
 
 export type MutationSaveWishlistItemMutationArgs = {
   data: WishlistItemValidInput;
+};
+
+
+export type MutationSelectSavingAsAverageMonthlyGrowthMutationArgs = {
+  savingId: Scalars['String'];
 };
 
 
@@ -6385,6 +6391,7 @@ export type Saving = {
   createdAt: Scalars['DateTime'];
   date: Scalars['DateTime'];
   id: Scalars['String'];
+  selectedAsAverageMonthlyGrowth: Scalars['Boolean'];
   updatedAt: Scalars['DateTime'];
   user: User;
   userId: Scalars['String'];
@@ -6404,6 +6411,7 @@ export type SavingCountAggregate = {
   createdAt: Scalars['Int'];
   date: Scalars['Int'];
   id: Scalars['Int'];
+  selectedAsAverageMonthlyGrowth: Scalars['Int'];
   updatedAt: Scalars['Int'];
   userId: Scalars['Int'];
   value: Scalars['Int'];
@@ -6413,6 +6421,7 @@ export type SavingCountOrderByAggregateInput = {
   createdAt: InputMaybe<SortOrder>;
   date: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
   value: InputMaybe<SortOrder>;
@@ -6422,6 +6431,7 @@ export type SavingCreateInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   date: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<Scalars['Boolean']>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutSavingsInput;
   value: Scalars['Decimal'];
@@ -6431,6 +6441,7 @@ export type SavingCreateManyInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   date: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<Scalars['Boolean']>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
   value: Scalars['Decimal'];
@@ -6440,6 +6451,7 @@ export type SavingCreateManyUserInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   date: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<Scalars['Boolean']>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   value: Scalars['Decimal'];
 };
@@ -6465,6 +6477,7 @@ export type SavingCreateWithoutUserInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   date: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<Scalars['Boolean']>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   value: Scalars['Decimal'];
 };
@@ -6478,6 +6491,7 @@ export type SavingGroupBy = {
   createdAt: Scalars['DateTime'];
   date: Scalars['DateTime'];
   id: Scalars['String'];
+  selectedAsAverageMonthlyGrowth: Scalars['Boolean'];
   updatedAt: Scalars['DateTime'];
   userId: Scalars['String'];
   value: Scalars['Decimal'];
@@ -6493,6 +6507,7 @@ export type SavingMaxAggregate = {
   createdAt: Maybe<Scalars['DateTime']>;
   date: Maybe<Scalars['DateTime']>;
   id: Maybe<Scalars['String']>;
+  selectedAsAverageMonthlyGrowth: Maybe<Scalars['Boolean']>;
   updatedAt: Maybe<Scalars['DateTime']>;
   userId: Maybe<Scalars['String']>;
   value: Maybe<Scalars['Decimal']>;
@@ -6502,6 +6517,7 @@ export type SavingMaxOrderByAggregateInput = {
   createdAt: InputMaybe<SortOrder>;
   date: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
   value: InputMaybe<SortOrder>;
@@ -6511,6 +6527,7 @@ export type SavingMinAggregate = {
   createdAt: Maybe<Scalars['DateTime']>;
   date: Maybe<Scalars['DateTime']>;
   id: Maybe<Scalars['String']>;
+  selectedAsAverageMonthlyGrowth: Maybe<Scalars['Boolean']>;
   updatedAt: Maybe<Scalars['DateTime']>;
   userId: Maybe<Scalars['String']>;
   value: Maybe<Scalars['Decimal']>;
@@ -6520,6 +6537,7 @@ export type SavingMinOrderByAggregateInput = {
   createdAt: InputMaybe<SortOrder>;
   date: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
   value: InputMaybe<SortOrder>;
@@ -6538,6 +6556,7 @@ export type SavingOrderByWithAggregationInput = {
   createdAt: InputMaybe<SortOrder>;
   date: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
   value: InputMaybe<SortOrder>;
@@ -6547,6 +6566,7 @@ export type SavingOrderByWithRelationInput = {
   createdAt: InputMaybe<SortOrder>;
   date: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   user: InputMaybe<UserOrderByWithRelationInput>;
   userId: InputMaybe<SortOrder>;
@@ -6557,6 +6577,7 @@ export enum SavingScalarFieldEnum {
   CreatedAt = 'createdAt',
   Date = 'date',
   Id = 'id',
+  SelectedAsAverageMonthlyGrowth = 'selectedAsAverageMonthlyGrowth',
   UpdatedAt = 'updatedAt',
   UserId = 'userId',
   Value = 'value'
@@ -6569,6 +6590,7 @@ export type SavingScalarWhereInput = {
   createdAt: InputMaybe<DateTimeFilter>;
   date: InputMaybe<DateTimeFilter>;
   id: InputMaybe<StringFilter>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<BoolFilter>;
   updatedAt: InputMaybe<DateTimeFilter>;
   userId: InputMaybe<StringFilter>;
   value: InputMaybe<DecimalFilter>;
@@ -6581,6 +6603,7 @@ export type SavingScalarWhereWithAggregatesInput = {
   createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
   date: InputMaybe<DateTimeWithAggregatesFilter>;
   id: InputMaybe<StringWithAggregatesFilter>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<BoolWithAggregatesFilter>;
   updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
   userId: InputMaybe<StringWithAggregatesFilter>;
   value: InputMaybe<DecimalWithAggregatesFilter>;
@@ -6598,6 +6621,7 @@ export type SavingUpdateInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   date: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<BoolFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   user: InputMaybe<UserUpdateOneRequiredWithoutSavingsNestedInput>;
   value: InputMaybe<DecimalFieldUpdateOperationsInput>;
@@ -6607,6 +6631,7 @@ export type SavingUpdateManyMutationInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   date: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<BoolFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   value: InputMaybe<DecimalFieldUpdateOperationsInput>;
 };
@@ -6639,6 +6664,7 @@ export type SavingUpdateWithoutUserInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   date: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<BoolFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   value: InputMaybe<DecimalFieldUpdateOperationsInput>;
 };
@@ -6653,6 +6679,7 @@ export type SavingValidInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   date: InputMaybe<Scalars['String']>;
   id: InputMaybe<Scalars['String']>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<Scalars['Boolean']>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: InputMaybe<Scalars['String']>;
   value: Scalars['String'];
@@ -6665,6 +6692,7 @@ export type SavingWhereInput = {
   createdAt: InputMaybe<DateTimeFilter>;
   date: InputMaybe<DateTimeFilter>;
   id: InputMaybe<StringFilter>;
+  selectedAsAverageMonthlyGrowth: InputMaybe<BoolFilter>;
   updatedAt: InputMaybe<DateTimeFilter>;
   user: InputMaybe<UserRelationFilter>;
   userId: InputMaybe<StringFilter>;
@@ -8284,7 +8312,7 @@ export type AuthUserFragment = { id: string, username: string, email: string, to
 
 export type RecipeFragment = { id: string, userId: string, title: string, description: string, rating: number | null, savedPosition: number | null, createdAt: string, updatedAt: string };
 
-export type CurrentSavingFragment = { id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string };
+export type CurrentSavingFragment = { id: string, userId: string, value: string, date: string, selectedAsAverageMonthlyGrowth: boolean, createdAt: string, updatedAt: string };
 
 export type WishlistItemFragment = { id: string, userId: string, itemName: string, priceInThousands: string, createdAt: string, updatedAt: string };
 
@@ -8468,12 +8496,19 @@ export type SaveSavingMutationMutationVariables = Exact<{
 }>;
 
 
-export type SaveSavingMutationMutation = { saveSavingMutation: { id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string } };
+export type SaveSavingMutationMutation = { saveSavingMutation: { id: string, userId: string, value: string, date: string, selectedAsAverageMonthlyGrowth: boolean, createdAt: string, updatedAt: string } };
 
 export type SavingsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SavingsQueryQuery = { savingsQuery: Array<{ id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string }> };
+export type SavingsQueryQuery = { savingsQuery: Array<{ id: string, userId: string, value: string, date: string, selectedAsAverageMonthlyGrowth: boolean, createdAt: string, updatedAt: string }> };
+
+export type SelectSavingAsAverageMonthlyGrowthMutationMutationVariables = Exact<{
+  savingId: Scalars['String'];
+}>;
+
+
+export type SelectSavingAsAverageMonthlyGrowthMutationMutation = { selectSavingAsAverageMonthlyGrowthMutation: { id: string, userId: string, value: string, date: string, selectedAsAverageMonthlyGrowth: boolean, createdAt: string, updatedAt: string } };
 
 export type DeleteWishlistMutationMutationVariables = Exact<{
   deleteWishlistMutationId: Scalars['String'];
@@ -8557,6 +8592,7 @@ export const CurrentSavingFragmentDoc = gql`
   userId
   value
   date
+  selectedAsAverageMonthlyGrowth
   createdAt
   updatedAt
 }
@@ -8865,6 +8901,13 @@ export const SavingsQueryDocument = gql`
   }
 }
     ${CurrentSavingFragmentDoc}`;
+export const SelectSavingAsAverageMonthlyGrowthMutationDocument = gql`
+    mutation SelectSavingAsAverageMonthlyGrowthMutation($savingId: String!) {
+  selectSavingAsAverageMonthlyGrowthMutation(savingId: $savingId) {
+    ...CurrentSaving
+  }
+}
+    ${CurrentSavingFragmentDoc}`;
 export const DeleteWishlistMutationDocument = gql`
     mutation DeleteWishlistMutation($deleteWishlistMutationId: String!) {
   deleteWishlistMutation(id: $deleteWishlistMutationId)
@@ -9009,6 +9052,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     SavingsQuery(variables?: SavingsQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SavingsQueryQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SavingsQueryQuery>(SavingsQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SavingsQuery', 'query');
+    },
+    SelectSavingAsAverageMonthlyGrowthMutation(variables: SelectSavingAsAverageMonthlyGrowthMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SelectSavingAsAverageMonthlyGrowthMutationMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SelectSavingAsAverageMonthlyGrowthMutationMutation>(SelectSavingAsAverageMonthlyGrowthMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'SelectSavingAsAverageMonthlyGrowthMutation', 'mutation');
     },
     DeleteWishlistMutation(variables: DeleteWishlistMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteWishlistMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<DeleteWishlistMutationMutation>(DeleteWishlistMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DeleteWishlistMutation', 'mutation');

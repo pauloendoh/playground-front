@@ -12,6 +12,8 @@ export class MySavingValidInput implements SavingValidInput {
     this.value = ''
     this.date = new Date().toISOString()
   }
+
+  selectedAsAverageMonthlyGrowth: InputMaybe<boolean>
   createdAt: InputMaybe<string>
   date: InputMaybe<string>
   id: InputMaybe<string>
