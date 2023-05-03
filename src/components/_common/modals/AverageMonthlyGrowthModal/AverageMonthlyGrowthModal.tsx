@@ -19,9 +19,19 @@ export default function AverageMonthlyGrowthModal(props: Props) {
   const [selectedSavingId, setSelectedSavingId] = useState<string | null>(null)
 
   useEffect(() => {
-    if (!savings) return
+    if (!props.isOpen) return
+
+    if (!savings || !!selectedSavingId) return
     const selected = savings.data?.find(
-      (saving) => saving.id === selectedSavingId
+      (saving) => saving.selectedAsAverageMonthlyGrowth
+    )
+    setSelectedSavingId(selected?.id || null)
+  }, [props.isOpen, savings])
+
+  useEffect(() => {
+    if (!savings || !!selectedSavingId) return
+    const selected = savings.data?.find(
+      (saving) => saving.selectedAsAverageMonthlyGrowth
     )
     setSelectedSavingId(selected?.id || null)
   }, [savings])
