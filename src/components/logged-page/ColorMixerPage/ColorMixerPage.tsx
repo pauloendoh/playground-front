@@ -16,7 +16,9 @@ const ColorMixerPage = (props: Props) => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
-  const { width: maxWidth } = useViewportSize()
+  const { width: viewPortSize } = useViewportSize()
+
+  const maxWidth = viewPortSize - 32
 
   const [isZoomed, setIsZoomed] = useState(false)
 

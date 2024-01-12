@@ -1,17 +1,16 @@
-import { IconMoonStars, IconSun } from '@tabler/icons-react'
-import { ImExit } from 'react-icons/im'
 import {
   ActionIcon,
   Button,
-  Flex,
   Header,
   Title,
   useMantineColorScheme,
 } from '@mantine/core'
+import { IconMoonStars, IconSun } from '@tabler/icons-react'
+import { ImExit } from 'react-icons/im'
 import { useLogout } from '../../../../hooks/domains/auth/useLogout'
+import { useMyMediaQuery } from '../../../../hooks/useMyMediaQuery'
 import FlexVCenter from '../../../_common/flex/FlexVCenter'
 import MyHeaderTabs from './MyHeaderTabs/MyHeaderTabs'
-import { useMyMediaQuery } from '../../../../hooks/useMyMediaQuery'
 
 type Props = {
   test?: string
@@ -23,6 +22,10 @@ const MyHeader = (props: Props) => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const dark = colorScheme === 'dark'
   const { isMobile } = useMyMediaQuery()
+
+  if (isMobile) {
+    return null
+  }
 
   return (
     <Header
