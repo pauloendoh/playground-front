@@ -9,7 +9,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { useLocalStorage } from '@mantine/hooks'
 import { Notifications } from '@mantine/notifications'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { useEffect, useState } from 'react'
 import { DeepPartial } from 'react-hook-form'
 import GlobalModals from './components/_common/modals/GlobalModals'
@@ -71,7 +70,7 @@ function App() {
               <LandingPage />
             )}
           </Box>
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </MantineProvider>
       </ColorSchemeProvider>
     </QueryClientProvider>

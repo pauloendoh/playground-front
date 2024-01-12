@@ -1,6 +1,7 @@
 import { Box, Center } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { localStorageKeys } from '../../../utils/localStorageKeys'
 import FlexVCenter from '../../_common/flex/FlexVCenter'
 import MixColorModal from './MixColorModal/MixColorModal'
 import RawColorsModal from './RawColorsModal/RawColorsModal'
@@ -15,9 +16,35 @@ const ColorMixerPage = (props: Props) => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
-  const { width } = useViewportSize()
+  const { width: maxWidth } = useViewportSize()
 
   const [isZoomed, setIsZoomed] = useState(false)
+
+  useEffect(() => {
+    const canvasSrc = localStorage.getItem(localStorageKeys.canvasSrc)
+    const canvas = canvasRef.current
+
+    if (canvasSrc && canvas) {
+      const ctx = canvas.getContext('2d')
+      if (ctx) {
+        const img = new Image()
+        img.onload = () => {
+          let imgWidth = img.width
+          let imgHeight = img.height
+
+          if (imgWidth > maxWidth) {
+            imgWidth = maxWidth
+            imgHeight = (img.height * maxWidth) / img.width
+          }
+
+          canvas.width = imgWidth
+          canvas.height = imgHeight
+          ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
+        }
+        img.src = canvasSrc
+      }
+    }
+  }, [canvasRef.current])
 
   return (
     <Box>
@@ -27,6 +54,7 @@ const ColorMixerPage = (props: Props) => {
           const file = e.target.files?.[0]
           if (file) {
             setFile(file)
+
             // load image file on canvas
             const canvas = canvasRef.current
             if (canvas) {
@@ -39,14 +67,18 @@ const ColorMixerPage = (props: Props) => {
                   let imgWidth = img.width
                   let imgHeight = img.height
 
-                  if (imgWidth > width) {
-                    imgWidth = width
-                    imgHeight = (img.height * width) / img.width
+                  if (imgWidth > maxWidth) {
+                    imgWidth = maxWidth
+                    imgHeight = (img.height * maxWidth) / img.width
                   }
 
                   canvas.width = imgWidth
                   canvas.height = imgHeight
                   ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
+                  localStorage.setItem(
+                    localStorageKeys.canvasSrc,
+                    canvas.toDataURL()
+                  )
                 }
                 img.src = URL.createObjectURL(file)
               }
