@@ -1,18 +1,21 @@
-import { Button, Center, ColorPicker, Modal } from '@mantine/core'
+import { Button, ColorInput, Divider, Modal, Title } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import { RawColorFragment } from '../../../../graphql/generated/graphql'
 import { useRawColorsQuery } from '../../../../hooks/react-query/colors/raw-color/useRawColorsQuery'
 import { useSaveRawColorMutation } from '../../../../hooks/react-query/colors/raw-color/useSaveRawColorMutation'
+import useRawColorModalStore from '../../../../hooks/zustand/modals/useRawColorModalStore'
 import { MyRawColorInput } from '../../../../types/domains/colors/raw-color/MyRawColorInput'
 import FlexCol from '../../../_common/flex/FlexCol'
+import FlexVCenter from '../../../_common/flex/FlexVCenter'
 import MyTextInput from '../../../_common/inputs/MyTextInput'
+import { hexIsLight } from '../hexIsLight/hexIsLight'
 
 type Props = {}
 
 const RawColorsModal = (props: Props) => {
-  const [isOpen, setIsOpen] = useState(false)
-
   const { data: rawColors } = useRawColorsQuery()
+
+  const { isOpen, initialValue, onClose, openModal } = useRawColorModalStore()
 
   const [selectedColor, setSelectedColor] = useState<RawColorFragment | null>(
     null
@@ -29,33 +32,33 @@ const RawColorsModal = (props: Props) => {
   const [color, setColor] = useState('')
 
   return (
-    <>
-      <Button onClick={() => setIsOpen(true)} color="yellow">
-        Raw Colors
-      </Button>
+    <Modal
+      fullScreen
+      onClose={() => {
+        onClose()
+      }}
+      opened={isOpen}
+      title={selectedColor ? 'Editing color' : 'New color'}
+    >
+      <FlexCol gap={16}>
+        <FlexCol gap={8}>
+          <MyTextInput
+            label="Name"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value)
+            }}
+          />
 
-      <Modal
-        onClose={() => {
-          setIsOpen(false)
-        }}
-        opened={isOpen}
-        title={selectedColor ? 'Editing color' : 'New color'}
-      >
-        <MyTextInput
-          label="Name"
-          value={name}
-          onChange={(e) => {
-            setName(e.target.value)
-          }}
-        />
-        <ColorPicker
-          value={color}
-          onChange={(color) => {
-            setColor(color)
-          }}
-          format="rgba"
-        />
-        <MyTextInput label="Color" value={color} />
+          <ColorInput
+            placeholder="Pick a color"
+            label="Color"
+            value={color}
+            onChange={(color) => {
+              setColor(color)
+            }}
+          />
+        </FlexCol>
 
         <Button
           onClick={() => {
@@ -70,44 +73,63 @@ const RawColorsModal = (props: Props) => {
         >
           Save
         </Button>
+      </FlexCol>
 
-        {rawColors
-          ?.sort((a, b) => {
-            // last updated first
-            return b.updatedAt.localeCompare(a.updatedAt)
-          })
-          .map((rawColor) => {
-            return (
-              <Center
-                onClick={() => {
-                  setSelectedColor(rawColor)
-                  setName(rawColor.name)
-                  setColor(rawColor.color)
-                }}
-                key={rawColor.id}
-                style={{
-                  backgroundColor: rawColor.color,
-                  width: '100px',
-                  height: '100px',
-                  // contrast color
-                }}
-              >
-                <FlexCol align={'center'}>
-                  <div>{rawColor.name}</div>
-                  <div
+      {rawColors && rawColors.length > 0 && (
+        <>
+          <Divider my={16} />
+          <Title order={2}>
+            {rawColors.length} color{rawColors.length > 1 ? 's' : ''}
+          </Title>
+
+          {/* grid 2 columns */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '8px ',
+              marginTop: '16px',
+            }}
+          >
+            {[...rawColors]
+              ?.sort((a, b) => {
+                // last updated first
+                return b.updatedAt.localeCompare(a.updatedAt)
+              })
+              .map((rawColor) => {
+                return (
+                  <FlexVCenter
+                    onClick={() => {
+                      setSelectedColor(rawColor)
+                      setName(rawColor.name)
+                      setColor(rawColor.color)
+                    }}
+                    key={rawColor.id}
                     style={{
-                      color: 'black',
-                      textAlign: 'center',
+                      backgroundColor: rawColor.color,
+                      width: '100%',
+                      padding: '8px 16px',
+                      borderRadius: 4,
+                      color: hexIsLight(rawColor.color) ? 'black' : 'white',
                     }}
                   >
-                    {rawColor.color}
-                  </div>
-                </FlexCol>
-              </Center>
-            )
-          })}
-      </Modal>
-    </>
+                    <FlexCol align={'center'}>
+                      <div>{rawColor.name}</div>
+                      <div
+                        style={{
+                          textAlign: 'center',
+                        }}
+                      >
+                        {rawColor.color}
+                      </div>
+                    </FlexCol>
+                  </FlexVCenter>
+                )
+              })}
+          </div>
+        </>
+      )}
+    </Modal>
   )
 }
 

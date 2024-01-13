@@ -1,17 +1,21 @@
-import { Box, Center } from '@mantine/core'
+import { Box, Text } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks'
 import React, { useEffect, useState } from 'react'
+import useMixColorModalStore from '../../../hooks/zustand/modals/useMixColorModalStore'
+import useRawColorModalStore from '../../../hooks/zustand/modals/useRawColorModalStore'
 import { localStorageKeys } from '../../../utils/localStorageKeys'
 import FlexVCenter from '../../_common/flex/FlexVCenter'
 import MixColorModal from './MixColorModal/MixColorModal'
 import RawColorsModal from './RawColorsModal/RawColorsModal'
+import { getColorNameFromHex } from './getColorNameFromHex/getColorNameFromHex'
+import { hexIsLight } from './hexIsLight/hexIsLight'
 
 type Props = {}
 
 const ColorMixerPage = (props: Props) => {
   const [file, setFile] = React.useState<File | null>(null)
-  const [hoveringColor, setHoveringColor] = React.useState<string | null>(null)
-  const [color, setColor] = React.useState('rgba(0, 0, 0, 0)')
+  const [hoveringHex, setHoveringHex] = React.useState<string>('')
+  const [color, setColor] = React.useState('')
 
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
   const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -48,53 +52,79 @@ const ColorMixerPage = (props: Props) => {
     }
   }, [canvasRef.current])
 
+  const fileInputRef = React.useRef<HTMLInputElement>(null)
+
+  const { openModal: openMixColorModal } = useMixColorModalStore()
+
+  const { openModal: openRawColorModal } = useRawColorModalStore()
   return (
     <Box>
-      <input
-        type="file"
-        onChange={(e) => {
-          const file = e.target.files?.[0]
-          if (file) {
-            setFile(file)
+      <FlexVCenter justify={'space-between'}>
+        <div>
+          <Text
+            onClick={() => {
+              fileInputRef.current?.click()
+            }}
+          >
+            Change image
+          </Text>
+          <input
+            ref={fileInputRef}
+            id="file"
+            style={{
+              display: 'none',
+            }}
+            type="file"
+            onChange={(e) => {
+              const file = e.target.files?.[0]
+              if (file) {
+                setFile(file)
 
-            // load image file on canvas
-            const canvas = canvasRef.current
-            if (canvas) {
-              const ctx = canvas.getContext('2d')
-              if (ctx) {
-                // max canva width = 100%
+                // load image file on canvas
+                const canvas = canvasRef.current
+                if (canvas) {
+                  const ctx = canvas.getContext('2d')
+                  if (ctx) {
+                    // max canva width = 100%
 
-                const img = new Image()
-                img.onload = () => {
-                  let imgWidth = img.width
-                  let imgHeight = img.height
+                    const img = new Image()
+                    img.onload = () => {
+                      let imgWidth = img.width
+                      let imgHeight = img.height
 
-                  if (imgWidth > maxWidth) {
-                    imgWidth = maxWidth
-                    imgHeight = (img.height * maxWidth) / img.width
+                      if (imgWidth > maxWidth) {
+                        imgWidth = maxWidth
+                        imgHeight = (img.height * maxWidth) / img.width
+                      }
+
+                      canvas.width = imgWidth
+                      canvas.height = imgHeight
+                      ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
+                      localStorage.setItem(
+                        localStorageKeys.canvasSrc,
+                        canvas.toDataURL()
+                      )
+                    }
+                    img.src = URL.createObjectURL(file)
                   }
-
-                  canvas.width = imgWidth
-                  canvas.height = imgHeight
-                  ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
-                  localStorage.setItem(
-                    localStorageKeys.canvasSrc,
-                    canvas.toDataURL()
-                  )
                 }
-                img.src = URL.createObjectURL(file)
               }
-            }
-          }
-        }}
-      />
-      <button
-        onClick={() => {
-          setIsZoomed(!isZoomed)
-        }}
-      >
-        Zoom {isZoomed ? '2x' : '1x'}
-      </button>
+            }}
+          />
+        </div>
+
+        <Text onClick={() => openRawColorModal(null)}>Raw colors</Text>
+
+        {/* <button
+          onClick={() => {
+            setIsZoomed(!isZoomed)
+          }}
+        >
+          Zoom {isZoomed ? '2x' : '1x'}
+        </button> */}
+      </FlexVCenter>
+
+      <Box mt={16} />
 
       <canvas
         id="canvas"
@@ -116,8 +146,10 @@ const ColorMixerPage = (props: Props) => {
               const pixel = ctx.getImageData(x, y, 1, 1)
               const data = pixel.data
 
-              const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3]})`
-              setHoveringColor(rgba)
+              const hex = `#${data[0].toString(16)}${data[1].toString(
+                16
+              )}${data[2].toString(16)}`
+              setHoveringHex(hex)
             }
           }
         }}
@@ -133,8 +165,11 @@ const ColorMixerPage = (props: Props) => {
               const pixel = ctx.getImageData(x, y, 1, 1)
               const data = pixel.data
 
-              const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3]})`
-              setHoveringColor(rgba)
+              const hex = `#${data[0].toString(16)}${data[1].toString(
+                16
+              )}${data[2].toString(16)}`
+
+              setHoveringHex(hex)
             }
           }
         }}
@@ -149,28 +184,46 @@ const ColorMixerPage = (props: Props) => {
               const pixel = ctx.getImageData(x, y, 1, 1)
               const data = pixel.data
 
-              const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3]})`
-              setColor(rgba)
+              const hex = `#${data[0].toString(16)}${data[1].toString(
+                16
+              )}${data[2].toString(16)}`
+
+              setHoveringHex(hex)
             }
           }
         }}
       />
 
-      <FlexVCenter gap={16}>
-        <Center
-          style={{
-            width: '100px',
-            height: '100px',
-            backgroundColor: hoveringColor || 'white',
+      <Box
+        style={{
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          padding: '16px',
+        }}
+      >
+        <FlexVCenter
+          gap={16}
+          sx={{
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            backgroundColor: hoveringHex,
+            borderRadius: 4,
+            padding: '8px 16px',
+            color: hexIsLight(hoveringHex) ? 'black' : 'white',
+          }}
+          onClick={() => {
+            openMixColorModal(hoveringHex)
           }}
         >
-          {hoveringColor}
-        </Center>
-      </FlexVCenter>
+          <Text>{hoveringHex}</Text>
+          <Text>{getColorNameFromHex(hoveringHex)}</Text>
+        </FlexVCenter>
 
-      <MixColorModal initialRgba={hoveringColor || 'rgba(0, 0, 0, 0)'} />
-
-      <RawColorsModal />
+        <MixColorModal />
+        <RawColorsModal />
+      </Box>
     </Box>
   )
 }

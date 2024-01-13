@@ -59,57 +59,54 @@ export default function IssueLabelModal(props: Props) {
   const { data: recipes } = useRecipesQuery()
 
   return (
-    <>
-      <Modal
-        opened={props.isOpen}
-        onClose={() => props.onClose()}
-        withCloseButton={false}
-        size="md"
-        styles={{
-          title: {
-            width: '100%',
-          },
-        }}
-        title={
-          <Flex align={'center'} justify="space-between">
-            <Title order={3}>
-              {props.initialValue?.id ? 'Edit Label' : 'Create Label'}
-            </Title>
-            {props.initialValue?.id ? //   afterDelete={() => props.onClose()} //   input={props.initialValue} // <IssueLabelMoreMenu
-            // />
-            null : (
-              <CloseButton onClick={() => props.onClose()} />
-            )}
-          </Flex>
-        }
-      >
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid>
-            <Grid.Col span={6}>
-              <TextInput
-                label="Name"
-                {...register('name')}
-                error={errors.name?.message}
-                autoComplete="off"
-              />
-            </Grid.Col>
+    <Modal
+      opened={props.isOpen}
+      onClose={() => props.onClose()}
+      withCloseButton={false}
+      size="md"
+      styles={{
+        title: {
+          width: '100%',
+        },
+      }}
+      title={
+        <Flex align={'center'} justify="space-between">
+          <Title order={3}>
+            {props.initialValue?.id ? 'Edit Label' : 'Create Label'}
+          </Title>
+          {props.initialValue?.id ? // /> //   afterDelete={() => props.onClose()} //   input={props.initialValue} // <IssueLabelMoreMenu
+          null : (
+            <CloseButton onClick={() => props.onClose()} />
+          )}
+        </Flex>
+      }
+    >
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid>
+          <Grid.Col span={6}>
+            <TextInput
+              label="Name"
+              {...register('name')}
+              error={errors.name?.message}
+              autoComplete="off"
+            />
+          </Grid.Col>
 
-            <Grid.Col span={6}>
-              <ColorInput
-                placeholder="Pick color"
-                label="Your favorite color"
-                onChange={(value) => setValue('bgColor', value)}
-                value={watch('bgColor')}
-              />
-            </Grid.Col>
-            <Grid.Col span={2}></Grid.Col>
-          </Grid>
+          <Grid.Col span={6}>
+            <ColorInput
+              placeholder="Pick color"
+              label="Your favorite color"
+              onChange={(value) => setValue('bgColor', value)}
+              value={watch('bgColor')}
+            />
+          </Grid.Col>
+          <Grid.Col span={2}></Grid.Col>
+        </Grid>
 
-          <Flex align="center" justify="space-between" mt={16}>
-            <Button type="submit">Save</Button>
-          </Flex>
-        </form>
-      </Modal>
-    </>
+        <Flex align="center" justify="space-between" mt={16}>
+          <Button type="submit">Save</Button>
+        </Flex>
+      </form>
+    </Modal>
   )
 }

@@ -22,31 +22,36 @@ const ColorProportionOption = (props: Props) => {
   )
 
   return (
-    <FlexVCenter gap={8}>
-      <div>
-        <div
-          style={{
-            width: 16,
-            height: 16,
-            borderRadius: 8,
-            backgroundColor: rawColor?.color,
+    <FlexVCenter justify={'space-between'}>
+      <FlexVCenter gap={8}>
+        <div>
+          <div
+            style={{
+              width: 16,
+              height: 16,
+              borderRadius: 8,
+              backgroundColor: rawColor?.color,
+            }}
+          />
+        </div>
+        <div>{rawColor?.name}</div>
+      </FlexVCenter>
+      <FlexVCenter gap={8}>
+        <NumberInput
+          size="sm"
+          w={64}
+          value={Number(props.colorProportion.proportion)}
+          onChange={(value) => {
+            props.onChange({
+              ...props.colorProportion,
+              proportion: value?.toString() || '0',
+            })
           }}
         />
-      </div>
-      <div>{rawColor?.name}</div>
-      <NumberInput
-        w={80}
-        value={Number(props.colorProportion.proportion)}
-        onChange={(value) => {
-          props.onChange({
-            ...props.colorProportion,
-            proportion: value?.toString() || '0',
-          })
-        }}
-      />
-      <ActionIcon onClick={props.onRemove}>
-        <MdDelete />
-      </ActionIcon>
+        <ActionIcon onClick={props.onRemove}>
+          <MdDelete />
+        </ActionIcon>
+      </FlexVCenter>
     </FlexVCenter>
   )
 }
