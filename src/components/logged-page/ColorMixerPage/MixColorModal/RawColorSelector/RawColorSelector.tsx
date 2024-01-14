@@ -2,7 +2,6 @@ import { Select, Text } from '@mantine/core'
 import { forwardRef, useMemo } from 'react'
 import { RawColorFragment } from '../../../../../graphql/generated/graphql'
 import { useRawColorsQuery } from '../../../../../hooks/react-query/colors/raw-color/useRawColorsQuery'
-import useRawColorModalStore from '../../../../../hooks/zustand/modals/useRawColorModalStore'
 import FlexVCenter from '../../../../_common/flex/FlexVCenter'
 
 type Props = {
@@ -60,7 +59,6 @@ const Item = forwardRef<HTMLDivElement, ItemProps>(
     { id, userId, name, color, createdAt, updatedAt, ...others }: ItemProps,
     ref
   ) => {
-    const { openModal } = useRawColorModalStore()
     return (
       <div
         ref={ref}

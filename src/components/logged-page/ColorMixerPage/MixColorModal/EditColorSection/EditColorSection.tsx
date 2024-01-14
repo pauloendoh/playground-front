@@ -6,6 +6,7 @@ import {
   ColorProportionInput,
   RawColorFragment,
 } from '../../../../../graphql/generated/graphql'
+import { useMixedColorsQuery } from '../../../../../hooks/react-query/colors/mixed-color/useMixedColorsQuery'
 import { useSaveMixedColorMutation } from '../../../../../hooks/react-query/colors/mixed-color/useSaveMixedColorsMutation'
 import { MyColorProportionInput } from '../../../../../types/domains/colors/mixed-color/MyColorProportionInput'
 import { MyMixedColorInput } from '../../../../../types/domains/colors/mixed-color/MyMixedColorInput'
@@ -17,18 +18,31 @@ import ColorProportionOption from '../ColorProportionOption/ColorProportionOptio
 import RawColorSelector from '../RawColorSelector/RawColorSelector'
 
 type Props = {
-  color: string
+  selectedHex: string
 }
 
-const EditColorSection = ({ color: hex }: Props) => {
+const EditColorSection = ({ selectedHex }: Props) => {
   const [addRawColor, setAddRawColor] = useState<RawColorFragment | null>(null)
   const [colorProportions, setColorProportions] = useState<
     ColorProportionInput[]
   >([])
 
+  const { data: mixedColors } = useMixedColorsQuery()
+
   useEffect(() => {
-    setColorProportions([])
-  }, [hex])
+    if (!mixedColors) return
+
+    const mixedColor = mixedColors.find((c) => c.color === selectedHex)
+
+    if (!mixedColor) return
+
+    setColorProportions(
+      mixedColor.colorProportions.map((c) => ({
+        ...c,
+        mixedColorId: mixedColor.id,
+      }))
+    )
+  }, [selectedHex])
 
   const { mutate } = useSaveMixedColorMutation()
 
@@ -38,14 +52,14 @@ const EditColorSection = ({ color: hex }: Props) => {
         <FlexVCenter
           style={{
             justifyContent: 'space-between',
-            backgroundColor: hex,
-            color: hexIsLight(hex) ? 'black' : 'white',
+            backgroundColor: selectedHex,
+            color: hexIsLight(selectedHex) ? 'black' : 'white',
             padding: '8px 16px',
             borderRadius: '4px',
           }}
         >
           <Text>
-            {hex} ({getColorNameFromHex(hex)})
+            {selectedHex} ({getColorNameFromHex(selectedHex)})
           </Text>
           <ActionIcon
             onClick={() => {
@@ -54,7 +68,7 @@ const EditColorSection = ({ color: hex }: Props) => {
               }
             }}
           >
-            <MdDelete />
+            <MdDelete color={hexIsLight(selectedHex) ? 'black' : 'white'} />
           </ActionIcon>
         </FlexVCenter>
 
@@ -106,7 +120,7 @@ const EditColorSection = ({ color: hex }: Props) => {
         mt={24}
         onClick={() => {
           const input = new MyMixedColorInput()
-          input.color = hex
+          input.color = selectedHex
           input.colorProportions = colorProportions
           mutate(input)
         }}

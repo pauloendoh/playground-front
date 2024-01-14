@@ -12,7 +12,7 @@ type Props = {}
 
 const MixColorModal = (props: Props) => {
   const {
-    initialValue: color,
+    initialValue: selectedHex,
     isOpen,
     onClose,
     openModal,
@@ -28,17 +28,17 @@ const MixColorModal = (props: Props) => {
         // high similarity value = less imilar
         // sort by most similar
         return (
-          getColorSimiliarityValue(a.color, color) -
-          getColorSimiliarityValue(b.color, color)
+          getColorSimiliarityValue(a.color, selectedHex) -
+          getColorSimiliarityValue(b.color, selectedHex)
         )
       })
       .slice(0, 10)
-  }, [mixedColors, color])
+  }, [mixedColors, selectedHex])
 
   return (
     <Modal onClose={() => onClose()} opened={isOpen} title="Mixing" fullScreen>
       <Box>
-        <EditColorSection color={color} />
+        <EditColorSection selectedHex={selectedHex} />
 
         <Button
           leftIcon={<MdClose />}
