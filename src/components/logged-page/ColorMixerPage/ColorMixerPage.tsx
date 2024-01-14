@@ -212,6 +212,7 @@ const ColorMixerPage = (props: Props) => {
             borderRadius: 4,
             padding: '8px 16px',
             color: hexIsLight(hoveringHex) ? 'black' : 'white',
+            userSelect: 'none', // disable select
           }}
           onClick={() => {
             openMixColorModal(hoveringHex)

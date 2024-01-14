@@ -2911,6 +2911,7 @@ export type Mutation = {
   deleteManySaving: AffectedRowsOutput;
   deleteManyUser: AffectedRowsOutput;
   deleteManyWishlistItem: AffectedRowsOutput;
+  deleteMixedColorMutation: Scalars['Boolean'];
   deleteOneCategory: Maybe<Category>;
   deleteOneColorProportion: Maybe<ColorProportion>;
   deleteOneExpense: Maybe<Expense>;
@@ -3233,6 +3234,11 @@ export type MutationDeleteManyUserArgs = {
 
 export type MutationDeleteManyWishlistItemArgs = {
   where: InputMaybe<WishlistItemWhereInput>;
+};
+
+
+export type MutationDeleteMixedColorMutationArgs = {
+  id: Scalars['String'];
 };
 
 
@@ -8383,6 +8389,13 @@ export type RegisterMutationMutationVariables = Exact<{
 
 export type RegisterMutationMutation = { registerMutation: { id: string, username: string, email: string, token: string, expiresAt: string } };
 
+export type DeleteMixedColorMutationMutationVariables = Exact<{
+  mixedColorId: Scalars['String'];
+}>;
+
+
+export type DeleteMixedColorMutationMutation = { deleteMixedColorMutation: boolean };
+
 export type MixedColorsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -8779,6 +8792,11 @@ export const RegisterMutationDocument = gql`
   }
 }
     ${AuthUserFragmentDoc}`;
+export const DeleteMixedColorMutationDocument = gql`
+    mutation DeleteMixedColorMutation($mixedColorId: String!) {
+  deleteMixedColorMutation(id: $mixedColorId)
+}
+    `;
 export const MixedColorsQueryDocument = gql`
     query MixedColorsQuery {
   mixedColorsQuery {
@@ -9010,6 +9028,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     RegisterMutation(variables: RegisterMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RegisterMutationMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<RegisterMutationMutation>(RegisterMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'RegisterMutation', 'mutation');
+    },
+    DeleteMixedColorMutation(variables: DeleteMixedColorMutationMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteMixedColorMutationMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DeleteMixedColorMutationMutation>(DeleteMixedColorMutationDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'DeleteMixedColorMutation', 'mutation');
     },
     MixedColorsQuery(variables?: MixedColorsQueryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MixedColorsQueryQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<MixedColorsQueryQuery>(MixedColorsQueryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'MixedColorsQuery', 'query');

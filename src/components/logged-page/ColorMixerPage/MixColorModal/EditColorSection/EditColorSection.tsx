@@ -1,13 +1,15 @@
 import { ActionIcon, Button, Text } from '@mantine/core'
 import { pushOrReplace } from 'endoh-utils'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { MdDelete } from 'react-icons/md'
 import {
   ColorProportionInput,
   RawColorFragment,
 } from '../../../../../graphql/generated/graphql'
+import { useDeleteMixedColorMutation } from '../../../../../hooks/react-query/colors/mixed-color/useDeleteMixedColorMutation'
 import { useMixedColorsQuery } from '../../../../../hooks/react-query/colors/mixed-color/useMixedColorsQuery'
 import { useSaveMixedColorMutation } from '../../../../../hooks/react-query/colors/mixed-color/useSaveMixedColorsMutation'
+import useMixColorModalStore from '../../../../../hooks/zustand/modals/useMixColorModalStore'
 import { MyColorProportionInput } from '../../../../../types/domains/colors/mixed-color/MyColorProportionInput'
 import { MyMixedColorInput } from '../../../../../types/domains/colors/mixed-color/MyMixedColorInput'
 import FlexCol from '../../../../_common/flex/FlexCol'
@@ -22,6 +24,7 @@ type Props = {
 }
 
 const EditColorSection = ({ selectedHex }: Props) => {
+  const { onClose } = useMixColorModalStore()
   const [addRawColor, setAddRawColor] = useState<RawColorFragment | null>(null)
   const [colorProportions, setColorProportions] = useState<
     ColorProportionInput[]
@@ -44,7 +47,13 @@ const EditColorSection = ({ selectedHex }: Props) => {
     )
   }, [selectedHex])
 
-  const { mutate } = useSaveMixedColorMutation()
+  const currentMix = useMemo(
+    () => mixedColors?.find((c) => c.color === selectedHex),
+    [selectedHex, mixedColors]
+  )
+
+  const { mutate: submitSave } = useSaveMixedColorMutation()
+  const { mutate: submitDelete } = useDeleteMixedColorMutation()
 
   return (
     <div>
@@ -61,15 +70,21 @@ const EditColorSection = ({ selectedHex }: Props) => {
           <Text>
             {selectedHex} ({getColorNameFromHex(selectedHex)})
           </Text>
-          <ActionIcon
-            onClick={() => {
-              if (confirm('Delete?')) {
-                alert('delete')
-              }
-            }}
-          >
-            <MdDelete color={hexIsLight(selectedHex) ? 'black' : 'white'} />
-          </ActionIcon>
+          {currentMix && (
+            <ActionIcon
+              onClick={() => {
+                if (confirm('Delete?')) {
+                  submitDelete(currentMix.id, {
+                    onSuccess: () => {
+                      onClose()
+                    },
+                  })
+                }
+              }}
+            >
+              <MdDelete color={hexIsLight(selectedHex) ? 'black' : 'white'} />
+            </ActionIcon>
+          )}
         </FlexVCenter>
 
         <FlexCol>
@@ -116,17 +131,20 @@ const EditColorSection = ({ selectedHex }: Props) => {
           </FlexCol>
         </FlexCol>
       </FlexCol>
-      <Button
-        mt={24}
-        onClick={() => {
-          const input = new MyMixedColorInput()
-          input.color = selectedHex
-          input.colorProportions = colorProportions
-          mutate(input)
-        }}
-      >
-        Save
-      </Button>
+
+      <FlexVCenter>
+        <Button
+          mt={24}
+          onClick={() => {
+            const input = new MyMixedColorInput()
+            input.color = selectedHex
+            input.colorProportions = colorProportions
+            submitSave(input)
+          }}
+        >
+          Save
+        </Button>
+      </FlexVCenter>
     </div>
   )
 }
