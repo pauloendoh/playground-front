@@ -2522,7 +2522,7 @@ export type LoginValidInput = {
 export type MixedColor = {
   _count: Maybe<MixedColorCount>;
   color: Scalars['String'];
-  colorProportions: Array<ColorProportion>;
+  colorProportions: Maybe<Array<ColorProportion>>;
   createdAt: Scalars['DateTime'];
   id: Scalars['String'];
   name: Scalars['String'];
@@ -8362,7 +8362,7 @@ export type IssueLabelFragment = { id: string, userId: string, name: string, bgC
 
 export type RawColorFragment = { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string };
 
-export type MixedColorFragment = { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string }> };
+export type MixedColorFragment = { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string }> | null };
 
 export type ColorProportionFragment = { id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string };
 
@@ -8399,14 +8399,14 @@ export type DeleteMixedColorMutationMutation = { deleteMixedColorMutation: boole
 export type MixedColorsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MixedColorsQueryQuery = { mixedColorsQuery: Array<{ id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string }> }> };
+export type MixedColorsQueryQuery = { mixedColorsQuery: Array<{ id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string }> | null }> };
 
 export type SaveMixedColorMutationMutationVariables = Exact<{
   data: MixedColorInput;
 }>;
 
 
-export type SaveMixedColorMutationMutation = { saveMixedColorMutation: { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string }> } };
+export type SaveMixedColorMutationMutation = { saveMixedColorMutation: { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string }> | null } };
 
 export type RawColorsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

@@ -40,10 +40,10 @@ const EditColorSection = ({ selectedHex }: Props) => {
     if (!mixedColor) return
 
     setColorProportions(
-      mixedColor.colorProportions.map((c) => ({
+      mixedColor.colorProportions?.map((c) => ({
         ...c,
         mixedColorId: mixedColor.id,
-      }))
+      })) ?? []
     )
   }, [selectedHex])
 
