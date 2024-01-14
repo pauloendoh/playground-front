@@ -15,7 +15,7 @@ type Props = {}
 const RawColorsModal = (props: Props) => {
   const { data: rawColors } = useRawColorsQuery()
 
-  const { isOpen, initialValue, onClose, openModal } = useRawColorModalStore()
+  const { isOpen, onClose } = useRawColorModalStore()
 
   const [selectedColor, setSelectedColor] = useState<RawColorFragment | null>(
     null
@@ -26,10 +26,10 @@ const RawColorsModal = (props: Props) => {
     }
   }, [isOpen])
 
-  const { mutate } = useSaveRawColorMutation()
+  const { mutate: submitSave } = useSaveRawColorMutation()
 
   const [name, setName] = useState('')
-  const [color, setColor] = useState('')
+  const [hex, setHex] = useState('')
 
   return (
     <Modal
@@ -53,9 +53,9 @@ const RawColorsModal = (props: Props) => {
           <ColorInput
             placeholder="Pick a color"
             label="Color"
-            value={color}
-            onChange={(color) => {
-              setColor(color)
+            value={hex}
+            onChange={(hex) => {
+              setHex(hex)
             }}
           />
         </FlexCol>
@@ -64,11 +64,11 @@ const RawColorsModal = (props: Props) => {
           onClick={() => {
             const input = new MyRawColorInput()
             input.name = name
-            input.color = color
+            input.color = hex
             if (selectedColor?.id) {
               input.id = selectedColor.id
             }
-            mutate(input)
+            submitSave(input)
           }}
         >
           Save
@@ -102,7 +102,7 @@ const RawColorsModal = (props: Props) => {
                     onClick={() => {
                       setSelectedColor(rawColor)
                       setName(rawColor.name)
-                      setColor(rawColor.color)
+                      setHex(rawColor.color)
                     }}
                     key={rawColor.id}
                     style={{

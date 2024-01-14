@@ -1,9 +1,10 @@
-import { Box, Button, Divider, Modal, Title } from '@mantine/core'
+import { Box, Button, Divider, Modal, Text, Title } from '@mantine/core'
 import { useMemo } from 'react'
 import { MdClose } from 'react-icons/md'
 import { useMixedColorsQuery } from '../../../../hooks/react-query/colors/mixed-color/useMixedColorsQuery'
 import useMixColorModalStore from '../../../../hooks/zustand/modals/useMixColorModalStore'
 import FlexVCenter from '../../../_common/flex/FlexVCenter'
+import { getColorNameFromHex } from '../getColorNameFromHex/getColorNameFromHex'
 import { getColorSimiliarityValue } from '../getColorSimiliarityValue'
 import { hexIsLight } from '../hexIsLight/hexIsLight'
 import EditColorSection from './EditColorSection/EditColorSection'
@@ -78,13 +79,14 @@ const MixColorModal = (props: Props) => {
                       color: hexIsLight(c.color) ? 'black' : 'white',
                       borderRadius: 4,
                       fontSize: 12,
-                      justifyContent: 'center',
+                      justifyContent: 'space-between',
                     }}
                     onClick={() => {
                       openModal(c.color)
                     }}
                   >
-                    {c.color}
+                    <Text>{c.color}</Text>
+                    <Text>{getColorNameFromHex(c.color)}</Text>
                   </FlexVCenter>
                 )
               })}

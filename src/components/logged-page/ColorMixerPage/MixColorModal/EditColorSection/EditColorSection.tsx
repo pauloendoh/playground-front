@@ -139,6 +139,7 @@ const EditColorSection = ({ selectedHex }: Props) => {
             const input = new MyMixedColorInput()
             input.color = selectedHex
             input.colorProportions = colorProportions
+            input.id = currentMix?.id ?? null
             submitSave(input)
           }}
         >

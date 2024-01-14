@@ -1,4 +1,4 @@
-import { Box, Text } from '@mantine/core'
+import { Box, Button, Text } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks'
 import React, { useEffect, useState } from 'react'
 import useMixColorModalStore from '../../../hooks/zustand/modals/useMixColorModalStore'
@@ -203,24 +203,39 @@ const ColorMixerPage = (props: Props) => {
           padding: '16px',
         }}
       >
-        <FlexVCenter
-          gap={16}
-          sx={{
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            backgroundColor: hoveringHex,
-            borderRadius: 4,
-            padding: '8px 16px',
-            color: hexIsLight(hoveringHex) ? 'black' : 'white',
-            userSelect: 'none', // disable select
-          }}
-          onClick={() => {
-            openMixColorModal(hoveringHex)
-          }}
-        >
-          <Text>{hoveringHex}</Text>
-          <Text>{getColorNameFromHex(hoveringHex)}</Text>
-        </FlexVCenter>
+        {hoveringHex && (
+          <Button
+            fullWidth
+            sx={{
+              backgroundColor: hoveringHex,
+              borderRadius: 4,
+              padding: '8px 16px',
+              color: hexIsLight(hoveringHex) ? 'black' : 'white',
+              ':hover': {
+                backgroundColor: hoveringHex,
+              },
+            }}
+            onClick={() => {
+              openMixColorModal(hoveringHex)
+            }}
+            styles={{
+              inner: {
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-between',
+              },
+              label: {
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'space-between',
+                fontWeight: 'normal',
+              },
+            }}
+          >
+            <Text>{hoveringHex}</Text>
+            <Text>{getColorNameFromHex(hoveringHex)}</Text>
+          </Button>
+        )}
 
         <MixColorModal />
         <RawColorsModal />
