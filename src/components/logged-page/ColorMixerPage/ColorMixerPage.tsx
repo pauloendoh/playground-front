@@ -32,6 +32,15 @@ const ColorMixerPage = (props: Props) => {
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null)
 
   useEffect(() => {
+    // disable pull to refresh
+    document.body.style.overscrollBehavior = 'none'
+
+    return () => {
+      document.body.style.overscrollBehavior = 'auto'
+    }
+  }, [])
+
+  useEffect(() => {
     const canvasSrc = localStorage.getItem(localStorageKeys.canvasSrc)
     const canvas = canvasRef.current
 
