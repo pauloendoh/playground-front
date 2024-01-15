@@ -144,6 +144,18 @@ const ImageCanvas = ({
     }
   }
 
+  const handleChangeZoom = () => {
+    if (zoom.current === 1) {
+      zoom.current = 2
+    } else if (zoom.current === 2) {
+      zoom.current = 3
+    } else if (zoom.current === 3) {
+      zoom.current = 1
+    }
+
+    redraw()
+  }
+
   return (
     <div className="ImageCanvas" style={{ position: 'relative' }}>
       <canvas
@@ -199,7 +211,7 @@ const ImageCanvas = ({
           console.log('pointer move')
           handleMouseMove(e.clientX, e.clientY)
         }}
-        onWheel={handleMouseWheel}
+        // onWheel={handleMouseWheel}
         onTouchStart={(e) => {
           console.log('touch start')
           handleTouchStart(e)
@@ -208,6 +220,7 @@ const ImageCanvas = ({
         onTouchMove={(e) => {
           handleMouseMove(e.touches[0].clientX, e.touches[0].clientY)
         }}
+        onDoubleClick={handleChangeZoom}
       />
 
       {/* central point. Make a circle */}
