@@ -4,7 +4,6 @@ import gql from 'graphql-tag'
 import { MixedColorFragment } from '../../../../graphql/generated/graphql'
 import { sdk } from '../../../../graphql/sdk'
 import { MyMixedColorInput } from '../../../../types/domains/colors/mixed-color/MyMixedColorInput'
-import { myNotifications } from '../../../../utils/mantine/myNotifications'
 import { queryKeys } from '../../../../utils/queryKeys'
 
 gql`
@@ -34,7 +33,7 @@ export const useSaveMixedColorMutation = () => {
     },
     {
       onSuccess: (saved) => {
-        myNotifications.success('MixedColor saved!')
+        // myNotifications.success('MixedColor saved!')
         if (!saved) return
         queryClient.setQueryData<MixedColorFragment[]>(
           queryKeys.mixedColors,

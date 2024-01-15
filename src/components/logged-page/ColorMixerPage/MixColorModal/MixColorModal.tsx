@@ -86,8 +86,22 @@ const MixColorModal = (props: Props) => {
                       openModal(c.color)
                     }}
                   >
-                    <Text>{c.color}</Text>
-                    <Text>{getColorNameFromHex(c.color)}</Text>
+                    <Text>{getColorNameFromHex(c.color)} </Text>
+                    {!!c.colorProportions?.length && (
+                      <Text
+                        sx={{
+                          fontSize: 11,
+                          backgroundColor: hexIsLight(c.color)
+                            ? 'black'
+                            : 'white',
+                          color: hexIsLight(c.color) ? 'white' : 'black',
+                          padding: '2px 4px',
+                          borderRadius: 4,
+                        }}
+                      >
+                        {c.colorProportions.length}
+                      </Text>
+                    )}
                   </FlexVCenter>
                 )
               })}

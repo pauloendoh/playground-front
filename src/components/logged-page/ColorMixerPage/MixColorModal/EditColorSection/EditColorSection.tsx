@@ -140,7 +140,11 @@ const EditColorSection = ({ selectedHex }: Props) => {
             input.color = selectedHex
             input.colorProportions = colorProportions
             input.id = currentMix?.id ?? null
-            submitSave(input)
+            submitSave(input, {
+              onSuccess: () => {
+                onClose()
+              },
+            })
           }}
         >
           Save
