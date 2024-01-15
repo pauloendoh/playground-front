@@ -71,6 +71,33 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
     redraw()
   }
 
+  useGesture(
+    {
+      onPinch: ({ delta: [scaledDelta], offset: [scale] }) => {
+        const delta = scaledDelta / scale
+
+        const newZoom = zoom.current + delta / 500
+        zoom.current = newZoom
+
+        if (zoom.current < 0.75) {
+          zoom.current = 0.75
+        }
+
+        if (zoom.current > 3) {
+          zoom.current = 3
+        }
+
+        redraw()
+      },
+    },
+    {
+      target: canvasRef,
+      eventOptions: {
+        passive: false,
+      },
+    }
+  )
+
   const redraw = () => {
     if (!context || !canvasRef.current || !image) {
       return
@@ -144,36 +171,12 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
       zoom.current = 3
     } else if (zoom.current === 3) {
       zoom.current = 1
+    } else {
+      zoom.current = 1
     }
 
     redraw()
   }
-
-  useGesture(
-    {
-      onPinch: ({ offset: [d] }) => {
-        const zoomChange = d / 100
-
-        const newZoom = zoom.current + zoomChange / 500
-        zoom.current = newZoom
-
-        if (zoom.current < 0.75) {
-          zoom.current = 0.75
-        }
-        if (zoom.current > 3) {
-          zoom.current = 3
-        }
-
-        redraw()
-      },
-    },
-    {
-      target: canvasRef,
-      eventOptions: {
-        passive: false,
-      },
-    }
-  )
 
   return (
     <div className="ImageCanvas" style={{ position: 'relative' }}>
@@ -230,7 +233,7 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
           console.log('pointer move')
           handleMouseMove(e.clientX, e.clientY)
         }}
-        onWheel={handleMouseWheel}
+        onWheel={handleMouseWheel} // to test on chrome web responsive
         onTouchStart={(e) => {
           console.log('touch start')
           handleTouchStart(e)

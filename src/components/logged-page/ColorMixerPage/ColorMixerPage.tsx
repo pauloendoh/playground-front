@@ -72,8 +72,6 @@ const ColorMixerPage = (props: Props) => {
           canvas.height = maxHeight
 
           // centralize image
-          // ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
-
           ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
 
           setImage(img)
