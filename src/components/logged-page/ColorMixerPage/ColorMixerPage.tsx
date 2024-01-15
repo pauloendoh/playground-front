@@ -109,8 +109,25 @@ const ColorMixerPage = (props: Props) => {
             onChange={(e) => {
               const file = e.target.files?.[0]
               if (file) {
-                const imageSrc = URL.createObjectURL(file)
-                loadImage(imageSrc)
+                // resize image file
+                const reader = new FileReader()
+                reader.readAsDataURL(file)
+
+                reader.onload = (event) => {
+                  const img = new Image()
+                  img.onload = () => {
+                    const elem = document.createElement('canvas')
+                    elem.width = 1000
+                    elem.height = img.height * (elem.width / img.width)
+                    const ctx = elem.getContext('2d')
+                    ctx?.drawImage(img, 0, 0, elem.width, elem.height)
+                    const data = ctx?.canvas.toDataURL()
+                    if (data) {
+                      loadImage(data)
+                    }
+                  }
+                  img.src = event.target?.result as string
+                }
               }
             }}
           />
