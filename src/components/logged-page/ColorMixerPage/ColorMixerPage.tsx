@@ -32,7 +32,7 @@ const ColorMixerPage = (props: Props) => {
     // disable scroll
     document.body.style.overflow = 'hidden'
 
-    // add this to
+    // add this to remove zoom
     const meta =
       '<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />'
     document.head.insertAdjacentHTML('beforeend', meta)
@@ -87,7 +87,11 @@ const ColorMixerPage = (props: Props) => {
 
   return (
     <Box>
-      <FlexVCenter justify={'space-between'}>
+      <FlexVCenter justify={'space-between'}
+      style={{
+        userSelect: 'none',
+      }}
+      >
         <div>
           <Text
             onClick={() => {
