@@ -14,19 +14,14 @@ import { hexIsLight } from './hexIsLight/hexIsLight'
 type Props = {}
 
 const ColorMixerPage = (props: Props) => {
-  const [file, setFile] = React.useState<File | null>(null)
   const [hoveringHex, setHoveringHex] = React.useState<string>('')
-  const [color, setColor] = React.useState('')
 
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
-  const [modalIsOpen, setModalIsOpen] = useState(false)
 
   const { width: viewPortWidth, height: viewPortHeight } = useViewportSize()
 
   const maxWidth = viewPortWidth - 32
   const maxHeight = viewPortHeight - 140
-
-  const [isZoomed, setIsZoomed] = useState(false)
 
   const [image, setImage] = useState<HTMLImageElement | null>(null)
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null)
@@ -34,9 +29,12 @@ const ColorMixerPage = (props: Props) => {
   useEffect(() => {
     // disable pull to refresh
     document.body.style.overscrollBehavior = 'none'
+    // disable scroll
+    document.body.style.overflow = 'hidden'
 
     return () => {
       document.body.style.overscrollBehavior = 'auto'
+      document.body.style.overflow = 'auto'
     }
   }, [])
 
@@ -102,8 +100,6 @@ const ColorMixerPage = (props: Props) => {
             onChange={(e) => {
               const file = e.target.files?.[0]
               if (file) {
-                setFile(file)
-
                 const imageSrc = URL.createObjectURL(file)
                 loadImage(imageSrc)
               }
@@ -112,14 +108,6 @@ const ColorMixerPage = (props: Props) => {
         </div>
 
         <Text onClick={() => openRawColorModal(null)}>Raw colors</Text>
-
-        {/* <button
-          onClick={() => {
-            setIsZoomed(!isZoomed)
-          }}
-        >
-          Zoom {isZoomed ? '2x' : '1x'}
-        </button> */}
       </FlexVCenter>
 
       <Box mt={16} />
