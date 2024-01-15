@@ -231,6 +231,7 @@ const ImageCanvas = ({
           left: '50%',
           color: hexIsLight(hoveringHex) ? 'black' : 'white',
           transform: 'translate(-50%, -50%)',
+          userSelect: 'none', // non selectable
         }}
       >
         ◯
