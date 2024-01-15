@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 
 type Props = {
   canvasRef: React.RefObject<HTMLCanvasElement>
@@ -8,7 +8,7 @@ type Props = {
 }
 
 const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
-  const [isMouseDown, setIsMouseDown] = useState(false)
+  const isMouseDown = useRef(false)
 
   const startPanX = useRef<number>(0)
   const startPanY = useRef<number>(0)
@@ -19,23 +19,23 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
   const zoom = useRef<number>(1)
 
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    setIsMouseDown(true)
+    isMouseDown.current = true
     startPanX.current = e.clientX
     startPanY.current = e.clientY
   }
 
   const handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    setIsMouseDown(true)
+    isMouseDown.current = true
     startPanX.current = e.touches[0].clientX
     startPanY.current = e.touches[0].clientY
   }
 
   const handleMouseUp = () => {
-    setIsMouseDown(false)
+    isMouseDown.current = false
   }
 
   const handleMouseMove = (clientX: number, clientY: number) => {
-    if (!isMouseDown) {
+    if (!isMouseDown.current) {
       return
     }
 
@@ -53,7 +53,7 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
 
   const handleMouseWheel = (e: React.WheelEvent<HTMLCanvasElement>) => {
     e.preventDefault()
-    setIsMouseDown(false)
+    isMouseDown.current = false
 
     const zoomChange = -e.deltaY
 
