@@ -168,9 +168,9 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
     if (zoom.current === 1) {
       zoom.current = 2
     } else if (zoom.current === 2) {
-      zoom.current = 3
-    } else if (zoom.current === 3) {
-      zoom.current = 1
+      zoom.current = 4
+    } else if (zoom.current === 4) {
+      zoom.current = 0.5
     } else {
       zoom.current = 1
     }
