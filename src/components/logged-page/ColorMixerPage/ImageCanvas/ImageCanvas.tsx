@@ -39,8 +39,8 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
       return
     }
 
-    const deltaX = startPanX.current - clientX
-    const deltaY = startPanY.current - clientY
+    const deltaX = (startPanX.current - clientX) / zoom.current
+    const deltaY = (startPanY.current - clientY) / zoom.current
 
     panX.current += deltaX
     panY.current += deltaY
