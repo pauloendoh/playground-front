@@ -138,8 +138,23 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
   }
 
   const bind = usePinch((handler) => {
-    console.log('pinch')
-    alert('pinch')
+    const delta = handler.delta
+
+    const zoomChange = delta[0]
+
+    const newZoom = zoom.current + zoomChange / 4
+
+    zoom.current = newZoom
+
+    if (zoom.current < 0.75) {
+      zoom.current = 0.75
+    }
+
+    if (zoom.current > 3) {
+      zoom.current = 3
+    }
+
+    redraw()
   })
 
   const handleChangeZoom = () => {
