@@ -1,3 +1,4 @@
+import { useGesture } from '@use-gesture/react'
 import React, { useRef } from 'react'
 
 type Props = {
@@ -147,6 +148,32 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
 
     redraw()
   }
+
+  useGesture(
+    {
+      onPinch: ({ offset: [d] }) => {
+        const zoomChange = d / 100
+
+        const newZoom = zoom.current + zoomChange / 500
+        zoom.current = newZoom
+
+        if (zoom.current < 0.75) {
+          zoom.current = 0.75
+        }
+        if (zoom.current > 3) {
+          zoom.current = 3
+        }
+
+        redraw()
+      },
+    },
+    {
+      target: canvasRef,
+      eventOptions: {
+        passive: false,
+      },
+    }
+  )
 
   return (
     <div className="ImageCanvas" style={{ position: 'relative' }}>
