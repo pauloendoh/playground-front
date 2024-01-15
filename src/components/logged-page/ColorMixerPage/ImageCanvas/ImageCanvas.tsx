@@ -1,4 +1,4 @@
-import { usePinch } from '@use-gesture/react'
+import { useGesture } from '@use-gesture/react'
 import React, { useRef } from 'react'
 
 type Props = {
@@ -137,25 +137,33 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
     }
   }
 
-  const bind = usePinch((handler) => {
-    const delta = handler.delta
+  useGesture(
+    {
+      onPinch: ({ delta }) => {
+        const zoomChange = delta[0]
 
-    const zoomChange = delta[0]
+        const newZoom = zoom.current + zoomChange / 4
 
-    const newZoom = zoom.current + zoomChange / 4
+        zoom.current = newZoom
 
-    zoom.current = newZoom
+        if (zoom.current < 0.75) {
+          zoom.current = 0.75
+        }
 
-    if (zoom.current < 0.75) {
-      zoom.current = 0.75
+        if (zoom.current > 3) {
+          zoom.current = 3
+        }
+
+        redraw()
+      },
+    },
+    {
+      target: canvasRef,
+      pinch: {
+        scaleBounds: { min: 0.75, max: 3 },
+      },
     }
-
-    if (zoom.current > 3) {
-      zoom.current = 3
-    }
-
-    redraw()
-  })
+  )
 
   const handleChangeZoom = () => {
     if (zoom.current === 1) {
@@ -236,7 +244,6 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
           handleMouseMove(e.touches[0].clientX, e.touches[0].clientY)
         }}
         onDoubleClick={handleChangeZoom}
-        {...bind()}
       />
 
       {/* central point. Make a circle */}
