@@ -25,6 +25,7 @@ const MixColorModal = (props: Props) => {
     if (!mixedColors) return []
 
     return [...mixedColors]
+      .filter((c) => c.color !== selectedHex)
       .sort((a, b) => {
         // high similarity value = less imilar
         // sort by most similar
