@@ -113,15 +113,9 @@ const RawColorsModal = (props: Props) => {
                       color: hexIsLight(rawColor.color) ? 'black' : 'white',
                     }}
                   >
-                    <FlexCol align={'center'}>
-                      <div>{rawColor.name}</div>
-                      <div
-                        style={{
-                          textAlign: 'center',
-                        }}
-                      >
-                        {rawColor.color}
-                      </div>
+                    <FlexCol align={'center'} justify={'center'} w="100%">
+                      <span>{rawColor.name}</span>
+                      <span>{rawColor.color}</span>
                     </FlexCol>
                   </FlexVCenter>
                 )

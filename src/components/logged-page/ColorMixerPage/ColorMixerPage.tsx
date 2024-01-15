@@ -87,10 +87,11 @@ const ColorMixerPage = (props: Props) => {
 
   return (
     <Box>
-      <FlexVCenter justify={'space-between'}
-      style={{
-        userSelect: 'none',
-      }}
+      <FlexVCenter
+        justify={'space-between'}
+        style={{
+          userSelect: 'none',
+        }}
       >
         <div>
           <Text
