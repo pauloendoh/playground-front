@@ -1,4 +1,3 @@
-import { useGesture } from '@use-gesture/react'
 import React, { useRef } from 'react'
 
 type Props = {
@@ -58,7 +57,7 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
 
     const zoomChange = -e.deltaY
 
-    const newZoom = zoom.current + zoomChange / 4
+    const newZoom = zoom.current + zoomChange / 500
     zoom.current = newZoom
 
     if (zoom.current < 0.75) {
@@ -137,34 +136,6 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
     }
   }
 
-  useGesture(
-    {
-      onPinch: ({ delta }) => {
-        const zoomChange = delta[0]
-
-        const newZoom = zoom.current + zoomChange / 4
-
-        zoom.current = newZoom
-
-        if (zoom.current < 0.75) {
-          zoom.current = 0.75
-        }
-
-        if (zoom.current > 3) {
-          zoom.current = 3
-        }
-
-        redraw()
-      },
-    },
-    {
-      target: canvasRef,
-      pinch: {
-        scaleBounds: { min: 0.75, max: 3 },
-      },
-    }
-  )
-
   const handleChangeZoom = () => {
     if (zoom.current === 1) {
       zoom.current = 2
@@ -232,7 +203,7 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
           console.log('pointer move')
           handleMouseMove(e.clientX, e.clientY)
         }}
-        // onWheel={handleMouseWheel}
+        onWheel={handleMouseWheel}
         onTouchStart={(e) => {
           console.log('touch start')
           handleTouchStart(e)
