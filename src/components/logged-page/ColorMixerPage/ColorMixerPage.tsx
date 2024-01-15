@@ -14,7 +14,7 @@ import { hexIsLight } from './hexIsLight/hexIsLight'
 type Props = {}
 
 const ColorMixerPage = (props: Props) => {
-  const [hoveringHex, setHoveringHex] = React.useState<string>('')
+  const [hoveringHex, setHoveringHex] = useState<string>('')
 
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
 

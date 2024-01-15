@@ -1,3 +1,4 @@
+import { usePinch } from '@use-gesture/react'
 import React, { useRef } from 'react'
 
 type Props = {
@@ -136,6 +137,11 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
     }
   }
 
+  const bind = usePinch((handler) => {
+    console.log('pinch')
+    alert('pinch')
+  })
+
   const handleChangeZoom = () => {
     if (zoom.current === 1) {
       zoom.current = 2
@@ -215,6 +221,7 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
           handleMouseMove(e.touches[0].clientX, e.touches[0].clientY)
         }}
         onDoubleClick={handleChangeZoom}
+        {...bind()}
       />
 
       {/* central point. Make a circle */}
