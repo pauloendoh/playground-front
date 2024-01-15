@@ -1,4 +1,4 @@
-import { Button, ColorInput, Divider, Modal, Title } from '@mantine/core'
+import { Button, ColorInput, Divider, Modal, Text, Title } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import { RawColorFragment } from '../../../../graphql/generated/graphql'
 import { useRawColorsQuery } from '../../../../hooks/react-query/colors/raw-color/useRawColorsQuery'
@@ -114,8 +114,8 @@ const RawColorsModal = (props: Props) => {
                     }}
                   >
                     <FlexCol align={'center'} justify={'center'} w="100%">
-                      <span>{rawColor.name}</span>
-                      <span>{rawColor.color}</span>
+                      <Text lineClamp={1}>{rawColor.name}</Text>
+                      <Text lineClamp={1}>{rawColor.color}</Text>
                     </FlexCol>
                   </FlexVCenter>
                 )
