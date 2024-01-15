@@ -210,6 +210,7 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
         }}
         onTouchEnd={handleMouseUp}
         onTouchMove={(e) => {
+          e.preventDefault()
           handleMouseMove(e.touches[0].clientX, e.touches[0].clientY)
         }}
         onDoubleClick={handleChangeZoom}
