@@ -61,8 +61,8 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
     const newZoom = zoom.current + zoomChange / 500
     zoom.current = newZoom
 
-    if (zoom.current < 0.25) {
-      zoom.current = 0.25
+    if (zoom.current < 0.5) {
+      zoom.current = 0.5
     }
     if (zoom.current > 2) {
       zoom.current = 2
@@ -79,8 +79,8 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
         const newZoom = zoom.current + delta / 500
         zoom.current = newZoom
 
-        if (zoom.current < 0.25) {
-          zoom.current = 0.25
+        if (zoom.current < 0.5) {
+          zoom.current = 0.5
         }
 
         if (zoom.current > 2) {
@@ -163,8 +163,6 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
     if (zoom.current === 1) {
       zoom.current = 2
     } else if (zoom.current === 2) {
-      zoom.current = 0.25
-    } else if (zoom.current === 0.25) {
       zoom.current = 0.5
     } else {
       zoom.current = 1
