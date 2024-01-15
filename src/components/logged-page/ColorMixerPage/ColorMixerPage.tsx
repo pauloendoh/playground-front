@@ -32,9 +32,15 @@ const ColorMixerPage = (props: Props) => {
     // disable scroll
     document.body.style.overflow = 'hidden'
 
+    // add this to
+    const meta =
+      '<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>'
+    document.head.insertAdjacentHTML('beforeend', meta)
+
     return () => {
       document.body.style.overscrollBehavior = 'auto'
       document.body.style.overflow = 'auto'
+      document.head.removeChild(document.head.lastChild as HTMLMetaElement)
     }
   }, [])
 
