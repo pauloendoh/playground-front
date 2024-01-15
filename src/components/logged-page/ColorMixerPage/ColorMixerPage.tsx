@@ -5,6 +5,7 @@ import useMixColorModalStore from '../../../hooks/zustand/modals/useMixColorModa
 import useRawColorModalStore from '../../../hooks/zustand/modals/useRawColorModalStore'
 import { localStorageKeys } from '../../../utils/localStorageKeys'
 import FlexVCenter from '../../_common/flex/FlexVCenter'
+import ImageCanvas from './ImageCanvas/ImageCanvas'
 import MixColorModal from './MixColorModal/MixColorModal'
 import RawColorsModal from './RawColorsModal/RawColorsModal'
 import { getColorNameFromHex } from './getColorNameFromHex/getColorNameFromHex'
@@ -20,17 +21,33 @@ const ColorMixerPage = (props: Props) => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
-  const { width: viewPortSize } = useViewportSize()
+  const { width: viewPortWidth, height: viewPortHeight } = useViewportSize()
 
-  const maxWidth = viewPortSize - 32
+  const maxWidth = viewPortWidth - 32
+  const maxHeight = viewPortHeight - 140
 
   const [isZoomed, setIsZoomed] = useState(false)
+
+  const [image, setImage] = useState<HTMLImageElement | null>(null)
+  const [context, setContext] = useState<CanvasRenderingContext2D | null>(null)
 
   useEffect(() => {
     const canvasSrc = localStorage.getItem(localStorageKeys.canvasSrc)
     const canvas = canvasRef.current
 
     if (canvasSrc && canvas) {
+      loadImage(canvasSrc)
+    }
+  }, [canvasRef.current])
+
+  const fileInputRef = React.useRef<HTMLInputElement>(null)
+
+  const { openModal: openMixColorModal } = useMixColorModalStore()
+  const { openModal: openRawColorModal } = useRawColorModalStore()
+
+  const loadImage = (imageSrc: string) => {
+    const canvas = canvasRef.current
+    if (canvas) {
       const ctx = canvas.getContext('2d')
       if (ctx) {
         const img = new Image()
@@ -38,25 +55,23 @@ const ColorMixerPage = (props: Props) => {
           let imgWidth = img.width
           let imgHeight = img.height
 
-          if (imgWidth > maxWidth) {
-            imgWidth = maxWidth
-            imgHeight = (img.height * maxWidth) / img.width
-          }
+          canvas.width = maxWidth
+          canvas.height = maxHeight
 
-          canvas.width = imgWidth
-          canvas.height = imgHeight
+          // centralize image
+          // ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
+
           ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
+
+          setImage(img)
+          setContext(ctx)
+          localStorage.setItem(localStorageKeys.canvasSrc, imageSrc)
         }
-        img.src = canvasSrc
+        img.src = imageSrc
       }
     }
-  }, [canvasRef.current])
+  }
 
-  const fileInputRef = React.useRef<HTMLInputElement>(null)
-
-  const { openModal: openMixColorModal } = useMixColorModalStore()
-
-  const { openModal: openRawColorModal } = useRawColorModalStore()
   return (
     <Box>
       <FlexVCenter justify={'space-between'}>
@@ -80,34 +95,8 @@ const ColorMixerPage = (props: Props) => {
               if (file) {
                 setFile(file)
 
-                // load image file on canvas
-                const canvas = canvasRef.current
-                if (canvas) {
-                  const ctx = canvas.getContext('2d')
-                  if (ctx) {
-                    // max canva width = 100%
-
-                    const img = new Image()
-                    img.onload = () => {
-                      let imgWidth = img.width
-                      let imgHeight = img.height
-
-                      if (imgWidth > maxWidth) {
-                        imgWidth = maxWidth
-                        imgHeight = (img.height * maxWidth) / img.width
-                      }
-
-                      canvas.width = imgWidth
-                      canvas.height = imgHeight
-                      ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
-                      localStorage.setItem(
-                        localStorageKeys.canvasSrc,
-                        canvas.toDataURL()
-                      )
-                    }
-                    img.src = URL.createObjectURL(file)
-                  }
-                }
+                const imageSrc = URL.createObjectURL(file)
+                loadImage(imageSrc)
               }
             }}
           />
@@ -126,72 +115,12 @@ const ColorMixerPage = (props: Props) => {
 
       <Box mt={16} />
 
-      <canvas
-        id="canvas"
-        ref={canvasRef}
-        style={{
-          touchAction: 'none',
-          // zoom 2x
-          transform: isZoomed ? 'scale(2)' : 'scale(1)',
-          transformOrigin: 'top left',
-        }}
-        onMouseMove={(e) => {
-          const canvas = canvasRef.current
-          if (canvas) {
-            const ctx = canvas.getContext('2d')
-            if (ctx) {
-              const rect = canvas.getBoundingClientRect()
-              const x = e.clientX - rect.left
-              const y = e.clientY - rect.top
-              const pixel = ctx.getImageData(x, y, 1, 1)
-              const data = pixel.data
-
-              const hex = `#${data[0].toString(16)}${data[1].toString(
-                16
-              )}${data[2].toString(16)}`
-              setHoveringHex(hex)
-            }
-          }
-        }}
-        // on touch drag
-        onTouchMove={(e) => {
-          const canvas = canvasRef.current
-          if (canvas) {
-            const ctx = canvas.getContext('2d')
-            if (ctx) {
-              const rect = canvas.getBoundingClientRect()
-              const x = e.touches[0].clientX - rect.left
-              const y = e.touches[0].clientY - rect.top
-              const pixel = ctx.getImageData(x, y, 1, 1)
-              const data = pixel.data
-
-              const hex = `#${data[0].toString(16)}${data[1].toString(
-                16
-              )}${data[2].toString(16)}`
-
-              setHoveringHex(hex)
-            }
-          }
-        }}
-        onClick={(e) => {
-          const canvas = canvasRef.current
-          if (canvas) {
-            const ctx = canvas.getContext('2d')
-            if (ctx) {
-              const rect = canvas.getBoundingClientRect()
-              const x = e.clientX - rect.left
-              const y = e.clientY - rect.top
-              const pixel = ctx.getImageData(x, y, 1, 1)
-              const data = pixel.data
-
-              const hex = `#${data[0].toString(16)}${data[1].toString(
-                16
-              )}${data[2].toString(16)}`
-
-              setHoveringHex(hex)
-            }
-          }
-        }}
+      <ImageCanvas
+        canvasRef={canvasRef}
+        hoveringHex={hoveringHex}
+        setHoveringHex={setHoveringHex}
+        image={image}
+        context={context}
       />
 
       <Box
