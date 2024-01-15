@@ -117,7 +117,6 @@ const ColorMixerPage = (props: Props) => {
 
       <ImageCanvas
         canvasRef={canvasRef}
-        hoveringHex={hoveringHex}
         setHoveringHex={setHoveringHex}
         image={image}
         context={context}

@@ -1,21 +1,13 @@
 import React, { useRef, useState } from 'react'
-import { hexIsLight } from '../hexIsLight/hexIsLight'
 
 type Props = {
   canvasRef: React.RefObject<HTMLCanvasElement>
-  hoveringHex: string
   setHoveringHex: (hex: string) => void
   image: HTMLImageElement | null
   context: CanvasRenderingContext2D | null
 }
 
-const ImageCanvas = ({
-  canvasRef,
-  setHoveringHex,
-  context,
-  image,
-  hoveringHex,
-}: Props) => {
+const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
   const [isMouseDown, setIsMouseDown] = useState(false)
 
   const startPanX = useRef<number>(0)
@@ -229,7 +221,7 @@ const ImageCanvas = ({
           position: 'absolute',
           top: '50%',
           left: '50%',
-          color: hexIsLight(hoveringHex) ? 'black' : 'white',
+          color: 'red',
           transform: 'translate(-50%, -50%)',
           userSelect: 'none', // non selectable
         }}
