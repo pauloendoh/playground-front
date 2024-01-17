@@ -26,7 +26,6 @@ const RawColorSelector = (props: Props) => {
 
   return (
     <Select
-      value={data.find((item) => item.value === props.value?.id)?.id || ''}
       onChange={(value) => {
         const rawColor = data.find((item) => item.value === value)
         if (!rawColor) return
@@ -36,7 +35,7 @@ const RawColorSelector = (props: Props) => {
       itemComponent={Item}
       data={data}
       searchable
-      maxDropdownHeight={400}
+      maxDropdownHeight={220}
       filter={(value, item) =>
         item.label?.toLowerCase().includes(value.toLowerCase().trim()) || false
       }
