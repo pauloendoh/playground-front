@@ -44,9 +44,10 @@ const ColorProportionOption = (props: Props) => {
           onChange={(value) => {
             props.onChange({
               ...props.colorProportion,
-              proportion: value?.toString() || '0',
+              proportion: value === '' ? 0 : value,
             })
           }}
+          precision={1}
         />
         <ActionIcon onClick={props.onRemove}>
           <MdDelete />

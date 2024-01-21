@@ -96,7 +96,7 @@ const EditColorSection = ({ selectedHex }: Props) => {
 
               const input = new MyColorProportionInput()
               input.rawColorId = value.id
-              input.proportion = '1'
+              input.proportion = 1
 
               const updatedProportions = pushOrReplace(
                 colorProportions,

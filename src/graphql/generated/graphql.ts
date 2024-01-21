@@ -511,7 +511,7 @@ export type ColorProportion = {
   id: Scalars['String'];
   mixedColor: MixedColor;
   mixedColorId: Scalars['String'];
-  proportion: Scalars['Decimal'];
+  proportion: Scalars['Float'];
   rawColor: RawColor;
   rawColorId: Scalars['String'];
   updatedAt: Scalars['DateTime'];
@@ -520,7 +520,7 @@ export type ColorProportion = {
 };
 
 export type ColorProportionAvgAggregate = {
-  proportion: Maybe<Scalars['Decimal']>;
+  proportion: Maybe<Scalars['Float']>;
 };
 
 export type ColorProportionAvgOrderByAggregateInput = {
@@ -552,7 +552,7 @@ export type ColorProportionCreateInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   mixedColor: MixedColorCreateNestedOneWithoutColorProportionsInput;
-  proportion: Scalars['Decimal'];
+  proportion: Scalars['Float'];
   rawColor: RawColorCreateNestedOneWithoutColorProportionsInput;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutColorProportionsInput;
@@ -562,7 +562,7 @@ export type ColorProportionCreateManyInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   mixedColorId: Scalars['String'];
-  proportion: Scalars['Decimal'];
+  proportion: Scalars['Float'];
   rawColorId: Scalars['String'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
@@ -571,7 +571,7 @@ export type ColorProportionCreateManyInput = {
 export type ColorProportionCreateManyMixedColorInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
-  proportion: Scalars['Decimal'];
+  proportion: Scalars['Float'];
   rawColorId: Scalars['String'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
@@ -586,7 +586,7 @@ export type ColorProportionCreateManyRawColorInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   mixedColorId: Scalars['String'];
-  proportion: Scalars['Decimal'];
+  proportion: Scalars['Float'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
 };
@@ -600,7 +600,7 @@ export type ColorProportionCreateManyUserInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   mixedColorId: Scalars['String'];
-  proportion: Scalars['Decimal'];
+  proportion: Scalars['Float'];
   rawColorId: Scalars['String'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
 };
@@ -649,7 +649,7 @@ export type ColorProportionCreateOrConnectWithoutUserInput = {
 export type ColorProportionCreateWithoutMixedColorInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
-  proportion: Scalars['Decimal'];
+  proportion: Scalars['Float'];
   rawColor: RawColorCreateNestedOneWithoutColorProportionsInput;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutColorProportionsInput;
@@ -659,7 +659,7 @@ export type ColorProportionCreateWithoutRawColorInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   mixedColor: MixedColorCreateNestedOneWithoutColorProportionsInput;
-  proportion: Scalars['Decimal'];
+  proportion: Scalars['Float'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutColorProportionsInput;
 };
@@ -668,7 +668,7 @@ export type ColorProportionCreateWithoutUserInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   mixedColor: MixedColorCreateNestedOneWithoutColorProportionsInput;
-  proportion: Scalars['Decimal'];
+  proportion: Scalars['Float'];
   rawColor: RawColorCreateNestedOneWithoutColorProportionsInput;
   updatedAt: InputMaybe<Scalars['DateTime']>;
 };
@@ -682,7 +682,7 @@ export type ColorProportionGroupBy = {
   createdAt: Scalars['DateTime'];
   id: Scalars['String'];
   mixedColorId: Scalars['String'];
-  proportion: Scalars['Decimal'];
+  proportion: Scalars['Float'];
   rawColorId: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   userId: Scalars['String'];
@@ -692,7 +692,7 @@ export type ColorProportionInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   mixedColorId: InputMaybe<Scalars['String']>;
-  proportion: Scalars['String'];
+  proportion: Scalars['Float'];
   rawColorId: Scalars['String'];
   updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: InputMaybe<Scalars['String']>;
@@ -708,7 +708,7 @@ export type ColorProportionMaxAggregate = {
   createdAt: Maybe<Scalars['DateTime']>;
   id: Maybe<Scalars['String']>;
   mixedColorId: Maybe<Scalars['String']>;
-  proportion: Maybe<Scalars['Decimal']>;
+  proportion: Maybe<Scalars['Float']>;
   rawColorId: Maybe<Scalars['String']>;
   updatedAt: Maybe<Scalars['DateTime']>;
   userId: Maybe<Scalars['String']>;
@@ -728,7 +728,7 @@ export type ColorProportionMinAggregate = {
   createdAt: Maybe<Scalars['DateTime']>;
   id: Maybe<Scalars['String']>;
   mixedColorId: Maybe<Scalars['String']>;
-  proportion: Maybe<Scalars['Decimal']>;
+  proportion: Maybe<Scalars['Float']>;
   rawColorId: Maybe<Scalars['String']>;
   updatedAt: Maybe<Scalars['DateTime']>;
   userId: Maybe<Scalars['String']>;
@@ -793,7 +793,7 @@ export type ColorProportionScalarWhereInput = {
   createdAt: InputMaybe<DateTimeFilter>;
   id: InputMaybe<StringFilter>;
   mixedColorId: InputMaybe<StringFilter>;
-  proportion: InputMaybe<DecimalFilter>;
+  proportion: InputMaybe<FloatFilter>;
   rawColorId: InputMaybe<StringFilter>;
   updatedAt: InputMaybe<DateTimeFilter>;
   userId: InputMaybe<StringFilter>;
@@ -806,14 +806,14 @@ export type ColorProportionScalarWhereWithAggregatesInput = {
   createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
   id: InputMaybe<StringWithAggregatesFilter>;
   mixedColorId: InputMaybe<StringWithAggregatesFilter>;
-  proportion: InputMaybe<DecimalWithAggregatesFilter>;
+  proportion: InputMaybe<FloatWithAggregatesFilter>;
   rawColorId: InputMaybe<StringWithAggregatesFilter>;
   updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
   userId: InputMaybe<StringWithAggregatesFilter>;
 };
 
 export type ColorProportionSumAggregate = {
-  proportion: Maybe<Scalars['Decimal']>;
+  proportion: Maybe<Scalars['Float']>;
 };
 
 export type ColorProportionSumOrderByAggregateInput = {
@@ -824,7 +824,7 @@ export type ColorProportionUpdateInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   mixedColor: InputMaybe<MixedColorUpdateOneRequiredWithoutColorProportionsNestedInput>;
-  proportion: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  proportion: InputMaybe<FloatFieldUpdateOperationsInput>;
   rawColor: InputMaybe<RawColorUpdateOneRequiredWithoutColorProportionsNestedInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   user: InputMaybe<UserUpdateOneRequiredWithoutColorProportionsNestedInput>;
@@ -833,7 +833,7 @@ export type ColorProportionUpdateInput = {
 export type ColorProportionUpdateManyMutationInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
-  proportion: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  proportion: InputMaybe<FloatFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -912,7 +912,7 @@ export type ColorProportionUpdateWithWhereUniqueWithoutUserInput = {
 export type ColorProportionUpdateWithoutMixedColorInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
-  proportion: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  proportion: InputMaybe<FloatFieldUpdateOperationsInput>;
   rawColor: InputMaybe<RawColorUpdateOneRequiredWithoutColorProportionsNestedInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   user: InputMaybe<UserUpdateOneRequiredWithoutColorProportionsNestedInput>;
@@ -922,7 +922,7 @@ export type ColorProportionUpdateWithoutRawColorInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   mixedColor: InputMaybe<MixedColorUpdateOneRequiredWithoutColorProportionsNestedInput>;
-  proportion: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  proportion: InputMaybe<FloatFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   user: InputMaybe<UserUpdateOneRequiredWithoutColorProportionsNestedInput>;
 };
@@ -931,7 +931,7 @@ export type ColorProportionUpdateWithoutUserInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   mixedColor: InputMaybe<MixedColorUpdateOneRequiredWithoutColorProportionsNestedInput>;
-  proportion: InputMaybe<DecimalFieldUpdateOperationsInput>;
+  proportion: InputMaybe<FloatFieldUpdateOperationsInput>;
   rawColor: InputMaybe<RawColorUpdateOneRequiredWithoutColorProportionsNestedInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -962,7 +962,7 @@ export type ColorProportionWhereInput = {
   id: InputMaybe<StringFilter>;
   mixedColor: InputMaybe<MixedColorRelationFilter>;
   mixedColorId: InputMaybe<StringFilter>;
-  proportion: InputMaybe<DecimalFilter>;
+  proportion: InputMaybe<FloatFilter>;
   rawColor: InputMaybe<RawColorRelationFilter>;
   rawColorId: InputMaybe<StringFilter>;
   updatedAt: InputMaybe<DateTimeFilter>;
@@ -1569,6 +1569,41 @@ export type ExpenseWhereInput = {
 
 export type ExpenseWhereUniqueInput = {
   id: InputMaybe<Scalars['String']>;
+};
+
+export type FloatFieldUpdateOperationsInput = {
+  decrement: InputMaybe<Scalars['Float']>;
+  divide: InputMaybe<Scalars['Float']>;
+  increment: InputMaybe<Scalars['Float']>;
+  multiply: InputMaybe<Scalars['Float']>;
+  set: InputMaybe<Scalars['Float']>;
+};
+
+export type FloatFilter = {
+  equals: InputMaybe<Scalars['Float']>;
+  gt: InputMaybe<Scalars['Float']>;
+  gte: InputMaybe<Scalars['Float']>;
+  in: InputMaybe<Array<Scalars['Float']>>;
+  lt: InputMaybe<Scalars['Float']>;
+  lte: InputMaybe<Scalars['Float']>;
+  not: InputMaybe<NestedFloatFilter>;
+  notIn: InputMaybe<Array<Scalars['Float']>>;
+};
+
+export type FloatWithAggregatesFilter = {
+  _avg: InputMaybe<NestedFloatFilter>;
+  _count: InputMaybe<NestedIntFilter>;
+  _max: InputMaybe<NestedFloatFilter>;
+  _min: InputMaybe<NestedFloatFilter>;
+  _sum: InputMaybe<NestedFloatFilter>;
+  equals: InputMaybe<Scalars['Float']>;
+  gt: InputMaybe<Scalars['Float']>;
+  gte: InputMaybe<Scalars['Float']>;
+  in: InputMaybe<Array<Scalars['Float']>>;
+  lt: InputMaybe<Scalars['Float']>;
+  lte: InputMaybe<Scalars['Float']>;
+  not: InputMaybe<NestedFloatWithAggregatesFilter>;
+  notIn: InputMaybe<Array<Scalars['Float']>>;
 };
 
 export type IntFieldUpdateOperationsInput = {
@@ -2522,7 +2557,7 @@ export type LoginValidInput = {
 export type MixedColor = {
   _count: Maybe<MixedColorCount>;
   color: Scalars['String'];
-  colorProportions: Maybe<Array<ColorProportion>>;
+  colorProportions: Array<ColorProportion>;
   createdAt: Scalars['DateTime'];
   id: Scalars['String'];
   name: Scalars['String'];
@@ -3798,6 +3833,22 @@ export type NestedFloatNullableFilter = {
   lt: InputMaybe<Scalars['Float']>;
   lte: InputMaybe<Scalars['Float']>;
   not: InputMaybe<NestedFloatNullableFilter>;
+  notIn: InputMaybe<Array<Scalars['Float']>>;
+};
+
+export type NestedFloatWithAggregatesFilter = {
+  _avg: InputMaybe<NestedFloatFilter>;
+  _count: InputMaybe<NestedIntFilter>;
+  _max: InputMaybe<NestedFloatFilter>;
+  _min: InputMaybe<NestedFloatFilter>;
+  _sum: InputMaybe<NestedFloatFilter>;
+  equals: InputMaybe<Scalars['Float']>;
+  gt: InputMaybe<Scalars['Float']>;
+  gte: InputMaybe<Scalars['Float']>;
+  in: InputMaybe<Array<Scalars['Float']>>;
+  lt: InputMaybe<Scalars['Float']>;
+  lte: InputMaybe<Scalars['Float']>;
+  not: InputMaybe<NestedFloatWithAggregatesFilter>;
   notIn: InputMaybe<Array<Scalars['Float']>>;
 };
 
@@ -8362,9 +8413,9 @@ export type IssueLabelFragment = { id: string, userId: string, name: string, bgC
 
 export type RawColorFragment = { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string };
 
-export type MixedColorFragment = { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string }> | null };
+export type MixedColorFragment = { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: number, createdAt: string, updatedAt: string }> };
 
-export type ColorProportionFragment = { id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string };
+export type ColorProportionFragment = { id: string, userId: string, rawColorId: string, proportion: number, createdAt: string, updatedAt: string };
 
 export type AuthorCountFragment = { authorUrl: string, count: number };
 
@@ -8399,14 +8450,14 @@ export type DeleteMixedColorMutationMutation = { deleteMixedColorMutation: boole
 export type MixedColorsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MixedColorsQueryQuery = { mixedColorsQuery: Array<{ id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string }> | null }> };
+export type MixedColorsQueryQuery = { mixedColorsQuery: Array<{ id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: number, createdAt: string, updatedAt: string }> }> };
 
 export type SaveMixedColorMutationMutationVariables = Exact<{
   data: MixedColorInput;
 }>;
 
 
-export type SaveMixedColorMutationMutation = { saveMixedColorMutation: { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: string, createdAt: string, updatedAt: string }> | null } };
+export type SaveMixedColorMutationMutation = { saveMixedColorMutation: { id: string, userId: string, name: string, color: string, createdAt: string, updatedAt: string, colorProportions: Array<{ id: string, userId: string, rawColorId: string, proportion: number, createdAt: string, updatedAt: string }> } };
 
 export type RawColorsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
