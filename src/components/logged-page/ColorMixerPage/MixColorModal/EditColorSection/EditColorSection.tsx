@@ -129,7 +129,7 @@ const EditColorSection = ({ selectedHex }: Props) => {
                 }}
               />
             ))}
-            <FlexVCenter justify={'flex-end'} mt={8}>
+            <FlexVCenter justify={'center'} mt={8}>
               <ColorProportionSquare colorProportions={colorProportions} />
             </FlexVCenter>
           </FlexCol>
