@@ -1,14 +1,21 @@
 import { useGesture } from '@use-gesture/react'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 type Props = {
   canvasRef: React.RefObject<HTMLCanvasElement>
   setHoveringHex: (hex: string) => void
   image: HTMLImageElement | null
   context: CanvasRenderingContext2D | null
+  zoomOut: boolean
 }
 
-const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
+const ImageCanvas = ({
+  canvasRef,
+  setHoveringHex,
+  context,
+  image,
+  zoomOut,
+}: Props) => {
   const isMouseDown = useRef(false)
 
   const startPanX = useRef<number>(0)
@@ -18,6 +25,13 @@ const ImageCanvas = ({ canvasRef, setHoveringHex, context, image }: Props) => {
   const panY = useRef<number>(0)
 
   const zoom = useRef<number>(1)
+
+  useEffect(() => {
+    if (zoomOut) {
+      zoom.current = 0.5
+      redraw()
+    }
+  }, [zoomOut])
 
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     isMouseDown.current = true

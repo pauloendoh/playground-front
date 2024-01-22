@@ -83,6 +83,8 @@ const ColorMixerPage = (props: Props) => {
     }
   }
 
+  const [zoomOut, setZoomOut] = useState(false)
+
   return (
     <Box>
       <FlexVCenter
@@ -97,7 +99,7 @@ const ColorMixerPage = (props: Props) => {
               fileInputRef.current?.click()
             }}
           >
-            Change image
+            Image
           </Text>
           <input
             ref={fileInputRef}
@@ -133,7 +135,19 @@ const ColorMixerPage = (props: Props) => {
           />
         </div>
 
-        <Text onClick={() => openRawColorModal(null)}>Raw colors</Text>
+        <Text
+          onClick={() => {
+            const current = zoomOut
+            setZoomOut(!current)
+            setTimeout(() => {
+              setZoomOut(current)
+            }, 100)
+          }}
+        >
+          Zoom out
+        </Text>
+
+        <Text onClick={() => openRawColorModal(null)}>Colors</Text>
       </FlexVCenter>
 
       <Box mt={16} />
@@ -143,6 +157,7 @@ const ColorMixerPage = (props: Props) => {
         setHoveringHex={setHoveringHex}
         image={image}
         context={context}
+        zoomOut={zoomOut}
       />
 
       <Box
