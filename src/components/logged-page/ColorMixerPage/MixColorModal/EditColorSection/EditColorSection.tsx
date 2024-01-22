@@ -18,6 +18,7 @@ import { getColorNameFromHex } from '../../getColorNameFromHex/getColorNameFromH
 import { hexIsLight } from '../../hexIsLight/hexIsLight'
 import ColorProportionOption from '../ColorProportionOption/ColorProportionOption'
 import RawColorSelector from '../RawColorSelector/RawColorSelector'
+import ColorProportionSquare from './ColorProportionSquare/ColorProportionSquare'
 
 type Props = {
   selectedHex: string
@@ -128,6 +129,9 @@ const EditColorSection = ({ selectedHex }: Props) => {
                 }}
               />
             ))}
+            <FlexVCenter justify={'flex-end'} mt={8}>
+              <ColorProportionSquare colorProportions={colorProportions} />
+            </FlexVCenter>
           </FlexCol>
         </FlexCol>
       </FlexCol>
