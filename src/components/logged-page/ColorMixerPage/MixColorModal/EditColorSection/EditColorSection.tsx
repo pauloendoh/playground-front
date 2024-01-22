@@ -136,8 +136,22 @@ const EditColorSection = ({ selectedHex }: Props) => {
         </FlexCol>
       </FlexCol>
 
-      <FlexVCenter>
+      <FlexVCenter gap={16}>
         <Button
+          fullWidth
+          mt={24}
+          onClick={() => {
+            const input = new MyMixedColorInput()
+            input.color = selectedHex
+            input.colorProportions = colorProportions
+            input.id = currentMix?.id ?? null
+            submitSave(input)
+          }}
+        >
+          Save
+        </Button>
+        <Button
+          fullWidth
           mt={24}
           onClick={() => {
             const input = new MyMixedColorInput()
@@ -150,8 +164,9 @@ const EditColorSection = ({ selectedHex }: Props) => {
               },
             })
           }}
+          variant="outline"
         >
-          Save
+          Save and close
         </Button>
       </FlexVCenter>
     </div>
