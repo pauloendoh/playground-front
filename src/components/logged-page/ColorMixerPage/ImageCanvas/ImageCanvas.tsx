@@ -176,7 +176,7 @@ const ImageCanvas = ({
   const handleChangeZoom = () => {
     if (zoom.current === 1) {
       zoom.current = 2
-    } else if (zoom.current === 2) {
+    } else {
       zoom.current = 1
     }
 
