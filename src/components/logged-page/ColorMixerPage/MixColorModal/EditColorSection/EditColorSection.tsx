@@ -25,7 +25,7 @@ type Props = {
 }
 
 const EditColorSection = ({ selectedHex }: Props) => {
-  const { onClose } = useMixColorModalStore()
+  const { onClose, openModal } = useMixColorModalStore()
   const [addRawColor, setAddRawColor] = useState<RawColorFragment | null>(null)
   const [colorProportions, setColorProportions] = useState<
     ColorProportionInput[]
@@ -55,6 +55,15 @@ const EditColorSection = ({ selectedHex }: Props) => {
 
   const { mutate: submitSave } = useSaveMixedColorMutation()
   const { mutate: submitDelete } = useDeleteMixedColorMutation()
+
+  const [showSavedMessage, setShowSavedMessage] = useState(false)
+  useEffect(() => {
+    if (showSavedMessage) {
+      setTimeout(() => {
+        setShowSavedMessage(false)
+      }, 2000)
+    }
+  }, [showSavedMessage])
 
   return (
     <div>
@@ -138,6 +147,7 @@ const EditColorSection = ({ selectedHex }: Props) => {
 
       <FlexVCenter gap={16}>
         <Button
+          disabled={showSavedMessage}
           fullWidth
           mt={24}
           onClick={() => {
@@ -145,10 +155,14 @@ const EditColorSection = ({ selectedHex }: Props) => {
             input.color = selectedHex
             input.colorProportions = colorProportions
             input.id = currentMix?.id ?? null
-            submitSave(input)
+            submitSave(input, {
+              onSuccess: () => {
+                setShowSavedMessage(true)
+              },
+            })
           }}
         >
-          Save
+          {showSavedMessage ? 'Saved!' : 'Save'}
         </Button>
         <Button
           fullWidth
