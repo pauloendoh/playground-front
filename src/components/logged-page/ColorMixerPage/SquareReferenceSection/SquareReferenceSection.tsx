@@ -27,20 +27,23 @@ const SquareReferenceSection = ({ ...props }: Props) => {
     }
   }
 
+  const widthProportion = value.width / value.height
+
   return (
     <FlexVCenter
       sx={{
-        opacity: 0.5,
+        color: '#225c5e',
+        justifyContent: 'flex-end',
       }}
     >
       <FlexCol className="ColorProportionSquare" onClick={handleClick}>
         <FlexVCenter>
           <Box
-            w={48}
-            h={48}
+            h={30}
+            w={30 * widthProportion}
             sx={{
-              border: '1px solid white',
-              borderRadius: 4,
+              borderRight: '1px solid #225c5e',
+              borderBottom: '1px solid #225c5e',
               fontSize: 12,
             }}
           />
