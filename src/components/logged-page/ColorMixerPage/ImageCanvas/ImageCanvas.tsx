@@ -146,10 +146,20 @@ const ImageCanvas = ({
       1
     ).data
 
-    const centralPointHex = `#${centralPoint[0].toString(
-      16
-    )}${centralPoint[1].toString(16)}${centralPoint[2].toString(16)}`
-    setHoveringHex(centralPointHex)
+    const hex =
+      '#' +
+      (
+        '000000' + rgbToHex(centralPoint[0], centralPoint[1], centralPoint[2])
+      ).slice(-6)
+    setHoveringHex(hex)
+  }
+
+  function rgbToHex(r: number, g: number, b: number) {
+    if (r > 255 || g > 255 || b > 255) {
+      return 'Invalid color component'
+    }
+
+    return ((r << 16) | (g << 8) | b).toString(16)
   }
 
   const boundPan = () => {
