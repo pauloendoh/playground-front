@@ -35,7 +35,7 @@ const ColorProportionSquare = ({ ...props }: Props) => {
   }, [guide])
 
   const squareQuantity = useMemo(() => {
-    return guideAreaCm / squareAreaCm
+    return squareAreaCm / guideAreaCm
   }, [guideAreaCm, squareAreaCm])
 
   return (
@@ -80,7 +80,7 @@ const ColorProportionSquare = ({ ...props }: Props) => {
               fontSize: 12,
             }}
           >
-            {squareQuantity.toFixed(1)} squares
+            {squareQuantity.toFixed(1)} guide squares
           </Text>
         </FlexVCenter>
       )}
