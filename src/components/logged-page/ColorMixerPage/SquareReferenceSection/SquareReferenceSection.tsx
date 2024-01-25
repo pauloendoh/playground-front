@@ -1,5 +1,6 @@
 import { Box, Text } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
+import { IoMdEye, IoMdEyeOff } from 'react-icons/io'
 import { localStorageKeys } from '../../../../utils/localStorageKeys'
 import FlexCol from '../../../_common/flex/FlexCol'
 import FlexVCenter from '../../../_common/flex/FlexVCenter'
@@ -7,6 +8,11 @@ import FlexVCenter from '../../../_common/flex/FlexVCenter'
 type Props = {}
 
 const SquareReferenceSection = ({ ...props }: Props) => {
+  const [showGuide, setShowGuide] = useLocalStorage<boolean>({
+    key: 'showGuide',
+    defaultValue: false,
+  })
+
   const [value, setValue] = useLocalStorage<{ height: number; width: number }>({
     key: localStorageKeys.squareReference,
     defaultValue: {
@@ -33,10 +39,20 @@ const SquareReferenceSection = ({ ...props }: Props) => {
     <FlexVCenter
       sx={{
         color: '#225c5e',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
       }}
     >
-      <FlexCol className="ColorProportionSquare" onClick={handleClick}>
+      <div onClick={() => setShowGuide(!showGuide)}>
+        {showGuide ? <IoMdEyeOff /> : <IoMdEye />}
+      </div>
+
+      <FlexCol
+        sx={{
+          visibility: showGuide ? 'visible' : 'hidden',
+        }}
+        className="ColorProportionSquare"
+        onClick={handleClick}
+      >
         <FlexVCenter>
           <Box
             h={30}
