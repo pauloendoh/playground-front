@@ -3,4 +3,5 @@ export const localStorageKeys = {
   colorScheme: 'colorScheme',
 
   canvasSrc: 'canvasSrc',
+  squareReference: 'squareReference',
 }

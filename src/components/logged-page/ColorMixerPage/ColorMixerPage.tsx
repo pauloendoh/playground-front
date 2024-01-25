@@ -4,10 +4,12 @@ import React, { useEffect, useState } from 'react'
 import useMixColorModalStore from '../../../hooks/zustand/modals/useMixColorModalStore'
 import useRawColorModalStore from '../../../hooks/zustand/modals/useRawColorModalStore'
 import { localStorageKeys } from '../../../utils/localStorageKeys'
+import FlexCol from '../../_common/flex/FlexCol'
 import FlexVCenter from '../../_common/flex/FlexVCenter'
 import ImageCanvas from './ImageCanvas/ImageCanvas'
 import MixColorModal from './MixColorModal/MixColorModal'
 import RawColorsModal from './RawColorsModal/RawColorsModal'
+import SquareReferenceSection from './SquareReferenceSection/SquareReferenceSection'
 import { getColorNameFromHex } from './getColorNameFromHex/getColorNameFromHex'
 import { hexIsLight } from './hexIsLight/hexIsLight'
 
@@ -160,52 +162,53 @@ const ColorMixerPage = (props: Props) => {
         zoomOut={zoomOut}
       />
 
-      <Box
+      <FlexCol
         style={{
           position: 'fixed',
           bottom: 0,
           left: 0,
           right: 0,
           padding: '16px',
+          gap: '16px',
         }}
       >
-        {hoveringHex && (
-          <Button
-            fullWidth
-            sx={{
+        <SquareReferenceSection />
+        <Button
+          fullWidth
+          sx={{
+            visibility: hoveringHex ? 'visible' : 'hidden',
+            backgroundColor: hoveringHex,
+            borderRadius: 4,
+            padding: '8px 16px',
+            color: hexIsLight(hoveringHex) ? 'black' : 'white',
+            ':hover': {
               backgroundColor: hoveringHex,
-              borderRadius: 4,
-              padding: '8px 16px',
-              color: hexIsLight(hoveringHex) ? 'black' : 'white',
-              ':hover': {
-                backgroundColor: hoveringHex,
-              },
-            }}
-            onClick={() => {
-              openMixColorModal(hoveringHex)
-            }}
-            styles={{
-              inner: {
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'space-between',
-              },
-              label: {
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'space-between',
-                fontWeight: 'normal',
-              },
-            }}
-          >
-            <Text>{hoveringHex}</Text>
-            <Text>{getColorNameFromHex(hoveringHex)}</Text>
-          </Button>
-        )}
+            },
+          }}
+          onClick={() => {
+            openMixColorModal(hoveringHex)
+          }}
+          styles={{
+            inner: {
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'space-between',
+            },
+            label: {
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'space-between',
+              fontWeight: 'normal',
+            },
+          }}
+        >
+          <Text>{hoveringHex}</Text>
+          <Text>{getColorNameFromHex(hoveringHex)}</Text>
+        </Button>
 
         <MixColorModal />
         <RawColorsModal />
-      </Box>
+      </FlexCol>
     </Box>
   )
 }
