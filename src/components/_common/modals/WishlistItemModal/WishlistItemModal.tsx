@@ -120,6 +120,8 @@ export default function WishlistItemModal(props: Props) {
           </Grid.Col>
           <Grid.Col span={3}>
             <NumberInput
+              step={0.1}
+              precision={1}
               label="Priority"
               onChange={(value) => {
                 if (value === '') {
