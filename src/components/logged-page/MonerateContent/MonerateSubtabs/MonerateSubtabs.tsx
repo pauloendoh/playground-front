@@ -11,10 +11,10 @@ type Props = {
 const MonerateSubtabs = (props: Props) => {
   const location = useLocation()
   const tabValue = useMemo(() => {
-    if (location.pathname.startsWith(urls.pages.monerateOthers)) {
-      return urls.pages.monerateOthers
+    if (location.pathname.startsWith(urls.pages.monerateExpenses)) {
+      return urls.pages.monerateExpenses
     }
-    return urls.pages.monerateExpenses
+    return urls.pages.monerateOthers
   }, [location])
 
   return (

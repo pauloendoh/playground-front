@@ -18,9 +18,12 @@ export class MyWishlistItemValidInput implements WishlistItemValidInput {
 
   price: InputMaybe<number>
 
+  priority: InputMaybe<number>
+
   constructor() {
     this.itemName = ''
     this.priceInThousands = ''
+    this.priority = null
   }
 
   id: InputMaybe<string>

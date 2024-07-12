@@ -33,6 +33,7 @@ fragment WishlistItem on WishlistItem {
   itemName
   priceInThousands
   price
+  priority
   createdAt
   updatedAt
 }

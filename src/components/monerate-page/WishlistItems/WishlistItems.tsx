@@ -22,9 +22,9 @@ const WishlistItems = (props: Props) => {
   const sortedItems = useMemo(
     () =>
       items?.sort((a, b) => {
-        const numA = Number(a.priceInThousands)
-        const numB = Number(b.priceInThousands)
-        return numA - numB
+        const numA = Number(a.priority)
+        const numB = Number(b.priority)
+        return numB - numA
       }) || [],
     [items]
   )
@@ -55,8 +55,9 @@ const WishlistItems = (props: Props) => {
           <thead>
             <tr>
               <th>Item</th>
-              <th>Threshold</th>
+              <th>Priority</th>
               <th>Price</th>
+              <th>Threshold</th>
               <th>ETA</th>
             </tr>
           </thead>

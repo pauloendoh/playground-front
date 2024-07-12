@@ -13,7 +13,7 @@ const MonerateContent = (props: Props) => {
   }, [])
 
   return (
-    <Container>
+    <Container size="xl">
       <Flex justify={'center'}>
         <MonerateSubtabs />
       </Flex>

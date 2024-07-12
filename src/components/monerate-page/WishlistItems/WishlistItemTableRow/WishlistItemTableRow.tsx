@@ -16,13 +16,6 @@ const WishlistItemTableRow = (props: Props) => {
 
   const lastSaving = useLastSavingQueryUtils()
 
-  const formatToCurrency = (value: number) => {
-    return value.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    })
-  }
-
   const valueToReach = useMemo(() => {
     if (!lastSaving) return 0
     const diffValue =
@@ -30,11 +23,6 @@ const WishlistItemTableRow = (props: Props) => {
 
     return diffValue
   }, [lastSaving, props.item])
-
-  const tooltipLabel = useMemo(() => {
-    if (valueToReach <= 0) return 'Can buy! :D'
-    return `You need to save ${formatToCurrency(valueToReach)} to buy this item`
-  }, [valueToReach])
 
   const avgGrowth = useAverageMonthlyGrowth()
 
@@ -70,6 +58,16 @@ const WishlistItemTableRow = (props: Props) => {
       </td>
       <td
         style={{
+          minWidth: 80,
+        }}
+        align="center"
+      >
+        <Text>{props.item.priority}</Text>
+      </td>
+      <td>{props.item.price && `R$ ${props.item.price}`}</td>
+
+      <td
+        style={{
           color: valueToReach > 0 ? theme.colors.red[5] : theme.colors.green[5],
           minWidth: 80,
         }}
@@ -78,7 +76,6 @@ const WishlistItemTableRow = (props: Props) => {
           R$ {upToNDecimals(Number(props.item.priceInThousands), 1)} K
         </Text>
       </td>
-      <td>{props.item.price && `R$ ${props.item.price}`}</td>
       <td>{estimatedMonths > 0 && <Text>{estimatedMonths} months</Text>}</td>
     </tr>
   )
