@@ -22,7 +22,7 @@ export class MyWishlistItemValidInput implements WishlistItemValidInput {
 
   constructor() {
     this.itemName = ''
-    this.priceInThousands = ''
+    this.priceInThousands = '0'
     this.priority = null
   }
 

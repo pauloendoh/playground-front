@@ -12,7 +12,6 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveWishlistItemMutation } from '../../../../hooks/react-query/monerate/wishlist-item/useSaveWishlistItemMutation'
 import { MyWishlistItemValidInput } from '../../../../types/domains/monerate/wishlist-item/MyWishlistItemValidInput'
-import MyTextInput from '../../inputs/MyTextInput'
 import SaveCancelButtons from '../../inputs/SaveCancelButtons'
 import { WishlistItemMoreMenu } from './WishlistItemMoreMenu/WishlistItemMoreMenu'
 
@@ -100,13 +99,6 @@ export default function WishlistItemModal(props: Props) {
             />
           </Grid.Col>
 
-          <Grid.Col span={5}>
-            <MyTextInput
-              label="Threshold in thousands"
-              {...register('priceInThousands')}
-              error={errors.priceInThousands?.message}
-            />
-          </Grid.Col>
           <Grid.Col span={4}>
             <NumberInput
               label="Price"
