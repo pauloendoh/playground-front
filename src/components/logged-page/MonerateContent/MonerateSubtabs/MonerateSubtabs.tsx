@@ -14,7 +14,7 @@ const MonerateSubtabs = (props: Props) => {
     if (location.pathname.startsWith(urls.pages.monerateOthers)) {
       return urls.pages.monerateOthers
     }
-    return urls.pages.index
+    return urls.pages.monerateExpenses
   }, [location])
 
   return (

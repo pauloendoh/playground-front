@@ -1,7 +1,7 @@
 export const urls = {
   pages: {
-    index: '/',
     recipes: '/recipes',
+    monerateExpenses: '/monerate/expenses',
     monerateOthers: '/monerate/others',
   },
-}
+} as const

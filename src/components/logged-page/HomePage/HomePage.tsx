@@ -36,7 +36,12 @@ const HomePage = (props: Props) => {
         <Route path="/nh" element={<NhPage />} />
         <Route element={<MonerateContent />}>
           <Route path={urls.pages.monerateOthers} element={<OthersContent />} />
-          <Route index element={<ExpensesContent />} />
+          <Route index element={<OthersContent />} />
+
+          <Route
+            path={urls.pages.monerateExpenses}
+            element={<ExpensesContent />}
+          />
         </Route>
       </Routes>
     </AppShell>

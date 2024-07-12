@@ -1,7 +1,9 @@
+import { urls } from '../../../../../../utils/urls'
+
 export const navbarTabOptions = [
   {
     tabValue: 'monerate',
-    to: '/',
+    to: urls.pages.monerateOthers,
     label: 'Monerate',
   },
   {
