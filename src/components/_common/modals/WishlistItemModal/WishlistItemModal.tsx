@@ -12,6 +12,7 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSaveWishlistItemMutation } from '../../../../hooks/react-query/monerate/wishlist-item/useSaveWishlistItemMutation'
 import { MyWishlistItemValidInput } from '../../../../types/domains/monerate/wishlist-item/MyWishlistItemValidInput'
+import MyTextInput from '../../inputs/MyTextInput'
 import SaveCancelButtons from '../../inputs/SaveCancelButtons'
 import { WishlistItemMoreMenu } from './WishlistItemMoreMenu/WishlistItemMoreMenu'
 
@@ -99,6 +100,13 @@ export default function WishlistItemModal(props: Props) {
             />
           </Grid.Col>
 
+          <Grid.Col span={5}>
+            <MyTextInput
+              label="Threshold in thousands"
+              {...register('priceInThousands')}
+              error={errors.priceInThousands?.message}
+            />
+          </Grid.Col>
           <Grid.Col span={4}>
             <NumberInput
               label="Price"
@@ -108,22 +116,6 @@ export default function WishlistItemModal(props: Props) {
               }}
               value={watch('price') || 0}
               error={errors.price?.message}
-            />
-          </Grid.Col>
-          <Grid.Col span={3}>
-            <NumberInput
-              step={0.1}
-              precision={1}
-              label="Priority"
-              onChange={(value) => {
-                if (value === '') {
-                  setValue('priority', null)
-                  return
-                }
-                setValue('priority', value)
-              }}
-              value={watch('priority') ?? ''}
-              error={errors.priority?.message}
             />
           </Grid.Col>
         </Grid>

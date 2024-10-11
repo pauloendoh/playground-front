@@ -19,21 +19,15 @@ const WishlistItems = (props: Props) => {
 
   const { data: items } = useWishlistItemsQuery()
 
-  const sortedItems = useMemo(() => {
-    let result = items ? [...items] : []
-    result.sort((a, b) => {
-      const numA = Number(a.price)
-      const numB = Number(b.price)
-      return numA - numB
-    })
-    result.sort((a, b) => {
-      const numA = Number(a.priority)
-      const numB = Number(b.priority)
-      return numB - numA
-    })
-
-    return result
-  }, [items])
+  const sortedItems = useMemo(
+    () =>
+      items?.sort((a, b) => {
+        const numA = Number(a.priceInThousands)
+        const numB = Number(b.priceInThousands)
+        return numA - numB
+      }) || [],
+    [items]
+  )
 
   return (
     <MyPaper>
@@ -61,9 +55,8 @@ const WishlistItems = (props: Props) => {
           <thead>
             <tr>
               <th>Item</th>
-              <th>Priority</th>
-              <th>Price</th>
               <th>Threshold</th>
+              <th>Price</th>
               <th>ETA</th>
             </tr>
           </thead>
