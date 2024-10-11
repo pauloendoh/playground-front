@@ -1,10 +1,9 @@
-import { Box, Button, Center, Flex, Grid, Loader } from '@mantine/core'
+import { Box, Center, Flex, Grid, Loader } from '@mantine/core'
 import { useDebouncedValue, useIntersection } from '@mantine/hooks'
 import { useEffect, useMemo, useRef } from 'react'
 import { useExpensesQuery } from '../../../hooks/react-query/monerate/expense/useExpensesQuery'
 import useExpenseModalStore from '../../../hooks/zustand/modals/useExpenseModalStore'
 import useExpenseFilterStore from '../../../hooks/zustand/useExpenseFilterStore'
-import { MyExpenseInput } from '../../../types/domains/monerate/expense/MyExpenseInput'
 import MyPaper from '../../_common/overrides/MyPaper'
 import ExpenseFilters from './ExpenseFilters/ExpenseFilters'
 import ExpenseItem from './ExpenseItem/ExpenseItem'
@@ -48,14 +47,6 @@ const ExpensesContent = (props: Props) => {
     <Box>
       <Grid>
         <Grid.Col span={6}>
-          <Button
-            onClick={() => {
-              openModal(new MyExpenseInput())
-            }}
-          >
-            + Add Expense
-          </Button>
-
           <Box mt={16} />
           <ExpenseFilters />
 
