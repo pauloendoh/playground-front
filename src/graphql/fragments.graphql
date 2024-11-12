@@ -67,6 +67,7 @@ fragment Salary on Salary {
   id
   userId
   value
+  jobHoursPerMonth
   createdAt
   updatedAt
 }

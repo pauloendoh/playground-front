@@ -9,4 +9,7 @@ export class MySalaryValidInput implements SalaryValidInput {
 
   @IsNumber()
   value: InputMaybe<number>
+
+  @IsNumber()
+  jobHoursPerMonth: number
 }

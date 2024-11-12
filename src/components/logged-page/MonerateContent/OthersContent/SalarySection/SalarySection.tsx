@@ -1,54 +1,104 @@
-import { Title } from '@mantine/core'
+import { Text, Title } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   fetchSalary,
   useSalaryQuery,
 } from '../../../../../hooks/react-query/monerate/salary/useSalaryQuery'
 import { useSaveSalaryMutation } from '../../../../../hooks/react-query/monerate/salary/useSaveSalaryMutation'
 import { MySalaryValidInput } from '../../../../../types/domains/monerate/salary/MySalaryValidInput'
+import FlexCol from '../../../../_common/flex/FlexCol'
+import FlexVCenter from '../../../../_common/flex/FlexVCenter'
 import MyTextInput from '../../../../_common/inputs/MyTextInput'
 import MyPaper from '../../../../_common/overrides/MyPaper'
 
 type Props = {}
 
 const SalarySection = (props: Props) => {
-  const { data } = useSalaryQuery()
-  const [value, setValue] = useState(0)
+  const { data: queryData } = useSalaryQuery()
+  const [values, setValues] = useState<MySalaryValidInput>({
+    id: null,
+    value: 0,
+    jobHoursPerMonth: 0,
+  })
   const [hasChanged, setHasChanged] = useState(false)
 
-  useEffect(() => {}, [])
-
-  const [debouncedValue] = useDebouncedValue(value, 500)
+  const [debouncedValues] = useDebouncedValue(values, 500)
 
   const { mutate: submitSave } = useSaveSalaryMutation()
 
   useEffect(() => {
     fetchSalary().then((salary) => {
-      setValue(salary?.value || 0)
+      setValues((curr) => ({
+        ...curr,
+        id: salary?.id ?? null,
+        value: salary?.value ?? 0,
+        jobHoursPerMonth: salary?.jobHoursPerMonth ?? 0,
+      }))
     })
   }, [])
 
   useEffect(() => {
-    if (!hasChanged || debouncedValue === data?.value) return
-    const input = new MySalaryValidInput()
-    input.value = debouncedValue
+    if (!hasChanged) return
+    const payload = new MySalaryValidInput()
+    payload.value = debouncedValues.value
+    payload.jobHoursPerMonth = debouncedValues.jobHoursPerMonth
 
-    submitSave(input)
-  }, [debouncedValue, hasChanged])
+    console.log({
+      payload,
+    })
+
+    submitSave(payload)
+  }, [debouncedValues, hasChanged])
+
+  const valueInputRef = useRef<HTMLInputElement>(null)
+  const hoursInputRef = useRef<HTMLInputElement>(null)
+
+  const moneyPerHour = useMemo(() => {
+    return (values.value ?? 0) / values.jobHoursPerMonth
+  }, [values.value, values.jobHoursPerMonth])
 
   return (
     <MyPaper>
       <Title order={4}>Salary</Title>
-      <MyTextInput
-        mt={8}
-        value={value}
-        onChange={(e) => {
-          setValue(Number(e.currentTarget.value))
-          setHasChanged(true)
-        }}
-        type="number"
-      />
+      <FlexCol gap={8}>
+        <FlexVCenter gap={16}>
+          <MyTextInput
+            ref={valueInputRef}
+            label="Job Monthly Income"
+            mt={8}
+            value={values.value ?? 0}
+            onChange={() => {
+              setValues((curr) => ({
+                ...curr,
+                value: Number(valueInputRef.current?.value ?? curr.value),
+              }))
+              setHasChanged(true)
+            }}
+            type="number"
+          />
+
+          <MyTextInput
+            label="Hours per month"
+            mt={8}
+            type="number"
+            value={values.jobHoursPerMonth ?? 0}
+            ref={hoursInputRef}
+            onChange={() => {
+              setValues((curr) => ({
+                ...curr,
+                jobHoursPerMonth: Number(
+                  hoursInputRef.current?.value ?? curr.jobHoursPerMonth
+                ),
+              }))
+              setHasChanged(true)
+            }}
+          />
+        </FlexVCenter>
+        {moneyPerHour !== 0 && (
+          <Text size="sm">{moneyPerHour.toFixed(2)} per hour</Text>
+        )}
+      </FlexCol>
     </MyPaper>
   )
 }

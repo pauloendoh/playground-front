@@ -18,17 +18,18 @@ export const useSaveSalaryMutation = () => {
   const queryClient = useQueryClient()
 
   return useMutation(
-    (data: MySalaryValidInput) =>
-      sdk
+    async (data: MySalaryValidInput) => {
+      return sdk
         .SaveSalaryMutation({
           data: {
             ...data,
             value: data.value,
           },
         })
-        .then((res) => res.saveSalaryMutation),
+        .then((res) => res.saveSalaryMutation)
+    },
     {
-      onSuccess: (saved) => {
+      onSuccess: (saved, sent) => {
         myNotifications.success('Salary saved!')
 
         if (!saved) return
