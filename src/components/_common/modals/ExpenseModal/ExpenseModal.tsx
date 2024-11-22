@@ -31,7 +31,7 @@ export default function ExpenseModal(props: Props) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
     setFocus,
     reset,
     watch,
@@ -61,106 +61,112 @@ export default function ExpenseModal(props: Props) {
     })
   }
 
+  const handleClose = () => {
+    if (isDirty && !confirm('Are you sure you want to close?')) {
+      return
+    }
+
+    props.onClose()
+  }
+
   return (
-    <>
-      <Modal
-        opened={props.isOpen}
-        onClose={() => props.onClose()}
-        withCloseButton={false}
-        size="xl"
-        styles={{
-          title: {
-            width: '100%',
-          },
-        }}
-        title={
-          <Flex align={'center'} justify="space-between">
-            <Title order={3}>
-              {props.initialValue?.id ? 'Edit Expense' : 'Create Expense'}
-            </Title>
-            {props.initialValue?.id ? (
-              <ExpenseMoreMenu
-                input={props.initialValue}
-                afterDelete={() => props.onClose()}
-              />
-            ) : (
-              <CloseButton onClick={() => props.onClose()} />
-            )}
-          </Flex>
-        }
-      >
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid>
-            <Grid.Col span={9}>
-              <MyTextInput
-                label="Expense Name"
-                {...register('name')}
-                error={errors.name?.message}
-              />
-            </Grid.Col>
-
-            <Grid.Col span={3}>
-              <MyTextInput
-                label="Value"
-                type="number"
-                {...register('value')}
-                error={errors.value?.message}
-              />
-            </Grid.Col>
-
-            <Grid.Col span={2}>
-              <Input.Wrapper label="Rating">
-                <Rating
-                  value={watch('rating') || undefined}
-                  onChange={(value) => setValue('rating', value)}
-                  mt={8}
-                />
-              </Input.Wrapper>
-            </Grid.Col>
-            <Grid.Col span={2}>
-              <MyTextInput
-                label="Times per month"
-                type="number"
-                step="any"
-                value={watch('timesPerMonth') || ''}
-                onChange={(e) => {
-                  const number = parseFloat(e.target.value)
-                  if (number >= 0) {
-                    setValue('timesPerMonth', number.toString())
-                    return
-                  }
-                  setValue('timesPerMonth', null)
-                }}
-                error={errors.timesPerMonth?.message}
-              />
-            </Grid.Col>
-
-            <Grid.Col span={'auto'}>
-              <CategoriesSelector
-                categoryIds={watch('categoryIds') || []}
-                onChange={(categoryIds) => setValue('categoryIds', categoryIds)}
-              />
-            </Grid.Col>
-          </Grid>
-
-          <Textarea
-            mt={16}
-            label="Description"
-            {...register('description')}
-            error={errors.description?.message}
-            autosize
-            minRows={2}
-          />
-
-          <Flex align="center" justify="space-between" mt={16}>
-            <SaveCancelButtons
-              onCancel={() => props.onClose()}
-              onEnabledAndCtrlEnter={handleSubmit(onSubmit)}
-              isLoading={isLoading}
+    <Modal
+      opened={props.isOpen}
+      onClose={handleClose}
+      withCloseButton={false}
+      size="xl"
+      styles={{
+        title: {
+          width: '100%',
+        },
+      }}
+      title={
+        <Flex align={'center'} justify="space-between">
+          <Title order={3}>
+            {props.initialValue?.id ? 'Edit Expense' : 'Create Expense'}
+          </Title>
+          {props.initialValue?.id ? (
+            <ExpenseMoreMenu
+              input={props.initialValue}
+              afterDelete={() => props.onClose()}
             />
-          </Flex>
-        </form>
-      </Modal>
-    </>
+          ) : (
+            <CloseButton onClick={handleClose} />
+          )}
+        </Flex>
+      }
+    >
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid>
+          <Grid.Col span={9}>
+            <MyTextInput
+              label="Expense Name"
+              {...register('name')}
+              error={errors.name?.message}
+            />
+          </Grid.Col>
+
+          <Grid.Col span={3}>
+            <MyTextInput
+              label="Value"
+              type="number"
+              {...register('value')}
+              error={errors.value?.message}
+            />
+          </Grid.Col>
+
+          <Grid.Col span={2}>
+            <Input.Wrapper label="Rating">
+              <Rating
+                value={watch('rating') || undefined}
+                onChange={(value) => setValue('rating', value)}
+                mt={8}
+              />
+            </Input.Wrapper>
+          </Grid.Col>
+          <Grid.Col span={2}>
+            <MyTextInput
+              label="Times per month"
+              type="number"
+              step="any"
+              value={watch('timesPerMonth') || ''}
+              onChange={(e) => {
+                const number = parseFloat(e.target.value)
+                if (number >= 0) {
+                  setValue('timesPerMonth', number.toString())
+                  return
+                }
+                setValue('timesPerMonth', null)
+              }}
+              error={errors.timesPerMonth?.message}
+            />
+          </Grid.Col>
+
+          <Grid.Col span={'auto'}>
+            <CategoriesSelector
+              categoryIds={watch('categoryIds') || []}
+              onChange={(categoryIds) => setValue('categoryIds', categoryIds)}
+            />
+          </Grid.Col>
+        </Grid>
+
+        <Textarea
+          mt={16}
+          label="Description"
+          {...register('description')}
+          error={errors.description?.message}
+          autosize
+          minRows={2}
+        />
+
+        <Flex align="center" justify="space-between" mt={16}>
+          <SaveCancelButtons
+            onCancel={handleClose}
+            onEnabledAndCtrlEnter={handleSubmit(onSubmit)}
+            isLoading={isLoading}
+          />
+        </Flex>
+      </form>
+    </Modal>
   )
 }

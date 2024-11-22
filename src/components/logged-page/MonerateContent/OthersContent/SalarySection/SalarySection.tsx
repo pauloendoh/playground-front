@@ -96,7 +96,7 @@ const SalarySection = (props: Props) => {
           />
         </FlexVCenter>
         {moneyPerHour !== 0 && (
-          <Text size="sm">{moneyPerHour.toFixed(2)} per hour</Text>
+          <Text size="sm">{moneyPerHour.toFixed(1)} per hour</Text>
         )}
       </FlexCol>
     </MyPaper>
