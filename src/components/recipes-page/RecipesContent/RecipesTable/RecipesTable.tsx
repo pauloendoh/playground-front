@@ -108,7 +108,6 @@ export default function RecipesTable(props: Props) {
             sx={(theme) => ({
               minWidth: 420,
               '& tbody tr td': { borderBottom: 0 },
-              // on hover
               '& tbody tr:hover td': {
                 backgroundColor: theme.colors.dark[5],
                 cursor: 'pointer',
