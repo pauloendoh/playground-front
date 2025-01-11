@@ -1,6 +1,7 @@
-import { Text, Title } from '@mantine/core'
+import { Text, Title, Tooltip } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { MdInfo } from 'react-icons/md'
 import {
   fetchSalary,
   useSalaryQuery,
@@ -55,7 +56,8 @@ const SalarySection = (props: Props) => {
   const hoursInputRef = useRef<HTMLInputElement>(null)
 
   const moneyPerHour = useMemo(() => {
-    return (values.value ?? 0) / values.jobHoursPerMonth
+    const hoursPerDay = values.jobHoursPerMonth
+    return (values.value ?? 0) / (hoursPerDay * 20)
   }, [values.value, values.jobHoursPerMonth])
 
   return (
@@ -79,7 +81,7 @@ const SalarySection = (props: Props) => {
           />
 
           <MyTextInput
-            label="Hours per month"
+            label="Avg hour per day"
             mt={8}
             type="number"
             value={values.jobHoursPerMonth ?? 0}
@@ -96,7 +98,22 @@ const SalarySection = (props: Props) => {
           />
         </FlexVCenter>
         {moneyPerHour !== 0 && (
-          <Text size="sm">{moneyPerHour.toFixed(1)} per hour</Text>
+          <FlexCol>
+            <Text size="sm">
+              {moneyPerHour.toFixed(1)} per hour{' '}
+              <Tooltip label="Considering 20 working days" withArrow>
+                <span
+                  style={{
+                    position: 'relative',
+                    top: 2,
+                    left: 2,
+                  }}
+                >
+                  <MdInfo />
+                </span>
+              </Tooltip>
+            </Text>
+          </FlexCol>
         )}
       </FlexCol>
     </MyPaper>

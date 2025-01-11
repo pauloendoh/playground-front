@@ -52,6 +52,7 @@ export default function RecipesTable(props: Props) {
     handlers.setState(showData)
   }, [showData])
 
+  // PE 1/3 - remove this useListState ?..
   const [state, handlers] = useListState(showData)
 
   const { openModal } = useRecipeModalStore()
@@ -59,7 +60,7 @@ export default function RecipesTable(props: Props) {
     openModal(recipe)
   }
 
-  const items = state.map(
+  const itemRows = state.map(
     (item, index) =>
       item && (
         <Draggable key={item.id} index={index} draggableId={item.id}>
@@ -109,7 +110,7 @@ export default function RecipesTable(props: Props) {
               '& tbody tr td': { borderBottom: 0 },
               // on hover
               '& tbody tr:hover td': {
-                backgroundColor: theme.colors.gray[2],
+                backgroundColor: theme.colors.dark[5],
                 cursor: 'pointer',
               },
             })}
@@ -125,7 +126,7 @@ export default function RecipesTable(props: Props) {
             <Droppable droppableId="dnd-list" direction="vertical">
               {(provided) => (
                 <tbody {...provided.droppableProps} ref={provided.innerRef}>
-                  {items}
+                  {itemRows}
                   {provided.placeholder}
                 </tbody>
               )}

@@ -71,90 +71,88 @@ export default function RecipeModal(props: Props) {
   const theme = useMantineTheme()
 
   return (
-    <>
-      <Modal
-        opened={props.isOpen}
-        onClose={() => props.onClose()}
-        withCloseButton={false}
-        size="md"
-        styles={{
-          title: {
-            width: '100%',
-          },
-        }}
-        title={
-          <Flex align={'center'} justify="space-between">
-            <Title order={3}>
-              {props.initialValue?.id ? 'Edit Recipe' : 'Create Recipe'}
-            </Title>
-            {props.initialValue?.id ? (
-              <RecipeMoreMenu
-                recipe={props.initialValue}
-                afterDelete={() => props.onClose()}
-              />
-            ) : (
-              <CloseButton onClick={() => props.onClose()} />
-            )}
-          </Flex>
-        }
-      >
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid>
-            <Grid.Col span={12}>
-              <Textarea
-                autosize
-                label="Title"
-                {...register('title')}
-                error={errors.title?.message}
-              />
-            </Grid.Col>
-            <Grid.Col span={2}>
-              <Input.Wrapper label="Saved">
-                <ActionIcon
-                  mt={4}
-                  onClick={() => {
-                    const current = watch('savedPosition')
-                    if (current) {
-                      setValue('savedPosition', null)
-                      return
-                    }
+    <Modal
+      opened={props.isOpen}
+      onClose={() => props.onClose()}
+      withCloseButton={false}
+      size="md"
+      styles={{
+        title: {
+          width: '100%',
+        },
+      }}
+      title={
+        <Flex align={'center'} justify="space-between">
+          <Title order={3}>
+            {props.initialValue?.id ? 'Edit Recipe' : 'Create Recipe'}
+          </Title>
+          {props.initialValue?.id ? (
+            <RecipeMoreMenu
+              recipe={props.initialValue}
+              afterDelete={() => props.onClose()}
+            />
+          ) : (
+            <CloseButton onClick={() => props.onClose()} />
+          )}
+        </Flex>
+      }
+    >
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Grid>
+          <Grid.Col span={12}>
+            <Textarea
+              autosize
+              label="Title"
+              {...register('title')}
+              error={errors.title?.message}
+            />
+          </Grid.Col>
+          <Grid.Col span={2}>
+            <Input.Wrapper label="Saved">
+              <ActionIcon
+                mt={4}
+                onClick={() => {
+                  const current = watch('savedPosition')
+                  if (current) {
+                    setValue('savedPosition', null)
+                    return
+                  }
 
-                    setValue('savedPosition', savedRecipes.length + 1)
-                  }}
-                >
-                  <MdOutlineBookmark
-                    color={
-                      watch('savedPosition') ? theme.colors.pink[5] : undefined
-                    }
-                  />
-                </ActionIcon>
-              </Input.Wrapper>
-            </Grid.Col>
-
-            <Grid.Col span={4}>
-              <Input.Wrapper label="Rating">
-                <Rating
-                  value={watch('rating') || undefined}
-                  onChange={(value) => setValue('rating', value)}
-                  mt={8}
+                  setValue('savedPosition', savedRecipes.length + 1)
+                }}
+              >
+                <MdOutlineBookmark
+                  color={
+                    watch('savedPosition') ? theme.colors.pink[5] : undefined
+                  }
                 />
-              </Input.Wrapper>
-            </Grid.Col>
-          </Grid>
+              </ActionIcon>
+            </Input.Wrapper>
+          </Grid.Col>
 
-          <Textarea
-            mt={16}
-            autosize
-            label="Description"
-            {...register('description')}
-            error={errors.description?.message}
-          />
+          <Grid.Col span={4}>
+            <Input.Wrapper label="Rating">
+              <Rating
+                value={watch('rating') || undefined}
+                onChange={(value) => setValue('rating', value)}
+                mt={8}
+              />
+            </Input.Wrapper>
+          </Grid.Col>
+        </Grid>
 
-          <Flex align="center" justify="space-between" mt={16}>
-            <Button type="submit">Save</Button>
-          </Flex>
-        </form>
-      </Modal>
-    </>
+        <Textarea
+          mt={16}
+          autosize
+          label="Description"
+          {...register('description')}
+          error={errors.description?.message}
+        />
+
+        <Flex align="center" justify="space-between" mt={16}>
+          <Button type="submit">Save</Button>
+        </Flex>
+      </form>
+    </Modal>
   )
 }
