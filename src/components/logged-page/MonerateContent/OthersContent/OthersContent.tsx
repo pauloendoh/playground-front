@@ -2,7 +2,7 @@ import { Box, Grid } from '@mantine/core'
 import FlexCol from '../../../_common/flex/FlexCol'
 import AddExpenseButton from '../../../monerate-page/ExpensesContent/AddExpenseButton/AddExpenseButton'
 import RecurrentExpensesSection from '../../../monerate-page/ExpensesContent/RecurrentExpensesSection/RecurrentExpensesSection'
-import WishlistItems from '../../../monerate-page/WishlistItems/WishlistItems'
+import WishlistSection from '../../../monerate-page/WishlistItems/WishlistSection'
 import SalarySection from './SalarySection/SalarySection'
 import SavingsSection from './SavingsSection/SavingsSection'
 
@@ -24,7 +24,7 @@ const OthersContent = (props: Props) => {
       </Grid.Col>
 
       <Grid.Col span={7}>
-        <WishlistItems />
+        <WishlistSection />
       </Grid.Col>
     </Grid>
   )

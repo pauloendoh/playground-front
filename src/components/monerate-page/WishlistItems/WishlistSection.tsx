@@ -1,9 +1,8 @@
 import { Button, ScrollArea, Table } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useWishlistItemsQuery } from '../../../hooks/react-query/monerate/wishlist-item/useWishlistItemsQuery'
+import { useWishlistItemModalStore } from '../../../hooks/zustand/modals/useWishlistItemModalStore'
 import { MyWishlistItemValidInput } from '../../../types/domains/monerate/wishlist-item/MyWishlistItemValidInput'
-import WishlistItemModal from '../../_common/modals/WishlistItemModal/WishlistItemModal'
 import MyPaper from '../../_common/overrides/MyPaper'
 import WishlistItemTableRow from './WishlistItemTableRow/WishlistItemTableRow'
 
@@ -11,13 +10,10 @@ type Props = {
   test?: string
 }
 
-const WishlistItems = (props: Props) => {
-  const [opened, handlers] = useDisclosure(false)
-  const [modalInitialValue, setModalInitialValue] = useState(
-    new MyWishlistItemValidInput()
-  )
-
+const WishlistSection = (props: Props) => {
   const { data: items } = useWishlistItemsQuery()
+
+  const { openModal } = useWishlistItemModalStore()
 
   const sortedItems = useMemo(
     () =>
@@ -35,8 +31,7 @@ const WishlistItems = (props: Props) => {
         fullWidth
         color="secondary"
         onClick={() => {
-          setModalInitialValue(new MyWishlistItemValidInput())
-          handlers.open()
+          openModal(new MyWishlistItemValidInput())
         }}
       >
         + Add Wishlist Item
@@ -67,8 +62,7 @@ const WishlistItems = (props: Props) => {
                 item={item}
                 allItems={sortedItems}
                 onClick={() => {
-                  setModalInitialValue(item)
-                  handlers.open()
+                  openModal(item)
                 }}
               />
             ))}
@@ -87,14 +81,8 @@ const WishlistItems = (props: Props) => {
           ))}
         </Flex> */}
       </ScrollArea>
-
-      <WishlistItemModal
-        isOpen={opened}
-        onClose={handlers.close}
-        initialValue={modalInitialValue}
-      />
     </MyPaper>
   )
 }
 
-export default WishlistItems
+export default WishlistSection

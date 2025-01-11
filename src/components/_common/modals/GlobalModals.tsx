@@ -14,6 +14,7 @@ import IssueLabelModal from './IssueLabelModal/IssueLabelModal'
 import IssueModal from './IssueModal/IssueModal'
 import RecipeModal from './RecipeModal/RecipeModal'
 import SavingModal from './SavingModal/SavingModal'
+import WishlistItemModal from './WishlistItemModal/WishlistItemModal'
 
 const GlobalModals = () => {
   const recipeModalStore = useRecipeModalStore()
@@ -72,6 +73,7 @@ const GlobalModals = () => {
         isOpen={averageMonthlyGrowthModalStore.isOpen}
         onClose={averageMonthlyGrowthModalStore.onClose}
       />
+      <WishlistItemModal />
     </>
   )
 }

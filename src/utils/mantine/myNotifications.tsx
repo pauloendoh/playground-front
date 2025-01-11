@@ -1,9 +1,10 @@
 import { NotificationProps } from '@mantine/core'
 import { showNotification } from '@mantine/notifications'
+import React from 'react'
 import { MdCheck, MdError } from 'react-icons/md'
 
 export const myNotifications = {
-  success: (title: string, options?: NotificationProps) => {
+  success: (title: React.ReactNode, options?: NotificationProps) => {
     showNotification({
       title,
       message: '',
