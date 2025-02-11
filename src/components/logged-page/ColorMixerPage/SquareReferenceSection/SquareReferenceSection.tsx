@@ -22,8 +22,8 @@ const SquareReferenceSection = ({ ...props }: Props) => {
   })
 
   const handleClick = () => {
-    const height = Number(prompt('Height:'))
-    const width = Number(prompt('Width:'))
+    const height = Number(prompt('Height of guiding square:'))
+    const width = Number(prompt('Width of guiding square:'))
 
     if (height && width) {
       setValue({
