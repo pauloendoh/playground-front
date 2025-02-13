@@ -59,6 +59,7 @@ const RecurrentExpensesSection = (props: Props) => {
       <FlexCol mt={16} gap={8}>
         {sortedData?.map((expense) => (
           <Button
+            key={expense.id}
             variant="subtle"
             color="red"
             sx={{ height: 'unset' }}

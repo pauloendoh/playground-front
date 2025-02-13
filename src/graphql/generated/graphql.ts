@@ -1092,7 +1092,9 @@ export type DecimalWithAggregatesFilter = {
 
 export type Expense = {
   _count: Maybe<ExpenseCount>;
+  benefitScore: Maybe<Scalars['Float']>;
   categories: Array<Category>;
+  costScore: Maybe<Scalars['Float']>;
   createdAt: Scalars['DateTime'];
   date: Maybe<Scalars['DateTime']>;
   description: Maybe<Scalars['String']>;
@@ -1117,12 +1119,16 @@ export type ExpenseCategoriesArgs = {
 };
 
 export type ExpenseAvgAggregate = {
+  benefitScore: Maybe<Scalars['Float']>;
+  costScore: Maybe<Scalars['Float']>;
   rating: Maybe<Scalars['Float']>;
   timesPerMonth: Maybe<Scalars['Decimal']>;
   value: Maybe<Scalars['Decimal']>;
 };
 
 export type ExpenseAvgOrderByAggregateInput = {
+  benefitScore: InputMaybe<SortOrder>;
+  costScore: InputMaybe<SortOrder>;
   rating: InputMaybe<SortOrder>;
   timesPerMonth: InputMaybe<SortOrder>;
   value: InputMaybe<SortOrder>;
@@ -1134,6 +1140,8 @@ export type ExpenseCount = {
 
 export type ExpenseCountAggregate = {
   _all: Scalars['Int'];
+  benefitScore: Scalars['Int'];
+  costScore: Scalars['Int'];
   createdAt: Scalars['Int'];
   date: Scalars['Int'];
   description: Scalars['Int'];
@@ -1147,6 +1155,8 @@ export type ExpenseCountAggregate = {
 };
 
 export type ExpenseCountOrderByAggregateInput = {
+  benefitScore: InputMaybe<SortOrder>;
+  costScore: InputMaybe<SortOrder>;
   createdAt: InputMaybe<SortOrder>;
   date: InputMaybe<SortOrder>;
   description: InputMaybe<SortOrder>;
@@ -1160,7 +1170,9 @@ export type ExpenseCountOrderByAggregateInput = {
 };
 
 export type ExpenseCreateInput = {
+  benefitScore: InputMaybe<Scalars['Float']>;
   categories: InputMaybe<CategoryCreateNestedManyWithoutExpensesInput>;
+  costScore: InputMaybe<Scalars['Float']>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   date: InputMaybe<Scalars['DateTime']>;
   description: InputMaybe<Scalars['String']>;
@@ -1174,6 +1186,8 @@ export type ExpenseCreateInput = {
 };
 
 export type ExpenseCreateManyInput = {
+  benefitScore: InputMaybe<Scalars['Float']>;
+  costScore: InputMaybe<Scalars['Float']>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   date: InputMaybe<Scalars['DateTime']>;
   description: InputMaybe<Scalars['String']>;
@@ -1187,6 +1201,8 @@ export type ExpenseCreateManyInput = {
 };
 
 export type ExpenseCreateManyUserInput = {
+  benefitScore: InputMaybe<Scalars['Float']>;
+  costScore: InputMaybe<Scalars['Float']>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   date: InputMaybe<Scalars['DateTime']>;
   description: InputMaybe<Scalars['String']>;
@@ -1227,6 +1243,8 @@ export type ExpenseCreateOrConnectWithoutUserInput = {
 };
 
 export type ExpenseCreateWithoutCategoriesInput = {
+  benefitScore: InputMaybe<Scalars['Float']>;
+  costScore: InputMaybe<Scalars['Float']>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   date: InputMaybe<Scalars['DateTime']>;
   description: InputMaybe<Scalars['String']>;
@@ -1240,7 +1258,9 @@ export type ExpenseCreateWithoutCategoriesInput = {
 };
 
 export type ExpenseCreateWithoutUserInput = {
+  benefitScore: InputMaybe<Scalars['Float']>;
   categories: InputMaybe<CategoryCreateNestedManyWithoutExpensesInput>;
+  costScore: InputMaybe<Scalars['Float']>;
   createdAt: InputMaybe<Scalars['DateTime']>;
   date: InputMaybe<Scalars['DateTime']>;
   description: InputMaybe<Scalars['String']>;
@@ -1262,6 +1282,8 @@ export type ExpenseGroupBy = {
   _max: Maybe<ExpenseMaxAggregate>;
   _min: Maybe<ExpenseMinAggregate>;
   _sum: Maybe<ExpenseSumAggregate>;
+  benefitScore: Maybe<Scalars['Float']>;
+  costScore: Maybe<Scalars['Float']>;
   createdAt: Scalars['DateTime'];
   date: Maybe<Scalars['DateTime']>;
   description: Maybe<Scalars['String']>;
@@ -1275,7 +1297,9 @@ export type ExpenseGroupBy = {
 };
 
 export type ExpenseInput = {
+  benefitScore: InputMaybe<Scalars['Float']>;
   categoryIds: InputMaybe<Array<Scalars['String']>>;
+  costScore: InputMaybe<Scalars['Float']>;
   date: InputMaybe<Scalars['DateTime']>;
   description: InputMaybe<Scalars['String']>;
   id: InputMaybe<Scalars['String']>;
@@ -1293,6 +1317,8 @@ export type ExpenseListRelationFilter = {
 };
 
 export type ExpenseMaxAggregate = {
+  benefitScore: Maybe<Scalars['Float']>;
+  costScore: Maybe<Scalars['Float']>;
   createdAt: Maybe<Scalars['DateTime']>;
   date: Maybe<Scalars['DateTime']>;
   description: Maybe<Scalars['String']>;
@@ -1306,6 +1332,8 @@ export type ExpenseMaxAggregate = {
 };
 
 export type ExpenseMaxOrderByAggregateInput = {
+  benefitScore: InputMaybe<SortOrder>;
+  costScore: InputMaybe<SortOrder>;
   createdAt: InputMaybe<SortOrder>;
   date: InputMaybe<SortOrder>;
   description: InputMaybe<SortOrder>;
@@ -1319,6 +1347,8 @@ export type ExpenseMaxOrderByAggregateInput = {
 };
 
 export type ExpenseMinAggregate = {
+  benefitScore: Maybe<Scalars['Float']>;
+  costScore: Maybe<Scalars['Float']>;
   createdAt: Maybe<Scalars['DateTime']>;
   date: Maybe<Scalars['DateTime']>;
   description: Maybe<Scalars['String']>;
@@ -1332,6 +1362,8 @@ export type ExpenseMinAggregate = {
 };
 
 export type ExpenseMinOrderByAggregateInput = {
+  benefitScore: InputMaybe<SortOrder>;
+  costScore: InputMaybe<SortOrder>;
   createdAt: InputMaybe<SortOrder>;
   date: InputMaybe<SortOrder>;
   description: InputMaybe<SortOrder>;
@@ -1354,6 +1386,8 @@ export type ExpenseOrderByWithAggregationInput = {
   _max: InputMaybe<ExpenseMaxOrderByAggregateInput>;
   _min: InputMaybe<ExpenseMinOrderByAggregateInput>;
   _sum: InputMaybe<ExpenseSumOrderByAggregateInput>;
+  benefitScore: InputMaybe<SortOrder>;
+  costScore: InputMaybe<SortOrder>;
   createdAt: InputMaybe<SortOrder>;
   date: InputMaybe<SortOrder>;
   description: InputMaybe<SortOrder>;
@@ -1367,7 +1401,9 @@ export type ExpenseOrderByWithAggregationInput = {
 };
 
 export type ExpenseOrderByWithRelationInput = {
+  benefitScore: InputMaybe<SortOrder>;
   categories: InputMaybe<CategoryOrderByRelationAggregateInput>;
+  costScore: InputMaybe<SortOrder>;
   createdAt: InputMaybe<SortOrder>;
   date: InputMaybe<SortOrder>;
   description: InputMaybe<SortOrder>;
@@ -1382,6 +1418,8 @@ export type ExpenseOrderByWithRelationInput = {
 };
 
 export enum ExpenseScalarFieldEnum {
+  BenefitScore = 'benefitScore',
+  CostScore = 'costScore',
   CreatedAt = 'createdAt',
   Date = 'date',
   Description = 'description',
@@ -1398,6 +1436,8 @@ export type ExpenseScalarWhereInput = {
   AND: InputMaybe<Array<ExpenseScalarWhereInput>>;
   NOT: InputMaybe<Array<ExpenseScalarWhereInput>>;
   OR: InputMaybe<Array<ExpenseScalarWhereInput>>;
+  benefitScore: InputMaybe<FloatNullableFilter>;
+  costScore: InputMaybe<FloatNullableFilter>;
   createdAt: InputMaybe<DateTimeFilter>;
   date: InputMaybe<DateTimeNullableFilter>;
   description: InputMaybe<StringNullableFilter>;
@@ -1414,6 +1454,8 @@ export type ExpenseScalarWhereWithAggregatesInput = {
   AND: InputMaybe<Array<ExpenseScalarWhereWithAggregatesInput>>;
   NOT: InputMaybe<Array<ExpenseScalarWhereWithAggregatesInput>>;
   OR: InputMaybe<Array<ExpenseScalarWhereWithAggregatesInput>>;
+  benefitScore: InputMaybe<FloatNullableWithAggregatesFilter>;
+  costScore: InputMaybe<FloatNullableWithAggregatesFilter>;
   createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
   date: InputMaybe<DateTimeNullableWithAggregatesFilter>;
   description: InputMaybe<StringNullableWithAggregatesFilter>;
@@ -1427,19 +1469,25 @@ export type ExpenseScalarWhereWithAggregatesInput = {
 };
 
 export type ExpenseSumAggregate = {
+  benefitScore: Maybe<Scalars['Float']>;
+  costScore: Maybe<Scalars['Float']>;
   rating: Maybe<Scalars['Int']>;
   timesPerMonth: Maybe<Scalars['Decimal']>;
   value: Maybe<Scalars['Decimal']>;
 };
 
 export type ExpenseSumOrderByAggregateInput = {
+  benefitScore: InputMaybe<SortOrder>;
+  costScore: InputMaybe<SortOrder>;
   rating: InputMaybe<SortOrder>;
   timesPerMonth: InputMaybe<SortOrder>;
   value: InputMaybe<SortOrder>;
 };
 
 export type ExpenseUpdateInput = {
+  benefitScore: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   categories: InputMaybe<CategoryUpdateManyWithoutExpensesNestedInput>;
+  costScore: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   date: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   description: InputMaybe<NullableStringFieldUpdateOperationsInput>;
@@ -1453,6 +1501,8 @@ export type ExpenseUpdateInput = {
 };
 
 export type ExpenseUpdateManyMutationInput = {
+  benefitScore: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
+  costScore: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   date: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   description: InputMaybe<NullableStringFieldUpdateOperationsInput>;
@@ -1512,6 +1562,8 @@ export type ExpenseUpdateWithWhereUniqueWithoutUserInput = {
 };
 
 export type ExpenseUpdateWithoutCategoriesInput = {
+  benefitScore: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
+  costScore: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   date: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   description: InputMaybe<NullableStringFieldUpdateOperationsInput>;
@@ -1525,7 +1577,9 @@ export type ExpenseUpdateWithoutCategoriesInput = {
 };
 
 export type ExpenseUpdateWithoutUserInput = {
+  benefitScore: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   categories: InputMaybe<CategoryUpdateManyWithoutExpensesNestedInput>;
+  costScore: InputMaybe<NullableFloatFieldUpdateOperationsInput>;
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   date: InputMaybe<NullableDateTimeFieldUpdateOperationsInput>;
   description: InputMaybe<NullableStringFieldUpdateOperationsInput>;
@@ -1553,7 +1607,9 @@ export type ExpenseWhereInput = {
   AND: InputMaybe<Array<ExpenseWhereInput>>;
   NOT: InputMaybe<Array<ExpenseWhereInput>>;
   OR: InputMaybe<Array<ExpenseWhereInput>>;
+  benefitScore: InputMaybe<FloatNullableFilter>;
   categories: InputMaybe<CategoryListRelationFilter>;
+  costScore: InputMaybe<FloatNullableFilter>;
   createdAt: InputMaybe<DateTimeFilter>;
   date: InputMaybe<DateTimeNullableFilter>;
   description: InputMaybe<StringNullableFilter>;
@@ -8500,7 +8556,7 @@ export type CurrentSavingFragment = { id: string, userId: string, value: string,
 
 export type WishlistItemFragment = { id: string, userId: string, itemName: string, priceInThousands: string, price: number | null, priority: number | null, createdAt: string, updatedAt: string };
 
-export type ExpenseFragment = { id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, categories: Array<{ id: string }> };
+export type ExpenseFragment = { id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, costScore: number | null, benefitScore: number | null, categories: Array<{ id: string }> };
 
 export type CategoryFragment = { id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string };
 
@@ -8604,19 +8660,19 @@ export type ExpensesQueryQueryVariables = Exact<{
 }>;
 
 
-export type ExpensesQueryQuery = { expensesQuery: Array<{ id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, categories: Array<{ id: string }> }> };
+export type ExpensesQueryQuery = { expensesQuery: Array<{ id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, costScore: number | null, benefitScore: number | null, categories: Array<{ id: string }> }> };
 
 export type RecurrentExpensesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type RecurrentExpensesQueryQuery = { recurrentExpensesQuery: Array<{ id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, categories: Array<{ id: string }> }> };
+export type RecurrentExpensesQueryQuery = { recurrentExpensesQuery: Array<{ id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, costScore: number | null, benefitScore: number | null, categories: Array<{ id: string }> }> };
 
 export type SaveExpenseV2MutationVariables = Exact<{
   data: ExpenseInput;
 }>;
 
 
-export type SaveExpenseV2Mutation = { saveExpenseMutation: { id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, categories: Array<{ id: string }> } };
+export type SaveExpenseV2Mutation = { saveExpenseMutation: { id: string, userId: string, name: string, value: string, rating: number | null, date: string | null, description: string | null, createdAt: string, updatedAt: string, timesPerMonth: string | null, costScore: number | null, benefitScore: number | null, categories: Array<{ id: string }> } };
 
 export type DeleteIssueLabelMutationMutationVariables = Exact<{
   deleteIssueLabelMutationId: Scalars['String'];
@@ -8812,6 +8868,8 @@ export const ExpenseFragmentDoc = gql`
   createdAt
   updatedAt
   timesPerMonth
+  costScore
+  benefitScore
   categories {
     id
   }

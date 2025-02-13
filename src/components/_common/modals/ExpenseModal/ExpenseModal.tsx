@@ -3,9 +3,8 @@ import {
   CloseButton,
   Flex,
   Grid,
-  Input,
   Modal,
-  Rating,
+  NumberInput,
   Textarea,
   Title,
 } from '@mantine/core'
@@ -116,14 +115,40 @@ export default function ExpenseModal(props: Props) {
           </Grid.Col>
 
           <Grid.Col span={2}>
-            <Input.Wrapper label="Rating">
-              <Rating
-                value={watch('rating') || undefined}
-                onChange={(value) => setValue('rating', value)}
-                mt={8}
-              />
-            </Input.Wrapper>
+            <NumberInput
+              label="⭐ Benefit Score"
+              onChange={(value) => {
+                if (value === '') {
+                  setValue('benefitScore', null)
+                  return
+                }
+                setValue('benefitScore', value)
+              }}
+              precision={1}
+              value={watch('benefitScore') ?? ''}
+              error={errors.benefitScore?.message}
+              max={5}
+              min={0}
+            />
           </Grid.Col>
+          <Grid.Col span={2}>
+            <NumberInput
+              label="⭐ Cost score"
+              onChange={(value) => {
+                if (value === '') {
+                  setValue('costScore', null)
+                  return
+                }
+                setValue('costScore', value)
+              }}
+              value={watch('costScore') ?? ''}
+              error={errors.costScore?.message}
+              precision={1}
+              max={5}
+              min={0}
+            />
+          </Grid.Col>
+
           <Grid.Col span={2}>
             <MyTextInput
               label="Times per month"

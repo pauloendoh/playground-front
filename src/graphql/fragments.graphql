@@ -49,6 +49,8 @@ fragment Expense on Expense {
   createdAt
   updatedAt
   timesPerMonth
+  costScore
+  benefitScore
   categories {
     id
   }

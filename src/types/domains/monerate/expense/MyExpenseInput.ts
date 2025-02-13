@@ -37,7 +37,17 @@ export class MyExpenseInput implements ExpenseInput {
     this.description = ''
     this.categoryIds = []
     this.timesPerMonth = null
+    this.benefitScore = null
+    this.costScore = null
   }
+
+  @IsNumberExpose()
+  @IsOptional()
+  benefitScore: InputMaybe<number>
+
+  @IsNumberExpose()
+  @IsOptional()
+  costScore: InputMaybe<number>
 
   @IsNumberStringExpose(undefined, { message: 'Value must be a number' })
   @IsOptional()
