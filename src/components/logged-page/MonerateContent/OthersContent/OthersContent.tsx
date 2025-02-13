@@ -1,6 +1,4 @@
 import { Box, Grid } from '@mantine/core'
-import FlexCol from '../../../_common/flex/FlexCol'
-import AddExpenseButton from '../../../monerate-page/ExpensesContent/AddExpenseButton/AddExpenseButton'
 import { LastExpensesSection } from '../../../monerate-page/ExpensesContent/LastExpensesSection/LastExpensesSection'
 import RecurrentExpensesSection from '../../../monerate-page/ExpensesContent/RecurrentExpensesSection/RecurrentExpensesSection'
 import WishlistSection from '../../../monerate-page/WishlistItems/WishlistSection'
@@ -24,10 +22,6 @@ const OthersContent = (props: Props) => {
         <SavingsSection />
         <Box mt={32} />
         <SalarySection />
-
-        <FlexCol mt={32} gap={16} pb={40}>
-          <AddExpenseButton />
-        </FlexCol>
       </Grid.Col>
     </Grid>
   )

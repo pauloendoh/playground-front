@@ -12,6 +12,7 @@ const AddExpenseButton = ({ ...props }: Props) => {
       onClick={() => {
         openModal(new MyExpenseInput())
       }}
+      w="100%"
     >
       + Add Expense
     </Button>

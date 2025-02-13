@@ -5,6 +5,7 @@ import useExpenseModalStore from '../../../../hooks/zustand/modals/useExpenseMod
 import FlexCol from '../../../_common/flex/FlexCol'
 import FlexVCenter from '../../../_common/flex/FlexVCenter'
 import MyPaper from '../../../_common/overrides/MyPaper'
+import AddExpenseButton from '../AddExpenseButton/AddExpenseButton'
 
 type Props = {}
 
@@ -39,7 +40,11 @@ const RecurrentExpensesSection = (props: Props) => {
 
   return (
     <MyPaper>
-      <Title order={4}>Recurrent Expenses</Title>
+      <AddExpenseButton />
+
+      <Title mt={16} order={4}>
+        Recurrent Expenses
+      </Title>
       <Text>
         Total per month:{' '}
         {

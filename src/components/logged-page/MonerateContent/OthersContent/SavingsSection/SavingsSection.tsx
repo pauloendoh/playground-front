@@ -32,6 +32,7 @@ const SavingsSection = (props: Props) => {
         onClick={() => {
           openModal(new MySavingValidInput())
         }}
+        color="dark"
       >
         + Add Saving
       </Button>
