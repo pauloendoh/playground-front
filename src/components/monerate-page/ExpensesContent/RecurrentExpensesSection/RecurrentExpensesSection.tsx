@@ -1,9 +1,10 @@
-import { Box, Button, Text, Title } from '@mantine/core'
+import { Button, Text, Title } from '@mantine/core'
 import { useMemo } from 'react'
 import { useRecurrentExpensesQuery } from '../../../../hooks/react-query/monerate/expense/useRecurrentExpensesQuery'
 import useExpenseModalStore from '../../../../hooks/zustand/modals/useExpenseModalStore'
 import FlexCol from '../../../_common/flex/FlexCol'
 import FlexVCenter from '../../../_common/flex/FlexVCenter'
+import MyPaper from '../../../_common/overrides/MyPaper'
 
 type Props = {}
 
@@ -37,8 +38,8 @@ const RecurrentExpensesSection = (props: Props) => {
   const { openModal } = useExpenseModalStore()
 
   return (
-    <Box>
-      <Title>Recurrent Expenses</Title>
+    <MyPaper>
+      <Title order={4}>Recurrent Expenses</Title>
       <Text>
         Total per month:{' '}
         {
@@ -91,7 +92,7 @@ const RecurrentExpensesSection = (props: Props) => {
           </Button>
         ))}
       </FlexCol>
-    </Box>
+    </MyPaper>
   )
 }
 
