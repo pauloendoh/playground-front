@@ -69,7 +69,7 @@ const RecurrentExpensesSection = (props: Props) => {
         </FlexCol>
       </Box>
 
-      <FlexCol mt={8}>
+      <FlexCol>
         {sortedData?.map((expense) => (
           <ExpenseButtonItem
             expense={expense}
