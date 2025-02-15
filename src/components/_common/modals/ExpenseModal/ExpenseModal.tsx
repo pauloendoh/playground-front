@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form'
 import { useSaveExpenseMutation } from '../../../../hooks/react-query/monerate/expense/useSaveExpenseMutation'
 import useExpenseFilterStore from '../../../../hooks/zustand/useExpenseFilterStore'
 import { MyExpenseInput } from '../../../../types/domains/monerate/expense/MyExpenseInput'
-import { useValueInHoursSpan } from '../../../monerate-page/ExpensesContent/RecurrentExpensesSection/ExpenseButtonItem/useValueInHoursLabel/useValueInHoursLabel'
+import { useValueInHoursSpan } from '../../../monerate-page/ExpensesContent/RecurrentExpensesSection/ExpenseButtonItem/useValueInHoursSpan/useValueInHoursSpan'
 import MyTextInput from '../../inputs/MyTextInput'
 import SaveCancelButtons from '../../inputs/SaveCancelButtons'
 import { Span } from '../../text/Span'
@@ -72,7 +72,6 @@ export default function ExpenseModal(props: Props) {
 
   const valueInHoursLabel = useValueInHoursSpan(Number(watch('value')), {
     showMinutes: true,
-    hideTildePrefix: true,
   })
 
   return (

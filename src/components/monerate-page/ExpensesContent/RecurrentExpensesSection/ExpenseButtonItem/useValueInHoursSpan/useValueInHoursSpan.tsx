@@ -5,12 +5,19 @@ import { useMoneyPerHour } from '../../../../../logged-page/MonerateContent/Othe
 export const useValueInHoursSpan = (
   expenseValue: number,
   options?: {
-    hideTildePrefix?: boolean
+    overridePrefix?: string
     overrideSufix?: string
     showMinutes?: boolean
   }
 ) => {
   const moneyPerHour = useMoneyPerHour()
+
+  const prefix = useMemo(() => {
+    if (options?.overridePrefix) return options.overridePrefix
+    if (options?.showMinutes) return ''
+
+    return '~'
+  }, [])
 
   const sufix = useMemo(() => {
     if (options?.overrideSufix) return options.overrideSufix
@@ -39,9 +46,8 @@ export const useValueInHoursSpan = (
 
     return (
       <Span title={hoursAndMinutes}>
-        {options?.hideTildePrefix ? '' : '~'}
+        {prefix}
         {options?.showMinutes ? hoursAndMinutes : hoursCeil}
-
         {sufix}
       </Span>
     )

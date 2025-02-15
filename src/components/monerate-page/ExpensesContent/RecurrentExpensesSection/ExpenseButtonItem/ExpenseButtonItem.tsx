@@ -6,8 +6,7 @@ import useExpenseModalStore from '../../../../../hooks/zustand/modals/useExpense
 import FlexCol from '../../../../_common/flex/FlexCol'
 import FlexVCenter from '../../../../_common/flex/FlexVCenter'
 import { Span } from '../../../../_common/text/Span'
-import { useMoneyPerHour } from '../../../../logged-page/MonerateContent/OthersContent/SalarySection/useMoneyPerHour/useMoneyPerHour'
-import { useValueInHoursSpan } from './useValueInHoursLabel/useValueInHoursLabel'
+import { useValueInHoursSpan } from './useValueInHoursSpan/useValueInHoursSpan'
 
 type Props = {
   expense: RecurrentExpensesItemOutput
@@ -25,9 +24,9 @@ export const ExpenseButtonItem = ({ expense, ...props }: Props) => {
     return Number(expense.value)
   }, [props.type, expense.value, expense.timesPerMonth])
 
-  const moneyPerHour = useMoneyPerHour()
-
-  const valueInHoursLabel = useValueInHoursSpan(showingValue)
+  const valueInHoursLabel = useValueInHoursSpan(showingValue, {
+    overridePrefix: ' ~ ',
+  })
 
   return (
     <Button
