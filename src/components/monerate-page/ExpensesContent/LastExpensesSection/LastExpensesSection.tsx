@@ -1,12 +1,12 @@
-import { Box, Center, Flex, Loader } from '@mantine/core'
+import { Box, Center, Flex, Loader, Title } from '@mantine/core'
 import { useDebouncedValue, useIntersection } from '@mantine/hooks'
 import { useEffect, useMemo, useRef } from 'react'
 import { useExpensesQuery } from '../../../../hooks/react-query/monerate/expense/useExpensesQuery'
 import useExpenseModalStore from '../../../../hooks/zustand/modals/useExpenseModalStore'
 import useExpenseFilterStore from '../../../../hooks/zustand/useExpenseFilterStore'
+import MyTextInput from '../../../_common/inputs/MyTextInput'
 import MyPaper from '../../../_common/overrides/MyPaper'
-import ExpenseFilters from '../ExpenseFilters/ExpenseFilters'
-import ExpenseItem from '../ExpenseItem/ExpenseItem'
+import { ExpenseButtonItem } from '../RecurrentExpensesSection/ExpenseButtonItem/ExpenseButtonItem'
 
 type Props = {}
 
@@ -40,26 +40,30 @@ export const LastExpensesSection = ({ ...props }: Props) => {
   }, [entry?.isIntersecting, hasNextPage, pagedExpenses])
 
   const { openModal } = useExpenseModalStore()
+  const { setExpensesByText } = useExpenseFilterStore()
 
   return (
-    <MyPaper mt={16}>
+    <MyPaper p={0} mt={16}>
       <Flex direction="column">
-        <ExpenseFilters />
-        <Box mt={16} />
+        <Box p={16}>
+          <Flex>
+            <Title order={4}>Last saved expenses</Title>
+          </Flex>
+          <MyTextInput
+            w="100%"
+            label="Filter expenses"
+            value={filter.expensesByText}
+            onChange={(e) => setExpensesByText(e.target.value)}
+          />
+        </Box>
 
         {flatExpenses && flatExpenses.length === 0 && 'No expenses found'}
+
         {flatExpenses?.map((expense) => (
-          <ExpenseItem
+          <ExpenseButtonItem
             expense={expense}
             key={expense.id}
-            onClick={() => {
-              openModal({
-                ...expense!,
-                categoryIds: expense?.categories?.map(
-                  (category) => category?.id
-                ),
-              })
-            }}
+            type="regular"
           />
         ))}
         {hasNextPage && (

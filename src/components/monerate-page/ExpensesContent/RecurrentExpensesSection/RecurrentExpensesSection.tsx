@@ -1,11 +1,12 @@
-import { Button, Text, Title } from '@mantine/core'
+import { Box, Title, useMantineTheme } from '@mantine/core'
 import { useMemo } from 'react'
 import { useRecurrentExpensesQuery } from '../../../../hooks/react-query/monerate/expense/useRecurrentExpensesQuery'
 import useExpenseModalStore from '../../../../hooks/zustand/modals/useExpenseModalStore'
 import FlexCol from '../../../_common/flex/FlexCol'
-import FlexVCenter from '../../../_common/flex/FlexVCenter'
 import MyPaper from '../../../_common/overrides/MyPaper'
+import { Span } from '../../../_common/text/Span'
 import AddExpenseButton from '../AddExpenseButton/AddExpenseButton'
+import { ExpenseButtonItem } from './ExpenseButtonItem/ExpenseButtonItem'
 
 type Props = {}
 
@@ -37,65 +38,44 @@ const RecurrentExpensesSection = (props: Props) => {
   }, [sortedData])
 
   const { openModal } = useExpenseModalStore()
+  const theme = useMantineTheme()
 
   return (
-    <MyPaper>
-      <AddExpenseButton />
+    <MyPaper
+      sx={{
+        padding: 0,
+      }}
+    >
+      <Box p={16}>
+        <AddExpenseButton />
 
-      <Title mt={16} order={4}>
-        Recurrent Expenses
-      </Title>
-      <Text>
-        Total per month:{' '}
-        {
-          // format to R$
-          total.toLocaleString('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-          })
-        }
-      </Text>
+        <FlexCol gap={2}>
+          <Title mt={16} order={4}>
+            Recurrent Expenses
+          </Title>
 
-      <FlexCol mt={16} gap={8}>
-        {sortedData?.map((expense) => (
-          <Button
-            key={expense.id}
-            variant="subtle"
-            color="red"
-            sx={{ height: 'unset' }}
-            styles={{
-              label: {
-                whiteSpace: 'unset',
-                padding: 4,
-                width: '100%',
-              },
-            }}
-            onClick={() => {
-              openModal({
-                ...expense!,
-                categoryIds: expense?.categories?.map(
-                  (category) => category?.id
-                ),
-              })
-            }}
-          >
-            <FlexVCenter
-              key={expense.id}
-              gap={16}
-              justify="space-between"
-              sx={{ width: '100%' }}
-            >
-              <Text>{expense.name}</Text>
-              <Text>
-                {(
-                  Number(expense.value) * Number(expense.timesPerMonth)
-                ).toLocaleString('pt-BR', {
+          <Span>
+            Per month ={' '}
+            <Span color={theme.colors.red[6]} weight={500}>
+              {
+                // format to R$
+                total.toLocaleString('pt-BR', {
                   style: 'currency',
                   currency: 'BRL',
-                })}
-              </Text>
-            </FlexVCenter>
-          </Button>
+                })
+              }
+            </Span>
+          </Span>
+        </FlexCol>
+      </Box>
+
+      <FlexCol mt={8}>
+        {sortedData?.map((expense) => (
+          <ExpenseButtonItem
+            expense={expense}
+            key={expense.id}
+            type="recurrent"
+          />
         ))}
       </FlexCol>
     </MyPaper>

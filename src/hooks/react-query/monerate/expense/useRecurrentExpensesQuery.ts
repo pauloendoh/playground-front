@@ -18,3 +18,7 @@ export const useRecurrentExpensesQuery = () => {
       sdk.RecurrentExpensesQuery().then((res) => res.recurrentExpensesQuery),
   })
 }
+
+export type RecurrentExpensesItemOutput = NonNullable<
+  ReturnType<typeof useRecurrentExpensesQuery>['data']
+>[0]
