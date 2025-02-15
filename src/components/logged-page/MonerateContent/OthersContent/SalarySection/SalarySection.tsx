@@ -1,6 +1,6 @@
 import { Text, Title, Tooltip } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { MdInfo } from 'react-icons/md'
 import {
   fetchSalary,
@@ -12,6 +12,7 @@ import FlexCol from '../../../../_common/flex/FlexCol'
 import FlexVCenter from '../../../../_common/flex/FlexVCenter'
 import MyTextInput from '../../../../_common/inputs/MyTextInput'
 import MyPaper from '../../../../_common/overrides/MyPaper'
+import { useMoneyPerHour } from './useMoneyPerHour/useMoneyPerHour'
 
 type Props = {}
 
@@ -55,10 +56,7 @@ const SalarySection = (props: Props) => {
   const valueInputRef = useRef<HTMLInputElement>(null)
   const hoursInputRef = useRef<HTMLInputElement>(null)
 
-  const moneyPerHour = useMemo(() => {
-    const hoursPerDay = values.jobHoursPerMonth
-    return (values.value ?? 0) / (hoursPerDay * 20)
-  }, [values.value, values.jobHoursPerMonth])
+  const moneyPerHour = useMoneyPerHour()
 
   return (
     <MyPaper>
@@ -100,7 +98,7 @@ const SalarySection = (props: Props) => {
         {moneyPerHour !== 0 && (
           <FlexCol>
             <Text size="sm">
-              {moneyPerHour.toFixed(1)} per hour{' '}
+              {moneyPerHour?.toFixed(1)} per hour{' '}
               <Tooltip label="Considering 20 working days" withArrow>
                 <span
                   style={{

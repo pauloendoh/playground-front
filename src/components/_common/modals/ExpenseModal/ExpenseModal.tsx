@@ -13,8 +13,10 @@ import { useForm } from 'react-hook-form'
 import { useSaveExpenseMutation } from '../../../../hooks/react-query/monerate/expense/useSaveExpenseMutation'
 import useExpenseFilterStore from '../../../../hooks/zustand/useExpenseFilterStore'
 import { MyExpenseInput } from '../../../../types/domains/monerate/expense/MyExpenseInput'
+import { useValueInHoursSpan } from '../../../monerate-page/ExpensesContent/RecurrentExpensesSection/ExpenseButtonItem/useValueInHoursLabel/useValueInHoursLabel'
 import MyTextInput from '../../inputs/MyTextInput'
 import SaveCancelButtons from '../../inputs/SaveCancelButtons'
+import { Span } from '../../text/Span'
 import CategoriesSelector from './CategoriesSelector/CategoriesSelector'
 import { ExpenseMoreMenu } from './ExpenseMoreMenu/ExpenseMoreMenu'
 
@@ -68,6 +70,11 @@ export default function ExpenseModal(props: Props) {
     props.onClose()
   }
 
+  const valueInHoursLabel = useValueInHoursSpan(Number(watch('value')), {
+    showMinutes: true,
+    hideTildePrefix: true,
+  })
+
   return (
     <Modal
       opened={props.isOpen}
@@ -107,7 +114,16 @@ export default function ExpenseModal(props: Props) {
 
           <Grid.Col span={3}>
             <MyTextInput
-              label="Value"
+              label={
+                <Span>
+                  Value{' '}
+                  {valueInHoursLabel && (
+                    <Span color="yellow" size="sm">
+                      ({valueInHoursLabel} of work)
+                    </Span>
+                  )}
+                </Span>
+              }
               type="number"
               {...register('value')}
               error={errors.value?.message}

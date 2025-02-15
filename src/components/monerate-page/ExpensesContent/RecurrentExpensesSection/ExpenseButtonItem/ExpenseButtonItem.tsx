@@ -6,6 +6,8 @@ import useExpenseModalStore from '../../../../../hooks/zustand/modals/useExpense
 import FlexCol from '../../../../_common/flex/FlexCol'
 import FlexVCenter from '../../../../_common/flex/FlexVCenter'
 import { Span } from '../../../../_common/text/Span'
+import { useMoneyPerHour } from '../../../../logged-page/MonerateContent/OthersContent/SalarySection/useMoneyPerHour/useMoneyPerHour'
+import { useValueInHoursSpan } from './useValueInHoursLabel/useValueInHoursLabel'
 
 type Props = {
   expense: RecurrentExpensesItemOutput
@@ -15,13 +17,17 @@ type Props = {
 export const ExpenseButtonItem = ({ expense, ...props }: Props) => {
   const { openModal } = useExpenseModalStore()
 
-  const value = useMemo(() => {
+  const showingValue = useMemo(() => {
     if (props.type === 'recurrent') {
       return Number(expense.value) * Number(expense.timesPerMonth)
     }
 
     return Number(expense.value)
   }, [props.type, expense.value, expense.timesPerMonth])
+
+  const moneyPerHour = useMoneyPerHour()
+
+  const valueInHoursLabel = useValueInHoursSpan(showingValue)
 
   return (
     <Button
@@ -64,11 +70,12 @@ export const ExpenseButtonItem = ({ expense, ...props }: Props) => {
               )}
           </Span>
 
-          <Text>
-            {value.toLocaleString('pt-BR', {
+          <Text weight="normal">
+            {showingValue.toLocaleString('pt-BR', {
               style: 'currency',
               currency: 'BRL',
             })}
+            {!!valueInHoursLabel && <Span>{valueInHoursLabel}</Span>}
           </Text>
         </FlexCol>
         <Box w={42}>
