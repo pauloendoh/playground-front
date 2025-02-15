@@ -57,7 +57,9 @@ export const LastExpensesSection = ({ ...props }: Props) => {
           />
         </Box>
 
-        {flatExpenses && flatExpenses.length === 0 && 'No expenses found'}
+        {flatExpenses && flatExpenses.length === 0 && (
+          <Box p={16}>No expenses found</Box>
+        )}
 
         {flatExpenses?.map((expense) => (
           <ExpenseButtonItem
