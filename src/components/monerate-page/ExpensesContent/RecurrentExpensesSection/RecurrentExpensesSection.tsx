@@ -1,4 +1,4 @@
-import { Box, Title, useMantineTheme } from '@mantine/core'
+import { Box, ScrollArea, Title, useMantineTheme } from '@mantine/core'
 import { useMemo } from 'react'
 import { useRecurrentExpensesQuery } from '../../../../hooks/react-query/monerate/expense/useRecurrentExpensesQuery'
 import useExpenseModalStore from '../../../../hooks/zustand/modals/useExpenseModalStore'
@@ -69,15 +69,21 @@ const RecurrentExpensesSection = (props: Props) => {
         </FlexCol>
       </Box>
 
-      <FlexCol>
-        {sortedData?.map((expense) => (
-          <ExpenseButtonItem
-            expense={expense}
-            key={expense.id}
-            type="recurrent"
-          />
-        ))}
-      </FlexCol>
+      <ScrollArea.Autosize
+        mt={24}
+        sx={{ maxHeight: 'calc(100vh - 388px)' }}
+        type="auto"
+      >
+        <FlexCol>
+          {sortedData?.map((expense) => (
+            <ExpenseButtonItem
+              expense={expense}
+              key={expense.id}
+              type="recurrent"
+            />
+          ))}
+        </FlexCol>
+      </ScrollArea.Autosize>
     </MyPaper>
   )
 }

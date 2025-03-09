@@ -37,7 +37,11 @@ const WishlistSection = (props: Props) => {
         + Add Wishlist Item
       </Button>
 
-      <ScrollArea mt={24} sx={{ height: 'calc(100vh - 320px)' }} type="auto">
+      <ScrollArea.Autosize
+        mt={24}
+        sx={{ maxHeight: 'calc(100vh - 320px)' }}
+        type="auto"
+      >
         <Table
           sx={(theme) => ({
             //on hover body tr
@@ -80,7 +84,7 @@ const WishlistSection = (props: Props) => {
             />
           ))}
         </Flex> */}
-      </ScrollArea>
+      </ScrollArea.Autosize>
     </MyPaper>
   )
 }

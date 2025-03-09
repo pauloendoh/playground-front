@@ -10,3 +10,5 @@ const inputValidator = MySavingValidInput
 
 const modalStore = useIssueModalStore()
 const modal = IssueModal
+
+// ScrollArea from WishlistSection.tsx
