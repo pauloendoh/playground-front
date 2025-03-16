@@ -1,11 +1,11 @@
 import { Box, Button, Divider, Modal, Text, Title } from '@mantine/core'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import { useMixedColorsQuery } from '../../../../hooks/react-query/colors/mixed-color/useMixedColorsQuery'
 import useMixColorModalStore from '../../../../hooks/zustand/modals/useMixColorModalStore'
 import FlexVCenter from '../../../_common/flex/FlexVCenter'
 import { getColorNameFromHex } from '../getColorNameFromHex/getColorNameFromHex'
-import { getColorSimiliarityValue } from '../getColorSimiliarityValue'
+import { getColorsSimilarityValue } from '../getColorsSimilarityValue'
 import { hexIsLight } from '../hexIsLight/hexIsLight'
 import EditColorSection from './EditColorSection/EditColorSection'
 
@@ -21,21 +21,40 @@ const MixColorModal = (props: Props) => {
 
   const { data: mixedColors } = useMixedColorsQuery()
 
+  const [sortingBy, setSortingBy] = useState<'similarity' | 'lastUpdated'>(
+    'similarity'
+  )
+
+  useEffect(() => {
+    if (isOpen) {
+      setSortingBy('similarity')
+    }
+  }, [isOpen])
+
   const sortedMixedColors = useMemo(() => {
     if (!mixedColors) return []
 
-    return [...mixedColors]
-      .filter((c) => c.color !== selectedHex)
-      .sort((a, b) => {
+    let result = [...mixedColors].filter((c) => c.color !== selectedHex)
+
+    if (sortingBy === 'similarity') {
+      result = result.sort((a, b) => {
         // high similarity value = less imilar
         // sort by most similar
         return (
-          getColorSimiliarityValue(a.color, selectedHex) -
-          getColorSimiliarityValue(b.color, selectedHex)
+          getColorsSimilarityValue(a.color, selectedHex) -
+          getColorsSimilarityValue(b.color, selectedHex)
         )
       })
-      .slice(0, 10)
-  }, [mixedColors, selectedHex])
+    }
+
+    if (sortingBy === 'lastUpdated') {
+      result = result.sort((a, b) => {
+        return b.updatedAt.localeCompare(a.updatedAt)
+      })
+    }
+
+    return result
+  }, [mixedColors, selectedHex, sortingBy])
 
   return (
     <Modal onClose={() => onClose()} opened={isOpen} title="Mixing" fullScreen>
@@ -54,10 +73,22 @@ const MixColorModal = (props: Props) => {
         </Button>
 
         <Divider my={24} />
-
         {sortedMixedColors.length > 0 && (
           <Box>
-            <Title order={3}>Similar colors</Title>
+            <FlexVCenter justify={'space-between'}>
+              <Title order={3}>Mixed colors</Title>
+              <Button
+                onClick={() => {
+                  setSortingBy((prev) =>
+                    prev === 'similarity' ? 'lastUpdated' : 'similarity'
+                  )
+                }}
+                variant="subtle"
+              >
+                Sort by:{' '}
+                {sortingBy === 'similarity' ? 'Similarity' : 'Last Updated'}
+              </Button>
+            </FlexVCenter>
 
             {/* two column grid */}
             <Box

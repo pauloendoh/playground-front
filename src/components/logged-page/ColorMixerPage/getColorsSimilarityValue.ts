@@ -1,5 +1,5 @@
 // ex: rgba(255, 255, 255, 1)
-export const getColorSimiliarityValue = (hexA: string, hexB: string) => {
+export const getColorsSimilarityValue = (hexA: string, hexB: string) => {
   const rgbA = hexToRgb(hexA)
   const rgbB = hexToRgb(hexB)
 

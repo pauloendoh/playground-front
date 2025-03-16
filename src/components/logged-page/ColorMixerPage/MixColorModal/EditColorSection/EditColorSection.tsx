@@ -36,7 +36,9 @@ const EditColorSection = ({ selectedHex }: Props) => {
   useEffect(() => {
     if (!mixedColors) return
 
-    const mixedColor = mixedColors.find((c) => c.color === selectedHex)
+    const mixedColor = mixedColors.find(
+      (c) => c.name === getColorNameFromHex(selectedHex)
+    )
 
     if (!mixedColor) return
 
@@ -48,8 +50,8 @@ const EditColorSection = ({ selectedHex }: Props) => {
     )
   }, [selectedHex])
 
-  const currentMix = useMemo(
-    () => mixedColors?.find((c) => c.color === selectedHex),
+  const currentSavedMix = useMemo(
+    () => mixedColors?.find((c) => c.name === getColorNameFromHex(selectedHex)),
     [selectedHex, mixedColors]
   )
 
@@ -80,11 +82,11 @@ const EditColorSection = ({ selectedHex }: Props) => {
           <Text>
             {selectedHex} ({getColorNameFromHex(selectedHex)})
           </Text>
-          {currentMix && (
+          {currentSavedMix && (
             <ActionIcon
               onClick={() => {
                 if (confirm('Delete?')) {
-                  submitDelete(currentMix.id, {
+                  submitDelete(currentSavedMix.id, {
                     onSuccess: () => {
                       onClose()
                     },
@@ -152,9 +154,10 @@ const EditColorSection = ({ selectedHex }: Props) => {
           mt={24}
           onClick={() => {
             const input = new MyMixedColorInput()
+            input.name = getColorNameFromHex(selectedHex)
             input.color = selectedHex
             input.colorProportions = colorProportions
-            input.id = currentMix?.id ?? null
+            input.id = currentSavedMix?.id ?? null
             submitSave(input, {
               onSuccess: () => {
                 setShowSavedMessage(true)
@@ -171,7 +174,7 @@ const EditColorSection = ({ selectedHex }: Props) => {
             const input = new MyMixedColorInput()
             input.color = selectedHex
             input.colorProportions = colorProportions
-            input.id = currentMix?.id ?? null
+            input.id = currentSavedMix?.id ?? null
             submitSave(input, {
               onSuccess: () => {
                 onClose()
