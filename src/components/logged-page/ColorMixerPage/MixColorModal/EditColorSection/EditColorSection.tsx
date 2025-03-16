@@ -25,7 +25,7 @@ type Props = {
 }
 
 const EditColorSection = ({ selectedHex }: Props) => {
-  const { onClose, openModal } = useMixColorModalStore()
+  const { onClose } = useMixColorModalStore()
   const [addRawColor, setAddRawColor] = useState<RawColorFragment | null>(null)
   const [colorProportions, setColorProportions] = useState<
     ColorProportionInput[]
@@ -79,9 +79,7 @@ const EditColorSection = ({ selectedHex }: Props) => {
             borderRadius: '4px',
           }}
         >
-          <Text>
-            {selectedHex} ({getColorNameFromHex(selectedHex)})
-          </Text>
+          <Text>{getColorNameFromHex(selectedHex)}</Text>
           {currentSavedMix && (
             <ActionIcon
               onClick={() => {
