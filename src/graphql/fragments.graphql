@@ -70,6 +70,7 @@ fragment Salary on Salary {
   userId
   value
   jobHoursPerMonth
+  notes
   createdAt
   updatedAt
 }

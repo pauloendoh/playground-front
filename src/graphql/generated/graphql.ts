@@ -6329,6 +6329,7 @@ export type Salary = {
   createdAt: Scalars['DateTime'];
   id: Scalars['String'];
   jobHoursPerMonth: Scalars['Float'];
+  notes: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   user: User;
   userId: Scalars['String'];
@@ -6350,6 +6351,7 @@ export type SalaryCountAggregate = {
   createdAt: Scalars['Int'];
   id: Scalars['Int'];
   jobHoursPerMonth: Scalars['Int'];
+  notes: Scalars['Int'];
   updatedAt: Scalars['Int'];
   userId: Scalars['Int'];
   value: Scalars['Int'];
@@ -6359,6 +6361,7 @@ export type SalaryCountOrderByAggregateInput = {
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   jobHoursPerMonth: InputMaybe<SortOrder>;
+  notes: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
   value: InputMaybe<SortOrder>;
@@ -6368,6 +6371,7 @@ export type SalaryCreateInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   jobHoursPerMonth: InputMaybe<Scalars['Float']>;
+  notes: InputMaybe<Scalars['String']>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   user: UserCreateNestedOneWithoutSalaryInput;
   value: Scalars['Int'];
@@ -6377,6 +6381,7 @@ export type SalaryCreateManyInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   jobHoursPerMonth: InputMaybe<Scalars['Float']>;
+  notes: InputMaybe<Scalars['String']>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   userId: Scalars['String'];
   value: Scalars['Int'];
@@ -6397,6 +6402,7 @@ export type SalaryCreateWithoutUserInput = {
   createdAt: InputMaybe<Scalars['DateTime']>;
   id: InputMaybe<Scalars['String']>;
   jobHoursPerMonth: InputMaybe<Scalars['Float']>;
+  notes: InputMaybe<Scalars['String']>;
   updatedAt: InputMaybe<Scalars['DateTime']>;
   value: Scalars['Int'];
 };
@@ -6410,6 +6416,7 @@ export type SalaryGroupBy = {
   createdAt: Scalars['DateTime'];
   id: Scalars['String'];
   jobHoursPerMonth: Scalars['Float'];
+  notes: Scalars['String'];
   updatedAt: Scalars['DateTime'];
   userId: Scalars['String'];
   value: Scalars['Int'];
@@ -6419,6 +6426,7 @@ export type SalaryMaxAggregate = {
   createdAt: Maybe<Scalars['DateTime']>;
   id: Maybe<Scalars['String']>;
   jobHoursPerMonth: Maybe<Scalars['Float']>;
+  notes: Maybe<Scalars['String']>;
   updatedAt: Maybe<Scalars['DateTime']>;
   userId: Maybe<Scalars['String']>;
   value: Maybe<Scalars['Int']>;
@@ -6428,6 +6436,7 @@ export type SalaryMaxOrderByAggregateInput = {
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   jobHoursPerMonth: InputMaybe<SortOrder>;
+  notes: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
   value: InputMaybe<SortOrder>;
@@ -6437,6 +6446,7 @@ export type SalaryMinAggregate = {
   createdAt: Maybe<Scalars['DateTime']>;
   id: Maybe<Scalars['String']>;
   jobHoursPerMonth: Maybe<Scalars['Float']>;
+  notes: Maybe<Scalars['String']>;
   updatedAt: Maybe<Scalars['DateTime']>;
   userId: Maybe<Scalars['String']>;
   value: Maybe<Scalars['Int']>;
@@ -6446,6 +6456,7 @@ export type SalaryMinOrderByAggregateInput = {
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   jobHoursPerMonth: InputMaybe<SortOrder>;
+  notes: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
   value: InputMaybe<SortOrder>;
@@ -6460,6 +6471,7 @@ export type SalaryOrderByWithAggregationInput = {
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   jobHoursPerMonth: InputMaybe<SortOrder>;
+  notes: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   userId: InputMaybe<SortOrder>;
   value: InputMaybe<SortOrder>;
@@ -6469,6 +6481,7 @@ export type SalaryOrderByWithRelationInput = {
   createdAt: InputMaybe<SortOrder>;
   id: InputMaybe<SortOrder>;
   jobHoursPerMonth: InputMaybe<SortOrder>;
+  notes: InputMaybe<SortOrder>;
   updatedAt: InputMaybe<SortOrder>;
   user: InputMaybe<UserOrderByWithRelationInput>;
   userId: InputMaybe<SortOrder>;
@@ -6484,6 +6497,7 @@ export enum SalaryScalarFieldEnum {
   CreatedAt = 'createdAt',
   Id = 'id',
   JobHoursPerMonth = 'jobHoursPerMonth',
+  Notes = 'notes',
   UpdatedAt = 'updatedAt',
   UserId = 'userId',
   Value = 'value'
@@ -6496,6 +6510,7 @@ export type SalaryScalarWhereWithAggregatesInput = {
   createdAt: InputMaybe<DateTimeWithAggregatesFilter>;
   id: InputMaybe<StringWithAggregatesFilter>;
   jobHoursPerMonth: InputMaybe<FloatWithAggregatesFilter>;
+  notes: InputMaybe<StringWithAggregatesFilter>;
   updatedAt: InputMaybe<DateTimeWithAggregatesFilter>;
   userId: InputMaybe<StringWithAggregatesFilter>;
   value: InputMaybe<IntWithAggregatesFilter>;
@@ -6515,6 +6530,7 @@ export type SalaryUpdateInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   jobHoursPerMonth: InputMaybe<FloatFieldUpdateOperationsInput>;
+  notes: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   user: InputMaybe<UserUpdateOneRequiredWithoutSalaryNestedInput>;
   value: InputMaybe<IntFieldUpdateOperationsInput>;
@@ -6524,6 +6540,7 @@ export type SalaryUpdateManyMutationInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   jobHoursPerMonth: InputMaybe<FloatFieldUpdateOperationsInput>;
+  notes: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   value: InputMaybe<IntFieldUpdateOperationsInput>;
 };
@@ -6542,6 +6559,7 @@ export type SalaryUpdateWithoutUserInput = {
   createdAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   id: InputMaybe<StringFieldUpdateOperationsInput>;
   jobHoursPerMonth: InputMaybe<FloatFieldUpdateOperationsInput>;
+  notes: InputMaybe<StringFieldUpdateOperationsInput>;
   updatedAt: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   value: InputMaybe<IntFieldUpdateOperationsInput>;
 };
@@ -6554,6 +6572,7 @@ export type SalaryUpsertWithoutUserInput = {
 export type SalaryValidInput = {
   id: InputMaybe<Scalars['String']>;
   jobHoursPerMonth: Scalars['Float'];
+  notes: Scalars['String'];
   value: InputMaybe<Scalars['Int']>;
 };
 
@@ -6564,6 +6583,7 @@ export type SalaryWhereInput = {
   createdAt: InputMaybe<DateTimeFilter>;
   id: InputMaybe<StringFilter>;
   jobHoursPerMonth: InputMaybe<FloatFilter>;
+  notes: InputMaybe<StringFilter>;
   updatedAt: InputMaybe<DateTimeFilter>;
   user: InputMaybe<UserRelationFilter>;
   userId: InputMaybe<StringFilter>;
@@ -8560,7 +8580,7 @@ export type ExpenseFragment = { id: string, userId: string, name: string, value:
 
 export type CategoryFragment = { id: string, userId: string, name: string, bgColor: string, createdAt: string, updatedAt: string };
 
-export type SalaryFragment = { id: string, userId: string, value: number, jobHoursPerMonth: number, createdAt: string, updatedAt: string };
+export type SalaryFragment = { id: string, userId: string, value: number, jobHoursPerMonth: number, notes: string, createdAt: string, updatedAt: string };
 
 export type SavingFragment = { id: string, userId: string, value: string, date: string, createdAt: string, updatedAt: string };
 
@@ -8722,14 +8742,14 @@ export type SaveIssueMutationMutation = { saveIssueMutation: { id: string, userI
 export type SalaryQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SalaryQueryQuery = { salaryQuery: { id: string, userId: string, value: number, jobHoursPerMonth: number, createdAt: string, updatedAt: string } | null };
+export type SalaryQueryQuery = { salaryQuery: { id: string, userId: string, value: number, jobHoursPerMonth: number, notes: string, createdAt: string, updatedAt: string } | null };
 
 export type SaveSalaryMutationMutationVariables = Exact<{
   data: SalaryValidInput;
 }>;
 
 
-export type SaveSalaryMutationMutation = { saveSalaryMutation: { id: string, userId: string, value: number, jobHoursPerMonth: number, createdAt: string, updatedAt: string } };
+export type SaveSalaryMutationMutation = { saveSalaryMutation: { id: string, userId: string, value: number, jobHoursPerMonth: number, notes: string, createdAt: string, updatedAt: string } };
 
 export type DeleteSavingMutationMutationVariables = Exact<{
   savingId: Scalars['String'];
@@ -8891,6 +8911,7 @@ export const SalaryFragmentDoc = gql`
   userId
   value
   jobHoursPerMonth
+  notes
   createdAt
   updatedAt
 }
