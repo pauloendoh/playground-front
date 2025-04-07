@@ -67,6 +67,7 @@ const WishlistItemTableRow = (props: Props) => {
         </Text>
       </td>
       <td>{props.item.price && `R$ ${props.item.price}`}</td>
+      <td>{props.item.priority}</td>
       <td>{estimatedMonths > 0 && <Text>{estimatedMonths} months</Text>}</td>
     </tr>
   )

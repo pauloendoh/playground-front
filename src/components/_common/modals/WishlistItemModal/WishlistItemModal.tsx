@@ -112,6 +112,20 @@ export default function WishlistItemModal() {
               error={errors.price?.message}
             />
           </Grid.Col>
+          <Grid.Col span={3}>
+            <NumberInput
+              label="Priority"
+              onChange={(value) => {
+                if (value === '') {
+                  setValue('priority', null)
+                  return
+                }
+                setValue('priority', value)
+              }}
+              value={watch('priority') ?? ''}
+              error={errors.price?.message}
+            />
+          </Grid.Col>
         </Grid>
 
         <Flex align="center" justify="space-between" mt={16}>

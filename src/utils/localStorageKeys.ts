@@ -4,4 +4,6 @@ export const localStorageKeys = {
 
   canvasSrc: 'canvasSrc',
   squareReference: 'squareReference',
+
+  wishlistSortingBy: 'wishlistSortingBy',
 }
