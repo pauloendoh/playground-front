@@ -124,6 +124,8 @@ export default function WishlistItemModal() {
               }}
               value={watch('priority') ?? ''}
               error={errors.price?.message}
+              step={0.1}
+              precision={1}
             />
           </Grid.Col>
         </Grid>
