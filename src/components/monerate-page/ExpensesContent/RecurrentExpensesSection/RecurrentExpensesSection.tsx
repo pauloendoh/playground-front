@@ -70,7 +70,6 @@ const RecurrentExpensesSection = (props: Props) => {
       </Box>
 
       <ScrollArea.Autosize
-        mt={24}
         sx={{ maxHeight: 'calc(100vh - 388px)' }}
         type="auto"
       >
