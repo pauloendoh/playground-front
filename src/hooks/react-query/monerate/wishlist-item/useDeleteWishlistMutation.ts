@@ -24,6 +24,8 @@ export const useDeleteWishlistMutation = () => {
         .then((res) => res.deleteWishlistMutation),
     {
       onSuccess: (_, id) => {
+        queryClient.cancelQueries(queryKeys.wishlistItems)
+
         queryClient.setQueryData<WishlistItemFragment[]>(
           queryKeys.wishlistItems,
           (curr) => deleteFromArray(curr, (currItem) => currItem.id === id)

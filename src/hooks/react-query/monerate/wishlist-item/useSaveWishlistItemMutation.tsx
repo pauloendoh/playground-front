@@ -53,6 +53,7 @@ export const useSaveWishlistItemMutation = () => {
         )
         if (!saved) return
 
+        queryClient.cancelQueries(queryKeys.wishlistItems)
         queryClient.setQueryData<WishlistItemFragment[]>(
           queryKeys.wishlistItems,
           (curr) => upsert(curr, saved, (currItem) => currItem.id === saved.id)
