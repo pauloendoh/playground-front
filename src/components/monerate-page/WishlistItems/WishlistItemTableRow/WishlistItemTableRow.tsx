@@ -56,10 +56,10 @@ const WishlistItemTableRow = (props: Props) => {
       >
         <Text truncate>{props.item.itemName}</Text>
       </td>
+      <td>{props.item.priority}</td>
       <td
         style={{
           color: valueToReach > 0 ? theme.colors.red[5] : theme.colors.green[5],
-          minWidth: 80,
         }}
       >
         <Text>
@@ -67,7 +67,7 @@ const WishlistItemTableRow = (props: Props) => {
         </Text>
       </td>
       <td>{props.item.price && `R$ ${props.item.price}`}</td>
-      <td>{props.item.priority}</td>
+
       <td>{estimatedMonths > 0 && <Text>{estimatedMonths} months</Text>}</td>
     </tr>
   )

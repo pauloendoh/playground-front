@@ -79,15 +79,15 @@ const WishlistSection = (props: Props) => {
               backgroundColor: theme.colors.dark[4],
               cursor: 'pointer',
             },
-            // 4th column is centered
-            '& tbody tr td:nth-child(4)': {
+            // 2th column is centered
+            '& th:nth-child(2), & td:nth-child(2)': {
               textAlign: 'center',
             },
             '& thead tr th': {
               fontWeight: 'normal',
             },
-            // 2nd and 4th th are bold
-            '& thead tr th:nth-child(2), & thead tr th:nth-child(4)': {
+            // 2nd and 3rd th are bold
+            '& th:nth-child(2), & thead tr th:nth-child(3)': {
               fontWeight: 'bold',
             },
           })}
@@ -95,6 +95,27 @@ const WishlistSection = (props: Props) => {
           <thead>
             <tr>
               <th>Item</th>
+              <th
+                style={{
+                  cursor: 'pointer',
+                  minWidth: 96,
+                }}
+                onClick={() => {
+                  setSortingBy('priority')
+                }}
+              >
+                Priority
+                {sortingBy === 'priority' && (
+                  <MdArrowDownward
+                    style={{
+                      position: 'relative',
+                      top: 2,
+                      left: 4,
+                    }}
+                  />
+                )}
+              </th>
+
               <th
                 style={{
                   cursor: 'pointer',
@@ -116,26 +137,7 @@ const WishlistSection = (props: Props) => {
                 )}
               </th>
               <th>Price</th>
-              <th
-                style={{
-                  cursor: 'pointer',
-                  minWidth: 96,
-                }}
-                onClick={() => {
-                  setSortingBy('priority')
-                }}
-              >
-                Priority
-                {sortingBy === 'priority' && (
-                  <MdArrowDownward
-                    style={{
-                      position: 'relative',
-                      top: 2,
-                      left: 4,
-                    }}
-                  />
-                )}
-              </th>
+
               <th>ETA</th>
             </tr>
           </thead>
