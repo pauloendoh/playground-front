@@ -1,11 +1,14 @@
 import { Button, ScrollArea, Table } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
-import { useMemo } from 'react'
-import { MdArrowDownward } from 'react-icons/md'
+import { textContainsWords } from 'endoh-utils'
+import { useMemo, useState } from 'react'
+import { MdArrowDownward, MdSearch } from 'react-icons/md'
 import { useWishlistItemsQuery } from '../../../hooks/react-query/monerate/wishlist-item/useWishlistItemsQuery'
 import { useWishlistItemModalStore } from '../../../hooks/zustand/modals/useWishlistItemModalStore'
 import { MyWishlistItemValidInput } from '../../../types/domains/monerate/wishlist-item/MyWishlistItemValidInput'
 import { localStorageKeys } from '../../../utils/localStorageKeys'
+import FlexCol from '../../_common/flex/FlexCol'
+import MyTextInput from '../../_common/inputs/MyTextInput'
 import MyPaper from '../../_common/overrides/MyPaper'
 import WishlistItemTableRow from './WishlistItemTableRow/WishlistItemTableRow'
 
@@ -23,11 +26,19 @@ const WishlistSection = (props: Props) => {
     defaultValue: 'threshold',
   })
 
-  const sortedItems = useMemo(() => {
-    const result = [...(items ?? [])]
+  const [textFilter, setTextFilter] = useState('')
+
+  const visibleItems = useMemo(() => {
+    let results = [...(items ?? [])]
+
+    if (!!textFilter.length) {
+      results = results.filter((item) => {
+        return textContainsWords(item.itemName, textFilter)
+      })
+    }
 
     if (sortingBy === 'threshold') {
-      result.sort((a, b) => {
+      results.sort((a, b) => {
         const numA = Number(a.priceInThousands)
         const numB = Number(b.priceInThousands)
         return numA - numB
@@ -35,7 +46,7 @@ const WishlistSection = (props: Props) => {
     }
 
     if (sortingBy === 'priority') {
-      result.sort((a, b) => {
+      results.sort((a, b) => {
         // desc, nulls first
         if (b.priority === null) {
           return 1
@@ -52,20 +63,28 @@ const WishlistSection = (props: Props) => {
       })
     }
 
-    return result
-  }, [items, sortingBy])
+    return results
+  }, [items, sortingBy, textFilter])
 
   return (
     <MyPaper>
-      <Button
-        fullWidth
-        color="secondary"
-        onClick={() => {
-          openModal(new MyWishlistItemValidInput())
-        }}
-      >
-        + Add Wishlist Item
-      </Button>
+      <FlexCol gap={8}>
+        <Button
+          fullWidth
+          color="secondary"
+          onClick={() => {
+            openModal(new MyWishlistItemValidInput())
+          }}
+        >
+          + Add Wishlist Item
+        </Button>
+        <MyTextInput
+          value={textFilter}
+          onChange={(e) => setTextFilter(e.currentTarget.value)}
+          placeholder="Filter by item name"
+          icon={<MdSearch />}
+        />
+      </FlexCol>
 
       <ScrollArea.Autosize
         mt={24}
@@ -142,11 +161,11 @@ const WishlistSection = (props: Props) => {
             </tr>
           </thead>
           <tbody>
-            {sortedItems?.map((item) => (
+            {visibleItems?.map((item) => (
               <WishlistItemTableRow
                 key={item.id}
                 item={item}
-                allItems={sortedItems}
+                allItems={visibleItems}
                 onClick={() => {
                   openModal(item)
                 }}
