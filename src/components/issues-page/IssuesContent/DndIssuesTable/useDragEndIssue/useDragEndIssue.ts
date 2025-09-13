@@ -18,12 +18,6 @@ export const useDragEndIssue = (visibleIssues: IssueFragment[]) => {
     const sourceIssue = visibleIssues[source.index]
     const destinationIssue = visibleIssues[destination.index]
 
-    console.log({
-      issueId: sourceIssue.id,
-      fromPosition: sourceIssue.position,
-      toPosition: destinationIssue.position,
-    })
-
     mutate({
       issueId: sourceIssue.id,
       fromPosition: sourceIssue.position,

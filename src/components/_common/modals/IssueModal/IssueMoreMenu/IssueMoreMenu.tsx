@@ -29,9 +29,6 @@ export const IssueMoreMenu = (props: Props) => {
             if (confirm('Are you sure you want to delete this issue?')) {
               submitDelete(props.input.id!, {
                 onSuccess: () => {
-                  console.log({
-                    deleted: 'true',
-                  })
                   props.afterDelete()
                   setIsOpen(false)
                 },

@@ -29,11 +29,6 @@ export const useAverageMonthlyGrowth = () => {
 
     const averageMonthlyGrowth = avgValueDay * 30
 
-    console.log({
-      daysDiff,
-      valuesDiff,
-    })
-
     return averageMonthlyGrowth
   }, [lastSaving, selectedSaving])
 

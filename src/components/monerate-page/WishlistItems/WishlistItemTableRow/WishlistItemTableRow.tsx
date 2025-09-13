@@ -46,14 +46,11 @@ const WishlistItemTableRow = (props: Props) => {
 
     const months = Math.ceil(total / avgGrowth)
 
-    const duration = Duration.fromObject({ months })
+    const duration = Duration.fromObject({ months }).shiftTo('year', 'month')
 
-    console.log({
-      duration,
-      toHuman: duration.toHuman(),
+    return duration.toHuman({
+      showZeros: false,
     })
-
-    return duration.toHuman()
   }, [avgGrowth, props.item.priceInThousands, lastSaving, props.allItems])
 
   return (

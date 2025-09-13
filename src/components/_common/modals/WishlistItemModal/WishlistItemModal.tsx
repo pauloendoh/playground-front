@@ -46,9 +46,6 @@ export default function WishlistItemModal() {
   const { mutate: submitSave, isLoading } = useSaveWishlistItemMutation()
 
   const onSubmit = (data: MyWishlistItemValidInput) => {
-    console.log({
-      data,
-    })
     submitSave(data, {
       onSuccess: () => {
         onClose()
