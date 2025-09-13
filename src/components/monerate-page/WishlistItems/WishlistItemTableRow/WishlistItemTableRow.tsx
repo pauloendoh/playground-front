@@ -27,6 +27,19 @@ const WishlistItemTableRow = (props: Props) => {
 
   const monthlyGrowth = useAverageMonthlyGrowth()
 
+  const sumPreviousPrices = useMemo(() => {
+    const previousItems = props.allItems.filter(
+      (item) => item.priceInThousands < props.item.priceInThousands,
+    )
+
+    const sumPreviousPrices = previousItems.reduce((sum, curr) => {
+      const price = Number(curr.price)
+      return sum + price
+    }, 0)
+
+    return sumPreviousPrices
+  }, [props.allItems, props.item.priceInThousands])
+
   const estimatedTimeLabel = useMemo(() => {
     if (!monthlyGrowth) return null
 
@@ -76,6 +89,7 @@ const WishlistItemTableRow = (props: Props) => {
             monthlyGrowth,
             priceInThousands: props.item.priceInThousands,
             lastSavingValue: lastSaving?.value,
+            sumPreviousPrices,
           })}
         </div>
         <Text truncate>{props.item.itemName}</Text>
