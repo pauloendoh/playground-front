@@ -16,13 +16,13 @@ export const useAverageMonthlyGrowth = () => {
 
     const datetimeDiff = Math.abs(
       new Date(lastSaving.date).getTime() -
-        new Date(selectedSaving.date).getTime()
+        new Date(selectedSaving.date).getTime(),
     )
 
     const daysDiff = datetimeDiff / (1000 * 3600 * 24)
 
     const valuesDiff = Math.abs(
-      Number(lastSaving.value) - Number(selectedSaving.value)
+      Number(lastSaving.value) - Number(selectedSaving.value),
     )
 
     const avgValueDay = valuesDiff / daysDiff

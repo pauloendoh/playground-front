@@ -1,0 +1,7 @@
+{
+  "plugins": ["react", "@typescript-eslint"],
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "rules": {
+    // TODO
+  },
+}

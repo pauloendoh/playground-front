@@ -25,13 +25,13 @@ const WishlistItemTableRow = (props: Props) => {
     return diffValue
   }, [props.item.priceInThousands, lastSaving?.value])
 
-  const avgGrowth = useAverageMonthlyGrowth()
+  const monthlyGrowth = useAverageMonthlyGrowth()
 
   const estimatedTimeLabel = useMemo(() => {
-    if (!avgGrowth) return null
+    if (!monthlyGrowth) return null
 
     const previousItems = props.allItems.filter(
-      (item) => item.priceInThousands < props.item.priceInThousands
+      (item) => item.priceInThousands < props.item.priceInThousands,
     )
 
     const sumPreviousPrices = previousItems.reduce((sum, curr) => {
@@ -43,8 +43,9 @@ const WishlistItemTableRow = (props: Props) => {
       sumPreviousPrices +
       Number(props.item.priceInThousands) * 1000 -
       Number(lastSaving?.value)
+    // 0 + 61000 - 63379 = -2379
 
-    const months = Math.ceil(total / avgGrowth)
+    const months = Math.ceil(total / monthlyGrowth) //  / 175 = 132
 
     const duration = Duration.fromObject({ months }).shiftTo('year', 'month')
     if (duration.as('months') < 0) {
@@ -54,7 +55,7 @@ const WishlistItemTableRow = (props: Props) => {
     return duration.toHuman({
       showZeros: false,
     })
-  }, [avgGrowth, props.item.priceInThousands, lastSaving, props.allItems])
+  }, [monthlyGrowth, props.item.priceInThousands, lastSaving, props.allItems])
 
   return (
     <tr onClick={() => props.onClick()}>
@@ -63,6 +64,17 @@ const WishlistItemTableRow = (props: Props) => {
           maxWidth: 280,
         }}
       >
+        <div
+          style={{
+            display: 'none',
+          }}
+        >
+          {JSON.stringify({
+            monthlyGrowth,
+            priceInThousands: props.item.priceInThousands,
+            lastSavingValue: lastSaving?.value,
+          })}
+        </div>
         <Text truncate>{props.item.itemName}</Text>
       </td>
       <td>{props.item.priority}</td>
