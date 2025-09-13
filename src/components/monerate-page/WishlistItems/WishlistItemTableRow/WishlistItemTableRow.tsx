@@ -48,6 +48,11 @@ const WishlistItemTableRow = (props: Props) => {
 
     const duration = Duration.fromObject({ months })
 
+    console.log({
+      duration,
+      toHuman: duration.toHuman(),
+    })
+
     return duration.toHuman()
   }, [avgGrowth, props.item.priceInThousands, lastSaving, props.allItems])
 
