@@ -47,6 +47,9 @@ const WishlistItemTableRow = (props: Props) => {
     const months = Math.ceil(total / avgGrowth)
 
     const duration = Duration.fromObject({ months }).shiftTo('year', 'month')
+    if (duration.as('months') < 0) {
+      return null
+    }
 
     return duration.toHuman({
       showZeros: false,
