@@ -1,5 +1,6 @@
 import { Text, useMantineTheme } from '@mantine/core'
 import { upToNDecimals } from 'endoh-utils'
+import { Duration } from 'luxon'
 import { useMemo } from 'react'
 import { WishlistItemFragment } from '../../../../graphql/generated/graphql'
 import { useLastSavingQueryUtils } from '../../../../hooks/react-query/monerate/saving/useLastSavingQueryUtils'
@@ -26,8 +27,8 @@ const WishlistItemTableRow = (props: Props) => {
 
   const avgGrowth = useAverageMonthlyGrowth()
 
-  const estimatedMonths = useMemo(() => {
-    if (!avgGrowth) return 0
+  const estimatedTimeLabel = useMemo(() => {
+    if (!avgGrowth) return null
 
     const previousItems = props.allItems.filter(
       (item) => item.priceInThousands < props.item.priceInThousands
@@ -44,7 +45,10 @@ const WishlistItemTableRow = (props: Props) => {
       Number(lastSaving?.value)
 
     const months = Math.ceil(total / avgGrowth)
-    return months
+
+    const duration = Duration.fromObject({ months })
+
+    return duration.toHuman()
   }, [avgGrowth, props.item.priceInThousands, lastSaving, props.allItems])
 
   return (
@@ -68,7 +72,9 @@ const WishlistItemTableRow = (props: Props) => {
       </td>
       <td>{props.item.price && `R$ ${props.item.price}`}</td>
 
-      <td>{estimatedMonths > 0 && <Text>{estimatedMonths} months</Text>}</td>
+      <td>
+        <Text>{estimatedTimeLabel}</Text>
+      </td>
     </tr>
   )
 }
