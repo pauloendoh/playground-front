@@ -43,7 +43,10 @@ const WishlistItemTableRow = (props: Props) => {
       sumPreviousPrices +
       Number(props.item.priceInThousands) * 1000 -
       Number(lastSaving?.value)
-    // 0 + 61000 - 63379 = -2379
+
+    if (total <= 0) {
+      return null
+    }
 
     const months = Math.ceil(total / monthlyGrowth) //  / 175 = 132
 
