@@ -8,7 +8,7 @@ import { useAverageMonthlyGrowth } from '../../../logged-page/MonerateContent/Ot
 
 type Props = {
   item: WishlistItemFragment
-  allItems: WishlistItemFragment[]
+  visibleItems: WishlistItemFragment[]
   onClick: () => void
 }
 
@@ -28,9 +28,10 @@ const WishlistItemTableRow = (props: Props) => {
   const monthlyGrowth = useAverageMonthlyGrowth()
 
   const sumPreviousPrices = useMemo(() => {
-    const previousItems = props.allItems.filter(
-      (item) => item.priceInThousands < props.item.priceInThousands,
-    )
+    const index = props.visibleItems.findIndex((i) => i.id === props.item.id)
+    const previousItems = props.visibleItems
+      .slice(0, index)
+      .filter((item) => item.priceInThousands < props.item.priceInThousands)
 
     const sumPreviousPrices = previousItems.reduce((sum, curr) => {
       const price = Number(curr.price)
@@ -38,12 +39,12 @@ const WishlistItemTableRow = (props: Props) => {
     }, 0)
 
     return sumPreviousPrices
-  }, [props.allItems, props.item.priceInThousands])
+  }, [props.visibleItems, props.item.priceInThousands])
 
   const estimatedTimeLabel = useMemo(() => {
     if (!monthlyGrowth) return null
 
-    const previousItems = props.allItems.filter(
+    const previousItems = props.visibleItems.filter(
       (item) =>
         Number(item.priceInThousands) < Number(props.item.priceInThousands),
     )
@@ -57,6 +58,7 @@ const WishlistItemTableRow = (props: Props) => {
       sumPreviousPrices +
       Number(props.item.priceInThousands) * 1000 -
       Number(lastSaving?.value)
+    // 25501 + 61000 - 63379 = 23122
 
     if (total <= 0) {
       return null
@@ -72,7 +74,12 @@ const WishlistItemTableRow = (props: Props) => {
     return duration.toHuman({
       showZeros: false,
     })
-  }, [monthlyGrowth, props.item.priceInThousands, lastSaving, props.allItems])
+  }, [
+    monthlyGrowth,
+    props.item.priceInThousands,
+    lastSaving,
+    props.visibleItems,
+  ])
 
   /**
    * {"monthlyGrowth":175.35451491977082,"priceInThousands":"61","lastSavingValue":"63379","sumPreviousPrices":25501}

@@ -165,7 +165,7 @@ const WishlistSection = (props: Props) => {
               <WishlistItemTableRow
                 key={item.id}
                 item={item}
-                allItems={visibleItems}
+                visibleItems={visibleItems}
                 onClick={() => {
                   openModal(item)
                 }}
