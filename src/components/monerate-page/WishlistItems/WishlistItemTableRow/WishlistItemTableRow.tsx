@@ -23,7 +23,7 @@ const WishlistItemTableRow = (props: Props) => {
       Number(props.item.priceInThousands) * 1000 - Number(lastSaving.value)
 
     return diffValue
-  }, [lastSaving, props.item])
+  }, [props.item.priceInThousands, lastSaving?.value])
 
   const avgGrowth = useAverageMonthlyGrowth()
 
