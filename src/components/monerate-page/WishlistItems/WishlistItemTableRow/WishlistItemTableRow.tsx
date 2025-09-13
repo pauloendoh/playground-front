@@ -44,7 +44,8 @@ const WishlistItemTableRow = (props: Props) => {
     if (!monthlyGrowth) return null
 
     const previousItems = props.allItems.filter(
-      (item) => item.priceInThousands < props.item.priceInThousands,
+      (item) =>
+        Number(item.priceInThousands) < Number(props.item.priceInThousands),
     )
 
     const sumPreviousPrices = previousItems.reduce((sum, curr) => {
@@ -73,6 +74,9 @@ const WishlistItemTableRow = (props: Props) => {
     })
   }, [monthlyGrowth, props.item.priceInThousands, lastSaving, props.allItems])
 
+  /**
+   * {"monthlyGrowth":175.35451491977082,"priceInThousands":"61","lastSavingValue":"63379","sumPreviousPrices":25501}
+   */
   return (
     <tr onClick={() => props.onClick()}>
       <td
